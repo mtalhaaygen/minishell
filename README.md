@@ -6,4 +6,8 @@
 - ilerleyen zamanlarda proje bölümlere ayrılıp, herkese farklı görev verilebilir.
 - Akşamları dc girip, muhabbet etsek fena mı olur, ortak vscode dan kod yazarız hem :D
 
+*branch nasıl açılıyor?
+*araştırmaya nereden başlayacağız?
+* https://heliotrope-garment-fdf.notion.site/Minishell-45aa5a4972724576ae21384eac3221cf güzel kaynak.
+
 > Saygılarımla maygen
