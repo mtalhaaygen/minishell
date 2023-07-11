@@ -9,5 +9,6 @@
 *branch nasıl açılıyor?
 *araştırmaya nereden başlayacağız?
 * https://heliotrope-garment-fdf.notion.site/Minishell-45aa5a4972724576ae21384eac3221cf güzel kaynak.
+* deneme
 
 > Saygılarımla maygen
