@@ -53,7 +53,7 @@ ttyname, ttyslot, ioctl, getenv, tcsetattr, tcgetattr, tgetent, tgetflag, tgetnu
 - Yeni bir komut beklerken bir komut istemi görüntülenmeli
 - Bir çalışma geçmişi olmalı (history)
 - Doğru yürütülebilir dosyayı arayın ve başlatın (PATH değişkenine göre veya göreli veya mutlak bir yol kullanarak).
-- Birden fazla global değişken kullanmayın. Bunu düşün. Amacını açıklamanız gerekecek.
+- Sadece bir tane global değişken kullanın. Bunu düşün. Amacını açıklamanız gerekecek.
 - Kapanmamış alıntıları veya \ (ters eğik çizgi) veya ; gibi konunun gerektirmediği özel karakterleri yorumlamayın.
 - Handle ’ (single quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence.
 - Handle " (double quote) which should prevent the shell from interpreting the metacharacters in the quoted sequence except for $ (dollar sign).
