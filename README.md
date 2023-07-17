@@ -16,10 +16,12 @@
 * https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
 * https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
 * https://cdn.intra.42.fr/pdf/pdf/93003/en.subject.pdf (proje pdfi)
+* https://bilgisayarkavramlari.com/2012/03/13/exec-fonksiyonlari/
 # MINISHELL
 Bu projede amaç kendi shell imizi oluşturmak.
 Shell, bir kullanıcı ile bir işletim sistemi çekirdeği arasında bir arayüz sağlayan bir programdır. Komutları alır, bunları işler, sonuçları görüntüler ve kullanıcıdan yeni komutları bekler. 
-Shell, komutları yorumlar, işletim sistemi tarafından sağlanan kaynaklara erişim sağlar ve kullanıcıya geri bildirimde bulunur.
+Shell, komutları yorumlar, işletim sistemi tarafından sağlanan kaynaklara erişim sağlar ve kullanıcıya geri bildirimde bulunur. Ayrıca ayrıca if, for, while, fonksiyonlar, değişkenler vb. gibi
+programlama yapıları sağlar
 Temel işlevleri şu şekildedir;
 - Dosya veya dizin oluşturma, silme, okuma, yazma, sıralama
 - tarih ve zaman kontrolü (örnek komutlar `date +%d_%m_%Y` yada `date +"Ay:%m / Yıl:%y"`)
@@ -36,7 +38,39 @@ Korn Shell (ksh) <br>
 Z Shell (zsh) <br>
 Command Prompt (cmd) <br>
 PowerShell <br>
+Bunlara ek olarak, çoğu kullanıcı için bilgisayar kullanımını basitleştiren Windows Masaüstü, MacOS Finder veya Linux Gnome ve KDE gibi Grafik sheller de vardır.
+Bir shell uygulaması üç bölüme ayrılmıştır; The Parser, The Executor, and Shell Subsystems.
+Parser, komut satırını okuyan ve bunları ayrıştırarak bir veri yapısında (struct) tutan yazılım bileşenidir.
+Executor, her bir komut için bir process oluşturur. (builtin komutlar hariç) Gerekirse, bir sürecin çıktısını bir sonrakinin girdisine iletmek için pipe() ile bağlantılar oluşturur. Ek olarak, herhangi bir yeniden yönlendirme varsa standart girdiyi, standart çıktıyı ve standart hatayı yeniden yönlendirir. Executor şuna benzer birşey olacak;
+```C
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
+void executeCommand() {
+    int ret;
+    for (int i = 0; i < _numberOfSimpleCommands; i++) { // kaç tane kod varsa o kadar fork yapılıyor ve exec e gönderiliyor
+        ret = fork();
+        if (ret == 0) {
+            // Child process
+            execvp(sCom[i]->_args[0], sCom[i]->_args);
+            perror("execvp");
+            _exit(1);
+        } else if (ret < 0) {
+            perror("fork");
+            return;
+        }
+        // Parent shell continues
+    }
+    if (!background) {
+        // Wait for the last process
+        waitpid(ret, NULL, 0);
+    }
+}
+```
+Shell Subsystem ise env, wildcard, `` (backticks) değerlerinin kullanımını içerir
 Linux'ta her şey bir dosyadır; donanım aygıtları da öyle. USB girişleri, seri ve paralel portlar, depolama ortamları, CD-ROM'lar vb... Bütün aygıtlar /dev klasörü altında tutulan dosyalardan ibarettir. Aynı şekilde her bir komutta bir dosya olarak /bin klasörünün içinde bulunur. 
 
 ## Projenin isterleri
@@ -205,6 +239,11 @@ echo $PATH
 ````
 HOME, PATH, LOGNAME gibi envlerin anlamları standarttır. Bu onları daima ortam değişkenleri olarak belirtilebileceği anlamına gelmez; sadece bu değişkenlerle belirtildiklerinde hep aynı anlama gelirler. Bu ortam değişkenlerinin isimlerini başka amaçlarla kullanmayı denememelisiniz.
  
+<hr>
+
+### Built-in command
+built-in komutlar, shell programının içinde yer alan ve direk olarak çalıştırılabilen yerleşik komutlar olarak tanımlanır. Örneğin, cd, echove pwd gibi komutlar built-in komutlardır. Bu komutlar, çalıştırılmadan önce sistemde ayrı bir program olarak aranmaz, yeni bir process oluşturulması gerekmez ve shell programı tarafından doğrudan işlenirler.
+> bash  defines  the  following built-in commands: :, ., [, alias, bg, bind, break, builtin, case, cd, command, compgen, complete, continue, declare, dirs, disown, echo, enable, eval, exec,  exit,  export,  fc,  fg,  getopts, hash, help, history, if, jobs, kill, let, local, logout, popd, printf, pushd, pwd, read,  readonly,  return,  set,  shift,  shopt,  source, suspend,  test,  times,  trap,  type, typeset, ulimit, umask, unalias, unset, until, wait, while
 <hr>
 
 ### Sinyaller hakkında
@@ -395,10 +434,32 @@ int main() {
 }
 ```
 **2 dup2()**
+> * prototip : int dup2(int fildes, int fildes2);*
+Bu fonksiyon ile fd lerii değiştirebiliyoruz,
+Eğer fildes ve fildes2 eşitse, dup2() fonksiyonu sadece fildes2'yi döndürür; mevcut tanımlayıcı üzerinde başka bir değişiklik yapılmaz.
+Ancak, eğer fildes2 tanımlayıcısı zaten kullanılıyorsa, öncelikle sanki bir close(2) çağrısı yapılmış gibi fildes2 tanımlayıcısı serbest bırakılır (dealloke edilir).
+"Dealokasyon" terimi, ayrılmış bir kaynağın (bellek, dosya tanımlayıcı, ağ bağlantısı vb.) kullanımdan kaldırılması veya serbest bırakılması anlamına gelir. Kaynakların kullanımı bittikten sonra dealokasyon işlemi gerçekleştirilerek bu kaynaklar sisteme geri verilir.
+
 **3 dup()**
+> *prototip : int dup(int fildes);*
+Bir fd nin kopyası yeni bir fd oluşturuluyor, oluşturulan bu newfd eski fd kaybolsa bile kullanılabiliyor. 
+```C
+#include <unistd.h>
+#include <fcntl.h>
+
+int main()
+{
+    int fd_stdout = dup(STDOUT_FILENO);
+    int fdn = open("talha.txt", O_WRONLY);
+    dup2(fdn, 1);
+    write(1, "xxxxx", 5); // talha.txt nin içine yazacak
+    dup2(fd_stdout, 1); // fd_stdout'u tekrardan standart çıkışa yönlendir
+    write(1, "talha", 5);
+}
+
+```
 **4 ioctl()**
 > *prototip : int ioctl(int fildes, unsigned long request, ...);*
-
 ioctl() fonksiyonu, UNIX ve UNIX benzeri işletim sistemlerinde kullanılan bir sistem çağrısıdır. Bu fonksiyon, I/O kontrolü (input/output control) için kullanılır ve genellikle aygıtlarla etkileşimde bulunmak, aygıt sürücülerini yönetmek veya özel işlemler gerçekleştirmek için kullanılır.
 Bir hata oluşmuşsa, -1 değeri döndürülür ve hatayı belirtmek için errno ayarlanır.
 İşlem, request parametresi ile belirtilen bir isteğe dayanır. Örneğin, Linux kerneli üzerinde çalışan bir karakter aygıt sürücüsünde kullanılan bazı yaygın ioctl istekleri şunlardır:
@@ -407,3 +468,43 @@ Bir hata oluşmuşsa, -1 değeri döndürülür ve hatayı belirtmek için errno
 - FIONBIO: Bloklama olmadan giriş/çıkış işlemlerini gerçekleştirmek için soketi ayarlar.
 - TIOCGWINSZ: Terminal penceresinin boyutunu almak için kullanılır.
 - TIOCSWINSZ: Terminal penceresinin boyutunu ayarlamak için kullanılır.
+
+**5 chdir()**
+> *prototip : int chdir(const char *path);*
+Mevcut çalışma dizinini değiştirmek için kullanılır. Parametreye çalışma dizininin ne olmasını istiyorsanız onu verirsiniz. Başarılı sonlanır ise 0, hata durumu oluşursa 1 return eder. 
+Örnek kullanım
+```C
+#include<stdio.h>
+ 
+// chdir function is declared
+// inside this header
+#include<unistd.h>
+int main()
+{
+    char s[100];
+ 
+    // printing current working directory
+    printf("%s\n", getcwd(s, 100));
+ 
+    // using the command
+    chdir("/Users");
+ 
+    // printing current working directory
+    printf("%s\n", getcwd(s, 100));
+ 
+    // after chdir is executed
+    return 0;
+}
+```
+
+**6 close()**
+open() ile açtığımız dosyanın fd sini yada herhangi bir fd yi sonlandırmak, serbest bırakmak için kullanılır. Fonksiyon başarı ile sonlanırsa 0, hatalı sonlanırsa 1 return eder.
+```C
+// ...
+int fd = open("deneme.txt", O_RDWR, 0777);
+// ... bir takım işlemler
+close(fd); // fd yi daha kullanmayacağımız için kapattık
+// ...
+```
+
+**7 exec()**
