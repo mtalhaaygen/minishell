@@ -16,11 +16,14 @@
 * https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
 * https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
 * https://www.digitalocean.com/community/tutorials/execvp-function-c-plus-plus execvp kaynak.
+* https://cdn.intra.42.fr/pdf/pdf/93003/en.subject.pdf (proje pdfi)
+* https://bilgisayarkavramlari.com/2012/03/13/exec-fonksiyonlari/
 
 # MINISHELL
 Bu projede amaç kendi shell imizi oluşturmak.
 Shell, bir kullanıcı ile bir işletim sistemi çekirdeği arasında bir arayüz sağlayan bir programdır. Komutları alır, bunları işler, sonuçları görüntüler ve kullanıcıdan yeni komutları bekler. 
-Shell, komutları yorumlar, işletim sistemi tarafından sağlanan kaynaklara erişim sağlar ve kullanıcıya geri bildirimde bulunur.
+Shell, komutları yorumlar, işletim sistemi tarafından sağlanan kaynaklara erişim sağlar ve kullanıcıya geri bildirimde bulunur. Ayrıca ayrıca if, for, while, fonksiyonlar, değişkenler vb. gibi
+programlama yapıları sağlar
 Temel işlevleri şu şekildedir;
 - Dosya veya dizin oluşturma, silme, okuma, yazma, sıralama
 - tarih ve zaman kontrolü (örnek komutlar `date +%d_%m_%Y` yada `date +"Ay:%m / Yıl:%y"`)
@@ -31,18 +34,46 @@ Temel işlevleri şu şekildedir;
 gibi bir dizi görevi gerçekleştirmemize izin verir.
 
 Birçok farklı çeşidir var;
-Bourne Again Shell (bash)
-C Shell (csh)
-Korn Shell (ksh)
-Z Shell (zsh)
-Command Prompt (cmd)
-PowerShell 
+Bourne Again Shell (bash) <br>
+C Shell (csh) <br>
+Korn Shell (ksh) <br>
+Z Shell (zsh) <br>
+Command Prompt (cmd) <br>
+PowerShell <br>
+Bunlara ek olarak, çoğu kullanıcı için bilgisayar kullanımını basitleştiren Windows Masaüstü, MacOS Finder veya Linux Gnome ve KDE gibi Grafik sheller de vardır.
+Bir shell uygulaması üç bölüme ayrılmıştır; The Parser, The Executor, and Shell Subsystems.
+Parser, komut satırını okuyan ve bunları ayrıştırarak bir veri yapısında (struct) tutan yazılım bileşenidir.
+Executor, her bir komut için bir process oluşturur. (builtin komutlar hariç) Gerekirse, bir sürecin çıktısını bir sonrakinin girdisine iletmek için pipe() ile bağlantılar oluşturur. Ek olarak, herhangi bir yeniden yönlendirme varsa standart girdiyi, standart çıktıyı ve standart hatayı yeniden yönlendirir. Executor şuna benzer birşey olacak;
+```C
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
+void executeCommand() {
+    int ret;
+    for (int i = 0; i < _numberOfSimpleCommands; i++) { // kaç tane kod varsa o kadar fork yapılıyor ve exec e gönderiliyor
+        ret = fork();
+        if (ret == 0) {
+            // Child process
+            execvp(sCom[i]->_args[0], sCom[i]->_args);
+            perror("execvp");
+            _exit(1);
+        } else if (ret < 0) {
+            perror("fork");
+            return;
+        }
+        // Parent shell continues
+    }
+    if (!background) {
+        // Wait for the last process
+        waitpid(ret, NULL, 0);
+    }
+}
+```
+Shell Subsystem ise env, wildcard, `` (backticks) değerlerinin kullanımını içerir
 Linux'ta her şey bir dosyadır; donanım aygıtları da öyle. USB girişleri, seri ve paralel portlar, depolama ortamları, CD-ROM'lar vb... Bütün aygıtlar /dev klasörü altında tutulan dosyalardan ibarettir. Aynı şekilde her bir komutta bir dosya olarak /bin klasörünün içinde bulunur. 
-
-
-Process
- ve file descriptor hakkında yeni şeyler öğrenilecek.
 
 ## Projenin isterleri
 - Output: minishell
@@ -77,9 +108,40 @@ Komut satırında çalıştırılan her program belirli veri akışına sahiptir
 Output'u yeniden yönlendirmenin birden çok yolu vardır. 
 
 > **'>'**	dosya oluşturulmadıysa dosyayı oluşturur, dosyanın içeriğinin üzerine yazar. Dosyayı açarken open() fonksiyonunda flag olarak ***O_TRUNC*** kullanmalıyız, bu dosyanın içeriğinin silinmesine neden olur
+```shell
+$ echo deneme > talha   
+$ cat talha 
+deneme
+```
+
 > **'>>'**	dosya oluşturulmadıysa dosyayı oluşturur, içeriği silmeden dosyanın sonuna yazar. Dosyayı açarken open() fonksiyonunda flag olarak ***O_APPEND*** kullanmalıyız, bu dosyaya yapılan tüm yazmaların dosyanın sonunda yapılmasını sağlar
+```shell
+$ cat talha
+deneme
+$ echo deneme basarili >> talha
+$ cat talha
+deneme
+deneme basarili
+```
 > **'<'**	dosyadan veriyi girdi olarak alma
-> **'<<'**	(herdoc)
+```shell
+$ cat > talha
+selamın aleyküm
+aleyküm selam
+^C
+$ cat < talha
+selamın aleyküm
+aleyküm selam
+```
+
+> **'<<'**	(heredoc) shell scriptleri yazarken tee , cat veya sftp gibi etkileşimli bir komuta çok satırlı bir metin veya kod bloğu geçirmeniz gereken bir durumda olabilirsiniz. Bash ve Zsh gibi diğer shelllerde, bir Here document (Heredoc), bir komuta birden fazla giriş satırı geçirmenize izin veren bir yeniden yönlendirme türüdür.
+
+```Shell
+$ cat <<EOF
+This is a heredoc string.
+It can contain multiple lines.
+EOF
+```
 
 ![fd'yi değiştirmek!](https://heliotrope-garment-fdf.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F94c75a67-4cd4-436c-b20c-f7461a20d538%2Fmain.png?id=62511366-ded2-439b-b30f-61aced34c962&table=block&spaceId=e9825bf3-7545-4a15-9867-eda0ee1ebd06&width=1920&userId=&cache=v2 "dup")
 bu yönlendirmeler kullanılırken stdout'a yazdırmak yerine dup, dup2 gibi fonksiyonlarla STDOUT (file descriptor 1)'i dosyanın fd si ile değiştirebiliriz.
@@ -129,6 +191,7 @@ ps -ef | grep chrome | grep -v grep | wc -l
 ```
 pipe detaylı şekilde aşağıda incelendi
 
+<hr>
 
 ### Pipes
 
@@ -141,6 +204,8 @@ $ ps aux | grep minishell
 ```
 
 Birde pipe() fonksiyonu var, ona fonksiyonlar kısmında değindik.
+<hr>
+
 ### errno
 
 Errno (error number), bir program veya sistem çağrısı sırasında oluşan hata durumlarını tanımlamak için kullanılan bir değişkendir. Her hata durumunda, sistem veya işletim sistemi bir hata kodu döndürür ve bu kod, errno değişkeninde saklanır.
@@ -164,8 +229,63 @@ Errno değişkeni, genellikle C ve C++ gibi düşük seviyeli programlama diller
 ********************errno = 1;********************
 
 1 exit kodu, bir Unix veya Linux sisteminde bir komutun veya programın hata ile sonlandığını gösterir. Bu exit kodu genellikle bir hata mesajı ile birlikte döndürülür ve programın beklenmedik bir şekilde sonlandığını gösterir.
-### Environment variables
+<hr>
 
+### Environment variables
+Ortam değişkenleri, sistem veya uygulama tarafından kullanılan değerleri içerir. Tıpkı makrolar gibi tanımlanır. `env` komutu ile sistemdeki tüm bu değişkenleri görebiliriz. Yine bu komut ile ortam değişkenlerinin değerlerini değiştirebiliriz.
+`env PATH=/new/path example`
+PATH ortam değişkeni, sistem tarafından çalıştırılacak programların aranacağı klasörleri belirtir.
+PATH değişkenini görüntülemek için;
+````shell
+echo $PATH
+````
+HOME, PATH, LOGNAME gibi envlerin anlamları standarttır. Bu onları daima ortam değişkenleri olarak belirtilebileceği anlamına gelmez; sadece bu değişkenlerle belirtildiklerinde hep aynı anlama gelirler. Bu ortam değişkenlerinin isimlerini başka amaçlarla kullanmayı denememelisiniz.
+ 
+<hr>
+
+### Built-in command
+built-in komutlar, shell programının içinde yer alan ve direk olarak çalıştırılabilen yerleşik komutlar olarak tanımlanır. Örneğin, cd, echove pwd gibi komutlar built-in komutlardır. Bu komutlar, çalıştırılmadan önce sistemde ayrı bir program olarak aranmaz, yeni bir process oluşturulması gerekmez ve shell programı tarafından doğrudan işlenirler.
+> bash  defines  the  following built-in commands: :, ., [, alias, bg, bind, break, builtin, case, cd, command, compgen, complete, continue, declare, dirs, disown, echo, enable, eval, exec,  exit,  export,  fc,  fg,  getopts, hash, help, history, if, jobs, kill, let, local, logout, popd, printf, pushd, pwd, read,  readonly,  return,  set,  shift,  shopt,  source, suspend,  test,  times,  trap,  type, typeset, ulimit, umask, unalias, unset, until, wait, while
+<hr>
+
+### Sinyaller hakkında
+**SIGINT:**
+SIGINIT, Unix ve Linux işletim sistemlerinde bir sinyaldir ve “Interrupt” (Kesinti) anlamına gelir. Genellikle kullanıcının klavyedeki “CTRL+C” tuş kombinasyonunu basması durumunda oluşturulur ve çalışan bir işlemi veya komutu kesmeye yarar. Bir işlem SIGINT sinyalini alırken, kontrollü bir şeklilde kendini sonlandırması beklenir, kaynakları serbest bırakır ve açık dosyaları ve bağlantıları kapatır. 
+<br>
+
+**SIG_IGN**:
+
+SIG_IGN Unix ve Linux işletim sistemlerinde "ignore" (yoksay) anlamına gelen bir sabittir. İşaretleri işleme fonksiyonlarında bir programın belirli bir sinyali yoksayacağını belirtmek için özel bir değer olarak kullanılır.
+<br>
+
+**SIGQUIT**:
+SIGINT’e göre, kaynakları temizlemek ve açık dosyaları veya bağlantıları kapatmak için izin vermeyen SIGQUIT, işlemi hemen sonlandırmak için tasarlandı.
+Aşağıda bu sinyallerin işlevinin yeniden düzenlenilmesi gösteriliyor.
+```C
+#include <signal.h>
+
+void sigint_handler(int signum)
+{
+    printf("SIGINT alındı, kapatılıyor...\n");
+    exit(0);
+}
+
+void sigquit_handler(int signum)
+{
+    printf("SIGQUIT alındı, sonlandırılıyor...\n");
+    exit(3);
+}
+
+int main(int argc, char *argv[])
+{
+    signal(SIGINT, sigint_handler);
+    signal(SIGQUIT, sigquit_handler2);
+    signal(SIGKILL, SIG_IGN); // SIGKILL sinyali gelirse bu durum yok sayılacak
+
+    // Programın geri kalanı burada...
+}
+```
+<hr>
 ### Temel linux komutları
 
 **1. man :** man ile kullanımını hatırlayamadığınız yada öğrenmek istediğiniz aşağıdaki konularda bilgi edinebilirsiniz.
@@ -251,7 +371,9 @@ find libft -name "*.a" -exec mv {} ~/Desktop \; # libftdeki .a uzantılı kütü
 
 ## Kullanabileceğimiz Fonksiyonlar
 
-**int pipe(int pipefd[2]);** 
+**1. pipe()**
+> *prototip : int pipe( int pipefd[2] );*
+
 iki process arasında veri iletişimini iki file descriptor ile sağlar.
 parametre olarak verilen fd[2], index 0’da okunan ve index 1’de yazdırılan fd yi tutuyor sahip.
 return değeri başarı durumunda 0, hata durumunda ise 1 dir.
@@ -276,16 +398,16 @@ int main() {
         return 1;
     }
 
-    // Yeni bir çocuk işlem oluşturma
+    // Yeni bir Child process oluşturma
     pid = fork();
 
     if (pid < 0) {
-        fprintf(stderr, "Çocuk işlem oluşturulamadı\n");
+        fprintf(stderr, "Child process oluşturulamadı\n");
         return 1;
     }
 
     if (pid > 0) {
-        // Ana işlemdeyiz
+        // Parent processdeyiz
         printf("parent pid:%d",pid);
 
         // Pipe'ın okuma tarafını kapatma
@@ -295,10 +417,10 @@ int main() {
         write(pipefd[1], data, strlen(data) + 1);
         close(pipefd[1]);// artık buradan yazacak birşeyimiz olmadığından kapatabiliriz
 
-        // Çocuk işlemin tamamlanmasını bekliyoruz
+        // Child processin tamamlanmasını bekliyoruz
         wait(NULL);
     } else if {
-        // Çocuk işlemindeyiz
+        // Child processindeyiz
         printf("child pid:%d",pid);
 
         // Pipe'ın yazma tarafını kapatma
@@ -313,3 +435,78 @@ int main() {
     return 0;
 }
 ```
+**2 dup2()**
+> * prototip : int dup2(int fildes, int fildes2);*
+Bu fonksiyon ile fd lerii değiştirebiliyoruz,
+Eğer fildes ve fildes2 eşitse, dup2() fonksiyonu sadece fildes2'yi döndürür; mevcut tanımlayıcı üzerinde başka bir değişiklik yapılmaz.
+Ancak, eğer fildes2 tanımlayıcısı zaten kullanılıyorsa, öncelikle sanki bir close(2) çağrısı yapılmış gibi fildes2 tanımlayıcısı serbest bırakılır (dealloke edilir).
+"Dealokasyon" terimi, ayrılmış bir kaynağın (bellek, dosya tanımlayıcı, ağ bağlantısı vb.) kullanımdan kaldırılması veya serbest bırakılması anlamına gelir. Kaynakların kullanımı bittikten sonra dealokasyon işlemi gerçekleştirilerek bu kaynaklar sisteme geri verilir.
+
+**3 dup()**
+> *prototip : int dup(int fildes);*
+Bir fd nin kopyası yeni bir fd oluşturuluyor, oluşturulan bu newfd eski fd kaybolsa bile kullanılabiliyor. 
+```C
+#include <unistd.h>
+#include <fcntl.h>
+
+int main()
+{
+    int fd_stdout = dup(STDOUT_FILENO);
+    int fdn = open("talha.txt", O_WRONLY);
+    dup2(fdn, 1);
+    write(1, "xxxxx", 5); // talha.txt nin içine yazacak
+    dup2(fd_stdout, 1); // fd_stdout'u tekrardan standart çıkışa yönlendir
+    write(1, "talha", 5);
+}
+
+```
+**4 ioctl()**
+> *prototip : int ioctl(int fildes, unsigned long request, ...);*
+ioctl() fonksiyonu, UNIX ve UNIX benzeri işletim sistemlerinde kullanılan bir sistem çağrısıdır. Bu fonksiyon, I/O kontrolü (input/output control) için kullanılır ve genellikle aygıtlarla etkileşimde bulunmak, aygıt sürücülerini yönetmek veya özel işlemler gerçekleştirmek için kullanılır.
+Bir hata oluşmuşsa, -1 değeri döndürülür ve hatayı belirtmek için errno ayarlanır.
+İşlem, request parametresi ile belirtilen bir isteğe dayanır. Örneğin, Linux kerneli üzerinde çalışan bir karakter aygıt sürücüsünde kullanılan bazı yaygın ioctl istekleri şunlardır:
+
+- FIONREAD: Giriş tamponunda bekleyen okunmamış bayt sayısını almak için kullanılır.
+- FIONBIO: Bloklama olmadan giriş/çıkış işlemlerini gerçekleştirmek için soketi ayarlar.
+- TIOCGWINSZ: Terminal penceresinin boyutunu almak için kullanılır.
+- TIOCSWINSZ: Terminal penceresinin boyutunu ayarlamak için kullanılır.
+
+**5 chdir()**
+> *prototip : int chdir(const char *path);*
+Mevcut çalışma dizinini değiştirmek için kullanılır. Parametreye çalışma dizininin ne olmasını istiyorsanız onu verirsiniz. Başarılı sonlanır ise 0, hata durumu oluşursa 1 return eder. 
+Örnek kullanım
+```C
+#include<stdio.h>
+ 
+// chdir function is declared
+// inside this header
+#include<unistd.h>
+int main()
+{
+    char s[100];
+ 
+    // printing current working directory
+    printf("%s\n", getcwd(s, 100));
+ 
+    // using the command
+    chdir("/Users");
+ 
+    // printing current working directory
+    printf("%s\n", getcwd(s, 100));
+ 
+    // after chdir is executed
+    return 0;
+}
+```
+
+**6 close()**
+open() ile açtığımız dosyanın fd sini yada herhangi bir fd yi sonlandırmak, serbest bırakmak için kullanılır. Fonksiyon başarı ile sonlanırsa 0, hatalı sonlanırsa 1 return eder.
+```C
+// ...
+int fd = open("deneme.txt", O_RDWR, 0777);
+// ... bir takım işlemler
+close(fd); // fd yi daha kullanmayacağımız için kapattık
+// ...
+```
+
+**7 exec()**
