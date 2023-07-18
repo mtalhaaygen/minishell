@@ -15,8 +15,10 @@
 * https://www.youtube.com/playlist?list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW
 * https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
 * https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
+* https://www.digitalocean.com/community/tutorials/execvp-function-c-plus-plus execvp kaynak.
 * https://cdn.intra.42.fr/pdf/pdf/93003/en.subject.pdf (proje pdfi)
 * https://bilgisayarkavramlari.com/2012/03/13/exec-fonksiyonlari/
+
 # MINISHELL
 Bu projede amaç kendi shell imizi oluşturmak.
 Shell, bir kullanıcı ile bir işletim sistemi çekirdeği arasında bir arayüz sağlayan bir programdır. Komutları alır, bunları işler, sonuçları görüntüler ve kullanıcıdan yeni komutları bekler. 
