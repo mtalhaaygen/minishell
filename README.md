@@ -15,6 +15,7 @@
 * https://www.youtube.com/playlist?list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW
 * https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
 * https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
+* https://www.digitalocean.com/community/tutorials/execvp-function-c-plus-plus execvp kaynak.
 
 # MINISHELL
 Bu projede amaç kendi shell imizi oluşturmak.
