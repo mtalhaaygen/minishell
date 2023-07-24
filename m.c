@@ -105,7 +105,13 @@ void consumeToken(Parser* parser) {
     parser->currentToken++;
 }
 
-void parseCommand(Parser* parser);
+void parseCommand(Parser* parser) {
+    Token currentToken = getCurrentToken(parser);
+    if (currentToken.type == TOKEN_WORD) {
+        printf("Command: %s\n", currentToken.content);
+        consumeToken(parser);
+    }
+}
 
 void parsePipeline(Parser* parser) {
     parseCommand(parser);
@@ -114,14 +120,6 @@ void parsePipeline(Parser* parser) {
         consumeToken(parser);
         parseCommand(parser);
         currentToken = getCurrentToken(parser);
-    }
-}
-
-void parseCommand(Parser* parser) {
-    Token currentToken = getCurrentToken(parser);
-    if (currentToken.type == TOKEN_WORD) {
-        printf("Command: %s\n", currentToken.content);
-        consumeToken(parser);
     }
 }
 

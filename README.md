@@ -16,8 +16,9 @@
 * https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
 * https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
 * https://www.digitalocean.com/community/tutorials/execvp-function-c-plus-plus execvp kaynak.
-* https://cdn.intra.42.fr/pdf/pdf/93003/en.subject.pdf (proje pdfi)
-* https://bilgisayarkavramlari.com/2012/03/13/exec-fonksiyonlari/
+* [proje pdfi](https://cdn.intra.42.fr/pdf/pdf/93003/en.subject.pdf)
+* [exec_tr](https://bilgisayarkavramlari.com/2012/03/13/exec-fonksiyonlari/)
+* [Write Your Own Shell (Youtube)](https://youtube.com/playlist?list=PLxIRFba3rzLzxxZMMbrm_-mkI7mV9G0pj)
 
 # MINISHELL
 Bu projede amaç kendi shell imizi oluşturmak.
@@ -240,12 +241,17 @@ PATH değişkenini görüntülemek için;
 echo $PATH
 ````
 HOME, PATH, LOGNAME gibi envlerin anlamları standarttır. Bu onları daima ortam değişkenleri olarak belirtilebileceği anlamına gelmez; sadece bu değişkenlerle belirtildiklerinde hep aynı anlama gelirler. Bu ortam değişkenlerinin isimlerini başka amaçlarla kullanmayı denememelisiniz.
+
+export komutu ile aşağıdaki gibi yeni envler oluşturabiliriz
+`export my_env_variable="deneme"`
  
 <hr>
 
 ### Built-in command
 built-in komutlar, shell programının içinde yer alan ve direk olarak çalıştırılabilen yerleşik komutlar olarak tanımlanır. Örneğin, cd, echove pwd gibi komutlar built-in komutlardır. Bu komutlar, çalıştırılmadan önce sistemde ayrı bir program olarak aranmaz, yeni bir process oluşturulması gerekmez ve shell programı tarafından doğrudan işlenirler.
-> bash  defines  the  following built-in commands: :, ., [, alias, bg, bind, break, builtin, case, cd, command, compgen, complete, continue, declare, dirs, disown, echo, enable, eval, exec,  exit,  export,  fc,  fg,  getopts, hash, help, history, if, jobs, kill, let, local, logout, popd, printf, pushd, pwd, read,  readonly,  return,  set,  shift,  shopt,  source, suspend,  test,  times,  trap,  type, typeset, ulimit, umask, unalias, unset, until, wait, while
+> bash  defines  the  following built-in commands: :, ., \[, alias, bg, bind, break, builtin, case, cd, command, compgen, complete, continue, declare, dirs, disown, echo, enable, eval, exec,  exit,  export,  fc,  fg,  getopts, hash, help, history, if, jobs, kill, let, local, logout, popd, printf, pushd, pwd, read,  readonly,  return,  set,  shift,  shopt,  source, suspend,  test,  times,  trap,  type, typeset, ulimit, umask, unalias, unset, until, wait, while
+
+Built-in komutlarının her birinin çalışmasını biz kendimiz tanımlayacağız çünkü /bin/ içerisinde bu komutlar olmayabiliyor. Biz sadece built-in komutlarından bazılarını işleyeceğiz (echo, cd, pwd, export, unset, env, exit).
 <hr>
 
 ### Sinyaller hakkında
@@ -286,6 +292,7 @@ int main(int argc, char *argv[])
 }
 ```
 <hr>
+
 ### Temel linux komutları
 
 **1. man :** man ile kullanımını hatırlayamadığınız yada öğrenmek istediğiniz aşağıdaki konularda bilgi edinebilirsiniz.
@@ -357,6 +364,7 @@ find libft -name "*.a" -exec mv {} ~/Desktop \; # libftdeki .a uzantılı kütü
 
 ```
 **6. cp :**
+
 ```shell
  cp ornek.jpg /home/talha/Pictures # ornek.jpg dosyasının Pictures dizininde bir kopyasını oluşturur.
 ```
@@ -437,6 +445,7 @@ int main() {
 ```
 **2 dup2()**
 > * prototip : int dup2(int fildes, int fildes2);*
+
 Bu fonksiyon ile fd lerii değiştirebiliyoruz,
 Eğer fildes ve fildes2 eşitse, dup2() fonksiyonu sadece fildes2'yi döndürür; mevcut tanımlayıcı üzerinde başka bir değişiklik yapılmaz.
 Ancak, eğer fildes2 tanımlayıcısı zaten kullanılıyorsa, öncelikle sanki bir close(2) çağrısı yapılmış gibi fildes2 tanımlayıcısı serbest bırakılır (dealloke edilir).
@@ -444,6 +453,7 @@ Ancak, eğer fildes2 tanımlayıcısı zaten kullanılıyorsa, öncelikle sanki 
 
 **3 dup()**
 > *prototip : int dup(int fildes);*
+
 Bir fd nin kopyası yeni bir fd oluşturuluyor, oluşturulan bu newfd eski fd kaybolsa bile kullanılabiliyor. 
 ```C
 #include <unistd.h>
@@ -462,17 +472,99 @@ int main()
 ```
 **4 ioctl()**
 > *prototip : int ioctl(int fildes, unsigned long request, ...);*
+
 ioctl() fonksiyonu, UNIX ve UNIX benzeri işletim sistemlerinde kullanılan bir sistem çağrısıdır. Bu fonksiyon, I/O kontrolü (input/output control) için kullanılır ve genellikle aygıtlarla etkileşimde bulunmak, aygıt sürücülerini yönetmek veya özel işlemler gerçekleştirmek için kullanılır.
 Bir hata oluşmuşsa, -1 değeri döndürülür ve hatayı belirtmek için errno ayarlanır.
-İşlem, request parametresi ile belirtilen bir isteğe dayanır. Örneğin, Linux kerneli üzerinde çalışan bir karakter aygıt sürücüsünde kullanılan bazı yaygın ioctl istekleri şunlardır:
+Örnek istekler;
 
-- FIONREAD: Giriş tamponunda bekleyen okunmamış bayt sayısını almak için kullanılır.
-- FIONBIO: Bloklama olmadan giriş/çıkış işlemlerini gerçekleştirmek için soketi ayarlar.
+- TIOCGETA: TTY aygıtının özelliklerini (terminal ayarları) almak için kullanılır.
+- TIOCSETA: TTY aygıtının özelliklerini ayarlamak için kullanılır.
 - TIOCGWINSZ: Terminal penceresinin boyutunu almak için kullanılır.
 - TIOCSWINSZ: Terminal penceresinin boyutunu ayarlamak için kullanılır.
 
-**5 chdir()**
+ioctl ile oynarken dikkat et!
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <termios.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+
+int main() {
+    struct termios term;
+    int fd = STDIN_FILENO; // STDIN_FILENO, standart giriş (stdin) dosya tanımlayıcısıdır
+
+    // Terminal ayarlarını al
+    if (ioctl(fd, TIOCGETA, &term) == -1) {
+        perror("ioctl");
+        return 1;
+    }
+
+    // ctrl-C, ctrl-D ve ctrl-\ komutlarını değiştir
+    term.c_cc[VINTR] = '\n'; // ctrl-C için yeni satır karakteri
+    term.c_cc[VEOF] = '\x04'; // ctrl-D için ASCII 4 (End of Transmission, EOT) karakteri
+	term.c_cc[VQUIT] = 0; // VQUIT, ctrl-\ için karakter sabiti :D
+
+    // Değiştirilmiş ayarları aygıta uygula
+    if (ioctl(fd, TIOCSETA, &term) == -1) {
+        perror("ioctl");
+        return 1;
+    }
+
+    printf("Terminal ayarları değiştirildi.\n");
+    printf("Yeni satırda yeni bir bilgi istemi (ctrl-C)\n");
+    printf("Shell'den çıkış (ctrl-D)\n");
+    printf("ctrl-\\ hiçbir işlem yapmıyor.\n");
+
+    // Kullanıcıdan giriş al ve işle
+    char input;
+    while (1) {
+        read(fd, &input, sizeof(char));
+        if (input == '\n') {
+            printf("Yeni satırda yeni bir bilgi istemi\n");
+        } else if (input == '\x04') {
+            printf("Shell'den çıkılıyor.\n");
+            break;
+        }
+    }
+
+    return 0;
+}
+
+```
+
+**5 getcwd()**
+> *prototip : char *getcwd(char *buf, size_t size);*
+
+Çalışan programın mevcut çalışma dizinini öğrenmek için kullanılır. İlk parametre çalışma dizininin saklanacağı karakter dizisi, diğer parametre bu dizinin size ı dır. Eğer size ı ufak verirsek işlev başarısız olacak ve NULL dönecektir
+```C
+#include <stdio.h>
+#include <unistd.h>
+#include <limits.h> // path_max için 
+
+int main() {
+    char path[PATH_MAX]; // path_max ile tam size ı alabildik
+
+    char * r = getcwd(path, sizeof(path));
+    if (r != NULL)
+    {
+        printf("Mevcut çalışma dizini: %s\n", r); //bu kullanım saçma path ile aynı adreste tutulacak bir değişken oluşturmamıza gerek yok
+        printf("Mevcut çalışma dizini: %s\n", path);
+    } else {
+        perror("getcwd hatası");
+        return 1;
+    }
+
+    printf("   r:%p\n", &r);
+    printf("path:%p\n", &path);
+    return 0;
+}
+```
+
+**6 chdir()**
 > *prototip : int chdir(const char *path);*
+
 Mevcut çalışma dizinini değiştirmek için kullanılır. Parametreye çalışma dizininin ne olmasını istiyorsanız onu verirsiniz. Başarılı sonlanır ise 0, hata durumu oluşursa 1 return eder. 
 Örnek kullanım
 ```C
@@ -499,14 +591,152 @@ int main()
 }
 ```
 
-**6 close()**
-open() ile açtığımız dosyanın fd sini yada herhangi bir fd yi sonlandırmak, serbest bırakmak için kullanılır. Fonksiyon başarı ile sonlanırsa 0, hatalı sonlanırsa 1 return eder.
+**7 execve()**
+> *prototip : int execve(const char *pathname, char *const argv[], char *const envp[]);*
+
+pathname; çalıştırılacak komutun dosya yolu
+argv; Çalıştırılacak programın argümanlarını içeren bir karakter dizisi dizisi
+envp; Çalıştırılacak programın envlerini içeren bir karakter dizisi dizisi
+
+bu fonk. çalıştırıldığında mevcut processi sona erdirir, pathnamede verilen komutu çalıştırır
 ```C
-// ...
-int fd = open("deneme.txt", O_RDWR, 0777);
-// ... bir takım işlemler
-close(fd); // fd yi daha kullanmayacağımız için kapattık
-// ...
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main(int gc, char**gv) {
+	char* home = getenv("HOME");
+	if (!home)
+		perror("getenv");
+	char *const args[] = {"echo", home, "deneme", NULL}; 
+	if (execve("/bin/echo", args, NULL))
+		perror("execve");
+	return 1;
+}
 ```
 
-**7 exec()**
+**8 readline()**
+> *prototip : char *readline(const char *line);*
+
+Aldığı parametreyi (prompt) ekrana basar, kullanıcıdan bir girdi ister ve aldığı girdiyi return eder.
+readline kullanılıyorsa mutlaka -ledit yada -lreadline flagleri ile derlenmeli
+```C
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <stdlib.h>
+int main() {
+    char *input;
+
+    // Prompt'u ayarlayın
+    const char *prompt = "Girdi: ";
+
+    // readline işlevini çağırın ve kullanıcının girdisini alın
+    input = readline(prompt);
+
+    // Girdiyi değerlendirin ve sonuçları yazdırın
+    printf("input: %s\n", input);
+
+    // Girdiyi readline kütüphanesi tarafından ayrılan belleği serbest bırakın
+    free(input);
+    return 0;
+}
+```
+
+**9 getenv()**
+> *prototip : char *getenv(const char *env_name);*
+
+envlerin tuttuğu veriyi geri döndürür. Kısaca tutulan veriyi string olarak alırsınız.
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    char *path = getenv("PATH");
+    if (path != NULL) {
+        printf("PATH: %s\n", path);
+    } else {
+        printf("PATH environment variable not found.\n");
+    }
+
+    return 0;
+}
+```
+
+**10 access()**
+> *prototip : int access(const char *pathname, int mode);*
+
+dosya sistemine erişim hakkını kontrol etmek için kullanılır. Belirtilen dosyanın var olup olmadığını yada okuma, yazma ve yürütme gibi belirli izinlerinin olup olmadığını kontrol etmek için kullanılabilir.
+mode parametresi, erişim izinlerini belirten bir tamsayıdır. Bu tamsayı, R_OK, W_OK, X_OK veya F_OK sembollerini veya bu sembollerin birleşimini içerebilir. Örneğin, R_OK | W_OK dosyanın hem okunabilir hem de yazılabilir olup olmadığını kontrol etmek için kullanılır. 
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <errno.h>
+
+int main() {
+    const char *file_path = "example.txt";
+
+    if (access(file_path, R_OK | W_OK) == 0) {
+        printf("Dosya okunabilir.\nDosya yazılabilir.\n");
+    } else {
+        if (errno == EACCES) {
+            printf("Dosya okunabilir ya da yazılabilir değil, erişim izni yok.\n");
+        } else if (errno == ENOENT) {
+            printf("Dosya mevcut değil.\n");
+        } else {
+            perror("access");
+        }
+    }
+    return 0;
+}
+```
+**11 perror()**
+
+```C
+returnedPID = fork();
+if (returnedPID < 0) /* error in the fork call*/
+        perror("oopsy, my fork call failed: ");
+//bu, yazdığımız "oopsy, my fork call failed:" şeklindeki mesajı içeren bir satırı ve ardından errno'daki değere karşılık gelen standart bir Unix hata mesajını, örneğin, "Out of memory" yazdıracak. O mesajdan sorunumu çözemezsem (büyük ihtimalle), en azından muhtemelen daha fazla yardım için web'de arama yapabileceğim bazı iyi anahtar kelimeler ve ifadeler bulurum.
+```
+
+**12 strerror()**
+
+tıpkı perror gibi hata durumunu basacak lakin biraz daha manuel bir kullanımı var
+```C
+someErrorCode = pthread_create( ... )
+printf(" Damn: %s", strerror(someErrorCode));
+// burada someErrorCode dönüş değerini kaydettiğiniz herhangi bir değişkeninizin adıdır 
+```
+
+Bu videoda makro olarak harika bir fonksiyon yazılıyor ve sonuçta daha temiz bir kod ortaya çıkıyor [click](https://www.youtube.com/watch?v=IZiUT-ipnj0)
+Linux işletim sistemindeki hata numaralarının listesi ve açıklamaları için errno.h dosyasına bak
+
+
+**14 add_history()**
+> *prototip : void add_history(const char *line);*
+
+terminalde yukarı-aşağı ok tuşlarıyla historye ulaşabiliyoruz, bunu add_history komutu ile yapacağız. Aldığı parametreyi historye ekler
+```C
+#include <stdio.h>
+#include <stdlib.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+
+int main() {
+    char *input;
+
+    // Kullanıcıdan girdiyi al
+	while (1)
+	{
+		input = readline("Komut giriniz: ");
+
+		// Girdiyi girdi geçmişine ekle
+		add_history(input);
+
+		// Kullanılmayan bellek alanını serbest bırak
+		free(input);
+	}
+	return 0;
+}
+```
