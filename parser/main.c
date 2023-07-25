@@ -2,17 +2,23 @@
 
 int main(int argc, char **argv, char **envp)
 {
-    s_env *env_list;
+	(void)argc;
+	(void)argv;
 
-    env_list = fill_env(envp);
-    int i;
+	s_env *env_list;
+	env_list = fill_env(envp);
+	//print_env_list(env_list);
+	while (1)
+	{
+		char *line;
+		Node *nodes;
 
-    i = 0;
-    while(env_list[i].key)
-    {
-        printf("%s=%s\n", env_list[i].key, env_list[i].value);
-        i++;
-    }
-    //print_env_list(env_list);
- 
+		printf("talha@minishell");
+		line = ft_readline("$ ");
+		add_history(line);
+		ft_tokens(line);
+
+		//nodes = parser(line);
+		free(line);
+	}
 }
