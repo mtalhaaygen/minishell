@@ -6,21 +6,11 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:41:29 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/24 16:38:43 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/07/25 12:56:42 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-size_t	ft_strlen(const char *str)
-{
-	size_t i;
-
-	i = 0;
-	while(str[i])
-		i++;
-	return i;
-}
 
 char	*ft_strdup(char *src)
 {
