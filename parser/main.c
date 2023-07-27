@@ -12,13 +12,14 @@ int main(int argc, char **argv, char **envp)
 	{
 		char *line;
 		Node *nodes;
+		s_token *tokens;
 
 		printf("talha@minishell");
 		line = ft_readline("$ ");
-		add_history(line);
-		ft_tokens(line);
+		//add_history(line);
+		tokens = ft_tokens(line);
 
-		//nodes = parser(line);
-		free(line);
+		ft_parser(tokens);
+		//free(line);
 	}
 }

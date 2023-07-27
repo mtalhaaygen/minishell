@@ -9,7 +9,7 @@
 /*   Updated: 2023/07/25 19:06:26 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 #include "minishell.h"
 // buna en son bakacağız
 void sigint_handler(int signum)
@@ -46,4 +46,4 @@ int set_ctrl(void)
 	}
 	else
 		return (0);
-}
+}*/

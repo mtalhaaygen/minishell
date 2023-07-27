@@ -66,19 +66,12 @@ void	ft_token_type(s_token *tokens)
 	}
 }
 
-void ft_tokens(char *input)
+s_token *ft_tokens(char *input)
 {
 	s_token *tokens;
 
 	tokens= ft_start(input); 
 	ft_token_type(tokens);
-	int i;
 
-	i = 0;
-	while(tokens[i].value)
-	{
-		printf("values: %s - ",tokens[i].value);
-		printf("key: %u\n",tokens[i].type);
-		i++;
-	}
+	return tokens;
 }

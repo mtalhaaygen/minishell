@@ -43,7 +43,7 @@ typedef struct t_file //DENEYSEL
 
 typedef struct Node
 {
-	char		**args;
+	char		*args;
 	int			arg_count;
 
 	s_file		*infile;
@@ -57,12 +57,16 @@ void	print_env_list(s_env *env_list);
 char	*ft_readline(char *str);
 char	*ft_strdup(char *src);
 s_token	*ft_start(char *input);
-void	ft_tokens(char *input);
+s_token *ft_tokens(char *input);
 int		my_isspace(char ch);
 size_t	ft_strlen(const char *str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		set_ctrl(void);
+void ft_parser(s_token *tokens);
 void sigint_handler(int signum);
+char* appendString(const char *dest, const char *src);
 void sigquit_handler(int signum);
+
+char	*ft_strjoin(char const *s1, char const *s2);
 // void	env_free(s_env *env_list);
 #endif
