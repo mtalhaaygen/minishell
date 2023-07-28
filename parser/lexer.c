@@ -6,11 +6,11 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/25 19:48:26 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/28 20:07:15 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 s_token *ft_start(char *input)
 {

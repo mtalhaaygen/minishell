@@ -1,0 +1,31 @@
+D_SRC			=	builtin/builtin.c \
+				parser/env_process.c parser/lexer.c\
+				executor/ft_executor.c \
+				main.c
+OBJ			=	$(D_SRC:%.c=%.o)
+
+CC			=	gcc
+RM			=	rm -r
+CFLAGS		=	-Wall -Wextra -Werror
+READLINE	=	-lreadline
+
+NAME	=	minishell
+
+all		:	$(NAME)
+
+$(NAME)	:	$(OBJ)
+			$(CC) $(CFLAGS) $(OBJ) -o $(NAME) (READLINE)
+
+# clean	:
+# 			$(RM) $(OBJ)
+
+# fclean	:	clean
+# 			$(RM) $(NAME)
+		
+# re		:	fclean all
+
+# run		:	all
+# 			clear
+# 			./$(NAME)
+
+# .PHONY: all re clean fclean
