@@ -1,10 +1,13 @@
 #include "minishell.h"
+#include <fcntl.h>
 
 int main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
 
+	int fd;
+	CHECK(fd = open("olmayandosya.txt", O_RDWR));
 	s_env *env_list;
 	env_list = fill_env(envp);
 	//print_env_list(env_list);

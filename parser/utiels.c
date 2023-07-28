@@ -1,4 +1,5 @@
 #include "minishell.h"
+/*
 char* appendString(const char *dest, const char *src)
 {
     // Hedef stringin boyutunu hesaplayalım
@@ -24,9 +25,9 @@ char* appendString(const char *dest, const char *src)
 
     return result;
 }
-char	*ft_strjoin(char const *s1, char const *s2)
+*/
+char	*ft_strjoin(char *s1, char *s2)
 {
-
 	char	*str;
 	int		i;
 	int		j;
@@ -35,10 +36,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	j = 0;
 
 	if (!s1 || !s2)
+	{
+		printf("!s1 || !s2\n\n");
 		return (0);
-	
+	}
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-
 	if (!str)
 		return (0);
 	while (s1[i])
@@ -53,6 +55,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	str[i] = '\0';
+	free(s1);
 	return (str);
 }
 
