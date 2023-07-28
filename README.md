@@ -7,7 +7,7 @@
 - Akşamları dc girip, muhabbet etsek fena mı olur, ortak vscode dan kod yazarız hem :D
 
 > Saygılarımla maygen
-
+.
 
 # Kaynaklar
 
