@@ -10,6 +10,7 @@
 #include <termios.h> // ioctl için
 #include <sys/ioctl.h>
 
+# define CHECK(X) (int __val = (X); (!__val ? \ perror("Error : "); exit(-1); : __val);)
 typedef enum
 {
 	TOKEN_PIPE,
@@ -67,6 +68,6 @@ void sigint_handler(int signum);
 char* appendString(const char *dest, const char *src);
 void sigquit_handler(int signum);
 
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 // void	env_free(s_env *env_list);
 #endif

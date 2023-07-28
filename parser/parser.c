@@ -16,39 +16,39 @@ int ft_pipe_counter(s_token *tokens)
     return (len);
 }
 
-Node *ft_creat_node(s_token *tokens, int i)
+Node ft_creat_node(s_token *tokens, int i)
 {
-    Node *node;
-    node = malloc(sizeof(Node));
-    node->infile = NULL;
-    node->outfile = NULL;
+    Node node;
+//    node = malloc(sizeof(Node));
+    node.infile = NULL;
+    node.outfile = NULL;
+    CHECK(node.args = malloc(sizeof(char)));
     while(tokens[i].type != TOKEN_PIPE)
     {
-        
-        node->args = ft_strjoin(node->args,tokens[i].value);
+        node.args = ft_strjoin(node.args, tokens[i].value);
         if(tokens[i].type == TOKEN_I)
         {
-            node->infile->type = TOKEN_I;
-            node->infile->name = ft_strdup("in");
+            node.infile->type = TOKEN_I;
+            node.infile->name = ft_strdup("in");
         }
         if(tokens[i].type == TOKEN_I_I)
         {
-            node->infile->type = TOKEN_I_I;
-            node->infile->name = ft_strdup("double_in");
+            node.infile->type = TOKEN_I_I;
+            node.infile->name = ft_strdup("double_in");
         }
         if(tokens[i].type == TOKEN_O)
         {
-            node->infile->type = TOKEN_O;
-            node->infile->name = ft_strdup("out");
+            node.infile->type = TOKEN_O;
+            node.infile->name = ft_strdup("out");
         }
         if(tokens[i].type == TOKEN_O_O)
         {
-            node->infile->type = TOKEN_O_O;
-            node->infile->name = ft_strdup("double_out");
+            node.infile->type = TOKEN_O_O;
+            node.infile->name = ft_strdup("double_out");
         }
         i++;
     }
-    node->arg_count = ft_strlen(node->args);
+    node.arg_count = ft_strlen(node.args);
 
     return (node);
 }
@@ -73,9 +73,7 @@ void ft_parser(s_token *tokens)
             j++;
             nodes[j] = ft_creat_node(tokens,i+1);
         }
-        printf("%s\n",nodes[j].args);
+        //printf("%s\n",nodes[j].args);
         i++;
     }
-
-   
 }
