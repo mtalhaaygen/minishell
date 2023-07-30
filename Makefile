@@ -1,4 +1,4 @@
-D_SRC			=	builtin/builtin.c \
+D_SRC			=	builtin/builtin.c builtin/run_commands.c\
 				lib/ft_split.c lib/ft_strjoin.c \
 				parser/env_process.c parser/lexer.c parser/utiels.c parser/parser.c \
 				executor/ft_executor.c \
@@ -8,7 +8,7 @@ OBJ			=	$(D_SRC:%.c=%.o)
 
 CC			=	gcc
 RM			=	rm -r
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 READLINE	=	-lreadline
 
 NAME	=	minishell
@@ -26,8 +26,8 @@ fclean	:	clean
 		
 re		:	fclean all
 
-run		:	all
-			clear
-			./$(NAME)
+# run		:	all
+# 			clear
+# 			./$(NAME)
 
 .PHONY: all re clean fclean

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/30 15:58:22 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/30 19:39:58 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 void	run_builtin(int status)
 {
 	if (status == CD)
-		printf("cd çalıştır");
+		printf("cd çalıştır\n");
 	else if (status == ENV)
-		printf("env çalıştır");
+		printf("env çalıştır\n");
 	else if (status == PWD)
-		printf("pwd çalıştır");
+		run_pwd();
 	else if (status == EXIT)
-		printf("exit çalıştır");
+		printf("exit çalıştır\n");
 	else if (status == ECHO)
-		printf("echo çalıştır");
+		printf("echo çalıştır\n");
 	else if (status == UNSET)
-		printf("unset çalıştır");
+		printf("unset çalıştır\n");
 	else if (status == EXPORT)
-		printf("export çalıştır");
+		printf("export çalıştır\n");
 	else
-		printf("command not builtin");
+		printf("command not builtin\n");
 }
 
 int	is_builtin(char *command)

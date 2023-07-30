@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/30 16:14:14 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/30 20:03:22 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ int main(int argc, char **argv, char **envp)
 
 		printf("talha@minishell");
 		line = ft_readline("$ ");
-		// ft_history(line); // linuxda hata veriyor olabilir
+		add_history(line);
 		// tokens = ft_tokens(line);
 		// nodes = ft_parser(tokens);
 		/*********************/
+		// printf("args[0] : %s\n", nodes->args[0]);
 		ft_executor(sahte_nodes());
 		/*********************/
 		free(line);

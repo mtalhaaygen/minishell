@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/29 16:59:56 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/30 20:05:11 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ int	ft_executor(Node *nodes)
 	if (status == 0)
 	{
 		printf("execve\n");
+		// execve komutu process i sonlandırdığından
+		// pipe + 1 kadar fork yapılacak, tüm child processlerin pid i sanırsam 0 oluyor
+		// child processlerde execve komutu çalıştırılacak
 	}
 	else
 		run_builtin(status);

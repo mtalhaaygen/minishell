@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/30 16:06:27 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/30 19:33:49 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,31 +65,32 @@ Node ft_creat_node(s_token *tokens, int i)
 		j++;
 	}
 	// node.arg_count = ft_strlen(node.args); // hatalı
+	node.arg_count = 0;
 	return (node);
 }
 
 Node	*ft_parser(s_token *tokens)
 {
-    Node *nodes;
-    int i;
-    int j;
-    int pipe_len;
+	Node *nodes;
+	int i;
+	int j;
+	int pipe_len;
 
-    pipe_len = ft_pipe_counter(tokens) + 1;
-    nodes = malloc(sizeof(Node)*(pipe_len+1));
+	pipe_len = ft_pipe_counter(tokens) + 1;
+	nodes = malloc(sizeof(Node) * (pipe_len + 1));
 	if (!nodes)
 		return (NULL);
-    i = 0;
-    j = 0;
-    nodes[j] = ft_creat_node(tokens, i);
-    while(tokens[i].value)
-    {
-        if(tokens[i].type == TOKEN_PIPE)
-        {
-            j++;
-            nodes[j] = ft_creat_node(tokens,i+1);
-        }
-        i++;
-    }
+	i = 0;
+	j = 0;
+	nodes[j] = ft_creat_node(tokens, i);
+	while(tokens[i].value)
+	{
+		if(tokens[i].type == TOKEN_PIPE)
+		{
+			j++;
+			nodes[j] = ft_creat_node(tokens,i+1);
+		}
+		i++;
+	}
 	return (nodes);
 }
