@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/30 15:58:35 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/30 19:35:36 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,19 @@ s_token *ft_start(char *input)
 
 	i = 0;
 	k = 0;
-	tokens = malloc(sizeof(s_token) * 99);
-	while(input[i])
+	tokens = malloc(sizeof(s_token) * 99); // inputu split yada benzeri bir fonk. ile ayırıp tokens sayısı kadar yer açabilirsin
+	if (!tokens)
+		return (NULL);
+	while (input[i])
 	{
 		// j = 0;
-		while(my_isspace(input[i]))
+		while (my_isspace(input[i]))
 			i++;
 		start = i;
-		while(!my_isspace(input[i]) && input[i] != '\0')
+		while (!my_isspace(input[i]) && input[i] != '\0')
 			i++;
 		end = i;
-		if(input[i-1] && !my_isspace(input[i-1]))
+		if (input[i - 1] && !my_isspace(input[i - 1]))
 			tokens[k].value = ft_substr(input, start, end-start);
 		k++;
 	}
@@ -70,7 +72,7 @@ s_token *ft_tokens(char *input)
 {
 	s_token *tokens;
 
-	tokens= ft_start(input); 
+	tokens = ft_start(input);
 	ft_token_type(tokens);
 
 	return tokens;

@@ -41,13 +41,13 @@ typedef struct t_token
 {
 	TokenType		type;
 	char			*value;
-	//struct t_token	*next; bu yapının linkedlist olması daha verimli bir kod sağlar, çünkü export komutu ile ekleme çıkarma yapacağız
 }	s_token;
 
 typedef  struct t_env
 {
 	char			*key;
 	char			*value;
+	//struct t_token	*next; bu yapının linkedlist olması daha verimli bir kod sağlar, çünkü export komutu ile ekleme çıkarma yapacağız
 }	s_env;
 
 typedef struct t_file //DENEYSEL
@@ -111,11 +111,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 /* EXECUTOR */
 int		ft_executor(Node *nodes);
-int		ft_history(char *line);
 
 /* BUILTIN COMMANDS */
 int		is_builtin(char *command);
 void	run_builtin(int status);
+void	run_pwd(void);
 
 /*silinecekler*/
 Node	*sahte_nodes();
