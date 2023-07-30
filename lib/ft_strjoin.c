@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 19:48:46 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/28 20:07:49 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/30 16:14:59 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	ft_strcmp(const char *s1, const char *s2)
 	while (s1[i] == s2[i] && (s1[i] && s2[i]))
 		i++;
 	if (s1[i] != s2[i])
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-	return (0);
+		return (0);
+	return (1);
 }
 
 char	*ft_strjoin(char *s1, char *s2)

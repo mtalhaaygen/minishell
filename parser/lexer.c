@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/28 20:07:15 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/30 15:58:35 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ s_token *ft_start(char *input)
 {
 	s_token *tokens;
 	int i;
-	int j;
+	// int j;
 	int k;
 	int start;
 	int end;
@@ -26,7 +26,7 @@ s_token *ft_start(char *input)
 	tokens = malloc(sizeof(s_token) * 99);
 	while(input[i])
 	{
-		j = 0;
+		// j = 0;
 		while(my_isspace(input[i]))
 			i++;
 		start = i;

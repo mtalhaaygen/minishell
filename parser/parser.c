@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/28 20:07:18 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/30 16:06:27 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int ft_pipe_counter(s_token *tokens)
     i = 0;
     while(tokens[i].value)
     {
-        
         if(tokens[i].type == TOKEN_PIPE)
             len++;
         i++;
@@ -32,13 +31,16 @@ Node ft_creat_node(s_token *tokens, int i)
 {
 	Node node;
 	int j;
+
 	node.infile = NULL;
 	node.outfile = NULL;
-	CHECK(node.args = malloc(sizeof(char)));
+	node.args = malloc(sizeof(char));
+	if (!node.args)
+		return (node); // bu return değeri değişebilir
 	j = 0;
 	while(tokens[i].type != TOKEN_PIPE)
 	{
-		node.args[j] =ft_strdup(tokens[i].value);
+		node.args[j] = ft_strdup(tokens[i].value);
 		if(tokens[i].type == TOKEN_I)
 		{
 			node.infile->type = TOKEN_I;
@@ -62,12 +64,12 @@ Node ft_creat_node(s_token *tokens, int i)
 		i++;
 		j++;
 	}
-	node.arg_count = ft_strlen(node.args);
+	// node.arg_count = ft_strlen(node.args); // hatalı
 	return (node);
 }
-void ft_parser(s_token *tokens)
+
+Node	*ft_parser(s_token *tokens)
 {
-    
     Node *nodes;
     int i;
     int j;
@@ -75,10 +77,11 @@ void ft_parser(s_token *tokens)
 
     pipe_len = ft_pipe_counter(tokens) + 1;
     nodes = malloc(sizeof(Node)*(pipe_len+1));
-    
+	if (!nodes)
+		return (NULL);
     i = 0;
     j = 0;
-    nodes[j] = ft_creat_node(tokens,i);
+    nodes[j] = ft_creat_node(tokens, i);
     while(tokens[i].value)
     {
         if(tokens[i].type == TOKEN_PIPE)
@@ -86,7 +89,7 @@ void ft_parser(s_token *tokens)
             j++;
             nodes[j] = ft_creat_node(tokens,i+1);
         }
-        //printf("%s\n",nodes[j].args);
         i++;
     }
+	return (nodes);
 }

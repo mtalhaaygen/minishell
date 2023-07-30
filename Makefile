@@ -1,7 +1,9 @@
 D_SRC			=	builtin/builtin.c \
-				parser/env_process.c parser/lexer.c\
+				lib/ft_split.c lib/ft_strjoin.c \
+				parser/env_process.c parser/lexer.c parser/utiels.c parser/parser.c \
 				executor/ft_executor.c \
-				main.c
+				main.c \
+				deneme.c
 OBJ			=	$(D_SRC:%.c=%.o)
 
 CC			=	gcc
@@ -14,18 +16,18 @@ NAME	=	minishell
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJ)
-			$(CC) $(CFLAGS) $(OBJ) -o $(NAME) (READLINE)
+			$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(READLINE)
 
-# clean	:
-# 			$(RM) $(OBJ)
+clean	:
+			$(RM) $(OBJ)
 
-# fclean	:	clean
-# 			$(RM) $(NAME)
+fclean	:	clean
+			$(RM) $(NAME)
 		
-# re		:	fclean all
+re		:	fclean all
 
-# run		:	all
-# 			clear
-# 			./$(NAME)
+run		:	all
+			clear
+			./$(NAME)
 
-# .PHONY: all re clean fclean
+.PHONY: all re clean fclean

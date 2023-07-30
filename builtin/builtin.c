@@ -6,11 +6,31 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/28 19:49:10 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/30 15:58:22 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	run_builtin(int status)
+{
+	if (status == CD)
+		printf("cd çalıştır");
+	else if (status == ENV)
+		printf("env çalıştır");
+	else if (status == PWD)
+		printf("pwd çalıştır");
+	else if (status == EXIT)
+		printf("exit çalıştır");
+	else if (status == ECHO)
+		printf("echo çalıştır");
+	else if (status == UNSET)
+		printf("unset çalıştır");
+	else if (status == EXPORT)
+		printf("export çalıştır");
+	else
+		printf("command not builtin");
+}
 
 int	is_builtin(char *command)
 {
