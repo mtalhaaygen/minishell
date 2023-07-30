@@ -57,7 +57,7 @@ typedef struct t_file //DENEYSEL
 
 typedef struct Node
 {
-	char		*args;
+	char		**args;
 	int			arg_count;
 
 	s_file		*infile;

@@ -31,12 +31,14 @@ int ft_pipe_counter(s_token *tokens)
 Node ft_creat_node(s_token *tokens, int i)
 {
 	Node node;
+	int j;
 	node.infile = NULL;
 	node.outfile = NULL;
 	CHECK(node.args = malloc(sizeof(char)));
+	j = 0;
 	while(tokens[i].type != TOKEN_PIPE)
 	{
-		node.args = ft_strjoin(node.args, tokens[i].value);
+		node.args[j] =ft_strdup(tokens[i].value);
 		if(tokens[i].type == TOKEN_I)
 		{
 			node.infile->type = TOKEN_I;
@@ -58,6 +60,7 @@ Node ft_creat_node(s_token *tokens, int i)
 			node.infile->name = ft_strdup("double_out");
 		}
 		i++;
+		j++;
 	}
 	node.arg_count = ft_strlen(node.args);
 	return (node);
