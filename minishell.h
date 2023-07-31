@@ -87,7 +87,7 @@ typedef struct t_minishell
 	s_process	*process;		// tüm processler
 }	s_minishell;
 
-extern s_minishell	g_ms;
+extern s_minishell gv;
 
 s_env		*fill_env(char **envp);
 void		print_env_list(s_env *env_list);
@@ -100,6 +100,7 @@ Node		*ft_parser(s_token *tokens);
 void		sigint_handler(int signum);
 char*		appendString(const char *dest, const char *src);
 void		sigquit_handler(int signum);
+int			ft_pipe_counter(s_token *tokens);
 
 /* LIB*/
 char	*ft_strdup(char *src);
@@ -108,6 +109,7 @@ char	*ft_strjoin(char *s1, char *s2);
 char	**ft_split(char const *s, char c);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	*ft_calloc(size_t count, size_t size);
 
 /* EXECUTOR */
 int		ft_executor(Node *nodes);

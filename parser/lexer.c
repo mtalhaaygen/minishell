@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/30 19:35:36 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/31 17:38:42 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ s_token *ft_tokens(char *input)
 
 	tokens = ft_start(input);
 	ft_token_type(tokens);
-
+	gv.process_count = ft_pipe_counter(tokens) + 1;
+	printf("%d\n\n", gv.process_count);
 	return tokens;
 }
