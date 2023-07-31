@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/30 20:05:11 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/31 12:24:38 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int	ft_executor(Node *nodes)
 		// child processlerde execve komutu çalıştırılacak
 	}
 	else
-		run_builtin(status);
+		run_builtin(status, nodes[0]);
 	return (0);
 }
