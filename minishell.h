@@ -112,7 +112,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 
 /* EXECUTOR */
-int		ft_executor(Node *nodes);
+void	ft_executor(Node *nodes);
 
 /* BUILTIN COMMANDS */
 int		is_builtin(char *command);

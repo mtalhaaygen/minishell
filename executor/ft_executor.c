@@ -6,25 +6,58 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/31 12:24:38 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/31 18:17:58 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_executor(Node *nodes)
+void	ft_executor(Node *nodes)
 {
 	int status;
+	pid_t ret;
+	int i;
 	
-	status = is_builtin(nodes->args[0]);
-	if (status == 0)
+	i = -1;
+	while (++i < gv.process_count) // kaç tane komut varsa (ve bu komutlar builtin değilse) o kadar fork yapılıyor ve exec e gönderiliyor
 	{
-		printf("execve\n");
-		// execve komutu process i sonlandırdığından
-		// pipe + 1 kadar fork yapılacak, tüm child processlerin pid i sanırsam 0 oluyor
-		// child processlerde execve komutu çalıştırılacak
+		status = is_builtin(nodes[i].args[0]); // komutun ilk argümanı builtin mi değil mi ?
+		if (!status)
+		{
+			ret = fork();
+			if (ret == 0)
+			{
+				// execve();
+				perror("execve error ");
+				exit(1);
+			} else if (ret < 0) 
+			{
+				perror("fork error ");
+				return;
+			}
+		}
+		else
+			run_builtin(status, nodes[i]);
 	}
-	else
-		run_builtin(status, nodes[0]);
-	return (0);
+	if (ret > 0)
+		waitpid(ret, NULL, 0);
 }
+
+// int	ft_executor(Node *nodes)
+// {
+// 	int status;
+	
+// 	status = is_builtin(nodes->args[0]);
+// 	if (status == 0)
+// 	{
+// 		printf("execve\n");
+// 		// execve komutu process i sonlandırdığından
+// 		// pipe + 1 kadar fork yapılacak, tüm child processlerin pid i 0 oluyor
+// 		// child processlerde execve komutu çalıştırılacak
+// 		//
+// 		executeCommand();
+// 	}
+// 	else
+// 		run_builtin(status, nodes[0]);
+// 	return (0);
+// }

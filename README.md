@@ -608,7 +608,7 @@ int main(int gc, char**gv) {
 	char* home = getenv("HOME");
 	if (!home)
 		perror("getenv");
-	char *const args[] = {"echo", home, "deneme", NULL}; 
+	char *const args[] = {"echo", home, "deneme", NULL};
 	if (execve("/bin/echo", args, NULL))
 		perror("execve");
 	return 1;
@@ -740,3 +740,14 @@ int main() {
 	return 0;
 }
 ```
+
+<hr>
+fork() fonksiyonu için;
+
+| Dönüş Değeri  | Tanım |
+| ------------- | ------------- |
+| Negatif değer  | Child process oluşturma başarısız.  |
+| Sıfır (0)  | Yeni bir child process oluşturuldu.  |
+| Pozitif değer  | Yeni oluşturulan child process'in ID'sini içerir.  |
+
+<hr>
