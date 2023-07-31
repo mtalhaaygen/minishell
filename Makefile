@@ -8,7 +8,7 @@ OBJ			=	$(D_SRC:%.c=%.o)
 
 CC			=	gcc
 RM			=	rm -r
-CFLAGS		=	-Wall -Wextra -Werror -g
+CFLAGS		=	-Wall -Wextra -Werror #-fsanitize=address -g
 READLINE	=	-lreadline
 
 NAME	=	minishell
@@ -26,8 +26,8 @@ fclean	:	clean
 		
 re		:	fclean all
 
-# run		:	all
-# 			clear
-# 			./$(NAME)
+run		:	all
+			clear
+			./$(NAME)
 
 .PHONY: all re clean fclean

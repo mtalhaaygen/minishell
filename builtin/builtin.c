@@ -6,16 +6,16 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/30 19:39:58 by maygen           ###   ########.fr       */
+/*   Updated: 2023/07/31 12:05:45 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	run_builtin(int status)
+void	run_builtin(int status, Node node)
 {
 	if (status == CD)
-		printf("cd çalıştır\n");
+		run_cd(node);
 	else if (status == ENV)
 		printf("env çalıştır\n");
 	else if (status == PWD)
