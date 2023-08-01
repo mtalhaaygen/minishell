@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/31 17:48:47 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/01 12:38:02 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int main(int argc, char **argv, char **envp)
 		tokens = ft_tokens(line);
 		nodes = ft_parser(tokens);
 		/*********************/
-		//printf("args[0] : %s\n", nodes->args[0]);
-		ft_executor(nodes);
+		printf("args[0] : %s\n", nodes->args[0]);
+		//ft_executor(nodes);
 		/*********************/
 		free(line);
 	}

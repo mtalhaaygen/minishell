@@ -6,8 +6,7 @@ Node	*sahte_nodes()
 
 	nodes = malloc(sizeof(Node));
 	nodes->args = malloc(sizeof(char *) * 1);
-	nodes->args[0] = malloc(sizeof(char) * 3);
-	nodes->args[1] = malloc(sizeof(char) * 3);
+	nodes->args[0] = malloc(sizeof(char) * 4);
 
 	nodes->arg_count = 1;
 	nodes->infile = NULL;
