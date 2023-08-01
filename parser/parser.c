@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/31 17:48:11 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/01 11:46:43 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ Node ft_creat_node(s_token *tokens, int i)
 	if (!node.args)
 		return (node); // bu return değeri değişebilir
 	j = 0;
-	while(tokens[i].type != TOKEN_PIPE)
+	while(tokens[i].type != TOKEN_PIPE && tokens[i].value)
 	{
 		node.args[j] = ft_strdup(tokens[i].value);
 		if(tokens[i].type == TOKEN_I)
