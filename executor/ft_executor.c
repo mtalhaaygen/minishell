@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/01 13:18:38 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/01 19:02:02 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_executor(Node *nodes)
 {
 	int status;
+	char *bin_command;
 	pid_t ret;
 	int i;
 	
@@ -27,13 +28,15 @@ void	ft_executor(Node *nodes)
 			ret = fork();
 			if (ret == 0)
 			{
-				// execve();
-				perror("execve error ");
+				bin_command = ft_strcmp("/bin/",nodes[i].args[0]);
+				if (execve(, nodes[i].args, NULL))
+					perror("execve error ");
 				exit(1);
-			} else if (ret < 0) 
+			}
+			else if (ret < 0) 
 			{
 				perror("fork error ");
-				return;
+				return ;
 			}
 		}
 		else
