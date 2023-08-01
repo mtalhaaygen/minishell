@@ -6,7 +6,7 @@
 - ilerleyen zamanlarda proje bölümlere ayrılıp, herkese farklı görev verilebilir.
 - Akşamları dc girip, muhabbet etsek fena mı olur, ortak vscode dan kod yazarız hem :D
 
-> Saygılarımla maygen
+> Saygılarımla maygen, tdemir
 
 
 # Kaynaklar
