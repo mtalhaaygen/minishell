@@ -16,16 +16,13 @@ void	run_cd(Node node)
 {
 	char	*s;
 
-	if (node.args[1] != NULL)
+	if (node.arg_count != 1)
 	{
 		if (chdir(node.args[1]) != 0)
 			perror("cd error ");
-		else
-			printf("değişti\n");
 	}
 	else
 	{
-		printf("bura girmedi\n");
 		s = getenv("HOME");
 		if (s && *s)
 		{

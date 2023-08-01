@@ -15,6 +15,9 @@
 //# define CHECK(X) ({char* __val = (X); (__val == NULL ? (perror("ERROR :")) : __val); }) // malloc erroru için
 //# define CHECK_INT(X) ({int __val = (X); (__val == -1 ? (perror("ERROR :")) : __val); }) // diğer errorlar için
 
+#define DQ '"'
+#define MQ '\''
+
 enum e_builtin_types
 {
 	CD = 1,
