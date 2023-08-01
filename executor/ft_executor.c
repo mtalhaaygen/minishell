@@ -6,12 +6,12 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/01 11:14:23 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/01 13:18:38 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-/*
+
 void	ft_executor(Node *nodes)
 {
 	int status;
@@ -42,7 +42,7 @@ void	ft_executor(Node *nodes)
 	if (ret > 0)
 		waitpid(ret, NULL, 0);
 }
-*/
+/*
 void	ft_executor(Node *nodes)
 {
 	int status;
@@ -58,3 +58,4 @@ void	ft_executor(Node *nodes)
 	else
 		run_builtin(status, nodes[0]);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/01 11:46:43 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/01 13:47:16 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ int ft_pipe_counter(s_token *tokens)
     }
     return (len);
 }
+int ft_count_arg(s_token *tokens, int i)
+{
+	int len;
+	
+	len = 0;
+	while(tokens[i].type != TOKEN_PIPE && tokens[i].value)
+	{
+		len++;
+		i++;
+	}
+	return len;
+}
 
 Node ft_creat_node(s_token *tokens, int i)
 {
@@ -35,7 +47,7 @@ Node ft_creat_node(s_token *tokens, int i)
 
 	node.infile = NULL;
 	node.outfile = NULL;
-	node.args = ft_calloc(sizeof(char *), 1);
+	node.args = ft_calloc(sizeof(char *), ft_count_arg(tokens, i));
 	if (!node.args)
 		return (node); // bu return değeri değişebilir
 	j = 0;
