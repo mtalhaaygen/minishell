@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/01 19:02:02 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/02 09:21:35 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	ft_executor(Node *nodes)
 			ret = fork();
 			if (ret == 0)
 			{
-				bin_command = ft_strcmp("/bin/",nodes[i].args[0]);
-				if (execve(, nodes[i].args, NULL))
+				bin_command = ft_strjoin("/bin/",nodes[i].args[0]);
+				if (execve(bin_command, nodes[i].args, NULL))
 					perror("execve error ");
 				exit(1);
 			}
