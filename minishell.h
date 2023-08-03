@@ -98,15 +98,18 @@ void		print_env_list(s_env *env_list);
 char		*ft_readline(char *str);
 s_token		*ft_start(char *input);
 s_token		*ft_tokens(char *input);
-int			my_isspace(char ch);
 int			set_ctrl(void);
-Node		*ft_parser(s_token *tokens);
 void		sigint_handler(int signum);
-char*		appendString(const char *dest, const char *src);
 void		sigquit_handler(int signum);
+char*		appendString(const char *dest, const char *src);
 int			ft_pipe_counter(s_token *tokens);
-
+/*LEXER*/
+Node	*ft_parser(s_token *tokens);
+int  	ft_char_count(const char *input, int c);
+int		quote_off(const char *input);
+int		ft_token_count(const char *input);
 /* LIB*/
+int		my_isspace(char ch);
 char	*ft_strdup(char *src);
 size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char *s1, char *s2);

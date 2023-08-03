@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/01 13:47:16 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/03 18:22:07 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int ft_pipe_counter(s_token *tokens)
     }
     return (len);
 }
+
 int ft_count_arg(s_token *tokens, int i)
 {
 	int len;
@@ -98,6 +99,7 @@ Node	*ft_parser(s_token *tokens)
 	nodes[j] = ft_creat_node(tokens, i);
 	while(tokens[i].value)
 	{
+		printf("*%s*\n",tokens[i].value);
 		if(tokens[i].type == TOKEN_PIPE)
 		{
 			j++;
