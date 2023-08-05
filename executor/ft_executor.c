@@ -6,13 +6,13 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/02 09:21:35 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/05 16:28:45 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_executor(Node *nodes)
+void	ft_executor(Node *nodes, char **envp)
 {
 	int status;
 	char *bin_command;
@@ -28,8 +28,8 @@ void	ft_executor(Node *nodes)
 			ret = fork();
 			if (ret == 0)
 			{
-				bin_command = ft_strjoin("/bin/",nodes[i].args[0]);
-				if (execve(bin_command, nodes[i].args, NULL))
+				bin_command = ft_strjoin("/bin/", nodes[i].args[0]);
+				if (execve(bin_command, nodes[i].args, envp))
 					perror("execve error ");
 				exit(1);
 			}

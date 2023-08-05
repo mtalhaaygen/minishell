@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/01 13:16:27 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/05 21:37:50 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ int main(int argc, char **argv, char **envp)
 
 	s_env *env_list;
 	env_list = fill_env(envp);
-	//print_env_list(env_list);
+	gv.env = env_list;
+	// print_env_list(env_list);
 	while (1)
 	{
 		char *line;
 		Node *nodes;
 		s_token *tokens;
 
-		printf("talha@minishell");
 		line = ft_readline("$ ");
 		add_history(line);
 		tokens = ft_tokens(line);
 		nodes = ft_parser(tokens);
-		ft_executor(nodes);
+		ft_executor(nodes, envp);
 		free(line);
 	}
 }

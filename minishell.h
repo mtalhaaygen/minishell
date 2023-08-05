@@ -119,13 +119,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 
 /* EXECUTOR */
-void	ft_executor(Node *nodes);
+// void	ft_executor(Node *nodes);
+void	ft_executor(Node *nodes, char **envp);
 
 /* BUILTIN COMMANDS */
 int		is_builtin(char *command);
 void	run_builtin(int status, Node node);
 void	run_pwd(void);
 void	run_cd(Node node);
+void	run_echo(Node node);
 /*silinecekler*/
 Node	*sahte_nodes();
 // void	env_free(s_env *env_list);

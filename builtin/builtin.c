@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/31 12:05:45 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/05 15:42:46 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	run_builtin(int status, Node node)
 	else if (status == EXIT)
 		printf("exit çalıştır\n");
 	else if (status == ECHO)
-		printf("echo çalıştır\n");
+		run_echo(node);
 	else if (status == UNSET)
 		printf("unset çalıştır\n");
 	else if (status == EXPORT)

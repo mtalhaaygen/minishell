@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 19:48:46 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/30 19:38:13 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/05 13:17:28 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		i++;
 	}
 	str[i] = '\0';
-	free(s1);
+	// free(s1); bazen gerekiyor bazen gerekmiyor :D
 	return (str);
 }
