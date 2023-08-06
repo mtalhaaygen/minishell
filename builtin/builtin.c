@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/05 15:42:46 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/06 18:09:54 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ void	run_builtin(int status, Node node)
 	if (status == CD)
 		run_cd(node);
 	else if (status == ENV)
-		printf("env çalıştır\n");
+		print_env_list(gv.env); //tüm env leri key value değerlerini kullanarak yazıyoruz
 	else if (status == PWD)
 		run_pwd();
 	else if (status == EXIT)
-		printf("exit çalıştır\n");
+	{
+		// free
+		exit(1);
+	}
 	else if (status == ECHO)
 		run_echo(node);
 	else if (status == UNSET)
-		printf("unset çalıştır\n");
-	else if (status == EXPORT)
+		printf("unset çalıştır\n"); // envsize - 1 kadar yer aç tüm envleri env_liste atarken gerekli değeri atlayarak devam et, silmek için yalnızca char *full değeri içerisinde değer olması yeterli
+	else if (status == EXPORT) // eğer eşittir yoksa sadece full e at, eğer eşittir değeri varsa hem full hemde key-value değerleri dolsun
 		printf("export çalıştır\n");
 	else
 		printf("command not builtin\n");

@@ -53,6 +53,7 @@ typedef  struct t_env
 {
 	char			*key;
 	char			*value;
+	char			*full; // key=value şeklinde tutacak
 	//struct t_token	*next; bu yapının linkedlist olması daha verimli bir kod sağlar, çünkü export komutu ile ekleme çıkarma yapacağız
 }	s_env;
 
