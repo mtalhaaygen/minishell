@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/03 18:22:07 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/06 15:02:18 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int ft_pipe_counter(s_token *tokens)
 {
-    int len;
-    int i;
+	int len;
+	int i;
 
-    i = 0;
+	i = 0;
 	len = 0;
-    while(tokens[i].value)
-    {
-        if(tokens[i].type == TOKEN_PIPE)
-            len++;
-        i++;
-    }
-    return (len);
+	while(tokens[i].value)
+	{
+		if(tokens[i].type == TOKEN_PIPE)
+			len++;
+		i++;
+	}
+	return (len);
 }
 
 int ft_count_arg(s_token *tokens, int i)
@@ -38,7 +38,7 @@ int ft_count_arg(s_token *tokens, int i)
 		len++;
 		i++;
 	}
-	return len;
+	return (len);
 }
 
 Node ft_creat_node(s_token *tokens, int i)
@@ -48,7 +48,7 @@ Node ft_creat_node(s_token *tokens, int i)
 
 	node.infile = NULL;
 	node.outfile = NULL;
-	node.args = ft_calloc(sizeof(char *), ft_count_arg(tokens, i));
+	node.args = ft_calloc(sizeof(char *), ft_count_arg(tokens, i) + 1); // + 1 null için
 	if (!node.args)
 		return (node); // bu return değeri değişebilir
 	j = 0;
@@ -78,7 +78,7 @@ Node ft_creat_node(s_token *tokens, int i)
 		i++;
 		j++;
 	}
-	// node.arg_count = ft_strlen(node.args); // hatalı
+	node.args[j] = NULL;
 	node.arg_count = i;
 	return (node);
 }
@@ -90,7 +90,7 @@ Node	*ft_parser(s_token *tokens)
 	int j;
 	int pipe_len;
 
-	pipe_len = ft_pipe_counter(tokens) + 1;
+	pipe_len = gv.process_count;
 	nodes = malloc(sizeof(Node) * (pipe_len + 1));
 	if (!nodes)
 		return (NULL);
@@ -99,7 +99,7 @@ Node	*ft_parser(s_token *tokens)
 	nodes[j] = ft_creat_node(tokens, i);
 	while(tokens[i].value)
 	{
-		printf("*%s*\n",tokens[i].value);
+		//printf("*%s*\n",tokens[i].value);
 		if(tokens[i].type == TOKEN_PIPE)
 		{
 			j++;

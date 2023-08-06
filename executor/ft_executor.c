@@ -6,11 +6,34 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/05 16:28:45 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/06 15:01:42 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+char	*ft_access(char *args)
+{
+	char	**command_paths;
+	char	*pathenv;
+	char	*command;
+	int		i;
+
+	i = 0;
+	pathenv = getenv("PATH");
+	if (!pathenv)
+		perror("getenv");
+	command_paths = ft_split(pathenv, ':');
+	args = ft_strjoin("/", args);
+	while (command_paths[i])
+	{
+		command = ft_strjoin(command_paths[i], args);
+		if (access(command, R_OK) == 0)
+			break;
+		i++;
+	}
+	return (command);
+}
 
 void	ft_executor(Node *nodes, char **envp)
 {
@@ -20,24 +43,21 @@ void	ft_executor(Node *nodes, char **envp)
 	int i;
 	
 	i = -1;
-	while (++i < gv.process_count) // kaç tane komut varsa (ve bu komutlar builtin değilse) o kadar fork yapılıyor ve exec e gönderiliyor
+	while (++i < gv.process_count)
 	{
-		status = is_builtin(nodes[i].args[0]); // komutun ilk argümanı builtin mi değil mi ?
+		status = is_builtin(nodes[i].args[0]);
 		if (!status)
 		{
 			ret = fork();
 			if (ret == 0)
 			{
-				bin_command = ft_strjoin("/bin/", nodes[i].args[0]);
+				bin_command = ft_access(nodes[i].args[0]);
 				if (execve(bin_command, nodes[i].args, envp))
-					perror("execve error ");
+					perror("execve perror ");
 				exit(1);
 			}
 			else if (ret < 0) 
-			{
-				perror("fork error ");
-				return ;
-			}
+				return (perror("fork error "));
 		}
 		else
 			run_builtin(status, nodes[i]);

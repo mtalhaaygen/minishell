@@ -8,7 +8,7 @@ OBJ			=	$(D_SRC:%.c=%.o)
 
 CC			=	gcc
 RM			=	rm -r
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 READLINE	=	-lreadline
 
 NAME	=	minishell
