@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/03 18:37:05 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/06 08:34:49 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,18 @@ int	handle_quotes(int i,const char *str, char del)
 	}
 	return (j);
 }
-
+int ft_flag(const char *input, int start)
+{
+	if (input[start] == 34)
+		return(1);
+	return (0);
+}
 int	ft_find_end(const char *input, int i)
 {
 	while (input[i])
 	{
+		if(input[i] == 34 || input[i] == 39)
+			gv.flag = ft_flag(input, i);
 		i += handle_quotes(i , input, 34);
 		i += handle_quotes(i , input, 39);
 		if (my_isspace(input[i]))
@@ -41,21 +48,12 @@ int	ft_find_end(const char *input, int i)
 	return (i);
 }
 
-int ft_flag(char *input, int start)
-{
-	if (input[start - 1])
-	{
-		if (input[start - 1] == 34)
-			return(1);
-	}
-	return (0);
-}
+
 
 char *ft_dup(char *input, int start, int end)
 {
 	int		i;
 	int		k;
-	int		flag;
 	char	*str;
 
 	k = 0;
@@ -63,12 +61,11 @@ char *ft_dup(char *input, int start, int end)
 	str = malloc(end - start + 1);
 	if (!str)
 		return (NULL);
-	flag = ft_flag(input, start);
 	while(i < end)
 	{
-		while (input[i] == 34 && flag == 1)
+		while (input[i] == 34 && gv.flag == 1)
 			i++;
-		while(input[i] == 39 && flag == 0)
+		while(input[i] == 39 && gv.flag == 0)
 			i++;
 		str[k] = input[i];
 		i++;
@@ -99,18 +96,16 @@ s_token *ft_start(char *input)
 				i++;
 		start = i;
 		if(input[i] == 34 || input[i] == 39)
-				start++;	
+			start++;
 		i = ft_find_end(input, i);
 		end = i;
 		tokens[++k].value = ft_dup(input, start, end);
-		printf("start: %d\n",start);
-		printf("end: %d\n",end);
 	}
 	tokens[++k].value = NULL;
-	for (int q = 0; q <= k; q++)
+	/*for (int q = 0; q <= k; q++)
 	{
 		printf("-%s-\n", tokens[q].value);
-	}
+	}*/
 	
 	return (tokens);
 }

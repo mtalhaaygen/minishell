@@ -89,6 +89,7 @@ typedef struct t_minishell
 	s_env		*env;			// tüm envler
 	Node		*nodes;			// tüm nodelar
 	s_process	*process;		// tüm processler
+	int flag;
 }	s_minishell;
 
 extern s_minishell gv;
