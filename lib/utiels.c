@@ -64,9 +64,9 @@ char *ft_readline(char *str)
 {
 	char *buf;
 
-	write(1, "\033[1;36m", 8);
+	write(1, "\033[7m\033[1;36m", 12);
 	write(1, "talha@minishell", 16);
-	write(1, "\033[33m", 6);
+	write(1, "\033[0m\033[33m", 10);
 	buf = readline(str);
 	return (buf);
 }
