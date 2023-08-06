@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/06 08:34:49 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/06 16:00:15 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ int	handle_quotes(int i,const char *str, char del)
 	if (str[i + j] == del)
 	{
 		j++;
-		while (str[i + j] != del && str[i + j])
+		while (str[i+j] != del && str[i + j]  )
+		{
 			j++;
-		j++;
+		}
+		
 	}
 	return (j);
 }
@@ -61,17 +63,22 @@ char *ft_dup(char *input, int start, int end)
 	str = malloc(end - start + 1);
 	if (!str)
 		return (NULL);
-	while(i < end)
+	while(i < end && input[i])
 	{
 		while (input[i] == 34 && gv.flag == 1)
 			i++;
-		while(input[i] == 39 && gv.flag == 0)
+		while(input[i] == 39 && gv.flag == 2)
 			i++;
-		str[k] = input[i];
+		if(i<end)
+			str[k] = input[i];
 		i++;
 		k++;
 	}
-	str[k] = '\0'; // tdemir null u unutma!
+	////hata buaradadcdasıdslauf0 BEADSfn
+	if(!str[k-1])
+		str[k-1] = '\0';
+	else
+		str[k] = '\0';
 	return (str);
 }
 
@@ -81,7 +88,6 @@ s_token *ft_start(char *input)
 	int i;
 	int k;
 	int start;
-	int end;
 	int token_count;
 
 	i = 0;
@@ -95,17 +101,10 @@ s_token *ft_start(char *input)
 		while (my_isspace(input[i]))
 				i++;
 		start = i;
-		if(input[i] == 34 || input[i] == 39)
-			start++;
 		i = ft_find_end(input, i);
-		end = i;
-		tokens[++k].value = ft_dup(input, start, end);
+		tokens[++k].value = ft_dup(input, start, i);
 	}
 	tokens[++k].value = NULL;
-	/*for (int q = 0; q <= k; q++)
-	{
-		printf("-%s-\n", tokens[q].value);
-	}*/
 	
 	return (tokens);
 }
@@ -138,7 +137,6 @@ void	ft_token_type(s_token *tokens)
 s_token *ft_tokens(char *input)
 {
 	s_token *tokens;
-
 	if (quote_off(input))
 		exit(2);
 	tokens = ft_start(input);
