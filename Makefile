@@ -7,7 +7,7 @@ D_SRC			=	builtin/builtin.c builtin/run_commands.c builtin/run_echo.c\
 OBJ			=	$(D_SRC:%.c=%.o)
 
 CC			=	gcc
-RM			=	rm -r
+RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror -g
 READLINE	=	-lreadline
 
@@ -16,7 +16,7 @@ NAME	=	minishell
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJ)
-			$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(READLINE) #-fsanitize=address -g
+			$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(READLINE) -fsanitize=address -g
 
 clean	:
 			$(RM) $(OBJ)

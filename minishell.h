@@ -112,7 +112,7 @@ Node	*ft_parser(s_token *tokens);
 int  	ft_char_count(const char *input, int c);
 int		quote_off(const char *input);
 int		ft_token_count(const char *input);
-
+s_token	*ft_dollar(s_token *tokens);
 /* LIB*/
 int		my_isspace(char ch);
 char	*ft_strdup(char *src);
