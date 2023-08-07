@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/06 15:02:18 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/06 16:30:50 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,22 @@ Node ft_creat_node(s_token *tokens, int i)
 		if(tokens[i].type == TOKEN_I)
 		{
 			node.infile->type = TOKEN_I;
-			node.infile->name = ft_strdup("in");
+			node.infile->name = ft_strdup(tokens[i+1].value);
 		}
 		if(tokens[i].type == TOKEN_I_I)
 		{
 			node.infile->type = TOKEN_I_I;
-			node.infile->name = ft_strdup("double_in");
+			node.infile->name = ft_strdup(tokens[i+1].value);
 		}
 		if(tokens[i].type == TOKEN_O)
 		{
 			node.infile->type = TOKEN_O;
-			node.infile->name = ft_strdup("out");
+			node.infile->name = ft_strdup(tokens[i+1].value);
 		}
 		if(tokens[i].type == TOKEN_O_O)
 		{
 			node.infile->type = TOKEN_O_O;
-			node.infile->name = ft_strdup("double_out");
+			node.infile->name = ft_strdup(tokens[i+1].value);
 		}
 		i++;
 		j++;
