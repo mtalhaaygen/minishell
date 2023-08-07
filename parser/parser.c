@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/06 16:30:50 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/07 12:23:06 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ Node ft_creat_node(s_token *tokens, int i)
 	Node node;
 	int j;
 
-	node.infile = NULL;
-	node.outfile = NULL;
+	node.infile = ft_calloc(1, sizeof(s_file));
+	node.outfile = ft_calloc(1, sizeof(s_file));
 	node.args = ft_calloc(sizeof(char *), ft_count_arg(tokens, i) + 1); // + 1 null için
 	if (!node.args)
 		return (node); // bu return değeri değişebilir

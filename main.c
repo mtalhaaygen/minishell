@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/07 11:34:15 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/07 16:53:13 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int main(int argc, char **argv, char **envp)
 		if(tokens[0].value)
 		{
 			nodes = ft_parser(tokens);
-			ft_executor(nodes, envp);
+			//ft_executor(nodes, envp);
+			exec_select(nodes, envp);
 		}
 		free(line);
 	}

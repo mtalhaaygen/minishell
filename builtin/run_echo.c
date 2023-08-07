@@ -1,20 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_echo.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/07 17:55:10 by maygen            #+#    #+#             */
+/*   Updated: 2023/08/07 17:55:11 by maygen           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	size_t	i;
-    char    x;
-
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i])
-	{
-        x = s[i];
-		write(1, &x, fd);
-		i++;
-	}
-}
 
 int	ft_echo_param_checker(char *str)
 {

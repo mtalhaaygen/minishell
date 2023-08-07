@@ -112,19 +112,25 @@ Node	*ft_parser(s_token *tokens);
 int  	ft_char_count(const char *input, int c);
 int		quote_off(const char *input);
 int		ft_token_count(const char *input);
+
 /* LIB*/
 int		my_isspace(char ch);
 char	*ft_strdup(char *src);
 size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char *s1, char *s2);
+char	*free_strjoin(char *s1, char *s2);
 char	**ft_split(char const *s, char c);
 int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t count, size_t size);
+void	ft_putstr_fd(char *s, int fd);
 
 /* EXECUTOR */
 // void	ft_executor(Node *nodes);
 void	ft_executor(Node *nodes, char **envp);
+void	ft_executor_heredoc(Node *nodes, int i);
+void	exec_select(Node *nodes, char **envp);
 
 /* BUILTIN COMMANDS */
 int		is_builtin(char *command);

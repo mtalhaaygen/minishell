@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/06 15:01:42 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/07 17:58:30 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,25 @@ void	ft_executor(Node *nodes, char **envp)
 	}
 	if (ret > 0)
 		waitpid(ret, NULL, 0);
+}
+
+void	exec_select(Node *nodes, char **envp) // eğer komut içerisinde heredoc varsa ft_executor_heredoc yoksa ft_executor çalışacak
+{
+	int	i;
+
+	if (gv.process_count == 1) // bir process varsa 
+	{
+		i = -1;
+		while (nodes[0].args[++i])
+		{
+			if (ft_strcmp("<<", nodes[0].args[i]))
+			{
+				ft_executor_heredoc(nodes, i);
+				return;
+			}
+		}
+	}
+	ft_executor(nodes, envp);
 }
 /*
 void	ft_executor(Node *nodes)
