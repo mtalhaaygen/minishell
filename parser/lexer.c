@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/06 16:00:15 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/07 16:27:03 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,13 @@ s_token *ft_tokens(char *input)
 {
 	s_token *tokens;
 	if (quote_off(input))
-		exit(2);
+	{
+		tokens = malloc(sizeof(s_token) * 1);
+		tokens[0].value = NULL;	
+		return (tokens);
+	}
 	tokens = ft_start(input);
+	tokens = ft_dollar(tokens);
 	ft_token_type(tokens);
 	
 	gv.process_count = ft_pipe_counter(tokens) + 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:37:42 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/03 15:35:13 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/07 11:53:34 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	quote_off(const char *input)
 	mq_count = ft_char_count(input, MQ);
 	if (dq_count % 2 == 1 || mq_count % 2 == 1)
 	{
-		printf("quotes count error");
+		printf("quotes count error\n");
 		return (1);
 	}
 	return (0);
