@@ -1,4 +1,4 @@
-D_SRC			=	builtin/builtin.c builtin/run_commands.c builtin/run_echo.c\
+D_SRC			=	builtin/builtin.c builtin/run_commands.c builtin/run_echo.c builtin/export.c\
 				lib/ft_split.c lib/ft_strjoin.c lib/put_fd.c lib/utiels2.c\
 				parser/env_process.c parser/lexer.c lib/utiels.c parser/parser.c parser/quotes.c parser/dollar.c\
 				executor/ft_executor.c executor/exec_heredoc.c \

@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:43 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/31 17:27:24 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/08 12:47:01 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ s_env *fill_env(char **envp)
 	env_list = malloc(sizeof(s_env) * (len));
 	while(i < len)
 	{
+		env_list[i].full = envp[i];
 		s = ft_split(envp[i],'=');
 		env_list[i].key = ft_strdup(s[0]);
 		env_list[i].value = ft_strdup(s[1]);

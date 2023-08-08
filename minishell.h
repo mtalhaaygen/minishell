@@ -139,6 +139,7 @@ void	run_builtin(int status, Node node);
 void	run_pwd(void);
 void	run_cd(Node node);
 void	run_echo(Node node);
+void ft_export(void);
 /*silinecekler*/
 Node	*sahte_nodes();
 // void	env_free(s_env *env_list);

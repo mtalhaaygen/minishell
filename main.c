@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/07 16:53:13 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/08 13:16:15 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int main(int argc, char **argv, char **envp)
 
 	env_list = fill_env(envp);
 	gv.env = env_list;
-	// print_env_list(env_list);
+	ft_export();
+	//print_env_list(env_list);
 	while (1)
 	{
 		char *line;
