@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/07 16:27:03 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/08 12:28:01 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,24 @@ void	ft_token_type(s_token *tokens)
 		i++;
 	}
 }
+s_token *ft_check_sng_que(s_token *tokens)
+{
+	int i;
+	int j;
+
+	
+	j = 1;
+	i = 0;
+	while(tokens[i].value)
+	{
+		if(tokens[i].value[0] == 39)
+		{
+			tokens[i].value = ft_strtrim(tokens[i].value,"'");
+		}
+		i++;
+	}
+	return (tokens);
+}
 
 s_token *ft_tokens(char *input)
 {
@@ -143,8 +161,9 @@ s_token *ft_tokens(char *input)
 		tokens[0].value = NULL;	
 		return (tokens);
 	}
-	tokens = ft_start(input);
+	tokens = ft_start(input); 
 	tokens = ft_dollar(tokens);
+	tokens = ft_check_sng_que(tokens);
 	ft_token_type(tokens);
 	
 	gv.process_count = ft_pipe_counter(tokens) + 1;

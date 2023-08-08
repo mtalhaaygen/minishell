@@ -12,13 +12,13 @@ char *ft_dolkey(s_token *tokens,int i, int j)
     len = 0;
     k = 0;
     tmp = j;
-    while(tokens[i].value[tmp])
+    while(tokens[i].value[tmp] && tokens[i].value[tmp] != 39)
     {
         tmp++;
         len++;
     }
-    dolkey = ft_calloc(len,sizeof(char));
-    while(tokens[i].value[j])
+    dolkey = ft_calloc(len+1,sizeof(char));
+    while(tokens[i].value[j] && tokens[i].value[j] != 39)
     {
        dolkey[k] = tokens[i].value[j];
        k++;
@@ -79,11 +79,13 @@ s_token *ft_dollar(s_token *tokens)
     while(tokens[i].value)
     {
         j = 0;
+
         while(tokens[i].value[j] != '\0')
         {
-            if(tokens[i].value[j] == '$')
+            if(tokens[i].value[j] == '$' && tokens[i].value[j-1] != 39)
             {
                 dolkey = ft_strdup(ft_dolkey(tokens, i,j));
+
                 dolval = ft_strdup(ft_dolval(dolkey));
                 tokens[i].value = ft_strdup(ft_change_token(dolval, tokens, i,j));
                 //printf("%s\n",tokens[i].value);
