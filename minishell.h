@@ -51,6 +51,7 @@ typedef struct t_token
 
 typedef  struct t_env
 {
+	int env_count;
 	char			*key;
 	char			*value;
 	char			*full; // key=value şeklinde tutacak
@@ -120,7 +121,7 @@ size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char *s1, char *s2);
 char	*free_strjoin(char *s1, char *s2);
 char	**ft_split(char const *s, char c);
-int		ft_strcmp(const char *s1, const char *s2);
+int ft_strcmp(const char *str1, const char *str2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t count, size_t size);

@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:43 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/08 12:47:01 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/09 16:40:41 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ s_env *fill_env(char **envp)
 
 	i = 0;
 	len = env_counter(envp);
-	env_list = malloc(sizeof(s_env) * (len));
+	env_list = malloc(sizeof(s_env) * (len+1));
+	env_list->env_count = len;
 	while(i < len)
 	{
 		env_list[i].full = envp[i];
