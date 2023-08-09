@@ -3,41 +3,109 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/07/25 19:48:26 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/09 12:38:32 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
+
+int	handle_quotes(int i,const char *str, char del)
+{
+	int	j;
+
+	j = 0;
+	if (str[i + j] == del)
+	{
+		j++;
+		while (str[i+j] != del && str[i + j]  )
+		{
+			j++;
+		}
+		
+	}
+	return (j);
+}
+int ft_flag(const char *input, int start)
+{
+	if (input[start] == 34)
+		return(1);
+	return (0);
+}
+int	ft_find_end(const char *input, int i)
+{
+	while (input[i])
+	{
+		if(input[i] == 34 || input[i] == 39)
+			gv.flag = ft_flag(input, i);
+		i += handle_quotes(i , input, 34);
+		i += handle_quotes(i , input, 39);
+		if (my_isspace(input[i]))
+			break ;
+		else
+			i++;
+	}
+	return (i);
+}
+
+
+
+char *ft_dup(char *input, int start, int end)
+{
+	int		i;
+	int		k;
+	char	*str;
+
+	k = 0;
+	i = start;
+	str = malloc(end - start + 1);
+	if (!str)
+		return (NULL);
+	while(i < end && input[i])
+	{
+		while (input[i] == 34 && gv.flag == 1)
+			i++;
+		while(input[i] == 39 && gv.flag == 2)
+			i++;
+		if(i<end)
+			str[k] = input[i];
+		i++;
+		k++;
+	}
+	////hata buaradadcdasıdslauf0 BEADSfn
+	if(!str[k-1])
+		str[k-1] = '\0';
+	else
+		str[k] = '\0';
+	return (str);
+}
 
 s_token *ft_start(char *input)
 {
 	s_token *tokens;
 	int i;
-	int j;
 	int k;
 	int start;
-	int end;
+	int token_count;
 
 	i = 0;
-	k = 0;
-	tokens = malloc(sizeof(s_token) * 99);
-	while(input[i])
+	k = -1;
+	token_count = ft_token_count(input);
+	tokens = ft_calloc(token_count + 1, sizeof(s_token));
+	if (!tokens)
+		return (NULL);
+	while (input[i])
 	{
-		j = 0;
-		while(my_isspace(input[i]))
-			i++;
+		while (my_isspace(input[i]))
+				i++;
 		start = i;
-		while(!my_isspace(input[i]) && input[i] != '\0')
-			i++;
-		end = i;
-		if(input[i-1] && !my_isspace(input[i-1]))
-			tokens[k].value = ft_substr(input, start, end-start);
-		k++;
+		i = ft_find_end(input, i);
+		tokens[++k].value = ft_dup(input, start, i);
 	}
-	tokens[k].value = NULL;
+	tokens[++k].value = NULL;
+	
 	return (tokens);
 }
 
@@ -65,13 +133,61 @@ void	ft_token_type(s_token *tokens)
 		i++;
 	}
 }
+s_token *ft_check_sng_que(s_token *tokens)
+{
+	int i;
+	int j;
 
+	
+	j = 1;
+	i = 0;
+	while(tokens[i].value)
+	{
+		if(tokens[i].value[0] == 39)
+		{
+			tokens[i].value = ft_strtrim(tokens[i].value,"'");
+		}
+		i++;
+	}
+	return (tokens);
+}
+char *ft_rm_last_sp(char *input)
+{
+	int len;
+	char *str;
+	len =0;
+	while(input[len])
+		len++;
+	len--;
+	while(input[len] == 32)
+		len--;
+	
+	str = ft_calloc(len+1,sizeof(char));
+	str[len+1] = '\0';
+	while (input[len])
+	{
+		str[len] = input[len];
+		len--;
+	}
+	return(str);
+	
+}
 s_token *ft_tokens(char *input)
 {
 	s_token *tokens;
-
-	tokens= ft_start(input); 
+	input = ft_rm_last_sp(input);
+	if (quote_off(input))
+	{
+		tokens = malloc(sizeof(s_token) * 1);
+		tokens[0].value = NULL;	
+		return (tokens);
+	}
+	tokens = ft_start(input); 
+	tokens = ft_dollar(tokens);
+	tokens = ft_check_sng_que(tokens);
 	ft_token_type(tokens);
-
+	
+	gv.process_count = ft_pipe_counter(tokens) + 1;
+	// printf("%d\n\n", gv.process_count);
 	return tokens;
 }
