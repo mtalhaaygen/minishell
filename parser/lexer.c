@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/08 12:28:01 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/09 12:38:32 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,10 +151,31 @@ s_token *ft_check_sng_que(s_token *tokens)
 	}
 	return (tokens);
 }
-
+char *ft_rm_last_sp(char *input)
+{
+	int len;
+	char *str;
+	len =0;
+	while(input[len])
+		len++;
+	len--;
+	while(input[len] == 32)
+		len--;
+	
+	str = ft_calloc(len+1,sizeof(char));
+	str[len+1] = '\0';
+	while (input[len])
+	{
+		str[len] = input[len];
+		len--;
+	}
+	return(str);
+	
+}
 s_token *ft_tokens(char *input)
 {
 	s_token *tokens;
+	input = ft_rm_last_sp(input);
 	if (quote_off(input))
 	{
 		tokens = malloc(sizeof(s_token) * 1);
