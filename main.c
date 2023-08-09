@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/09 11:45:03 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/09 18:07:51 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@ int main(int argc, char **argv, char **envp)
 		s_token *tokens;
 		line = ft_readline("$ ");
 		add_history(line);
-
 		tokens = ft_tokens(line);
 		if(tokens[0].value)
 		{
 			nodes = ft_parser(tokens);
-			//ft_executor(nodes, envp);
-			exec_select(nodes, envp);
+			ft_executor(nodes, envp);
 		}
 		free(line);
 	}

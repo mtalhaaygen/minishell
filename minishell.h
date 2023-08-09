@@ -7,7 +7,7 @@
 #include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-// #include <string.h>
+// #include <string.h> 
 // #include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -77,11 +77,7 @@ typedef struct t_process
 {
 	pid_t				pid;
 	int					fd[2];
-	int					heredoc_fd[2];
-	char				**redirects;
 	Node				node;
-	struct t_process	*prev;
-	struct t_process	*next;
 }	s_process;
 
 typedef struct t_minishell
