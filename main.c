@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/09 18:07:51 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/10 16:50:54 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 s_minishell	gv;
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
@@ -32,11 +32,12 @@ int main(int argc, char **argv, char **envp)
 		s_token *tokens;
 		line = ft_readline("$ ");
 		add_history(line);
+
 		tokens = ft_tokens(line);
 		if(tokens[0].value)
 		{
 			nodes = ft_parser(tokens);
-			ft_executor(nodes, envp);
+			exec_start(nodes, envp);
 		}
 		free(line);
 	}

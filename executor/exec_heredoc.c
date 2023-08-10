@@ -6,13 +6,13 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 12:29:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/09 18:17:14 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/10 16:36:51 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_executor_heredoc(Node *nodes, const int i) // i heredoc'un indexini tutuyor
+void	ft_executor_heredoc(Node *nodes, const int i)
 {
 	// heredoc read
 	// readline ile promt yazdırılıp kullanıcıdan girdi beklenecek alınan girdi str_join ile bir önceki satır ile birleştirilecek tabii arada bir \n de olacak
@@ -32,7 +32,7 @@ void	ft_executor_heredoc(Node *nodes, const int i) // i heredoc'un indexini tutu
 			break;
 	}
 	// Okuduğumuz tüm veriyi STDOUT_FILENO (1)'e yazıyoruz
-	// Burada ft_executor a gönderece
+	// Burada direk ekrana basmak yerine heredocu execve ile çalıştıralım
 	if (full)
 		ft_putstr_fd(full, 1);
 	else

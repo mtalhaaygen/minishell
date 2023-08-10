@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/09 19:50:59 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:21:38 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,18 @@ void	ft_executor(Node *nodes, char **envp)
 	i = -1;
 	while (++i < gv.process_count)
 	{
+		// is_redirection ile heredoc dışındaki yönlendirmeler için fd change işlemleri yapılacak
+		dup2();
 		status = is_builtin(nodes[i].args[0]);
 		if (!status)
 		{
-			dup2(process[i].fd[1], STDIN_FILENO);
-			dup2(process[i].fd[0], STDOUT_FILENO);
 			ret = fork();
-			process
 			if (ret == 0)
 			{
 				bin_command = ft_access(nodes[i].args[0]);
 				if (execve(bin_command, nodes[i].args, envp))
 					perror("execve perror ");
-				_exit(1);
+				exit(1);
 			}
 			else if (ret < 0) 
 				return (perror("fork error "));
@@ -69,21 +68,81 @@ void	ft_executor(Node *nodes, char **envp)
 		waitpid(ret, NULL, 0);
 }
 
-// void	exec_select(Node *nodes, char **envp) // eğer komut içerisinde heredoc varsa ft_executor_heredoc yoksa ft_executor çalışacak
-// {
-// 	int	i;
+void	exec_start(Node *nodes, char **envp)
+{
+	if (gv.process > 1)
+	{
+		int			i;
+		s_process	*process;
 
-// 	if (gv.process_count == 1) // bir process varsa 
-// 	{
-// 		i = -1;
-// 		while (nodes[0].args[++i])
-// 		{
-// 			if (ft_strcmp("<<", nodes[0].args[i]))
-// 			{
-// 				ft_executor_heredoc(nodes, i);
-// 				return;
-// 			}
-// 		}
-// 	}
-// 	ft_executor(nodes, envp);
-// }
+		process = ft_calloc(gv.process_count , sizeof(s_process));
+		if (!process)
+			return ;
+		i = -1;
+		while (++i < gv.process_count)
+		{
+			if (pipe(&process[i].fd[2]) == -1)
+				perror("pipe not created");
+		}
+		gv.process = process;
+	}
+	exec_select(nodes, envp);
+}
+
+void	exec_select(Node *nodes, char **envp) //  eğer komut içerisinde heredoc varsa ft_executor_heredoc yoksa ft_executor çalışacak
+{
+	int	i;
+/* 
+cat <<EOF1 <<EOF2
+first here-doc
+EOF1
+second here-doc
+EOF2
+*/
+/*
+bash-3.2$ cat <<E1 | cat <<E2
+> DENEME
+> E1
+> DENEME2
+> E2
+DENEME2
+*/
+/*
+bash-3.2$ ls -la | cat << EOF
+> DDFGH
+> EOF
+DDFGH
+*/
+/*
+bash-3.2$ cat << EOF | ls
+> deneme
+> EOF
+Makefile        executor        minishell.h
+README.md       lib             parser
+builtin         main.c          talha.txt
+*/
+/*
+bash-3.2$ cat << EOF | grep ali
+> deneme
+> aliço
+> aligo
+> alimo
+> EOF
+aliço
+aligo
+alimo
+*/
+	if (gv.process_count == 1) //bir process varsa, gelecekte sadece ilk node değil tüm nodelar arasında heredoc aranacak 
+	{
+		i = -1;
+		while (nodes[0].args[++i])
+		{
+			if (ft_strcmp("<<", nodes[0].args[i]))
+			{
+				ft_executor_heredoc(nodes, i);
+				return;
+			}
+		}
+	}
+	ft_executor(nodes, envp);
+}

@@ -7,7 +7,7 @@
 #include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-// #include <string.h> 
+// #include <string.h>
 // #include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -77,7 +77,6 @@ typedef struct t_process
 {
 	pid_t				pid;
 	int					fd[2];
-	Node				node;
 }	s_process;
 
 typedef struct t_minishell
@@ -127,7 +126,9 @@ char	*ft_strtrim(char const *s1, char const *set);
 // void	ft_executor(Node *nodes);
 void	ft_executor(Node *nodes, char **envp);
 void	ft_executor_heredoc(Node *nodes, int i);
+void	exec_start(Node *nodes, char **envp);
 void	exec_select(Node *nodes, char **envp);
+int		is_heredoc(Node *nodes, int index);
 
 /* BUILTIN COMMANDS */
 int		is_builtin(char *command);
@@ -135,7 +136,7 @@ void	run_builtin(int status, Node node);
 void	run_pwd(void);
 void	run_cd(Node node);
 void	run_echo(Node node);
-void ft_export(void);
+void	ft_export(void);
 /*silinecekler*/
 Node	*sahte_nodes();
 // void	env_free(s_env *env_list);
