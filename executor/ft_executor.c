@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/10 17:21:38 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/11 17:22:00 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ void	exec_select(Node *nodes, char **envp) //  eğer komut içerisinde heredoc v
 	int	i;
 /* 
 cat <<EOF1 <<EOF2
-first here-doc
-EOF1
-second here-doc
-EOF2
+> first here-doc
+> EOF1
+> second here-doc
+> EOF2
 */
 /*
 bash-3.2$ cat <<E1 | cat <<E2

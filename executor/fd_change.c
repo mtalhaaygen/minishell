@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/10 16:51:51 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/11 14:28:33 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@
 // 	return (0);
 // }
 
-// void	is_redirection(char *command, int i)
-// {
-// 	int index;
+void	is_redirection(char *command, int i)
+{
+	int index;
 
-// 	if((index = contain_i(nodes[i].args)))
-// 		// change_fd_i(nodes[i], index)
-// 	if((index = contain_ii(nodes[i].args)))
-// 		// change_fd_ii(nodes[i], index);
-// 	if((index = contain_o(nodes[i].args)))
-// 		// change_fd_o(nodes[i], index);
-// }
+	if((index = contain_i(nodes[i].args)))
+		change_fd_i(nodes[i], index)
+	if((index = contain_ii(nodes[i].args)))
+		change_fd_ii(nodes[i], index);
+	if((index = contain_o(nodes[i].args)))
+		change_fd_o(nodes[i], index);
+}
 
 
 
