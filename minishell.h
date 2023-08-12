@@ -78,11 +78,6 @@ typedef struct t_process
 {
 	pid_t				pid;
 	int					fd[2];
-	int					heredoc_fd[2];
-	char				**redirects;
-	Node				node;
-	struct t_process	*prev;
-	struct t_process	*next;
 }	s_process;
 
 typedef struct t_minishell
@@ -94,6 +89,7 @@ typedef struct t_minishell
 	Node		*nodes;			// tüm nodelar
 	s_process	*process;		// tüm processler
 	int flag;
+	int	pid;
 }	s_minishell;
 
 extern s_minishell gv;
@@ -132,7 +128,15 @@ char	*ft_strtrim(char const *s1, char const *set);
 // void	ft_executor(Node *nodes);
 void	ft_executor(Node *nodes, char **envp);
 void	ft_executor_heredoc(Node *nodes, int i);
+void	exec_start(Node *nodes, char **envp);
 void	exec_select(Node *nodes, char **envp);
+int		is_heredoc(Node *nodes, int index);
+int		contain_i(char **commands);
+int		contain_ii(char **commands);
+int		contain_o(char **commands);
+void	is_redirection(Node *nodes, int i);
+void	ft_process_merge(int i);
+void	pipe_close();
 
 /* BUILTIN COMMANDS */
 int		is_builtin(char *command);
@@ -140,7 +144,7 @@ void	run_builtin(int status, Node node);
 void	run_pwd(void);
 void	run_cd(Node node);
 void	run_echo(Node node);
-void ft_export(void);
+void	ft_export(void);
 /*silinecekler*/
 Node	*sahte_nodes();
 // void	env_free(s_env *env_list);
