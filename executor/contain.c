@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:21:27 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/12 12:23:36 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/12 23:50:34 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int		contain_i(char **commands)
 	while (commands[index])
 	{
 		if (commands[index][0] == '>')
-			return (index);
+			if (commands[index][1] == '\0')
+				return (index);
 		index++;
 	}
 	return (0);
@@ -34,7 +35,8 @@ int		contain_o(char **commands)
 	while (commands[index])
 	{
 		if (commands[index][0] == '<')
-			return (index);
+			if(commands[index][1] == '\0')
+				return (index);
 		index++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/12 20:43:22 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/13 00:09:26 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	change_fd_i(Node node, int index)
 {
-	(void)index;
 	int	fdnewtxt;
 	int	i;
 
@@ -41,15 +40,54 @@ void	change_fd_i(Node node, int index)
 	}
 }
 
+void	change_fd_ii(Node node, int index)
+{
+	int	fdnewtxt;
+	int	i;
+
+	i = 0;
+	if (node.outfile->name != NULL)
+	{
+		fdnewtxt = open(node.outfile->name, O_RDWR | O_APPEND | O_CREAT, 0777);
+		dup2(fdnewtxt, STDOUT_FILENO);
+		// aşağısı değişecek 
+		while (node.args[index + i] && i < 2)
+		{
+			free(node.args[index + i]);
+			node.args[index + i] = NULL;
+			i++;
+		}
+	}
+}
+
+void	change_fd_o(Node node, int index)
+{
+	int	fdnewtxt;
+	int	i;
+
+	i = 0;
+	if (node.infile->name != NULL)
+	{
+		fdnewtxt = open(node.infile->name, O_RDWR, 0777);
+		dup2(fdnewtxt, STDIN_FILENO);
+		while (node.args[index + i] && i < 2)
+		{
+			free(node.args[index + i]);
+			node.args[index + i] = NULL;
+			i++;
+		}
+	}
+}
+
 void	is_redirection(Node *nodes, int i)
 {
 	int index;
-	if ((index = contain_i(nodes[i].args)))
+	if ((index = contain_i(nodes[i].args))) // >
 		change_fd_i(nodes[i], index);
 	else if ((index = contain_ii(nodes[i].args)))
-		printf("\nchange_fd_ii\n");
+		change_fd_ii(nodes[i], index);
 	else if ((index = contain_o(nodes[i].args)))
-		printf("\nchange_fd_o\n");
+		change_fd_o(nodes[i], index);
 }
 
 // int	is_heredoc(Node *nodes, int index)
