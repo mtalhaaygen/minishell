@@ -88,6 +88,7 @@ typedef struct t_minishell
 	Node		*nodes;			// tüm nodelar
 	s_process	*process;		// tüm processler
 	int flag;
+	int	pid;
 }	s_minishell;
 
 extern s_minishell gv;
@@ -129,6 +130,12 @@ void	ft_executor_heredoc(Node *nodes, int i);
 void	exec_start(Node *nodes, char **envp);
 void	exec_select(Node *nodes, char **envp);
 int		is_heredoc(Node *nodes, int index);
+int		contain_i(char **commands);
+int		contain_ii(char **commands);
+int		contain_o(char **commands);
+void	is_redirection(Node *nodes, int i);
+void	ft_process_merge(int i);
+void	pipe_close();
 
 /* BUILTIN COMMANDS */
 int		is_builtin(char *command);
