@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:37:42 by maygen            #+#    #+#             */
 /*   Updated: 2023/08/07 11:53:34 by tdemir           ###   ########.fr       */
+=======
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/03 13:37:42 by maygen            #+#    #+#             */
+/*   Updated: 2023/08/13 19:48:59 by marvin           ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +105,10 @@ int	ft_token_count(const char *input)
 			count++;
 		}
 	}
+<<<<<<< HEAD
 	return (count);
+=======
+	
+	return (count + 999);
+>>>>>>> master
 }

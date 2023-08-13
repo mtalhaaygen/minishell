@@ -7,9 +7,12 @@
 - Akşamları dc girip, muhabbet etsek fena mı olur, ortak vscode dan kod yazarız hem :D
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 > Saygılarımla maygen
 .
 =======
+=======
+>>>>>>> master
 > Saygılarımla maygen, tdemir
 
 >>>>>>> master

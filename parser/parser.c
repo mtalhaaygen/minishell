@@ -6,7 +6,11 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/08/07 12:23:06 by maygen           ###   ########.fr       */
+=======
+/*   Updated: 2023/08/12 16:47:37 by maygen           ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +61,7 @@ Node ft_creat_node(s_token *tokens, int i)
 		node.args[j] = ft_strdup(tokens[i].value);
 		if(tokens[i].type == TOKEN_I)
 		{
+<<<<<<< HEAD
 			node.infile->type = TOKEN_I;
 			node.infile->name = ft_strdup(tokens[i+1].value);
 		}
@@ -64,17 +69,34 @@ Node ft_creat_node(s_token *tokens, int i)
 		{
 			node.infile->type = TOKEN_I_I;
 			node.infile->name = ft_strdup(tokens[i+1].value);
+=======
+			node.outfile->type = TOKEN_I;
+			node.outfile->name = ft_strdup(tokens[i+1].value);
+		}
+		if(tokens[i].type == TOKEN_I_I)
+		{
+			node.outfile->type = TOKEN_I_I;
+			node.outfile->name = ft_strdup(tokens[i+1].value);
+>>>>>>> master
 		}
 		if(tokens[i].type == TOKEN_O)
 		{
 			node.infile->type = TOKEN_O;
 			node.infile->name = ft_strdup(tokens[i+1].value);
 		}
+<<<<<<< HEAD
 		if(tokens[i].type == TOKEN_O_O)
 		{
 			node.infile->type = TOKEN_O_O;
 			node.infile->name = ft_strdup(tokens[i+1].value);
 		}
+=======
+		// if(tokens[i].type == TOKEN_O_O)
+		// {
+		// 	node.infile->type = TOKEN_O_O;
+		// 	node.infile->name = ft_strdup(tokens[i+1].value);
+		// }
+>>>>>>> master
 		i++;
 		j++;
 	}

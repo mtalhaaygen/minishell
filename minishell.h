@@ -45,12 +45,20 @@ typedef enum
 
 typedef struct t_token
 {
+<<<<<<< HEAD
+=======
+	int				quot_flag;
+>>>>>>> master
 	TokenType		type;
 	char			*value;
 }	s_token;
 
 typedef  struct t_env
 {
+<<<<<<< HEAD
+=======
+	int env_count;
+>>>>>>> master
 	char			*key;
 	char			*value;
 	char			*full; // key=value şeklinde tutacak
@@ -77,11 +85,14 @@ typedef struct t_process
 {
 	pid_t				pid;
 	int					fd[2];
+<<<<<<< HEAD
 	int					heredoc_fd[2];
 	char				**redirects;
 	Node				node;
 	struct t_process	*prev;
 	struct t_process	*next;
+=======
+>>>>>>> master
 }	s_process;
 
 typedef struct t_minishell
@@ -93,6 +104,10 @@ typedef struct t_minishell
 	Node		*nodes;			// tüm nodelar
 	s_process	*process;		// tüm processler
 	int flag;
+<<<<<<< HEAD
+=======
+	int	pid;
+>>>>>>> master
 }	s_minishell;
 
 extern s_minishell gv;
@@ -120,7 +135,11 @@ size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char *s1, char *s2);
 char	*free_strjoin(char *s1, char *s2);
 char	**ft_split(char const *s, char c);
+<<<<<<< HEAD
 int		ft_strcmp(const char *s1, const char *s2);
+=======
+int ft_strcmp(const char *str1, const char *str2);
+>>>>>>> master
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t count, size_t size);
@@ -131,7 +150,19 @@ char	*ft_strtrim(char const *s1, char const *set);
 // void	ft_executor(Node *nodes);
 void	ft_executor(Node *nodes, char **envp);
 void	ft_executor_heredoc(Node *nodes, int i);
+<<<<<<< HEAD
 void	exec_select(Node *nodes, char **envp);
+=======
+void	exec_start(Node *nodes, char **envp);
+void	exec_select(Node *nodes, char **envp);
+int		is_heredoc(Node *nodes, int index);
+int		contain_i(char **commands);
+int		contain_ii(char **commands);
+int		contain_o(char **commands);
+void	is_redirection(Node *nodes, int i);
+void	ft_process_merge(int i);
+void	pipe_close();
+>>>>>>> master
 
 /* BUILTIN COMMANDS */
 int		is_builtin(char *command);
@@ -139,7 +170,11 @@ void	run_builtin(int status, Node node);
 void	run_pwd(void);
 void	run_cd(Node node);
 void	run_echo(Node node);
+<<<<<<< HEAD
 void ft_export(void);
+=======
+void	ft_export(void);
+>>>>>>> master
 /*silinecekler*/
 Node	*sahte_nodes();
 // void	env_free(s_env *env_list);

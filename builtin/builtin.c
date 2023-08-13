@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
 /*   Updated: 2023/08/06 18:09:54 by maygen           ###   ########.fr       */
+=======
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
+/*   Updated: 2023/08/09 16:34:42 by tdemir           ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +37,11 @@ void	run_builtin(int status, Node node)
 	else if (status == UNSET)
 		printf("unset çalıştır\n"); // envsize - 1 kadar yer aç tüm envleri env_liste atarken gerekli değeri atlayarak devam et, silmek için yalnızca char *full değeri içerisinde değer olması yeterli
 	else if (status == EXPORT) // eğer eşittir yoksa sadece full e at, eğer eşittir değeri varsa hem full hemde key-value değerleri dolsun
+<<<<<<< HEAD
 		printf("export çalıştır\n");
+=======
+		ft_export();
+>>>>>>> master
 	else
 		printf("command not builtin\n");
 }

@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
 /*   Updated: 2023/08/09 11:45:03 by tdemir           ###   ########.fr       */
+=======
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
+/*   Updated: 2023/08/10 16:50:54 by maygen           ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +21,11 @@
 
 s_minishell	gv;
 
+<<<<<<< HEAD
 int main(int argc, char **argv, char **envp)
+=======
+int	main(int argc, char **argv, char **envp)
+>>>>>>> master
 {
 	(void)argc;
 	(void)argv;
@@ -37,8 +48,12 @@ int main(int argc, char **argv, char **envp)
 		if(tokens[0].value)
 		{
 			nodes = ft_parser(tokens);
+<<<<<<< HEAD
 			//ft_executor(nodes, envp);
 			exec_select(nodes, envp);
+=======
+			exec_start(nodes, envp);
+>>>>>>> master
 		}
 		free(line);
 	}
