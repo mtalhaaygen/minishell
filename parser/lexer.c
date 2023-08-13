@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/09 12:38:32 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/13 20:41:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,22 @@ s_token *ft_start(char *input)
 	int token_count;
 
 	i = 0;
-	k = -1;
+	k = 0;
 	token_count = ft_token_count(input);
 	tokens = ft_calloc(token_count + 1, sizeof(s_token));
 	if (!tokens)
 		return (NULL);
 	while (input[i])
 	{
+		tokens[k].quot_flag =0;
 		while (my_isspace(input[i]))
 				i++;
+		if(input[i] == 39 || input[i] == 34 )
+			tokens[k].quot_flag = 1;
 		start = i;
 		i = ft_find_end(input, i);
-		tokens[++k].value = ft_dup(input, start, i);
+		tokens[k].value = ft_dup(input, start, i);
+		k++;
 	}
 	tokens[++k].value = NULL;
 	
@@ -172,6 +176,120 @@ char *ft_rm_last_sp(char *input)
 	return(str);
 	
 }
+
+/*
+dslafidsgldfsg
+dfgsdfgşkdfdfs
+fidgşdfsigşdfs
+*/
+char **ft_tmp_tokens(s_token *tokens)
+{
+	int i;
+	i = 0;
+	char **tmp;
+	tmp = ft_calloc(1,size_of(char *));
+	while(tokens[i].value)
+	{
+		tmp[i] = ft_strdup(tokens[i].value);
+		i++;
+	}
+	tmp[i] = NULL;
+	return(tmp);
+}
+s_token *ft_which_case(s_token *tokens, int i, int j)
+{
+	char **sp;
+	char **tmp_tokens;
+	tmp_tokens = ft_tmp_tokens(tokens);
+	int tmp;
+	tmp = i+1;
+	if(tokens[i].value[j-1] && tokens[i].value[j+2])
+	{
+		sp = ft_split(tokens[i].value, '<');
+		tokens[i].value= ft_strdup(sp[0]);
+		i++;
+		tokens[i].value[0] = '<';
+		tokens[i].value[1] = '<';
+		tokens[i].value[2] = '\0';
+		i++;
+		tokens[i].value = ft_strdup(sp[1]);
+		i++;
+		while(tmp_tokens[tmp])
+		{
+			tokens[i].value = ft_strdup(tmp_tokens[tmp]);
+			i++; 
+			tmp++;
+		}
+		tokens[i] = NULL;
+		return (tokens);
+	}
+	else if(tokens[i].value[j+2])
+	{
+		sp = ft_split(tokens[i].value, '<');
+		tokens[i].value[0] = '<';
+		tokens[i].value[1] = '<';
+		tokens[i].value[2] = '\0';
+		i++;
+		tokens[i].value = ft_strdup(sp[0]);
+		i++;
+		while(tmp_tokens[tmp])
+		{
+			tokens[i].value = ft_strdup(tmp_tokens[tmp]);
+			i++; 
+			tmp++;
+		}
+		tokens[i] = NULL;
+		return(tokens);
+	}
+	else if(tokens[i].value[j-1])
+	{
+		sp = ft_split(tokens[i].value, '<');
+		tokens[i].value = ft_strdup(sp[0]);
+		i++;
+		
+		tokens[i].value[0] = '<';
+		tokens[i].value[1] = '<';
+		tokens[i].value[2] = '\0';
+		i++;
+		
+		while(tmp_tokens[tmp])
+		{
+			tokens[i].value = ft_strdup(tmp_tokens[tmp]);
+			i++; 
+			tmp++;
+		}
+		tokens[i] = NULL;
+		return(tokens);
+	}
+	
+	return(tokens);
+}
+s_token *ft_sep(s_token *tokens)
+{
+	int i;
+	int j;
+
+	i =0;
+	j = 0;
+	while(tokens[i].value)
+	{
+		while(tokens[i].value[j])
+		{
+			if(tokens[i].value[j] == '<' && tokens[i].value[j+1] == '<' && !tokens[i].quot_flag)
+			{
+				tokens = ft_which_case(tokens, i, j);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (tokens);
+}
+/*
+dslafidsgldfsg
+dfgsdfgşkdfdfs
+fidgşdfsigşdfs
+*/
 s_token *ft_tokens(char *input)
 {
 	s_token *tokens;
@@ -183,6 +301,7 @@ s_token *ft_tokens(char *input)
 		return (tokens);
 	}
 	tokens = ft_start(input); 
+	tokens = ft_sep(tokens);
 	tokens = ft_dollar(tokens);
 	tokens = ft_check_sng_que(tokens);
 	ft_token_type(tokens);

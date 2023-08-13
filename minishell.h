@@ -45,6 +45,7 @@ typedef enum
 
 typedef struct t_token
 {
+	int				quot_flag;
 	TokenType		type;
 	char			*value;
 }	s_token;
