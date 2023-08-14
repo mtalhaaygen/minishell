@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiels2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:22:45 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/08 12:26:24 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/14 22:05:02 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (i && ft_strchr(set, s1[i]))
 		i--;
 	return (ft_substr(s1, 0, i + 1));
+}
+
+int	arg_count(char **str)
+{
+	int	count;
+
+	count = 0;
+	while (str[count])
+		count++;
+	return (count);
 }

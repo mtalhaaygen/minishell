@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/14 15:06:03 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/14 21:20:32 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ int	handle_quotes(int i,const char *str, char del)
 	}
 	return (j);
 }
+
 int ft_flag(const char *input, int start)
 {
 	if (input[start] == 34)
 		return(1);
 	return (0);
 }
+
 int	ft_find_end(const char *input, int i)
 {
 	while (input[i])
@@ -49,8 +51,6 @@ int	ft_find_end(const char *input, int i)
 	}
 	return (i);
 }
-
-
 
 char *ft_dup(char *input, int start, int end)
 {
@@ -149,10 +149,10 @@ void	ft_token_type(s_token *tokens)
 s_token *ft_check_sng_que(s_token *tokens)
 {
 	int i;
-	int j;
+	// int j;
 
 	
-	j = 1;
+	// j = 1;
 	i = 0;
 	while(tokens[i].value)
 	{
@@ -164,6 +164,7 @@ s_token *ft_check_sng_que(s_token *tokens)
 	}
 	return (tokens);
 }
+
 char *ft_rm_last_sp(char *input)
 {
 	int len;
@@ -208,9 +209,9 @@ s_token *ft_tokens(char *input)
 		return (tokens);
 	}
 	tokens = ft_start(input);
-	int j;
+	// int j;
 	i =0;
-	j = 0;
+	// j = 0;
 	
 	tokens = ft_sep(tokens);
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/13 01:38:06 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/14 23:54:43 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	exec_start(Node *nodes, char **envp)
 		if (!process)
 			return ;
 		i = -1;
-		while (++i < gv.process_count - 1) // ls | grep a // bu durumda pcount = 2 pipe sayısı = 1 olmalı
+		while (++i < gv.process_count - 1)
 		{
 			if (pipe(process[i].fd) == -1)
 				perror("pipe not created");
@@ -93,7 +93,22 @@ void	exec_start(Node *nodes, char **envp)
 void	exec_select(Node *nodes, char **envp)
 {
 	int	i;
+	int	th;
 
+	th = -1;
+	while (++th < gv.process_count)
+	{
+		// i = arg_count(nodes[th].args) - 1;
+		i = -1;
+		while (nodes[th].args[++i]) // i >= 0
+		{
+			if (ft_strcmp("<<", nodes[th].args[i]))
+				ft_executor_heredoc(nodes, th, i);
+			// i--;
+		}
+	}
+	
+	/*
 	if (gv.process_count == 1) //gelecekte sadece ilk node değil tüm nodelar arasında heredoc aranacak 
 	{
 		i = -1;
@@ -105,7 +120,7 @@ void	exec_select(Node *nodes, char **envp)
 				return;
 			}
 		}
-	}
+	}*/
 	ft_executor(nodes, envp);
 }
 
