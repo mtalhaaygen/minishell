@@ -45,6 +45,7 @@ typedef enum
 
 typedef struct t_token
 {
+	int quot_flag;
 	TokenType		type;
 	char			*value;
 }	s_token;
@@ -110,6 +111,12 @@ int  	ft_char_count(const char *input, int c);
 int		quote_off(const char *input);
 int		ft_token_count(const char *input);
 s_token	*ft_dollar(s_token *tokens);
+s_token *ft_sep(s_token *tokens);
+s_token *ft_which_pipe(s_token *tokens, int i, int j);
+char **ft_tmp_tokens(s_token *tokens);
+s_token *ft_which_reader(s_token *tokens, int i, int j);
+s_token *ft_which_redirection(s_token *tokens, int i, int j);
+s_token *ft_which_append(s_token *tokens, int i, int j);
 /* LIB*/
 int		my_isspace(char ch);
 char	*ft_strdup(char *src);

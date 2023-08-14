@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/09 12:38:32 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/14 15:06:03 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,20 +91,33 @@ s_token *ft_start(char *input)
 	int token_count;
 
 	i = 0;
-	k = -1;
+	k = 0;
 	token_count = ft_token_count(input);
 	tokens = ft_calloc(token_count + 1, sizeof(s_token));
 	if (!tokens)
 		return (NULL);
 	while (input[i])
 	{
+		tokens[k].quot_flag = 0;
 		while (my_isspace(input[i]))
 				i++;
+		if(input[i] == 39 || input[i] == 34)
+			tokens[k].quot_flag = 1;
 		start = i;
 		i = ft_find_end(input, i);
-		tokens[++k].value = ft_dup(input, start, i);
+		tokens[k].value = ft_dup(input, start, i);
+
+		/*
+		int j = 0;
+		while(tokens[k].value[j])
+		{
+			printf("i: %d j: %d token: %c\n",k, j,tokens[k].value[j]);
+			j++;
+		}*/
+		
+		k++;
 	}
-	tokens[++k].value = NULL;
+	tokens[k].value = NULL;
 	
 	return (tokens);
 }
@@ -172,9 +185,21 @@ char *ft_rm_last_sp(char *input)
 	return(str);
 	
 }
+/*
+dslafidsgldfsg
+dfgsdfgşkdfdfs
+fidgşdfsigşdfs
+*/
+
+/*
+dslafidsgldfsg
+dfgsdfgşkdfdfs
+fidgşdfsigşdfs
+*/
 s_token *ft_tokens(char *input)
 {
 	s_token *tokens;
+	int i;
 	input = ft_rm_last_sp(input);
 	if (quote_off(input))
 	{
@@ -182,7 +207,18 @@ s_token *ft_tokens(char *input)
 		tokens[0].value = NULL;	
 		return (tokens);
 	}
-	tokens = ft_start(input); 
+	tokens = ft_start(input);
+	int j;
+	i =0;
+	j = 0;
+	
+	tokens = ft_sep(tokens);
+	i = 0;
+	while(tokens[i].value)
+	{
+		printf("token: %s\n", tokens[i].value);
+		i++;
+	}
 	tokens = ft_dollar(tokens);
 	tokens = ft_check_sng_que(tokens);
 	ft_token_type(tokens);
