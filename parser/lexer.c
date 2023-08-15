@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/14 21:20:32 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/15 12:49:50 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ fidgşdfsigşdfs
 s_token *ft_tokens(char *input)
 {
 	s_token *tokens;
-	int i;
+	
 	input = ft_rm_last_sp(input);
 	if (quote_off(input))
 	{
@@ -209,22 +209,10 @@ s_token *ft_tokens(char *input)
 		return (tokens);
 	}
 	tokens = ft_start(input);
-	// int j;
-	i =0;
-	// j = 0;
-	
 	tokens = ft_sep(tokens);
-	i = 0;
-	while(tokens[i].value)
-	{
-		printf("token: %s\n", tokens[i].value);
-		i++;
-	}
 	tokens = ft_dollar(tokens);
 	tokens = ft_check_sng_que(tokens);
 	ft_token_type(tokens);
-	
 	gv.process_count = ft_pipe_counter(tokens) + 1;
-	// printf("%d\n\n", gv.process_count);
 	return tokens;
 }

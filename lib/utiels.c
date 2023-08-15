@@ -3,41 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utiels.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:44:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/07 15:44:49 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/15 12:42:42 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-/*
-char* appendString(const char *dest, const char *src)
-{
-    // Hedef stringin boyutunu hesaplayalım
 
-    size_t dest_size = strlen(dest);
-    size_t src_size = strlen(src);
-
-    // Bellekte hedef string için yeterli boyutta alan ayıralım
-    char *result = (char *)malloc(dest_size + src_size + 1);
-
-
-    // Bellek ayırma işlemi başarısız olduysa, NULL döndürelim
-    if (!result) {
-        printf("Bellek ayirma hatasi!\n");
-        return NULL;
-    }
-
-    // Hedef stringin içeriğini kopyalayalım
-    strcpy(result, dest);
-
-    // Şimdi kaynak stringi hedefin sonuna kopyalayalım
-    strcat(result, src);
-
-    return result;
-}
-*/
 void	*ft_memset(void *src, int c, size_t len)
 {
 	size_t	i;
@@ -55,7 +29,6 @@ void	*ft_memset(void *src, int c, size_t len)
 	return (src);
 }
 
-
 void	ft_bzero(void *s, size_t n)
 {
 	ft_memset(s, 0, n);
@@ -72,9 +45,9 @@ void	*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-char *ft_readline(char *str)
+char	*ft_readline(char *str)
 {
-	char *buf;
+	char	*buf;
 
 	write(1, "\033[7m\033[1;36m", 12);
 	write(1, "talha@minishell", 16);
@@ -83,9 +56,10 @@ char *ft_readline(char *str)
 	return (buf);
 }
 
-int my_isspace(char ch)
+int	my_isspace(char ch)
 {
-	if(ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r' || ch == '\f' || ch == '\v')
+	if (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r' \
+		|| ch == '\f' || ch == '\v')
 		return (1);
 	return (0);
 }

@@ -1,14 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dollar.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/15 12:57:32 by tdemir            #+#    #+#             */
+/*   Updated: 2023/08/15 13:03:03 by tdemir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-
-char *ft_dolkey(s_token *tokens,int i, int j)
+char *ft_dolkey(s_token *tokens, int i, int j)
 {
-    char *dolkey;
-    int len;
-    int tmp;
-    int k; 
-    j++;
+    char*dolkey;
+    int     len;
+    int     tmp;
+    int     k; 
 
+    j++;
     len = 0;
     k = 0;
     tmp = j;
@@ -57,7 +68,6 @@ char *ft_change_token(char *dolval, s_token *tokens, int i, int j)
 
     if(dolval != 0)
         len += ft_strlen(dolval);
-    printf("debug\n");
 
     str = ft_calloc(len,sizeof(char));
     
@@ -117,10 +127,6 @@ s_token *ft_dollar(s_token *tokens)
                 }
                 else
                     tokens[i].value = ft_strdup(ft_wod(tokens, i));
-
-
-
-                //printf("%s\n",tokens[i].value);
             }            
             j++;
         }

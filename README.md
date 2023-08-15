@@ -1,7 +1,9 @@
 # BROlarla MİNİSHELL
 
 
-
+## normu düzeltilen dosyalar
+Lİb klasörünün tümü ok
+parser/env_process.c ok
 
 # MINISHELL
 Bu projede amaç kendi shell kabuğumuzu oluşturmak.

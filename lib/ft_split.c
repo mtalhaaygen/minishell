@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:50:13 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/01 13:36:52 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/15 12:55:15 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strdup(char *src)
 {
-	char *new;
-	int i;
+	char	*new;
+	int		i;
 
 	i = 0;
 	if (!src)
@@ -25,7 +25,7 @@ char	*ft_strdup(char *src)
 	new = ft_calloc(sizeof(char), (i + 1));
 	if (!new)
 		return (0);
-	while(i >= 0)
+	while (i >= 0)
 	{
 		new[i] = src[i];
 		i--;
