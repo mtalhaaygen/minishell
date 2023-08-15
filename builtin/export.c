@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
+/*   Updated: 2023/08/15 19:57:34 by maygen           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 // Optimized implementation of Bubble sort
@@ -30,7 +42,7 @@ void ft_export()
     int j;
     i = 0;
 
-    while( i < gv.env->env_count - 1) 
+    while( i < gv.env->env_count - 1)
     {
         j = 0;
         while(j < gv.env->env_count- 1 ) 
@@ -43,7 +55,6 @@ void ft_export()
             j++;
         }       
         i++;
-
     }
     ft_print_array();
 }

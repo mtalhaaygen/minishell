@@ -1,6 +1,21 @@
 # BROlarla MİNİSHELL
 
-
+### YAPILACAKLAR
+- export unset yapılacak
+- leaks kontrolü yapılacak
+- norm
+- builtinler çıktıyı pipe a aktarmıyor
+- tek node da tek bir redirection çalışıyo
+- heredoc
+- redirectionlarda nodeları güncelle
+- $?
+- set ctrl d 
+- exit bakılcak
+- hata mesajları
+- genel olarak tüm segler 
+- cat | cat | ls sorulacak
+### TAMAMLANANLAR
+- echo -n seg
 ## normu düzeltilen dosyalar
 Lİb klasörünün tümü ok
 parser/env_process.c ok

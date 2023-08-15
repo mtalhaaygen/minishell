@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   env_process.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:43 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/15 11:20:10 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/15 20:02:53 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	full_sort(s_env	*env_list) // a p q l t
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while(env_list[i].full)
+	{
+		j = 0;
+		while(env_list[j].full && env_list[j + 1].full)
+		{
+			if(!ft_strcmp(gv.env[j].full, gv.env[j + 1].full))
+			{
+				ft_swap(j);
+			}
+			//printf("i: %d j: %d\n", i, j);
+			j++;
+		}
+		i++;
+	}
+}
 
 int	env_counter(char **envp)
 {
@@ -41,6 +63,7 @@ s_env	*fill_env(char **envp)
 		env_list[i].value = ft_strdup(s[1]);
 		i++;
 	}
+	full_sort(env_list);
 	return (env_list);
 }
 
