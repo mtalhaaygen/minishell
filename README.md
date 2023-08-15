@@ -1,28 +1,11 @@
 # BROlarla MİNİSHELL
 
-- herkes ayrı brachlerde çalışacak, anlamlı parçaları main brache merge edeceğiz.
-- README.md içerisine konu hakkında notlar alıp, kaynak linkleri eklersek hepimiz yararlanmış oluruz.
-- birbirimizin yazdıklarından ilham almış olacağız.
-- ilerleyen zamanlarda proje bölümlere ayrılıp, herkese farklı görev verilebilir.
-- Akşamları dc girip, muhabbet etsek fena mı olur, ortak vscode dan kod yazarız hem :D
-
-> Saygılarımla maygen, tdemir
 
 
-# Kaynaklar
-
-* https://heliotrope-garment-fdf.notion.site/Minishell-45aa5a4972724576ae21384eac3221cf güzel kaynak.
-* https://www.youtube.com/playlist?list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW
-* https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
-* https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
-* https://www.digitalocean.com/community/tutorials/execvp-function-c-plus-plus execvp kaynak.
-* [proje pdfi](https://cdn.intra.42.fr/pdf/pdf/93003/en.subject.pdf)
-* [exec_tr](https://bilgisayarkavramlari.com/2012/03/13/exec-fonksiyonlari/)
-* [Write Your Own Shell (Youtube)](https://youtube.com/playlist?list=PLxIRFba3rzLzxxZMMbrm_-mkI7mV9G0pj)
 
 # MINISHELL
-Bu projede amaç kendi shell imizi oluşturmak.
-Shell, bir kullanıcı ile bir işletim sistemi çekirdeği arasında bir arayüz sağlayan bir programdır. Komutları alır, bunları işler, sonuçları görüntüler ve kullanıcıdan yeni komutları bekler. 
+Bu projede amaç kendi shell kabuğumuzu oluşturmak.
+Shell, kullanıcı ile işletim sistemi çekirdeği arasında arayüz sağlayan bir programdır. Komutları alır, bunları işler, sonuçları görüntüler ve kullanıcıdan yeni komutları bekler. 
 Shell, komutları yorumlar, işletim sistemi tarafından sağlanan kaynaklara erişim sağlar ve kullanıcıya geri bildirimde bulunur. Ayrıca ayrıca if, for, while, fonksiyonlar, değişkenler vb. gibi
 programlama yapıları sağlar
 Temel işlevleri şu şekildedir;
@@ -751,3 +734,14 @@ fork() fonksiyonu için;
 | Pozitif değer  | Yeni oluşturulan child process'in ID'sini içerir.  |
 
 <hr>
+
+# Kaynaklar
+
+* https://heliotrope-garment-fdf.notion.site/Minishell-45aa5a4972724576ae21384eac3221cf güzel kaynak.
+* https://www.youtube.com/playlist?list=PLGU1kcPKHMKj5yA0RPb5AK4QAhexmQwrW
+* https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
+* https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
+* https://www.digitalocean.com/community/tutorials/execvp-function-c-plus-plus execvp kaynak.
+* [proje pdfi](https://cdn.intra.42.fr/pdf/pdf/93003/en.subject.pdf)
+* [exec_tr](https://bilgisayarkavramlari.com/2012/03/13/exec-fonksiyonlari/)
+* [Write Your Own Shell (Youtube)](https://youtube.com/playlist?list=PLxIRFba3rzLzxxZMMbrm_-mkI7mV9G0pj)
