@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:55:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/07 17:55:11 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/15 18:26:59 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_echo_param_checker(char *str)
 	int	i;
 
 	i = 2;
+	if (!str)
+		return (0);
 	if (!str[0] || str[0] != '-')
 		return (0);
 	if (!str[1] || str[1] != 'n')
