@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/15 12:49:50 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/15 17:58:06 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_find_end(const char *input, int i)
 	return (i);
 }
 
-char *ft_dup(char *input, int start, int end)
+char	*ft_dup(char *input, int start, int end)
 {
 	int		i;
 	int		k;
@@ -63,26 +63,25 @@ char *ft_dup(char *input, int start, int end)
 	str = malloc(end - start + 1);
 	if (!str)
 		return (NULL);
-	while(i < end && input[i])
+	while (i < end && input[i])
 	{
 		while (input[i] == 34 && gv.flag == 1)
 			i++;
-		while(input[i] == 39 && gv.flag == 2)
+		while (input[i] == 39 && gv.flag == 2)
 			i++;
-		if(i<end)
+		if (i < end)
 			str[k] = input[i];
 		i++;
 		k++;
 	}
-	////hata buaradadcdasıdslauf0 BEADSfn
-	if(!str[k-1])
-		str[k-1] = '\0';
+	if (!str[k - 1])
+		str[k - 1] = '\0';
 	else
 		str[k] = '\0';
 	return (str);
 }
 
-s_token *ft_start(char *input)
+s_token	*ft_start(char *input)
 {
 	s_token *tokens;
 	int i;
@@ -165,27 +164,27 @@ s_token *ft_check_sng_que(s_token *tokens)
 	return (tokens);
 }
 
-char *ft_rm_last_sp(char *input)
+char	*ft_rm_last_sp(char *input)
 {
-	int len;
-	char *str;
-	len =0;
-	while(input[len])
-		len++;
+	int		len;
+	char	*str;
+
+	len = ft_strlen(input);
 	len--;
-	while(input[len] == 32)
+	while (input[len] == 32)
 		len--;
-	
-	str = ft_calloc(len+1,sizeof(char));
-	str[len+1] = '\0';
-	while (input[len])
+	str = ft_calloc(len + 2, sizeof(char));
+	str[len + 1] = '\0';
+	while (len >= 0)
 	{
 		str[len] = input[len];
 		len--;
 	}
-	return(str);
-	
+	return (str);
 }
+// [talhaSS0] 6
+// [talha0]
+// [talha\0]
 /*
 dslafidsgldfsg
 dfgsdfgşkdfdfs
@@ -209,8 +208,11 @@ s_token *ft_tokens(char *input)
 		return (tokens);
 	}
 	tokens = ft_start(input);
+
 	tokens = ft_sep(tokens);
+
 	tokens = ft_dollar(tokens);
+
 	tokens = ft_check_sng_que(tokens);
 	ft_token_type(tokens);
 	gv.process_count = ft_pipe_counter(tokens) + 1;

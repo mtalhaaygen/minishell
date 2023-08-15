@@ -1,29 +1,34 @@
 #include "../minishell.h"
-char **ft_tmp_tokens(s_token *tokens)
+
+char	**ft_tmp_tokens(s_token *tokens)
 {
-	int i;
+	char	**tmp;
+	int		i;
+
 	i = 0;
-	char **tmp;
-	tmp = ft_calloc(1,sizeof(char *));
-	while(tokens[i].value)
+	tmp = ft_calloc(99, sizeof(char **));
+	if (!tmp)
+		return (NULL);
+	while (tokens[i].value)
 	{
 		tmp[i] = ft_strdup(tokens[i].value);
 		i++;
 	}
 	tmp[i] = NULL;
-	return(tmp);
+	return (tmp);
 }
-s_token *ft_which_heredoc(s_token *tokens, int i, int j)
+
+s_token	*ft_which_heredoc(s_token *tokens, int i, int j)
 {
+	char	**sp;
+	char	**tmp_tokens;
+	int		tmp;
 
-	char **sp;
-	char **tmp_tokens;
 	tmp_tokens = ft_tmp_tokens(tokens);
-	int tmp;
-	tmp = i+1;
-	char *here = "<<"; 
+	tmp = i + 1;
+	char *here = "<<";
 
-	if(tokens[i].value[j-1] && tokens[i].value[j+2])
+	if(ft_is_write(tokens[i].value[j - 1])&& tokens[i].value[j+2])
 	{
 
 		sp = ft_split(tokens[i].value, '<');
@@ -61,7 +66,7 @@ s_token *ft_which_heredoc(s_token *tokens, int i, int j)
 		tokens[i].value = NULL;
 		return(tokens);
 	}
-	else if(tokens[i].value[j-1])
+	else if(ft_is_write(tokens[i].value[j - 1]))
 	{
 		sp = ft_split(tokens[i].value, '<');
 		tokens[i].value = ft_strdup(sp[0]);
@@ -85,13 +90,14 @@ s_token *ft_sep(s_token *tokens)
 {
 	int i;
 	int j;
-	i =0;
-	while(tokens[i].value)
+
+	i = 0;
+	while (tokens[i].value)
 	{
 		j = 0;
-		while(tokens[i].value[j])
+		while (tokens[i].value[j])
 		{
-			if(tokens[i].value[j] == '<' && tokens[i].value[j+1] == '<' && !tokens[i].quot_flag)
+			if (tokens[i].value[j] == '<' && tokens[i].value[j+1] == '<' && !tokens[i].quot_flag)
 			{
 				tokens = ft_which_heredoc(tokens, i, j);
 				i++;
@@ -113,7 +119,7 @@ s_token *ft_sep(s_token *tokens)
 			}
             else if (tokens[i].value[j] == '|' && !tokens[i].quot_flag)
 			{
-                tokens = ft_which_pipe(tokens, i, j);	
+				tokens = ft_which_pipe(tokens, i, j);
 				i++;
 			}
 			j++;

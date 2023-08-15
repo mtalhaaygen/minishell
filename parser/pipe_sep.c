@@ -1,15 +1,23 @@
 #include "../minishell.h"
+
+int	ft_is_write(char c)
+{
+	if (c < 127 && c > 32)
+		return (0);
+	return (1);
+}
 s_token *ft_which_pipe(s_token *tokens, int i, int j)
 {
+	int		tmp;
+	char	**sp;
+	char	**tmp_tokens;
 
-	char **sp;
-	char **tmp_tokens;
+	tmp = i + 1;
 	tmp_tokens = ft_tmp_tokens(tokens);
-	int tmp;
-	tmp = i+1;
-	char *here = "|"; 
+	char *here = "|";
 
-	if(tokens[i].value[j-1] && tokens[i].value[j+2])
+
+	if (!ft_is_write(tokens[i].value[j - 1]) && tokens[i].value[j + 1])
 	{
 
 		sp = ft_split(tokens[i].value, '|');
@@ -31,7 +39,7 @@ s_token *ft_which_pipe(s_token *tokens, int i, int j)
 		tokens[i].value = NULL;
 		return (tokens);
 	}
-	else if(tokens[i].value[j+2])
+	else if(tokens[i].value[j+1])
 	{
 
 		sp = ft_split(tokens[i].value, '|');
@@ -48,7 +56,7 @@ s_token *ft_which_pipe(s_token *tokens, int i, int j)
 		tokens[i].value = NULL;
 		return(tokens);
 	}
-	else if(tokens[i].value[j-1])
+	else if(!ft_is_write(tokens[i].value[j - 1]))
 	{
 		sp = ft_split(tokens[i].value, '|');
 		tokens[i].value = ft_strdup(sp[0]);

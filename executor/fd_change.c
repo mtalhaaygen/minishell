@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_change.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/14 23:54:16 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/15 15:58:20 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,3 +89,32 @@ void	is_redirection(Node *nodes, int i)
 	else if ((index = contain_o(nodes[i].args)))
 		change_fd_o(nodes[i], index);
 }
+/*
+export unset yapılacak
+
+leaks kontrolü yapılacak
+
+norm
+
+builtinler çıktıyı pipe a aktarmıyor
+
+tek node da tek bir redirection çalışıyo
+
+heredoc
+
+redirectionlarda nodeları güncelle
+
+$?
+
+set ctrl d 
+
+echo -n seg
+
+exit bakılcak
+
+hata mesajları
+
+genel olarak tüm segler 
+
+cat | cat | ls sorulacak 
+*/
