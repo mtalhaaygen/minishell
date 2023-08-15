@@ -3,21 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/10 16:50:54 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/15 11:14:33 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 s_minishell	gv;
-
+void	sigquit_handler(int sig)
+{
+	(void)sig;
+	printf("Quit: 3\n");
+}
+void	sigint_handler(int sig)
+{
+	(void)sig;
+	write(1, "\033[A", 3);
+	ioctl(0, TIOCSTI, "\n");
+}
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, sigquit_handler);
 
 	s_env *env_list;
 
