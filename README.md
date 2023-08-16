@@ -6,7 +6,6 @@
 - norm
 - builtinler çıktıyı pipe a aktarmıyor
 - tek node da tek bir redirection çalışıyo
-- heredoc
 - redirectionlarda nodeları güncelle
 - $?
 - set ctrl d 
@@ -16,6 +15,7 @@
 - cat | cat | ls sorulacak
 ### TAMAMLANANLAR
 - echo -n seg
+- heredoc
 ## normu düzeltilen dosyalar
 Lİb klasörünün tümü ok
 parser/env_process.c ok

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_fd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:47:28 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/15 12:43:38 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/16 14:22:14 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_putstr_fd(char *s, int fd)
 	while (s[i])
 	{
 		x = s[i];
-		write(1, &x, fd);
+		write(fd, &x, 1);
 		i++;
 	}
 }
