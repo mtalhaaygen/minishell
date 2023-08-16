@@ -10,7 +10,7 @@ s_token *ft_which_redirection(s_token *tokens, int i, int j)
 	tmp = i+1;
 	char *here = ">>"; 
 
-	if (ft_is_write(tokens[i].value[j - 1])&& tokens[i].value[j + 2])
+	if (j != 0 && tokens[i].value[j + 2])
 	{
 
 		sp = ft_split(tokens[i].value, '>');
@@ -51,7 +51,7 @@ s_token *ft_which_redirection(s_token *tokens, int i, int j)
 		tokens[i].value = NULL;
 		return(tokens);
 	}
-	else if(ft_is_write(tokens[i].value[j - 1]))
+	else if(j != 0)
 	{
 		sp = ft_split(tokens[i].value, '>');
 		tokens[i].value = ft_strdup(sp[0]);

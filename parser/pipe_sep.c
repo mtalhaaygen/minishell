@@ -1,11 +1,5 @@
 #include "../minishell.h"
 
-int	ft_is_write(char c)
-{
-	if (c < 127 && c > 32)
-		return (0);
-	return (1);
-}
 s_token *ft_which_pipe(s_token *tokens, int i, int j)
 {
 	int		tmp;
@@ -17,7 +11,7 @@ s_token *ft_which_pipe(s_token *tokens, int i, int j)
 	char *here = "|";
 
 
-	if (!ft_is_write(tokens[i].value[j - 1]) && tokens[i].value[j + 1])
+	if (j != 0 && tokens[i].value[j + 1])
 	{
 
 		sp = ft_split(tokens[i].value, '|');
@@ -56,7 +50,7 @@ s_token *ft_which_pipe(s_token *tokens, int i, int j)
 		tokens[i].value = NULL;
 		return(tokens);
 	}
-	else if(!ft_is_write(tokens[i].value[j - 1]))
+	else if(j != 0)
 	{
 		sp = ft_split(tokens[i].value, '|');
 		tokens[i].value = ft_strdup(sp[0]);

@@ -7,7 +7,7 @@ OBJ			=	$(D_SRC:%.c=%.o)
 
 CC			=	gcc
 RM			=	rm -f
-CFLAGS		=	-Wall -Wextra -Werror -g #-fsanitize=address 
+CFLAGS		=	-Wall -Wextra -Werror  -fsanitize=address -g
 READLINE	=	-lreadline
 
 NAME	=	minishell
@@ -15,7 +15,7 @@ NAME	=	minishell
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJ)
-			$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(READLINE)
+			$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(READLINE) -fsanitize=address -g
 
 clean	:
 			$(RM) $(OBJ)

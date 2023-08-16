@@ -117,7 +117,6 @@ char **ft_tmp_tokens(s_token *tokens);
 s_token *ft_which_reader(s_token *tokens, int i, int j);
 s_token *ft_which_redirection(s_token *tokens, int i, int j);
 s_token *ft_which_append(s_token *tokens, int i, int j);
-int	ft_is_write(char c);
 /* LIB*/
 int		my_isspace(char ch);
 char	*ft_strdup(char *src);

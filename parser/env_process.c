@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   env_process.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:43 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/15 20:02:53 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/16 13:14:38 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
+/*
 void	full_sort(s_env	*env_list) // a p q l t
 {
 	int	i;
@@ -32,7 +32,7 @@ void	full_sort(s_env	*env_list) // a p q l t
 		}
 		i++;
 	}
-}
+}*/
 
 int	env_counter(char **envp)
 {
@@ -63,7 +63,7 @@ s_env	*fill_env(char **envp)
 		env_list[i].value = ft_strdup(s[1]);
 		i++;
 	}
-	full_sort(env_list);
+	//full_sort(env_list);
 	return (env_list);
 }
 
