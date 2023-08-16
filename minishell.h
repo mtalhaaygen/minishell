@@ -99,7 +99,7 @@ s_env		*fill_env(char **envp);
 void		print_env_list(s_env *env_list);
 char		*ft_readline(char *str);
 s_token		*ft_start(char *input);
-s_token		*ft_tokens(char *input);
+void	ft_tokens(char *input);
 int			set_ctrl(void);
 void		sigint_handler(int signum);
 void		sigquit_handler(int signum);

@@ -2,20 +2,20 @@
 
 char	**ft_tmp_tokens(s_token *tokens)
 {
-	char	**tmp;
+	char	**tmp_tokens;
 	int		i;
 
 	i = 0;
-	tmp = ft_calloc(99, sizeof(char **));
-	if (!tmp)
+	tmp_tokens = ft_calloc(99, sizeof(char **));
+	if (!tmp_tokens)
 		return (NULL);
 	while (tokens[i].value)
 	{
-		tmp[i] = ft_strdup(tokens[i].value);
+		tmp_tokens[i] = ft_strdup(tokens[i].value);
 		i++;
 	}
-	tmp[i] = NULL;
-	return (tmp);
+	tmp_tokens[i] = NULL;
+	return (tmp_tokens);
 }
 
 s_token	*ft_which_heredoc(s_token *tokens, int i, int j)
@@ -30,8 +30,8 @@ s_token	*ft_which_heredoc(s_token *tokens, int i, int j)
 
 	if(j != 0 && tokens[i].value[j+2])
 	{
-
 		sp = ft_split(tokens[i].value, '<');
+		free(tokens[i].value);
 		tokens[i].value= ft_strdup(sp[0]);
 		i++;
 		tokens[i].value = ft_strdup(here);
@@ -46,7 +46,18 @@ s_token	*ft_which_heredoc(s_token *tokens, int i, int j)
 			i++; 
 			tmp++;
 		}
+		printf("tokens: %p", tmp_tokens);
+		free(sp[0]);
+		free(sp[1]);
+		free(sp);
 		tokens[i].value = NULL;
+		i = 0;
+		while (tmp_tokens[i])
+		{
+			free(tmp_tokens[i]);
+			i++;
+		}
+		free(tmp_tokens);
 		return (tokens);
 	}
 	else if(tokens[i].value[j+2])
@@ -63,6 +74,7 @@ s_token	*ft_which_heredoc(s_token *tokens, int i, int j)
 			i++; 
 			tmp++;
 		}
+
 		tokens[i].value = NULL;
 		return(tokens);
 	}
@@ -83,7 +95,6 @@ s_token	*ft_which_heredoc(s_token *tokens, int i, int j)
 		tokens[i].value = NULL;
 		return(tokens);
 	}
-	
 	return(tokens);
 }
 s_token *ft_sep(s_token *tokens)

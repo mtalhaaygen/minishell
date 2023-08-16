@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/15 17:58:06 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/16 14:29:45 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_find_end(const char *input, int i)
 	return (i);
 }
 
-char	*ft_dup(char *input, int start, int end)
+void ft_dup(s_token *tokens, char *input, int start, int end, int iter)
 {
 	int		i;
 	int		k;
@@ -61,8 +61,6 @@ char	*ft_dup(char *input, int start, int end)
 	k = 0;
 	i = start;
 	str = malloc(end - start + 1);
-	if (!str)
-		return (NULL);
 	while (i < end && input[i])
 	{
 		while (input[i] == 34 && gv.flag == 1)
@@ -78,7 +76,9 @@ char	*ft_dup(char *input, int start, int end)
 		str[k - 1] = '\0';
 	else
 		str[k] = '\0';
-	return (str);
+	tokens[iter].value = ft_strdup(str);
+	printf("dup str: %p\n",str);
+	free(str);
 }
 
 s_token	*ft_start(char *input)
@@ -104,16 +104,7 @@ s_token	*ft_start(char *input)
 			tokens[k].quot_flag = 1;
 		start = i;
 		i = ft_find_end(input, i);
-		tokens[k].value = ft_dup(input, start, i);
-
-		/*
-		int j = 0;
-		while(tokens[k].value[j])
-		{
-			printf("i: %d j: %d token: %c\n",k, j,tokens[k].value[j]);
-			j++;
-		}*/
-		
+		ft_dup(tokens, input,start, i, k);
 		k++;
 	}
 	tokens[k].value = NULL;
@@ -180,41 +171,46 @@ char	*ft_rm_last_sp(char *input)
 		str[len] = input[len];
 		len--;
 	}
+	printf("lst sp str: %p\n",str);
 	return (str);
 }
-// [talhaSS0] 6
-// [talha0]
-// [talha\0]
-/*
-dslafidsgldfsg
-dfgsdfgşkdfdfs
-fidgşdfsigşdfs
-*/
 
-/*
-dslafidsgldfsg
-dfgsdfgşkdfdfs
-fidgşdfsigşdfs
-*/
-s_token *ft_tokens(char *input)
+void	ft_tokens(char *input)
 {
 	s_token *tokens;
 	
 	input = ft_rm_last_sp(input);
+
+	
 	if (quote_off(input))
 	{
 		tokens = malloc(sizeof(s_token) * 1);
-		tokens[0].value = NULL;	
-		return (tokens);
+		tokens[0].value = NULL;
+		
+		//return (tokens);
 	}
 	tokens = ft_start(input);
+	free(input);
+	
+	//return tokens;
 
 	tokens = ft_sep(tokens);
+	free(tokens);
+
+	int i = 0;
+	while(tokens[i].value)
+	{
+    	free(tokens[i].value); 
+    	i++;
+	}
+	system("leaks minishell");
+	
+	/*
 
 	tokens = ft_dollar(tokens);
 
 	tokens = ft_check_sng_que(tokens);
 	ft_token_type(tokens);
 	gv.process_count = ft_pipe_counter(tokens) + 1;
-	return tokens;
+	*/
 }
