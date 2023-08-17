@@ -136,7 +136,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 /* EXECUTOR */
 // void	ft_executor(Node *nodes);
 void	ft_executor(Node *nodes, char **envp);
-void	ft_executor_heredoc(Node *nodes, const int th, const int i);
+void	ft_executor_heredoc(Node *nodes, const int th, const int i, int flag);
 void	exec_start(Node *nodes, char **envp);
 void	exec_select(Node *nodes, char **envp);
 int		is_heredoc(Node *nodes, int index);

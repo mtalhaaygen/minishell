@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/14 23:54:43 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/16 20:04:41 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,19 +92,29 @@ void	exec_start(Node *nodes, char **envp)
 
 void	exec_select(Node *nodes, char **envp)
 {
-	int	i;
-	int	th;
+	int		i;
+	int		th;
+	int		flag;
+	int		status;
 
 	th = -1;
+	flag = 0;
 	while (++th < gv.process_count)
 	{
-		// i = arg_count(nodes[th].args) - 1;
 		i = -1;
-		while (nodes[th].args[++i]) // i >= 0
+		while (nodes[th].args[++i]) 
 		{
-			if (ft_strcmp("<<", nodes[th].args[i]))
-				ft_executor_heredoc(nodes, th, i);
-			// i--;
+			if (flag > 1)
+				i = i - 1;
+			// printf("%d - %s - flag:%d\n", i, nodes[th].args[i], flag);
+			status = ft_strcmp("<<", nodes[th].args[i]);
+			if (status == 1)
+			{
+				flag++;
+				ft_executor_heredoc(nodes, th, i, flag);
+			}
+			else if (status == -1)
+				break ;
 		}
 	}
 	
@@ -125,6 +135,7 @@ void	exec_select(Node *nodes, char **envp)
 }
 
 /* 
+aşağıdaki caselerin hepsi çalışıyor, yalnızca üç heredoc bir node içerisinde olursa patlıyor
 cat <<EOF1 <<EOF2
 > first here-doc
 > EOF1

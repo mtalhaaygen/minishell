@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:22:45 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/15 20:04:57 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/16 18:31:12 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	ft_strncmp_signed(const char *s1, const char *s2, size_t n)
 		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 	return (0);
 }
+
 char	*ft_strchr(const char *s, int c)
 {
 	int	i;
@@ -66,4 +67,24 @@ int	arg_count(char **str)
 	while (str[count])
 		count++;
 	return (count);
+}
+
+char	**ft_dupdup(char **args, int args_count)
+{
+	char	**new;
+	int		i;
+
+	i = 0;
+	if (!args)
+		return (0);
+	new = ft_calloc(args_count, sizeof(char *));
+	if (!new)
+		return (NULL);
+	while (args[i] && i < args_count)
+	{
+		new[i] = ft_strdup(args[i]);
+		i++;
+	}
+	new[i] = NULL;
+	return (new);
 }

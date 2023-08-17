@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 19:48:46 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/15 12:48:28 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/16 20:02:41 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	ft_strcmp(const char *s1, const char *s2)
 	int	i;
 
 	i = 0;
+	if (!s2)
+		return (-1); // özel bir durum bu fonksiyonu kullanırken sorabilirsin
 	while (s1[i] == s2[i] && (s1[i] && s2[i]))
 		i++;
 	if (s1[i] != s2[i])
@@ -95,7 +97,7 @@ char	*free_strjoin(char *s1, char *s2)
 	if (!s1 || !s2)
 		return (0);
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	while (s1[i++])
+	while (s1[++i])
 		str[i] = s1[i];
 	while (s2[j])
 	{
