@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/12 16:47:37 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/17 17:14:26 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,6 @@ Node ft_creat_node(s_token *tokens, int i)
 			node.infile->type = TOKEN_O;
 			node.infile->name = ft_strdup(tokens[i+1].value);
 		}
-		// if(tokens[i].type == TOKEN_O_O)
-		// {
-		// 	node.infile->type = TOKEN_O_O;
-		// 	node.infile->name = ft_strdup(tokens[i+1].value);
-		// }
 		i++;
 		j++;
 	}
@@ -92,8 +87,7 @@ Node	*ft_parser(s_token *tokens)
 
 	pipe_len = gv.process_count;
 	nodes = malloc(sizeof(Node) * (pipe_len + 1));
-	if (!nodes)
-		return (NULL);
+
 	i = 0;
 	j = 0;
 	nodes[j] = ft_creat_node(tokens, i);
@@ -106,6 +100,6 @@ Node	*ft_parser(s_token *tokens)
 			nodes[j] = ft_creat_node(tokens,i+1);
 		}
 		i++;
-	}
+	} 
 	return (nodes);
 }

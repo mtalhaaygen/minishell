@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:50:13 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/16 19:37:43 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/17 12:07:20 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,28 @@ char	*ft_strdup(char *src)
 		new[i] = src[i];
 		i--;
 	}
-	
+	return (new);
+}
+
+char	*ft_strdup_dolkey(char *src)
+{
+	char	*new;
+	int		i;
+
+	i = 0;
+	if (!src)
+		return (0);
+	while (src[i])
+		i++;
+	new = ft_calloc(sizeof(char), (i + 1));
+	if (!new)
+		return (0);
+	while (i >= 0)
+	{
+		new[i] = src[i];
+		i--;
+	}
+	free(src);
 	return (new);
 }
 

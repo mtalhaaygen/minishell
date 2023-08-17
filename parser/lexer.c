@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/16 14:29:45 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/17 13:29:43 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void ft_dup(s_token *tokens, char *input, int start, int end, int iter)
 	else
 		str[k] = '\0';
 	tokens[iter].value = ft_strdup(str);
-	printf("dup str: %p\n",str);
 	free(str);
 }
 
@@ -171,46 +170,26 @@ char	*ft_rm_last_sp(char *input)
 		str[len] = input[len];
 		len--;
 	}
-	printf("lst sp str: %p\n",str);
 	return (str);
 }
 
-void	ft_tokens(char *input)
+s_token *ft_tokens(char *input)
 {
 	s_token *tokens;
 	
 	input = ft_rm_last_sp(input);
-
-	
 	if (quote_off(input))
 	{
 		tokens = malloc(sizeof(s_token) * 1);
-		tokens[0].value = NULL;
-		
-		//return (tokens);
+		tokens[0].value = NULL;	
+		return (tokens);
 	}
 	tokens = ft_start(input);
 	free(input);
-	
-	//return tokens;
-
 	tokens = ft_sep(tokens);
-	free(tokens);
-
-	int i = 0;
-	while(tokens[i].value)
-	{
-    	free(tokens[i].value); 
-    	i++;
-	}
-	system("leaks minishell");
-	
-	/*
-
 	tokens = ft_dollar(tokens);
-
 	tokens = ft_check_sng_que(tokens);
-	ft_token_type(tokens);
+	ft_token_type(tokens);	
 	gv.process_count = ft_pipe_counter(tokens) + 1;
-	*/
+	return tokens;
 }

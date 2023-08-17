@@ -99,7 +99,7 @@ s_env		*fill_env(char **envp);
 void		print_env_list(s_env *env_list);
 char		*ft_readline(char *str);
 s_token		*ft_start(char *input);
-void	ft_tokens(char *input);
+s_token		*ft_tokens(char *input);
 int			set_ctrl(void);
 void		sigint_handler(int signum);
 void		sigquit_handler(int signum);
@@ -131,12 +131,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_strtrim(char const *s1, char const *set);
+char	*ft_strdup_dolkey(char *src);
 // int		arg_count(char **str);
 
 /* EXECUTOR */
 // void	ft_executor(Node *nodes);
 void	ft_executor(Node *nodes, char **envp);
-void	ft_executor_heredoc(Node *nodes, const int th, const int i);
+void	ft_executor_heredoc(Node *nodes, const int th, const int i, int flag);
 void	exec_start(Node *nodes, char **envp);
 void	exec_select(Node *nodes, char **envp);
 int		is_heredoc(Node *nodes, int index);
