@@ -6,11 +6,13 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/17 14:21:00 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/17 18:21:47 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int a;
 
 char	*ft_access(char *args)
 {
@@ -57,6 +59,7 @@ void	ft_executor(Node *nodes, char **envp)
 				bin_command = ft_access(nodes[i].args[0]);
 				if (execve(bin_command, nodes[i].args, envp))
 					perror("execve perror ");
+				exit (1);
 			}
 			else if (gv.pid < 0) 
 				return (perror("fork error "));
@@ -65,8 +68,13 @@ void	ft_executor(Node *nodes, char **envp)
 	}
 	pipe_close();
 	i = -1;
+	int status1 = -1;
 	while (++i < gv.process_count)
-		waitpid(gv.pid, NULL, 0);
+		waitpid(gv.pid, &status1, 0);
+	if (WIFEXITED(status1)) {
+		int exitStatus = WEXITSTATUS(status1);
+		printf("\n%d\n", exitStatus);
+	}
 }
 
 void	exec_start(Node *nodes, char **envp)
