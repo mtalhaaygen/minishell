@@ -1,20 +1,26 @@
 # BROlarla MİNİSHELL
 
 ### YAPILACAKLAR
+maygen
+- cat | cat | ls sorulacak
 - export unset yapılacak
-- leaks kontrolü yapılacak
-- norm
 - builtinler çıktıyı pipe a aktarmıyor
 - tek node da tek bir redirection çalışıyo
-- heredoc
 - redirectionlarda nodeları güncelle
+- builtin executor seg kontrolü
+- builtin executor leaks kontrolü
+
+tdemir
 - $?
 - set ctrl d 
+- lexer parser leaks kontrolü
+- lexer parser seg kontrolü
+
+kim yaparsa
 - exit bakılcak
 - hata mesajları
-- genel olarak tüm segler 
-- cat | cat | ls sorulacak
 ### TAMAMLANANLAR
+- heredoc
 - echo -n seg
 ## normu düzeltilen dosyalar
 Lİb klasörünün tümü ok
