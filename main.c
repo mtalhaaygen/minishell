@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/17 18:13:58 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/17 19:23:34 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,38 +43,44 @@ int	main(int argc, char **argv, char **envp)
 		Node *nodes;
 		s_token *tokens;
 		line = ft_readline("$ ");
-		add_history(line);
+		if (line[0])
+			add_history(line);
 
 		tokens = ft_tokens(line);
 		free(line);
-		nodes = ft_parser(tokens);
+		if(tokens[0].value)
+		{
+			nodes = ft_parser(tokens);
+			gv.nodes = nodes;
 			
-		int i = 0;
-		while(tokens[i].value)
-		{
-    		free(tokens[i].value); 
-    		i++;
-		}
-		free(tokens);
-		/*int j = 0;
-		while(j<gv.process_count)
-		{
-			i  = 0;
-			while (i<nodes[j].arg_count)
+			int i = 0;
+			while(tokens[i].value)
 			{
-				free(nodes[j].args[i]);
-				i++;
+    			free(tokens[i].value); 
+    			i++;
 			}
-			free(nodes[j].args);
-			free(nodes[j].infile);
-			free(nodes[j].outfile);
+			free(tokens);
+			/*int j = 0;
+			while(j<gv.process_count)
+			{
+				i  = 0;
+				while (i<nodes[j].arg_count)
+				{
+					free(nodes[j].args[i]);
+					i++;
+				}
+				free(nodes[j].args);
+				free(nodes[j].infile);
+				free(nodes[j].outfile);
+				
+				j++;
+			}
 			
-			j++;
+			free(nodes);*/
+			//system("leaks minishell");	
+			exec_start(nodes, envp);
 		}
 		
-		free(nodes);*/
-		//system("leaks minishell");		
-		exec_start(nodes, envp);
 
 	}
 }

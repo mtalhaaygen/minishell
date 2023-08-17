@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/17 18:59:00 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/17 19:26:53 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ void	ft_executor(Node *nodes, char **envp)
 	i = -1;
 	while (++i < gv.process_count)
 	{
-		//; // fork altında çalıştırılmayacak olan builtinlerden mi status bunu tutuyor
-		if (!(status = is_other_builtin(nodes[i].args[0])))
+		if (nodes[i].args[0] && !(status = is_other_builtin(nodes[i].args[0])))
 		{
 			gv.pid = fork();
 			if (gv.pid == 0)
@@ -73,13 +72,14 @@ void	ft_executor(Node *nodes, char **envp)
 		waitpid(gv.pid, &status1, 0);
 	if (WIFEXITED(status1)) {
 		int exitStatus = WEXITSTATUS(status1);
-		printf("\n%d\n", exitStatus);
+		(void)exitStatus;
+		//printf("\n%d\n", exitStatus);
 	}
 }
 
 void	exec_start(Node *nodes, char **envp)
 {
-	if (gv.process_count > 1)
+	if (gv.process_count > 1 && gv.nodes[gv.process_count - 1].args[0])
 	{
 		s_process	*process;
 		int			i;

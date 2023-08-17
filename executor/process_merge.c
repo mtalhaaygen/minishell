@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_merge.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 13:04:22 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/17 13:36:46 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/17 19:22:23 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_process_merge(int i)
 {
-	if (gv.process_count != 1)
+	if (gv.process_count != 1 && gv.nodes[gv.process_count - 1].args[0])
 	{
 		if (i != gv.process_count - 1)
 			dup2(gv.process[i].fd[1], STDOUT_FILENO);
@@ -27,7 +27,7 @@ void	ft_process_merge(int i)
 
 void	pipe_close()
 {
-	if (gv.process_count != 1)
+	if (gv.process_count != 1 && gv.nodes[gv.process_count - 1].args[0])
 	{
 		int	i;
 
