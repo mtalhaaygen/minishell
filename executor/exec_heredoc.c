@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 12:29:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/17 18:23:48 by maygen           ###   ########.fr       */
+/*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
+/*   Updated: 2023/08/17 18:55:55 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	rm_heredoc()
 
 	args = ft_calloc(3, sizeof(char *));
 	args[0] = ft_strdup("/bin/rm");
-	args[1] = ft_strdup("-f");
+	args[1] = ft_strdup("heredoc.txt");
 	gv.pid = fork();
 	if (gv.pid == 0)
 	{
@@ -80,7 +80,6 @@ void	ft_executor_heredoc(Node *nodes, const int th, const int i, int flag)
 	fd = open("heredoc.txt", O_TRUNC | O_CREAT | O_RDWR, 0777);
 	// Okuduğumuz tüm veriyi dosyaya yazıyoruz
 	ft_putstr_fd(full, fd);
-
 	// rm_heredoc();
 	// Burada direk ekrana basmak yerine heredocu execve ile çalıştıracağımız için node u güncelleyeceğiz
 	node_change(nodes[th], i, flag);

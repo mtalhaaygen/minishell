@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/15 17:58:06 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/17 13:29:43 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_find_end(const char *input, int i)
 	return (i);
 }
 
-char	*ft_dup(char *input, int start, int end)
+void ft_dup(s_token *tokens, char *input, int start, int end, int iter)
 {
 	int		i;
 	int		k;
@@ -61,8 +61,6 @@ char	*ft_dup(char *input, int start, int end)
 	k = 0;
 	i = start;
 	str = malloc(end - start + 1);
-	if (!str)
-		return (NULL);
 	while (i < end && input[i])
 	{
 		while (input[i] == 34 && gv.flag == 1)
@@ -78,7 +76,8 @@ char	*ft_dup(char *input, int start, int end)
 		str[k - 1] = '\0';
 	else
 		str[k] = '\0';
-	return (str);
+	tokens[iter].value = ft_strdup(str);
+	free(str);
 }
 
 s_token	*ft_start(char *input)
@@ -104,16 +103,7 @@ s_token	*ft_start(char *input)
 			tokens[k].quot_flag = 1;
 		start = i;
 		i = ft_find_end(input, i);
-		tokens[k].value = ft_dup(input, start, i);
-
-		/*
-		int j = 0;
-		while(tokens[k].value[j])
-		{
-			printf("i: %d j: %d token: %c\n",k, j,tokens[k].value[j]);
-			j++;
-		}*/
-		
+		ft_dup(tokens, input,start, i, k);
 		k++;
 	}
 	tokens[k].value = NULL;
@@ -182,20 +172,7 @@ char	*ft_rm_last_sp(char *input)
 	}
 	return (str);
 }
-// [talhaSS0] 6
-// [talha0]
-// [talha\0]
-/*
-dslafidsgldfsg
-dfgsdfgşkdfdfs
-fidgşdfsigşdfs
-*/
 
-/*
-dslafidsgldfsg
-dfgsdfgşkdfdfs
-fidgşdfsigşdfs
-*/
 s_token *ft_tokens(char *input)
 {
 	s_token *tokens;
@@ -208,13 +185,11 @@ s_token *ft_tokens(char *input)
 		return (tokens);
 	}
 	tokens = ft_start(input);
-
+	free(input);
 	tokens = ft_sep(tokens);
-
 	tokens = ft_dollar(tokens);
-
 	tokens = ft_check_sng_que(tokens);
-	ft_token_type(tokens);
+	ft_token_type(tokens);	
 	gv.process_count = ft_pipe_counter(tokens) + 1;
 	return tokens;
 }

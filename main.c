@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/16 13:16:04 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/17 18:13:58 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,35 @@ int	main(int argc, char **argv, char **envp)
 		add_history(line);
 
 		tokens = ft_tokens(line);
-		if(tokens[0].value)
-		{
-			nodes = ft_parser(tokens);
-			exec_start(nodes, envp);
-		}
 		free(line);
+		nodes = ft_parser(tokens);
+			
+		int i = 0;
+		while(tokens[i].value)
+		{
+    		free(tokens[i].value); 
+    		i++;
+		}
+		free(tokens);
+		/*int j = 0;
+		while(j<gv.process_count)
+		{
+			i  = 0;
+			while (i<nodes[j].arg_count)
+			{
+				free(nodes[j].args[i]);
+				i++;
+			}
+			free(nodes[j].args);
+			free(nodes[j].infile);
+			free(nodes[j].outfile);
+			
+			j++;
+		}
+		
+		free(nodes);*/
+		//system("leaks minishell");		
+		exec_start(nodes, envp);
+
 	}
 }

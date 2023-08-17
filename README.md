@@ -25,9 +25,20 @@ kim yaparsa
 - builtinler çıktıyı pipe a aktarmıyor
 - heredoc
 - echo -n seg
+- heredoc
 ## normu düzeltilen dosyalar
 Lİb klasörünün tümü ok
 parser/env_process.c ok
+
+# freelenecek değerler
+free(tokens)
+
+int i = 0;
+while(tokens[i].value)
+{
+    free(tokens[i].value); 
+    i++;
+}
 
 # MINISHELL
 Bu projede amaç kendi shell kabuğumuzu oluşturmak.

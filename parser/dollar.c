@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:57:32 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/15 17:52:28 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/17 12:34:24 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_dolkey(s_token *tokens, int i, int j)
 		tmp++;
 		len++;
 	}
-	dolkey = ft_calloc(len+1,sizeof(char));
+	dolkey = ft_calloc(len + 1, sizeof(char));
 	while (tokens[i].value[j] && tokens[i].value[j] != 39)
 	{
 		dolkey[k] = tokens[i].value[j];
@@ -36,6 +36,7 @@ char	*ft_dolkey(s_token *tokens, int i, int j)
 		j++;
 	}
 	dolkey[k] = '\0';
+	printf("kjsd %p\n", dolkey);
 	return (dolkey);
 }
 
@@ -53,7 +54,7 @@ char	*ft_dolval(char *dolkey)
 	return (0);
 }
 
-char	*ft_change_token(char *dolval, s_token *tokens, int i, int j)
+void ft_change_token( char *dolval, s_token *tokens, int i, int j)
 {
 	int		len;
 	char	*str;
@@ -67,7 +68,7 @@ char	*ft_change_token(char *dolval, s_token *tokens, int i, int j)
 		len++;
 	if (dolval != 0)
 		len += ft_strlen(dolval);
-	str = ft_calloc(len, sizeof(char));
+	str = ft_calloc(len+3, sizeof(char));
 	while (k < j)
 	{
 		str[k] = tokens[i].value[k];
@@ -80,10 +81,12 @@ char	*ft_change_token(char *dolval, s_token *tokens, int i, int j)
 		s++;
 	}
 	str[k] = '\0';
-	return (str);
-}
+	free(tokens[i].value );
+	tokens[i].value = ft_strdup(str);
+	free(str);
 
-char	*ft_wod(s_token *tokens, int i)
+}
+void ft_wod(s_token *tokens, int i)
 {
 	int		len;
 	char	*str;
@@ -99,7 +102,8 @@ char	*ft_wod(s_token *tokens, int i)
 		len++;
 	}
 	str[len] = '\0';
-	return (str);
+	free(tokens[i].value);
+	tokens[i].value = ft_strdup_dolkey(str);
 }
 
 s_token	*ft_dollar(s_token *tokens)
@@ -118,18 +122,23 @@ s_token	*ft_dollar(s_token *tokens)
 		{
 			if (tokens[i].value[j] == '$' && tokens[i].value[j - 1] != 39)
 			{
-				dolkey = ft_strdup(ft_dolkey(tokens, i, j));
+				dolkey = ft_strdup_dolkey(ft_dolkey(tokens, i, j));
 				if (ft_dolval(dolkey))
 				{
 					dolval = ft_strdup(ft_dolval(dolkey));
-					tokens[i].value = 
-						ft_strdup (ft_change_token (dolval, tokens, i, j));
+					ft_change_token (dolval, tokens, i, j);
+					free(dolval);
 				}
 				else
-					tokens[i].value = ft_strdup (ft_wod (tokens, i));
+					ft_wod (tokens, i);	
+				free(dolkey);			
 			}
 		}
-	}
+
+	}					
+	
+
+
 
 	return (tokens);
 }
