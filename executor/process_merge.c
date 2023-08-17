@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 13:04:22 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/12 23:40:39 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/17 13:36:46 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,6 @@ void	ft_process_merge(int i)
 			dup2(gv.process[i - 1].fd[0], STDIN_FILENO);
 
 		pipe_close();
-		/*
-		if (i == 0)
-			dup2(gv.process[0].fd[1], STDOUT_FILENO);
-		if (i == 1)
-			dup2(gv.process[0].fd[0], STDIN_FILENO);
-		close(gv.process[0].fd[1]);
-		close(gv.process[0].fd[0]);
-		*/
 	}
 }
 

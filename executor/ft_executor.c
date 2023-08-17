@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:58:35 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/16 20:04:41 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/17 14:21:00 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,24 @@ void	ft_executor(Node *nodes, char **envp)
 	i = -1;
 	while (++i < gv.process_count)
 	{
-		status = is_builtin(nodes[i].args[0]);
-		if (!status)
+		//; // fork altında çalıştırılmayacak olan builtinlerden mi status bunu tutuyor
+		if (!(status = is_other_builtin(nodes[i].args[0])))
 		{
 			gv.pid = fork();
 			if (gv.pid == 0)
 			{
 				ft_process_merge(i);
 				is_redirection(nodes, i);
+				if ((status = is_builtin(nodes[i].args[0])))
+					run_builtin(status, nodes[i]);
 				bin_command = ft_access(nodes[i].args[0]);
 				if (execve(bin_command, nodes[i].args, envp))
 					perror("execve perror ");
-				_exit(1);
 			}
 			else if (gv.pid < 0) 
 				return (perror("fork error "));
 		}
-		else
-			run_builtin(status, nodes[i]);
+		run_other_builtin(status, nodes[i]);
 	}
 	pipe_close();
 	i = -1;
@@ -98,15 +98,14 @@ void	exec_select(Node *nodes, char **envp)
 	int		status;
 
 	th = -1;
-	flag = 0;
 	while (++th < gv.process_count)
 	{
 		i = -1;
+		flag = 0;
 		while (nodes[th].args[++i]) 
 		{
 			if (flag > 1)
 				i = i - 1;
-			// printf("%d - %s - flag:%d\n", i, nodes[th].args[i], flag);
 			status = ft_strcmp("<<", nodes[th].args[i]);
 			if (status == 1)
 			{
@@ -117,20 +116,6 @@ void	exec_select(Node *nodes, char **envp)
 				break ;
 		}
 	}
-	
-	/*
-	if (gv.process_count == 1) //gelecekte sadece ilk node değil tüm nodelar arasında heredoc aranacak 
-	{
-		i = -1;
-		while (nodes[0].args[++i])
-		{
-			if (ft_strcmp("<<", nodes[0].args[i]))
-			{
-				ft_executor_heredoc(nodes, i);
-				return;
-			}
-		}
-	}*/
 	ft_executor(nodes, envp);
 }
 

@@ -149,7 +149,9 @@ void	pipe_close();
 
 /* BUILTIN COMMANDS */
 int		is_builtin(char *command);
+int		is_other_builtin(char *command);
 void	run_builtin(int status, Node node);
+void	run_other_builtin(int status, Node node);
 void	run_pwd(void);
 void	run_cd(Node node);
 void	run_echo(Node node);
