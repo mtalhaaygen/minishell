@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/15 19:57:34 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/17 19:52:15 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
+/*
 // Optimized implementation of Bubble sort
 void ft_swap(int j)
 {
@@ -58,7 +58,7 @@ void ft_export()
     }
     ft_print_array();
 }
-
+*/
   
 // Function to print an array
 /*

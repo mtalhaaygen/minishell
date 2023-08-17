@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/17 19:26:53 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/17 19:57:45 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	ft_executor(Node *nodes, char **envp)
 	int status1 = -1;
 	while (++i < gv.process_count)
 		waitpid(gv.pid, &status1, 0);
+	rm_heredoc();
 	if (WIFEXITED(status1)) {
 		int exitStatus = WEXITSTATUS(status1);
 		(void)exitStatus;

@@ -55,8 +55,6 @@ typedef  struct t_env
 	int				env_count;
 	char			*key;
 	char			*value;
-	char			*full; // key=value şeklinde tutacak
-	//struct t_token	*next; bu yapının linkedlist olması daha verimli bir kod sağlar, çünkü export komutu ile ekleme çıkarma yapacağız
 }	s_env;
 
 typedef struct t_file //DENEYSEL
@@ -91,6 +89,7 @@ typedef struct t_minishell
 	s_process	*process;		// tüm processler
 	int flag;
 	int	pid;
+	char **full;
 }	s_minishell;
 
 extern s_minishell gv;
@@ -147,6 +146,7 @@ int		contain_o(char **commands);
 void	is_redirection(Node *nodes, int i);
 void	ft_process_merge(int i);
 void	pipe_close();
+void	rm_heredoc();
 
 /* BUILTIN COMMANDS */
 int		is_builtin(char *command);
