@@ -1,19 +1,29 @@
 # BROlarla MİNİSHELL
-
+./caf -disu
 ### YAPILACAKLAR
+maygen
+- ./ ile yada / ile baslayınca farklı bir if ile çalışacak
+- infile ve outfile dosyaları access ile kontrol et
+- cat | cat | ls sorulacak
 - export unset yapılacak
-- leaks kontrolü yapılacak
-- norm
-- builtinler çıktıyı pipe a aktarmıyor
 - tek node da tek bir redirection çalışıyo
 - redirectionlarda nodeları güncelle
+- builtin executor seg kontrolü
+- builtin executor leaks kontrolü
+
+tdemir
+- ""|""
 - $?
 - set ctrl d 
+- lexer parser leaks kontrolü
+- lexer parser seg kontrolü
+
+kim yaparsa
 - exit bakılcak
 - hata mesajları
-- genel olarak tüm segler 
-- cat | cat | ls sorulacak
 ### TAMAMLANANLAR
+- builtinler çıktıyı pipe a aktarmıyor
+- heredoc
 - echo -n seg
 - heredoc
 ## normu düzeltilen dosyalar
@@ -51,6 +61,7 @@ Korn Shell (ksh) <br>
 Z Shell (zsh) <br>
 Command Prompt (cmd) <br>
 PowerShell <br>
+talhaShell (tsh) <br>
 Bunlara ek olarak, çoğu kullanıcı için bilgisayar kullanımını basitleştiren Windows Masaüstü, MacOS Finder veya Linux Gnome ve KDE gibi Grafik sheller de vardır.
 Bir shell uygulaması üç bölüme ayrılmıştır; The Parser, The Executor, and Shell Subsystems.
 Parser, komut satırını okuyan ve bunları ayrıştırarak bir veri yapısında (struct) tutan yazılım bileşenidir.

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/31 17:50:13 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/17 12:07:20 by tdemir           ###   ########.fr       */
+/*   Created: 2023/08/17 18:56:16 by maygen            #+#    #+#             */
+/*   Updated: 2023/08/17 18:56:19 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	*ft_strdup(char *src)
 		new[i] = src[i];
 		i--;
 	}
+	
 	return (new);
 }
 

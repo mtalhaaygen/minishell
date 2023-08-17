@@ -5,12 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 12:29:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/16 20:04:50 by maygen           ###   ########.fr       */
+/*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
+/*   Updated: 2023/08/17 18:55:55 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	rm_heredoc()
+{
+	char **args;
+
+	args = ft_calloc(3, sizeof(char *));
+	args[0] = ft_strdup("/bin/rm");
+	args[1] = ft_strdup("heredoc.txt");
+	gv.pid = fork();
+	if (gv.pid == 0)
+	{
+		if (execve(args[0], args, NULL))
+			perror("execve perror ");
+	}
+	else if (gv.pid < 0) 
+		return (perror("fork error "));
+	free(args[0]);
+	free(args);
+}
 
 void	node_change(Node node, int i, int flag)
 {
@@ -61,6 +80,7 @@ void	ft_executor_heredoc(Node *nodes, const int th, const int i, int flag)
 	fd = open("heredoc.txt", O_TRUNC | O_CREAT | O_RDWR, 0777);
 	// Okuduğumuz tüm veriyi dosyaya yazıyoruz
 	ft_putstr_fd(full, fd);
+	// rm_heredoc();
 	// Burada direk ekrana basmak yerine heredocu execve ile çalıştıracağımız için node u güncelleyeceğiz
 	node_change(nodes[th], i, flag);
 }
