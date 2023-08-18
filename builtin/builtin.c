@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/18 10:10:13 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/18 10:34:56 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	run_builtin(int status, Node node)
 		print_env_list(gv.env); //tüm env leri key value değerlerini kullanarak yazıyoruz
 	else if (status == PWD)
 		run_pwd();
-	else if (status == ECH)
+	else if (status == ECHO)
 		run_echo(node);
 	else if (status == EXPORT) // eğer eşittir yoksa sadece full e at, eğer eşittir değeri varsa hem full hemde key-value değerleri dolsun
 		//ft_export();
@@ -44,7 +44,7 @@ int	is_builtin(char *command)
 	if (ft_strcmp(command, "pwd"))
 		return (PWD);
 	if (ft_strcmp(command, "echo"))
-		return (ECH);
+		return (ECHO);
 	if (ft_strcmp(command, "export"))
 		return (EXPORT);
 	return (0);

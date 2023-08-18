@@ -33,28 +33,17 @@ s_token *ft_sep(s_token *tokens)
 		len = ft_strlen(tokens[i].value);
 		while (j<len)
 		{
-			if (tokens[i].value[j] == '<' && tokens[i].value[j+1] == '<' && !tokens[i].quot_flag)
+			if(((tokens[i].value[j] == '>' && tokens[i].value[j+1] == '>') ||
+			 (tokens[i].value[j] == '<' && tokens[i].value[j+1] == '<')) 
+			 && (!tokens[i].quot_flag))
 			{
 				tokens = ft_double_sep(tokens, i, j,tokens[i].value[j]);
 				i++;
 			}
-            else if(tokens[i].value[j] == '<' && !tokens[i].quot_flag)
-			{
-               	tokens = ft_single_sep(tokens, i, j,tokens[i].value[j]);
-
-				i++;
-			}
-			else if(tokens[i].value[j] == '>' && tokens[i].value[j+1] == '>' && !tokens[i].quot_flag)
-			{
-				tokens = ft_double_sep(tokens, i, j,tokens[i].value[j]);
-				i++;
-			}
-            else if(tokens[i].value[j] == '>' && !tokens[i].quot_flag)
-			{
-                tokens = ft_single_sep(tokens, i, j,tokens[i].value[j]);
-				i++;
-			}
-            else if (tokens[i].value[j] == '|' && !tokens[i].quot_flag)
+            else if (((tokens[i].value[j] == '|') ||
+			 (tokens[i].value[j] == '>') ||
+			  (tokens[i].value[j] == '<')) &&
+			   (!tokens[i].quot_flag))
 			{
 				tokens = ft_single_sep(tokens, i, j,tokens[i].value[j]);
 				i++;
