@@ -1,5 +1,13 @@
 #include "../minishell.h"
+char *ft_val_dup(char val)
+{
+	char *str;
 
+	str = ft_calloc(2, sizeof(char));
+	str[0] = val;
+	str[1] = '\0';
+	return (str);
+}
 s_token *ft_r_l_sep_sng(s_token *tokens, int i, char val,char	**tmp_tokens, int tmp)
 {
 		char	**sp;
@@ -12,7 +20,7 @@ s_token *ft_r_l_sep_sng(s_token *tokens, int i, char val,char	**tmp_tokens, int 
 		}
 		tokens[i].value= ft_strdup(sp[0]);
 		i++;
-		tokens[i].value = ft_strdup(&val);
+		tokens[i].value =ft_strdup_dolkey(ft_val_dup(val));
 		i++;
 
 		tokens[i].value = ft_strdup(sp[1]);
@@ -48,7 +56,7 @@ s_token	*ft_r_sep_sng(s_token *tokens, int i, char val,char	**tmp_tokens, int tm
 			free(tokens[f].value);
 			f++;
 		}
-		tokens[i].value =ft_strdup(&val);
+		tokens[i].value = ft_val_dup(val);
 		i++;
 		tokens[i].value = ft_strdup(sp[0]);
 		i++;
@@ -83,7 +91,7 @@ s_token	*ft_l_sep_sng(s_token *tokens, int i, char val, char	**tmp_tokens, int t
 	}
 	tokens[i].value = ft_strdup(sp[0]);
 	i++;
-	tokens[i].value =ft_strdup(&val);
+	tokens[i].value =ft_val_dup(val);
 	i++;
 		
 	while(tmp_tokens[tmp])
