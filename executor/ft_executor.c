@@ -6,21 +6,13 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/18 17:11:55 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/18 20:10:55 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 int a;
-
-
-// void	bash_exec()
-// {
-// 	// gv.nodes u içerisinde ./out gibi ./ ile başlayan argümanı bash ile çalıştıracak
-// 	// örnek
-// 	// bash a.out
-// }
 
 char	*ft_access(char *args)
 {
@@ -34,15 +26,13 @@ char	*ft_access(char *args)
 	if (!pathenv)
 		perror("getenv");
 	command_paths = ft_split(pathenv, ':');
-	if (args[0] == '/')
+	if (args[0] == '/' || (args[1] == '/' && args[0] == '.'))
 		return (args);
-	// if (args[1] == '/' && args[0] == '.')
-	// 	return (bash_exec())
 	args = ft_strjoin("/", args);
 	while (command_paths[i])
 	{
 		command = ft_strjoin(command_paths[i], args);
-		if (access(command, R_OK) == 0)
+		if (access(command, R_OK | X_OK) == 0)
 			break;
 		i++;
 	}

@@ -2,13 +2,11 @@
 ./caf -disu
 ### YAPILACAKLAR
 maygen
-- infile ve outfile dosyaları access ile kontrol et
-- cat < olmayan txt // file acsess ile kontrol edilince düzelecek
-- ./ ile yada / ile baslayınca farklı bir if ile çalışacak
-- cat | cat | ls sorulacak
-- export unset yapılacak
 - tek node da tek bir redirection çalışıyo
 - redirectionlarda nodeları güncelle
+- infile ve outfile dosyaları access ile kontrol et
+- cat | cat | ls sorulacak
+- export unset yapılacak
 - builtin executor seg kontrolü
 - builtin executor leaks kontrolü
 
@@ -23,6 +21,8 @@ kim yaparsa
 - exit bakılcak
 - hata mesajları
 ### TAMAMLANANLAR
+- cat < olmayan txt <!-- file acsess ile kontrol edilince düzelecek -->
+- ./ ile yada / ile baslayınca farklı bir if ile çalışacak
 - builtinler çıktıyı pipe a aktarmıyor
 - lexer parser leaks kontrolü
 - ""|""
@@ -693,6 +693,10 @@ int main() {
 dosya sistemine erişim hakkını kontrol etmek için kullanılır. Belirtilen dosyanın var olup olmadığını yada okuma, yazma ve yürütme gibi belirli izinlerinin olup olmadığını kontrol etmek için kullanılabilir.
 mode parametresi, erişim izinlerini belirten bir tamsayıdır. Bu tamsayı, R_OK, W_OK, X_OK veya F_OK sembollerini veya bu sembollerin birleşimini içerebilir. Örneğin, R_OK | W_OK dosyanın hem okunabilir hem de yazılabilir olup olmadığını kontrol etmek için kullanılır. 
 
+R_OK: Dosyanın okunabilir (readable) olup olmadığını kontrol eder.
+W_OK: Dosyanın yazılabilir (writable) olup olmadığını kontrol eder.
+X_OK: Dosyanın çalıştırılabilir (executable) olup olmadığını kontrol eder. Bu genellikle yürütülebilir dosyalar (örneğin, programlar veya betikler) için kullanılır.
+F_OK: Dosyanın varlığını kontrol eder.
 ```c
 #include <stdio.h>
 #include <unistd.h>
