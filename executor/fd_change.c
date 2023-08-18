@@ -6,11 +6,13 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/16 16:50:14 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/18 17:05:36 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+// int		file_access(char	*filename);
 
 void	change_fd_i(Node node, int index)
 {
@@ -81,7 +83,9 @@ void	change_fd_o(Node node, int index)
 
 void	is_redirection(Node *nodes, int i)
 {
+	// while içerisinde tüm node dolaşılacak ilk redirection ile change fd ve change node yapılacak
 	int index;
+	
 	if ((index = contain_i(nodes[i].args)))
 		change_fd_i(nodes[i], index);
 	else if ((index = contain_ii(nodes[i].args)))

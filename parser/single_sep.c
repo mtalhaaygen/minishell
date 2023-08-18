@@ -121,17 +121,17 @@ s_token *ft_single_sep(s_token *tokens, int i, int j, char val)
 	tmp_tokens = ft_tmp_tokens(tokens);
 	tmp = i + 1;
 
-	if(j != 0 && tokens[i].value[j+2])
+	if (j != 0 && tokens[i].value[j + 1])
 	{
 		tokens = ft_r_l_sep_sng(tokens,i,val,tmp_tokens, tmp);
-		return(tokens);
+		return (tokens);
 	}
-	else if(tokens[i].value[j+2])
+	else if (tokens[i].value[j + 1])
 	{
 		tokens = ft_r_sep_sng(tokens,i,val,tmp_tokens, tmp);	
 		return(tokens);
 	}
-	else if(j != 0)
+	else if (j != 0)
 	{
 		tokens = ft_l_sep_sng(tokens,i,val,tmp_tokens, tmp);
 		return(tokens);
