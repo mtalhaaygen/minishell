@@ -12,10 +12,10 @@ maygen
 - builtin executor leaks kontrolü
 
 tdemir
-- ""|""
+-''leaks kontolü
+-here leaks kontrolü 
 - $?
 - set ctrl d 
-- lexer parser leaks kontrolü
 - lexer parser seg kontrolü
 
 kim yaparsa
@@ -23,6 +23,8 @@ kim yaparsa
 - hata mesajları
 ### TAMAMLANANLAR
 - builtinler çıktıyı pipe a aktarmıyor
+- lexer parser leaks kontrolü
+- ""|""
 - heredoc
 - echo -n seg
 - heredoc
