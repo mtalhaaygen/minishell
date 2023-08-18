@@ -1,18 +1,20 @@
 #include "../minishell.h"
 
-s_token *ft_which_pipe(s_token *tokens, int i, int j)
+s_token	*ft_double_sep(s_token *tokens, int i, int j, char val)
 {
 	char	**sp;
 	char	**tmp_tokens;
 	int		tmp;
-
+	char *here;
+	here = ft_calloc(3,sizeof(char));
 	tmp_tokens = ft_tmp_tokens(tokens);
 	tmp = i + 1;
-	char *here = "|";
-
+	here[0] = val;
+	here[1] = val;
+	here[2] = '\0';
 	if(j != 0 && tokens[i].value[j+2])
 	{
-		sp = ft_split(tokens[i].value, '|');
+		sp = ft_split(tokens[i].value, val);
 		int f = i;
 		while(tokens[f].value)
 		{
@@ -36,7 +38,6 @@ s_token *ft_which_pipe(s_token *tokens, int i, int j)
 		free(sp[0]);
 		free(sp[1]);
 		free(sp);
-
 		tokens[i].value = NULL;
 		i = 0;
 		while (tmp_tokens[i])
@@ -50,7 +51,7 @@ s_token *ft_which_pipe(s_token *tokens, int i, int j)
 	else if(tokens[i].value[j+2])
 	{
 
-		sp = ft_split(tokens[i].value, '|');
+		sp = ft_split(tokens[i].value, val);
 		int f = i;
 		while(tokens[f].value)
 		{
@@ -81,7 +82,7 @@ s_token *ft_which_pipe(s_token *tokens, int i, int j)
 	}
 	else if(j != 0)
 	{
-		sp = ft_split(tokens[i].value, '|');
+		sp = ft_split(tokens[i].value, val);
 		int f = i;
 		while(tokens[f].value)
 		{
@@ -119,5 +120,6 @@ s_token *ft_which_pipe(s_token *tokens, int i, int j)
 		i++;
 	}
 	free(tmp_tokens);
+    free(here);
 	return(tokens);
 }

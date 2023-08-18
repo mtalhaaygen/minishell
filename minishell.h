@@ -111,11 +111,9 @@ int		quote_off(const char *input);
 int		ft_token_count(const char *input);
 s_token	*ft_dollar(s_token *tokens);
 s_token *ft_sep(s_token *tokens);
-s_token *ft_which_pipe(s_token *tokens, int i, int j);
-char **ft_tmp_tokens(s_token *tokens);
-s_token *ft_which_reader(s_token *tokens, int i, int j);
-s_token *ft_which_redirection(s_token *tokens, int i, int j);
-s_token *ft_which_append(s_token *tokens, int i, int j);
+char 	**ft_tmp_tokens(s_token *tokens);
+s_token *ft_single_sep(s_token *tokens, int i, int j, char val);
+s_token *ft_double_sep(s_token *tokens, int i, int j, char val);
 /* LIB*/
 int		my_isspace(char ch);
 char	*ft_strdup(char *src);

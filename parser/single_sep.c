@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-s_token *ft_which_append(s_token *tokens, int i, int j)
+s_token *ft_single_sep(s_token *tokens, int i, int j, char val)
 {
 	char	**sp;
 	char	**tmp_tokens;
@@ -8,11 +8,10 @@ s_token *ft_which_append(s_token *tokens, int i, int j)
 
 	tmp_tokens = ft_tmp_tokens(tokens);
 	tmp = i + 1;
-	char *here = ">";
 
 	if(j != 0 && tokens[i].value[j+2])
 	{
-		sp = ft_split(tokens[i].value, '>');
+		sp = ft_split(tokens[i].value, val);
 		int f = i;
 		while(tokens[f].value)
 		{
@@ -21,7 +20,7 @@ s_token *ft_which_append(s_token *tokens, int i, int j)
 		}
 		tokens[i].value= ft_strdup(sp[0]);
 		i++;
-		tokens[i].value = ft_strdup(here);
+		tokens[i].value =ft_strdup(&val);
 		i++;
 
 		tokens[i].value = ft_strdup(sp[1]);
@@ -49,14 +48,14 @@ s_token *ft_which_append(s_token *tokens, int i, int j)
 	else if(tokens[i].value[j+2])
 	{
 
-		sp = ft_split(tokens[i].value, '>');
+		sp = ft_split(tokens[i].value, val);
 		int f = i;
 		while(tokens[f].value)
 		{
 			free(tokens[f].value);
 			f++;
 		}
-		tokens[i].value = ft_strdup(here);
+		tokens[i].value =ft_strdup(&val);
 		i++;
 		tokens[i].value = ft_strdup(sp[0]);
 		i++;
@@ -80,7 +79,7 @@ s_token *ft_which_append(s_token *tokens, int i, int j)
 	}
 	else if(j != 0)
 	{
-		sp = ft_split(tokens[i].value, '>');
+		sp = ft_split(tokens[i].value, val);
 		int f = i;
 		while(tokens[f].value)
 		{
@@ -89,7 +88,7 @@ s_token *ft_which_append(s_token *tokens, int i, int j)
 		}
 		tokens[i].value = ft_strdup(sp[0]);
 		i++;
-		tokens[i].value = ft_strdup(here);
+		tokens[i].value =ft_strdup(&val);
 		i++;
 		
 		while(tmp_tokens[tmp])
