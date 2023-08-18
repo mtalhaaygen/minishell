@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/28 20:06:43 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/18 16:49:43 by maygen           ###   ########.fr       */
+/*   Created: 2023/08/18 17:02:10 by maygen            #+#    #+#             */
+/*   Updated: 2023/08/18 17:02:35 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ s_env	*fill_env(char **envp)
 	i = 0;
 	len = env_counter(envp);
 	env_list = malloc (sizeof(s_env) * (len + 1));
-	gv.full = ft_calloc(1, sizeof(char *));
+	//gv.full = ft_calloc(1, sizeof(char *));
 	env_list->env_count = len;
 	while (i < len)
 	{
-		gv.full[i] = ft_strdup(envp[i]);
+		//gv.full[i] = ft_strdup(envp[i]);
 		s = ft_split(envp[i], '=');
 		env_list[i].key = ft_strdup(s[0]);
 		env_list[i].value = ft_strdup(s[1]);
@@ -68,6 +68,7 @@ s_env	*fill_env(char **envp)
 		i++;
 		
 	}
+	//gv.full[i] = NULL;
 	//full_sort(env_list);
 	return (env_list);
 }

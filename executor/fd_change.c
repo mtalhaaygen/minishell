@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/18 16:52:50 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/18 17:05:36 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,12 @@ void	is_redirection(Node *nodes, int i)
 	// while içerisinde tüm node dolaşılacak ilk redirection ile change fd ve change node yapılacak
 	int index;
 	
-/*	if ((index = contain_i(nodes[i].args)))
+	if ((index = contain_i(nodes[i].args)))
 		change_fd_i(nodes[i], index);
 	else if ((index = contain_ii(nodes[i].args)))
 		change_fd_ii(nodes[i], index);
 	else if ((index = contain_o(nodes[i].args)))
 		change_fd_o(nodes[i], index);
-*/
 }
 /*
 export unset yapılacak
