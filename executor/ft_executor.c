@@ -6,13 +6,21 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/18 10:20:00 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/18 16:47:19 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 int a;
+
+
+// void	bash_exec()
+// {
+// 	// gv.nodes u içerisinde ./out gibi ./ ile başlayan argümanı bash ile çalıştıracak
+// 	// örnek
+// 	// bash a.out
+// }
 
 char	*ft_access(char *args)
 {
@@ -26,6 +34,10 @@ char	*ft_access(char *args)
 	if (!pathenv)
 		perror("getenv");
 	command_paths = ft_split(pathenv, ':');
+	if (args[0] == '/')
+		return (args);
+	// if (args[1] == '/' && args[0] == '.')
+	// 	return (bash_exec())
 	args = ft_strjoin("/", args);
 	while (command_paths[i])
 	{
@@ -85,7 +97,9 @@ void	ft_executor(Node *nodes, char **envp)
 
 void	exec_start(Node *nodes, char **envp)
 {
-	if (gv.process_count > 1 && gv.nodes[gv.process_count - 1].args[0])
+	if (!gv.nodes[gv.process_count - 1].args[0])
+		gv.process_count -= 1;
+	if (gv.process_count > 1)
 	{
 		s_process	*process;
 		int			i;
@@ -134,7 +148,7 @@ void	exec_select(Node *nodes, char **envp)
 }
 
 /* 
-aşağıdaki caselerin hepsi çalışıyor, yalnızca üç heredoc bir node içerisinde olursa patlıyor
+aşağıdaki caselerin hepsi çalışıyor, yalnızca üç	 heredoc bir node içerisinde olursa patlıyor
 cat <<EOF1 <<EOF2
 > first here-doc
 > EOF1

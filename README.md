@@ -2,8 +2,9 @@
 ./caf -disu
 ### YAPILACAKLAR
 maygen
-- ./ ile yada / ile baslayınca farklı bir if ile çalışacak
 - infile ve outfile dosyaları access ile kontrol et
+- cat < olmayan txt // file acsess ile kontrol edilince düzelecek
+- ./ ile yada / ile baslayınca farklı bir if ile çalışacak
 - cat | cat | ls sorulacak
 - export unset yapılacak
 - tek node da tek bir redirection çalışıyo
@@ -12,13 +13,13 @@ maygen
 - builtin executor leaks kontrolü
 
 tdemir
-- ""|""
-- $?
 - set ctrl d 
 - lexer parser leaks kontrolü
 - lexer parser seg kontrolü
 
 kim yaparsa
+- $?
+- ""|""
 - exit bakılcak
 - hata mesajları
 ### TAMAMLANANLAR
