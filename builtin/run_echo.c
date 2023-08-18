@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:55:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/15 19:41:25 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/18 10:10:39 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,5 @@ void	run_echo(Node node) //yalnızca stdinden girdi alıp stdouta yada yönlendi
 	}
 	if (ft_echo_param_checker(node.args[1]) == 0)
 		ft_putstr_fd("\n", 1);
+	exit(1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/17 19:57:45 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/18 10:20:00 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ char	*ft_access(char *args)
 		if (access(command, R_OK) == 0)
 			break;
 		i++;
+	}
+	if (!command_paths[i])
+	{
+		printf("%s: command not found\n", args + 1);
+		exit(1);
 	}
 	return (command);
 }

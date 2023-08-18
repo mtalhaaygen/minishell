@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_process.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:43 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/18 09:51:33 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/18 10:10:20 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ s_env	*fill_env(char **envp)
 	while (i < len)
 	{
 		gv.full[i] = ft_strdup(envp[i]);
-		//printf("f: %s\n",gv.full[i]);
+		printf("f: %s\n",gv.full[i]);
 		s = ft_split(envp[i], '=');
 		env_list[i].key = ft_strdup(s[0]);
 		env_list[i].value = ft_strdup(s[1]);
@@ -83,4 +83,5 @@ void	print_env_list(s_env *env_list)
 		printf("%s=%s\n", env_list[i].key, env_list[i].value);
 		i++;
 	}
+	exit(1);
 }
