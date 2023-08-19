@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/17 19:23:34 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/18 19:54:37 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, sigquit_handler);
-
 	s_env *env_list;
+
 
 	env_list = fill_env(envp);
 	gv.env = env_list;
-	//ft_export();
-	//print_env_list(env_list);
+	signal(SIGQUIT, sigquit_handler);
+	signal(SIGINT, sigint_handler);
 	while (1)
 	{
 		char *line;
@@ -56,8 +54,8 @@ int	main(int argc, char **argv, char **envp)
 			int i = 0;
 			while(tokens[i].value)
 			{
-    			free(tokens[i].value); 
-    			i++;
+				free(tokens[i].value); 
+				i++;
 			}
 			free(tokens);
 			/*int j = 0;
