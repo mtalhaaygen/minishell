@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/17 19:57:25 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/19 22:21:56 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ void	rm_heredoc()
 	gv.pid = fork();
 	if (gv.pid == 0)
 	{
-		if (execve(args[0], args, NULL)) // char** "key=value" "key=value" "key=value" "key=value" "key=value"
-			perror("execve perror ");
-		exit(1);
+		execve(args[0], args, NULL);
+		// if () // char** "key=value" "key=value" "key=value" "key=value" "key=value"
+		// 	perror("execve perror ");
+		// exit(1);
 	}
 	else if (gv.pid < 0) 
 		return (perror("fork error "));
