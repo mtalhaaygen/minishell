@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/18 10:34:56 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/19 21:37:57 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	run_builtin(int status, Node node)
 		run_echo(node);
 	else if (status == EXPORT) // eğer eşittir yoksa sadece full e at, eğer eşittir değeri varsa hem full hemde key-value değerleri dolsun
 		//ft_export();
-	exit(1);
+	exit(0);
 }
 void	run_other_builtin(int status, Node node)
 {
@@ -31,7 +31,7 @@ void	run_other_builtin(int status, Node node)
 	else if (status == EXIT)
 	{
 		// free
-		exit(1);
+		exit(0);
 	}
 	else if (status == UNSET)
 		printf("unset çalıştır\n"); // envsize - 1 kadar yer aç tüm envleri env_liste atarken gerekli değeri atlayarak devam et, silmek için yalnızca char *full değeri içerisinde değer olması yeterli

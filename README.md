@@ -2,8 +2,7 @@
 ./caf -disu
 ### YAPILACAKLAR
 maygen
-- tek node da tek bir redirection çalışıyo
-- redirectionlarda nodeları güncelle
+- unset exit ve cd komutları çıktı vermeyen komutlar olarak pipe olduğu durumlarda çalışmayacak export ise tek başına kullanıldığında çıktı veriyor ama diğer durumlarda çıktı vermediği için tek başına olmadığında pipeda varsa çalışmayacak
 - infile ve outfile dosyaları access ile kontrol et
 - cat | cat | ls sorulacak
 - export unset yapılacak
@@ -18,9 +17,11 @@ tdemir
 
 kim yaparsa
 - $?
-- exit bakılcak
 - hata mesajları
 ### TAMAMLANANLAR
+- exit bakılcak
+- tek node da tek bir redirection çalışıyo
+- redirectionlarda nodeları güncelle
 - cat < olmayan txt <!-- file acsess ile kontrol edilince düzelecek -->
 - ./ ile yada / ile baslayınca farklı bir if ile çalışacak
 - builtinler çıktıyı pipe a aktarmıyor

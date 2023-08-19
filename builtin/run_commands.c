@@ -10,7 +10,7 @@ void	run_pwd(void)
 	else
 		printf("%s\n",s);
 	free(s);
-	exit(1);
+	exit(0);
 }
 
 void	run_cd(Node node)
