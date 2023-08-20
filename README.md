@@ -2,7 +2,6 @@
 ./caf -disu
 ### YAPILACAKLAR
 maygen
-- unset exit ve cd komutları çıktı vermeyen komutlar olarak pipe olduğu durumlarda çalışmayacak export ise tek başına kullanıldığında çıktı veriyor ama diğer durumlarda çıktı vermediği için tek başına olmadığında pipeda varsa çalışmayacak
 - infile ve outfile dosyaları access ile kontrol et
 - cat | cat | ls sorulacak
 - export unset yapılacak
@@ -10,6 +9,8 @@ maygen
 - builtin executor leaks kontrolü
 
 tdemir
+- envler düzgün gelmiyor
+- echo $ yada echo " " gibi girdilerde doğru sonuç gelmiyor
 -''leaks kontolü
 -here leaks kontrolü 
 - set ctrl d 
@@ -18,7 +19,9 @@ tdemir
 kim yaparsa
 - $?
 - hata mesajları
+
 ### TAMAMLANANLAR
+- unset exit ve cd komutları çıktı vermeyen komutlar olarak pipe olduğu durumlarda çalışmayacak export ise tek başına kullanıldığında çıktı veriyor ama diğer durumlarda çıktı vermediği için tek başına olmadığında pipeda varsa çalışmayacak
 - exit bakılcak
 - tek node da tek bir redirection çalışıyo
 - redirectionlarda nodeları güncelle

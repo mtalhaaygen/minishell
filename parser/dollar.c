@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:57:32 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/17 12:34:24 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/20 14:46:21 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_dolkey(s_token *tokens, int i, int j)
 		j++;
 	}
 	dolkey[k] = '\0';
-	printf("kjsd %p\n", dolkey);
+	// printf("kjsd %p\n", dolkey);
 	return (dolkey);
 }
 

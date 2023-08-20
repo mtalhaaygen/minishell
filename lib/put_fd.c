@@ -6,11 +6,30 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:47:28 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/16 14:22:14 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/20 15:47:56 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void insertionSort(char** arr, int size)
+{
+	for (int i = 1; i < size; i++)
+	{
+		char* key = arr[i];
+		int j = i - 1;
+		size_t len = ft_strlen(key);
+		if (len > ft_strlen(arr[j]))
+			len = ft_strlen(arr[j]);
+		while (j >= 0 && ft_strncmp_signed(arr[j], key, len) > 0)
+		{
+			arr[j + 1] = arr[j];
+			j--;
+		}
+
+		arr[j + 1] = key;
+	}
+}
 
 void	ft_putstr_fd(char *s, int fd)
 {

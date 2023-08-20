@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/19 21:37:57 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/20 14:52:39 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,19 @@ void	run_builtin(int status, Node node)
 	else if (status == ECHO)
 		run_echo(node);
 	else if (status == EXPORT) // eğer eşittir yoksa sadece full e at, eğer eşittir değeri varsa hem full hemde key-value değerleri dolsun
-		//ft_export();
+		ft_export(node);
 	exit(0);
 }
 void	run_other_builtin(int status, Node node)
 {
+	if (gv.process_count > 1) // bu komutların pipe olduğu durumlarda çalışmaması için bu kokşul eklendi
+		return ;
 	if (status == CD)
 		run_cd(node);
 	else if (status == EXIT)
 	{
 		// free
+		printf("exit\n");
 		exit(0);
 	}
 	else if (status == UNSET)

@@ -89,7 +89,8 @@ typedef struct t_minishell
 	s_process	*process;		// tüm processler
 	int flag;
 	int	pid;
-	char **full;
+	char		**full;
+	int			full_size;
 }	s_minishell;
 
 extern s_minishell gv;
@@ -129,6 +130,7 @@ void	*ft_calloc(size_t count, size_t size);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strdup_dolkey(char *src);
+void	insertionSort(char** arr, int size);
 // int		arg_count(char **str);
 
 /* EXECUTOR */
@@ -154,6 +156,6 @@ void	run_other_builtin(int status, Node node);
 void	run_pwd(void);
 void	run_cd(Node node);
 void	run_echo(Node node);
-void	ft_export(void);
+void ft_export(Node node);
 
 #endif
