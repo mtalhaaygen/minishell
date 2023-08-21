@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/20 17:25:48 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/21 12:59:51 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ int		file_access(char	*filename, int flag)
 			// printf("%s: No such file or directory\n", filename);
 		else
 			perror("access");
+		exit(0);
 	}
 	return (0);
 }
 
-// dosya var >> izni kontrol et >>> izni yok >>> permission denided open ile aç dup2 fd_change
+// dosya var >> izni kontrol et >>> izni yok >>> permission denided EXİT
 // dosya var >> izni kontrol et >>> izni var >>> open ile aç dup2 fd_change
 // dosya yok >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> open ile aç dup2 fd_change
 void	change_fd_i(Node node, int index)

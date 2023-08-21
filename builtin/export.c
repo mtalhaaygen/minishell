@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/20 15:19:18 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/21 13:22:15 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,12 @@ void	ft_print_full()
 
 void ft_export(Node node)
 {
-	if (node.args[1] == NULL) // command : export, command : export | grep a
-	{
+	if (node.args[1] == NULL) // command : export, command : export | grep a, parametresiz
 		ft_print_full();
-		exit(0);
-	}
-	else if (gv.process_count == 1) // export a=1
+	else if (gv.process_count == 1) // export a=1, pipe yokken parametreli
 	{
-		printf("add full\n");
-		exit(0);
+		printf("add full %s\n", node.args[1]);
 	}
-	else if (gv.process_count > 1 && node.args[1] != NULL) // pipe varsa ve export parametresiz ise çalışmayacak command : export a=1 | grep 
-		exit(0);
+	// parametreli ve pipe varken çalışmayacak direkt exit
+	exit(0);
 }
