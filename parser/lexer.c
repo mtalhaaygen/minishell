@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/21 12:10:43 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/21 17:38:21 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ s_token	*ft_start(char *input)
 		k++;
 	}
 	tokens[k].value = NULL;
-	
 	return (tokens);
 }
 
