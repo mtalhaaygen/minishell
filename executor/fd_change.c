@@ -6,12 +6,25 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/19 22:41:50 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/20 17:25:48 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+void	fd_change(Node node, int index)
+{
+	while (node.args[index] && node.args[index + 2])
+	{
+		// free(node.args[index]);
+		node.args[index] = node.args[index + 2];
+		index++;
+	}
+	// free(node.args[index]);
+	// free(node.args[index + 1]);
+	node.args[index] = NULL;
+	node.args[index + 1] = NULL;
+}
 // bu fonksiyon dosya izinlerini kontrol edecek gerekirse gerekli hata kodlarını ekrana basacak
 int		file_access(char	*filename, int flag)
 {
@@ -35,25 +48,21 @@ int		file_access(char	*filename, int flag)
 	return (0);
 }
 
+// dosya var >> izni kontrol et >>> izni yok >>> permission denided open ile aç dup2 fd_change
+// dosya var >> izni kontrol et >>> izni var >>> open ile aç dup2 fd_change
+// dosya yok >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> open ile aç dup2 fd_change
 void	change_fd_i(Node node, int index)
 {
 	int	fdnewtxt;
 
 	if (node.outfile->name != NULL)
 	{
-		fdnewtxt = open(node.args[index + 1], O_RDWR | O_TRUNC | O_CREAT, 0777);
+		if (access(node.args[index + 1], F_OK) != -1)
+			file_access(node.args[index + 1], W_OK);
+		fdnewtxt = open(node.args[index + 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
 		if (ft_strcmp(node.outfile->name, node.args[index + 1]))
 			dup2(fdnewtxt, STDOUT_FILENO);
- 		while (node.args[index] && node.args[index + 2])
-		{
-			// free(node.args[index]);
-			node.args[index] = node.args[index + 2];
-			index++;
-		}
-		// free(node.args[index]);
-		// free(node.args[index + 1]);
-		node.args[index] = NULL;
-		node.args[index + 1] = NULL;
+		fd_change(node, index);
 	}
 }
 
@@ -63,19 +72,12 @@ void	change_fd_ii(Node node, int index)
 
 	if (node.outfile->name != NULL)
 	{
-		fdnewtxt = open(node.args[index + 1], O_RDWR | O_APPEND | O_CREAT, 0777);
+		if (access(node.args[index + 1], F_OK) != -1)
+			file_access(node.args[index + 1], W_OK);
+		fdnewtxt = open(node.args[index + 1], O_RDWR | O_APPEND | O_CREAT, 0644); // -rw-r--r--
 		if (ft_strcmp(node.outfile->name, node.args[index + 1]))
 			dup2(fdnewtxt, STDOUT_FILENO); 
- 		while (node.args[index] && node.args[index + 2])
-		{
-			// free(node.args[index]);
-			node.args[index] = node.args[index + 2];
-			index++;
-		}
-		// free(node.args[index]);
-		// free(node.args[index + 1]);
-		node.args[index] = NULL;
-		node.args[index + 1] = NULL;
+		fd_change(node, index);
 	}
 }
 
@@ -90,16 +92,7 @@ void	change_fd_o(Node node, int index)
 		fdnewtxt = open(node.args[index + 1], O_RDWR, 0777);
 		if (ft_strcmp(node.infile->name, node.args[index + 1]))
 			dup2(fdnewtxt, STDIN_FILENO);  
-		while (node.args[index] && node.args[index + 2])
-		{
-			// free(node.args[index]);
-			node.args[index] = node.args[index + 2];
-			index++;
-		}
-		// free(node.args[index]);
-		// free(node.args[index + 1]);
-		node.args[index] = NULL;
-		node.args[index + 1] = NULL;
+		fd_change(node, index);
 	}
 }
 
@@ -135,15 +128,4 @@ void	is_redirection(Node *nodes, int i)
 			j -=1;
 		}
 	}
-
-/*
-	int index;
-
-	if ((index = contain_i(nodes[i].args)))
-		change_fd_i(nodes[i], index);
-	else if ((index = contain_ii(nodes[i].args)))
-		change_fd_ii(nodes[i], index);
-	else if ((index = contain_o(nodes[i].args)))
-		change_fd_o(nodes[i], index);
-*/
 }

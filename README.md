@@ -2,9 +2,9 @@
 ./caf -disu
 ### YAPILACAKLAR
 maygen
-- infile ve outfile dosyaları access ile kontrol et
-- cat | cat | ls sorulacak
+- infile ve outfile dosyaları access ile kontrol et (> ve >> için dosya varsa o zaman access ile yazılabilir mi kontrolü at)
 - export unset yapılacak
+- cat | cat | ls sorulacak
 - builtin executor seg kontrolü
 - builtin executor leaks kontrolü
 
