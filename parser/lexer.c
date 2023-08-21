@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/21 11:50:28 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/21 12:10:43 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void ft_dup(s_token *tokens, char *input, int start, int end, int iter)
 	{
 		while (input[i] == 34 && gv.flag == 1)
 			i++;
-		while (input[i] == 39 && gv.flag == 2)
+		while (input[i] == 39 && gv.flag == 0)
 			i++;
 		if (i < end)
 		{
@@ -187,7 +187,7 @@ s_token *ft_tokens(char *input)
 	free(input);
 	tokens = ft_sep(tokens);
 	tokens = ft_dollar(tokens);
-	tokens = ft_check_sng_que(tokens);
+	//tokens = ft_check_sng_que(tokens);
 	ft_token_type(tokens);	
 	gv.process_count = ft_pipe_counter(tokens) + 1;
 	return tokens;

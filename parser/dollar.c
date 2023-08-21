@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:57:32 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/20 17:22:38 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/21 12:01:55 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,19 @@ char	*ft_dolval(char *dolkey)
 	int	i;
 
 	i = 0;
+	char *dol_null;
+	dol_null = ft_calloc(2,sizeof(char));
+	dol_null[0] = '$';
+	dol_null[1] = '\0';
+	if(dolkey[0] == '$' && !dolkey[1])
+		return(dol_null);
 	while (gv.env[i].key)
 	{
 		if (ft_strcmp(dolkey, gv.env[i].key))
 			return (gv.env[i].value);
 		i++;
 	}
+	free(dol_null);
 	return (0);
 }
 

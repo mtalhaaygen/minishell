@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:37:42 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/14 11:37:20 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/21 13:15:54 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,45 @@ int  ft_char_count(const char *input, int c)
 	}
 	return (count);
 }
+int ft_mq_counter(const char *input)
+{
+	int count;
+	char **sp;
+	int i;
+	int j;
+
+	sp = ft_split(input, 32);
+	i =  0;
+	count =  0;
+	while(sp[i])
+	{
+	
+		j = 0;
+		while(sp[i][j] && sp[i][j] == 39)
+		{
+			count++;
+			j++;
+		}
+		if(sp[i][j-1] != 39)
+			j = ft_strlen(sp[i]) -1;
+		while(sp[i][j] && sp[i][j] == 39)
+		{
+			count++;
+			j--;
+		}
+		i++;
+	}
+	return(count);
+}
 
 int	quote_off(const char *input)
 {
 	int	dq_count;
-	int	mq_count;
+	int mq_count;
 	
+	mq_count = ft_mq_counter(input);
 	dq_count = ft_char_count(input, DQ);
-	mq_count = ft_char_count(input, MQ);
-	if (dq_count % 2 == 1 || mq_count % 2 == 1)
+	if (dq_count % 2 == 1 || mq_count % 2 == 1 )
 	{
 		printf("quotes count error\n");
 		return (1);
