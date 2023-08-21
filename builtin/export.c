@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/21 13:22:15 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/21 18:30:12 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_print_full()
 		printf("declare -x %s\n", gv.full[i]);
 		i++;
 	}
+	printf("ekrana basılan:%d // gv.full_size:%d\n", i, gv.full_size);
 }
 
 void ft_export(Node node)
@@ -30,8 +31,27 @@ void ft_export(Node node)
 		ft_print_full();
 	else if (gv.process_count == 1) // export a=1, pipe yokken parametreli
 	{
+		char	**new;
+		int		size;
+		int		i;
+
+		i = -1;
+		size = arg_count(gv.full) + 1;
+		
+		gv.full_size = size;
+		gv.full_size++;
+		
+		
+		new = ft_calloc(size + 1, sizeof(char *));
+		if (!new)
+			return ;
+		while (gv.full[i])
+			new[i] = gv.full[i];
+		new[i] = node.args[1];
+		gv.full = new;
 		printf("add full %s\n", node.args[1]);
+		insertionSort(gv.full, gv.full_size);
 	}
-	// parametreli ve pipe varken çalışmayacak direkt exit
+	// parametresi varken ve pipe varken çalışmayacak direkt exit
 	exit(0);
 }

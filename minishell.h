@@ -131,7 +131,7 @@ void	ft_putstr_fd(char *s, int fd);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strdup_dolkey(char *src);
 void	insertionSort(char** arr, int size);
-// int		arg_count(char **str);
+int		arg_count(char **str);
 
 /* EXECUTOR */
 // void	ft_executor(Node *nodes);
