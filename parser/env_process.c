@@ -6,12 +6,25 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:02:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/21 17:54:43 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/22 17:10:56 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+void	fill_full(char **envp, int len)
+{
+	int	i;
+
+	i = -1;
+	g_va.full = ft_calloc(sizeof(char *) , (len + 1));
+	if (!g_va.full)
+		return ;
+	while (++i < len)
+		g_va.full[i] = envp[i];
+	g_va.full[i] = NULL;
+	g_va.full_size = i;
+}
 int	env_counter(char **envp)
 {
 	int	i;
@@ -31,8 +44,7 @@ s_env	*fill_env(char **envp)
 
 	i = 0;
 	len = env_counter(envp);
-	env_list = malloc (sizeof(s_env) * (len + 1));	
-	gv.full = envp;
+	env_list = malloc(sizeof(s_env) * (len + 1));	
 	env_list->env_count = len;
 	while (i < len)
 	{
@@ -44,7 +56,7 @@ s_env	*fill_env(char **envp)
 		free(s);
 		i++;
 	}
-	gv.full_size = i;
+	fill_full(envp, len);
 	return (env_list);
 }
 

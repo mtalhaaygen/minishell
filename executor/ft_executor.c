@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/18 20:10:55 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/22 17:09:41 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	ft_executor(Node *nodes, char **envp)
 	int i;
 
 	i = -1;
-	while (++i < gv.process_count)
+	while (++i < g_va.process_count)
 	{
 		if (nodes[i].args[0] && !(status = is_other_builtin(nodes[i].args[0])))
 		{
-			gv.pid = fork();
-			if (gv.pid == 0)
+			g_va.pid = fork();
+			if (g_va.pid == 0)
 			{
 				ft_process_merge(i);
 				is_redirection(nodes, i);
@@ -67,7 +67,7 @@ void	ft_executor(Node *nodes, char **envp)
 					perror("execve perror ");
 				exit (1);
 			}
-			else if (gv.pid < 0) 
+			else if (g_va.pid < 0) 
 				return (perror("fork error "));
 		}
 		run_other_builtin(status, nodes[i]);
@@ -75,8 +75,8 @@ void	ft_executor(Node *nodes, char **envp)
 	pipe_close();
 	i = -1;
 	int status1 = -1;
-	while (++i < gv.process_count)
-		waitpid(gv.pid, &status1, 0);
+	while (++i < g_va.process_count)
+		waitpid(g_va.pid, &status1, 0);
 	rm_heredoc();
 	if (WIFEXITED(status1)) {
 		int exitStatus = WEXITSTATUS(status1);
@@ -87,23 +87,23 @@ void	ft_executor(Node *nodes, char **envp)
 
 void	exec_start(Node *nodes, char **envp)
 {
-	if (!gv.nodes[gv.process_count - 1].args[0])
-		gv.process_count -= 1;
-	if (gv.process_count > 1)
+	if (!g_va.nodes[g_va.process_count - 1].args[0])
+		g_va.process_count -= 1;
+	if (g_va.process_count > 1)
 	{
 		s_process	*process;
 		int			i;
 
-		process = ft_calloc(gv.process_count - 1, sizeof(s_process));
+		process = ft_calloc(g_va.process_count - 1, sizeof(s_process));
 		if (!process)
 			return ;
 		i = -1;
-		while (++i < gv.process_count - 1)
+		while (++i < g_va.process_count - 1)
 		{
 			if (pipe(process[i].fd) == -1)
 				perror("pipe not created");
 		}
-		gv.process = process;
+		g_va.process = process;
 	}
 	exec_select(nodes, envp);
 }
@@ -116,7 +116,7 @@ void	exec_select(Node *nodes, char **envp)
 	int		status;
 
 	th = -1;
-	while (++th < gv.process_count)
+	while (++th < g_va.process_count)
 	{
 		i = -1;
 		flag = 0;

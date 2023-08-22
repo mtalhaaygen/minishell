@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 15:33:11 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/22 17:09:01 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	rm_heredoc()
 	args[1] = ft_strdup("-rf");
 	args[2] = ft_strdup("heredoc.txt");
 	args[3] = NULL;
-	gv.pid = fork();
-	if (gv.pid == 0)
+	g_va.pid = fork();
+	if (g_va.pid == 0)
 		execve(args[0], args, NULL);
-	else if (gv.pid < 0) 
+	else if (g_va.pid < 0) 
 		return (perror("fork error "));
 	free_pp(args);
 }

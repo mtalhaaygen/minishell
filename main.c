@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 15:09:39 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/22 17:15:35 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-s_minishell	gv;
+// s_minishell	g_va;
 
 void	sigint_handler(int sig)
 {
@@ -28,7 +28,7 @@ int	main(int argc, char **argv, char **envp)
 
 
 	env_list = fill_env(envp);
-	gv.env = env_list;
+	g_va.env = env_list;
 	signal(SIGINT, sigint_handler);
 	while (1)
 	{
@@ -51,7 +51,7 @@ int	main(int argc, char **argv, char **envp)
 		if(tokens[0].value)
 		{
 			nodes = ft_parser(tokens);
-			gv.nodes = nodes;
+			g_va.nodes = nodes;
 			
 			int i = 0;
 			while(tokens[i].value)
@@ -61,7 +61,7 @@ int	main(int argc, char **argv, char **envp)
 			}
 			free(tokens);
 			/*int j = 0;
-			while(j<gv.process_count)
+			while(j<g_va.process_count)
 			{
 				i  = 0;
 				while (i<nodes[j].arg_count)

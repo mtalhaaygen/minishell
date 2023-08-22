@@ -94,7 +94,7 @@ typedef struct t_minishell
 	int			full_size;
 }	s_minishell;
 
-extern s_minishell gv;
+s_minishell g_va;
 
 s_env		*fill_env(char **envp);
 void		print_env_list(s_env *env_list);
@@ -116,6 +116,7 @@ s_token *ft_sep(s_token *tokens);
 char 	**ft_tmp_tokens(s_token *tokens);
 s_token *ft_single_sep(s_token *tokens, int i, int j, char val);
 s_token *ft_double_sep(s_token *tokens, int i, int j, char val);
+void	fill_full(char **envp, int len);
 /* LIB*/
 int		my_isspace(char ch);
 char	*ft_strdup(char *src);

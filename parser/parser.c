@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/17 17:14:26 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/22 17:11:35 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ Node	*ft_parser(s_token *tokens)
 	int j;
 	int pipe_len;
 
-	pipe_len = gv.process_count;
+	pipe_len = g_va.process_count;
 	nodes = malloc(sizeof(Node) * (pipe_len + 1));
 
 	i = 0;

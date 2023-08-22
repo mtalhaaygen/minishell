@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:57:32 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/22 13:47:52 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/22 17:10:33 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ char	*ft_dolval(char *dolkey)
 	dol_null[1] = '\0';
 	if(dolkey[0] == '$' && !dolkey[1])
 		return(dol_null);
-	while (gv.env[i].key)
+	while (g_va.env[i].key)
 	{
-		if (ft_strcmp(dolkey, gv.env[i].key))
-			return (gv.env[i].value);
+		if (ft_strcmp(dolkey, g_va.env[i].key))
+			return (g_va.env[i].value);
 		i++;
 	}
 	free(dol_null);
