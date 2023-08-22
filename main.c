@@ -6,18 +6,14 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 14:53:14 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/22 15:09:39 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 s_minishell	gv;
-void	sigquit_handler(int sig)
-{
-	(void)sig;
-	printf("Quit: 3\n");
-}
+
 void	sigint_handler(int sig)
 {
 	(void)sig;
@@ -27,7 +23,7 @@ void	sigint_handler(int sig)
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
-	(void)argv;
+	(void)argv;   
 	s_env *env_list;
 
 
@@ -42,8 +38,10 @@ int	main(int argc, char **argv, char **envp)
 		line = ft_readline("$ ");
 		if(!line)
 		{
-			printf(" exit\n");
-			exit(1);			
+			write(1, "\033[D", 3);
+			write(1, "\033[D", 3);
+			printf("exit\n");
+			exit(1);	
 		}
 		if (line[0])
 			add_history(line);
