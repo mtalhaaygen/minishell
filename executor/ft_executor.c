@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 17:49:07 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/22 19:47:04 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int a;
 
 char	*ft_access(char *args)
 {
@@ -78,10 +76,10 @@ void	ft_executor(Node *nodes, char **envp)
 	while (++i < g_va->process_count)
 		waitpid(g_va->pid, &status1, 0);
 	rm_heredoc();
-	if (WIFEXITED(status1)) {
-		int exitStatus = WEXITSTATUS(status1);
-		(void)exitStatus;
-		//printf("\n%d\n", exitStatus);
+	if (WIFEXITED(status1))
+	{
+		g_va->err_number = WEXITSTATUS(status1);
+		printf("*%d*\n", g_va->err_number);
 	}
 }
 

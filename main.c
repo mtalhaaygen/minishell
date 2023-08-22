@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 18:11:07 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/22 19:33:27 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		char *line;
-		//Node *nodes;
+		Node *nodes;
 		s_token *tokens;
 		line = ft_readline("$ ");
 		if(!line)
@@ -48,8 +48,8 @@ int	main(int argc, char **argv, char **envp)
 		free(line);
 		if(tokens[0].value)
 		{
-			//nodes = ft_parser(tokens);
-			//g_va->nodes = nodes;
+			nodes = ft_parser(tokens);
+			g_va->nodes = nodes;
 			
 		/*
 			int j = 0;
@@ -70,7 +70,7 @@ int	main(int argc, char **argv, char **envp)
 			
 			free(nodes);*/
 			//system("leaks minishell");	
-			//exec_start(nodes, envp);
+			exec_start(nodes, envp);
 		}
 		int i = 0;
 		while(tokens[i].value)

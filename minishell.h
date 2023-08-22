@@ -58,6 +58,12 @@ typedef  struct t_env
 	char			*value;
 }	s_env;
 
+typedef  struct t_newenv
+{
+	char		**full;
+	int			full_size;
+}	s_newenv;
+
 typedef struct t_file //DENEYSEL
 {
 	TokenType		type;
@@ -88,10 +94,9 @@ typedef struct t_minishell
 	s_env		*env;			// tüm envler
 	Node		*nodes;			// tüm nodelar
 	s_process	*process;		// tüm processler
-	int flag;
-	int	pid;
-	char		**full;
-	int			full_size;
+	int			flag;
+	int			pid;
+	int			err_number;
 }	s_minishell;
 
 s_minishell *g_va;
@@ -159,6 +164,8 @@ void	run_other_builtin(int status, Node node);
 void	run_pwd(void);
 void	run_cd(Node node);
 void	run_echo(Node node);
-void ft_export(Node node);
+void	ft_export(Node node);
+void	ft_print_full(char **args);
+
 
 #endif

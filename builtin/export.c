@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 18:03:44 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/22 19:53:56 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void ft_export(Node node)
 
 		i = -1;
 		g_va->full_size = arg_count(g_va->full) + 1;
+		printf("ad:%p\n", &g_va->full_size);
 		new = ft_calloc(g_va->full_size + 1, sizeof(char *));
 		if (!new)
 			return ;
