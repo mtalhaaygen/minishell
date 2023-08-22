@@ -6,11 +6,21 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:47:28 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/20 15:47:56 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/22 15:32:42 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	free_pp(char **args)
+{
+	int	i;
+
+	i = -1;
+	while(args[++i])
+		free(args[i]);
+	free(args);
+}
 
 void insertionSort(char** arr, int size)
 {

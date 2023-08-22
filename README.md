@@ -3,23 +3,22 @@
 ### YAPILACAKLAR
 maygen
 - export unset yapılacak
+- $?
 - cat | cat | ls sorulacak
 - builtin executor seg kontrolü
 - builtin executor leaks kontrolü
 
 tdemir
-- envler düzgün gelmiyor
-- echo $ yada echo " " gibi girdilerde doğru sonuç gelmiyor
--''leaks kontolü
--here leaks kontrolü 
-- set ctrl d 
+- leaks kontrolü
 - lexer parser seg kontrolü
 
 kim yaparsa
-- $?
 - hata mesajları
 
 ### TAMAMLANANLAR
+- set ctrl d 
+- envler düzgün gelmiyor
+- echo $ yada echo " " gibi girdilerde doğru sonuç gelmiyor
 - infile ve outfile dosyaları access ile kontrol et (> ve >> için dosya varsa o zaman access ile yazılabilir mi kontrolü at)
 - unset exit ve cd komutları çıktı vermeyen komutlar olarak pipe olduğu durumlarda çalışmayacak export ise tek başına kullanıldığında çıktı veriyor ama diğer durumlarda çıktı vermediği için tek başına olmadığında pipeda varsa çalışmayacak
 - exit bakılcak

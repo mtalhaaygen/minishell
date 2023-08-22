@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/19 22:21:56 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/22 15:33:11 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,10 @@ void	rm_heredoc()
 	args[3] = NULL;
 	gv.pid = fork();
 	if (gv.pid == 0)
-	{
 		execve(args[0], args, NULL);
-		// if () // char** "key=value" "key=value" "key=value" "key=value" "key=value"
-		// 	perror("execve perror ");
-		// exit(1);
-	}
 	else if (gv.pid < 0) 
 		return (perror("fork error "));
-//	free(args[0]);
-//	free(args);
+	free_pp(args);
 }
 
 void	node_change(Node node, int i, int flag)
