@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 17:50:08 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:11:07 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		char *line;
-		Node *nodes;
+		//Node *nodes;
 		s_token *tokens;
 		line = ft_readline("$ ");
 		if(!line)
@@ -48,20 +48,14 @@ int	main(int argc, char **argv, char **envp)
 		free(line);
 		if(tokens[0].value)
 		{
-			nodes = ft_parser(tokens);
-			g_va->nodes = nodes;
+			//nodes = ft_parser(tokens);
+			//g_va->nodes = nodes;
 			
-			int i = 0;
-			while(tokens[i].value)
-			{
-				free(tokens[i].value); 
-				i++;
-			}
-			free(tokens);
-			/*int j = 0;
+		/*
+			int j = 0;
 			while(j<g_va->process_count)
 			{
-				i  = 0;
+				int i  = 0;
 				while (i<nodes[j].arg_count)
 				{
 					free(nodes[j].args[i]);
@@ -76,8 +70,15 @@ int	main(int argc, char **argv, char **envp)
 			
 			free(nodes);*/
 			//system("leaks minishell");	
-			exec_start(nodes, envp);
+			//exec_start(nodes, envp);
 		}
+		int i = 0;
+		while(tokens[i].value)
+		{
+			free(tokens[i].value); 
+			i++;
+		}
+		free(tokens);
 		
 
 	}

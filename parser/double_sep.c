@@ -12,7 +12,7 @@ s_token *ft_r_l_sep(s_token *tokens, int i, char val, char *here,char	**tmp_toke
 		}
 		tokens[i].value= ft_strdup(sp[0]);
 		i++;
-		tokens[i].value = ft_strdup(here);
+		tokens[i].value = ft_strdup_dolkey(here);
 		i++;
 
 		tokens[i].value = ft_strdup(sp[1]);
@@ -47,7 +47,8 @@ s_token	*ft_r_sep(s_token *tokens, int i, char val, char *here,char	**tmp_tokens
 			free(tokens[f].value);
 			f++;
 		}
-		tokens[i].value = ft_strdup(here);
+		tokens[i].value = ft_strdup_dolkey(here);
+
 		i++;
 		tokens[i].value = ft_strdup(sp[0]);
 		i++;
@@ -82,7 +83,8 @@ s_token	*ft_l_sep(s_token *tokens, int i, char val, char *here,char	**tmp_tokens
 	}
 	tokens[i].value = ft_strdup(sp[0]);
 	i++;
-	tokens[i].value = ft_strdup(here);
+	tokens[i].value = ft_strdup_dolkey(here);
+	
 	i++;
 		
 	while(tmp_tokens[tmp])

@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:37:42 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/21 17:34:01 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:06:24 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int ft_mq_counter(const char *input)
 		}
 		i++;
 	}
+	free_pp(sp);
 	return(count);
 }
 

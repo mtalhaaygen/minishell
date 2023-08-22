@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 17:47:59 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:12:21 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ s_token *ft_tokens(char *input)
 	{
 		tokens = malloc(sizeof(s_token) * 1);
 		tokens[0].value = NULL;	
+		free(input);
 		return (tokens);
 	}
 	tokens = ft_start(input);

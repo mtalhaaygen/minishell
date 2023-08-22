@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 17:56:50 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:03:44 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,21 @@ void ft_export(Node node)
 
 		i = -1;
 		g_va->full_size = arg_count(g_va->full) + 1;
-		printf("ad:%p\n", &g_va->full_size);
-		printf("içerde fullsize:%d\n", g_va->full_size);
 		new = ft_calloc(g_va->full_size + 1, sizeof(char *));
 		if (!new)
 			return ;
 		while (g_va->full[++i])
-			new[i] = g_va->full[i];
-		new[i] = node.args[1];
+			new[i] = ft_strdup(g_va->full[i]);
+		new[i] =ft_strdup(node.args[1]);
 		//fill_full(new, i);
-		g_va->full = new;
+		i = 0;
+		while (new[i])
+		{
+			g_va->full[i] = new[i];
+			i++;
+		}
+		
+		g_va->full[i] = NULL;
 		printf("add full %s\n", node.args[1]);
 		insertionSort(g_va->full, g_va->full_size);
 	}
