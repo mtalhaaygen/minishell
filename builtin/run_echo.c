@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:55:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/20 14:48:05 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/21 13:41:04 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void	run_echo(Node node) //yalnızca stdinden girdi alıp stdouta yada yönlendi
 		i++;
 	while (node.args[i])
 	{
+		if (node.args[i][0] == '~' && node.args[i][1] == '\0')
+		{
+			free(node.args[i]);
+			node.args[i] = ft_strdup(getenv("HOME"));
+		}
 		ft_putstr_fd(node.args[i], 1);
 		if (node.args[i + 1] != NULL)
 			ft_putstr_fd(" ", 1);

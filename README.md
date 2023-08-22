@@ -2,9 +2,8 @@
 ./caf -disu
 ### YAPILACAKLAR
 maygen
-- infile ve outfile dosyaları access ile kontrol et
-- cat | cat | ls sorulacak
 - export unset yapılacak
+- cat | cat | ls sorulacak
 - builtin executor seg kontrolü
 - builtin executor leaks kontrolü
 
@@ -21,6 +20,7 @@ kim yaparsa
 - hata mesajları
 
 ### TAMAMLANANLAR
+- infile ve outfile dosyaları access ile kontrol et (> ve >> için dosya varsa o zaman access ile yazılabilir mi kontrolü at)
 - unset exit ve cd komutları çıktı vermeyen komutlar olarak pipe olduğu durumlarda çalışmayacak export ise tek başına kullanıldığında çıktı veriyor ama diğer durumlarda çıktı vermediği için tek başına olmadığında pipeda varsa çalışmayacak
 - exit bakılcak
 - tek node da tek bir redirection çalışıyo
