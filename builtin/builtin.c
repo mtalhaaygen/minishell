@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 17:13:54 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/22 17:46:16 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	run_builtin(int status, Node node)
 {
 	if (status == ENV)
-		print_env_list(g_va.env); //tüm env leri key value değerlerini kullanarak yazıyoruz
+		print_env_list(g_va->env); //tüm env leri key value değerlerini kullanarak yazıyoruz
 	else if (status == PWD)
 		run_pwd();
 	else if (status == ECHO)
@@ -26,7 +26,7 @@ void	run_builtin(int status, Node node)
 }
 void	run_other_builtin(int status, Node node)
 {
-	if (g_va.process_count > 1) // bu komutların pipe olduğu durumlarda çalışmaması için bu kokşul eklendi
+	if (g_va->process_count > 1) // bu komutların pipe olduğu durumlarda çalışmaması için bu kokşul eklendi
 		return ;
 	if (status == CD)
 		run_cd(node);

@@ -17,13 +17,13 @@ void	fill_full(char **envp, int len)
 	int	i;
 
 	i = -1;
-	g_va.full = ft_calloc(sizeof(char *) , (len + 1));
-	if (!g_va.full)
+	g_va->full = ft_calloc(sizeof(char *) , (len + 1));
+	if (!g_va->full)
 		return ;
 	while (++i < len)
-		g_va.full[i] = envp[i];
-	g_va.full[i] = NULL;
-	g_va.full_size = i;
+		g_va->full[i] = envp[i];
+	g_va->full[i] = NULL;
+	g_va->full_size = i;
 }
 int	env_counter(char **envp)
 {

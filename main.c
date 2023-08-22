@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 17:15:35 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/22 17:50:08 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// s_minishell	g_va;
 
 void	sigint_handler(int sig)
 {
@@ -26,9 +24,9 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;   
 	s_env *env_list;
 
-
+	g_va = malloc(sizeof(s_minishell));
 	env_list = fill_env(envp);
-	g_va.env = env_list;
+	g_va->env = env_list;
 	signal(SIGINT, sigint_handler);
 	while (1)
 	{
@@ -51,7 +49,7 @@ int	main(int argc, char **argv, char **envp)
 		if(tokens[0].value)
 		{
 			nodes = ft_parser(tokens);
-			g_va.nodes = nodes;
+			g_va->nodes = nodes;
 			
 			int i = 0;
 			while(tokens[i].value)
@@ -61,7 +59,7 @@ int	main(int argc, char **argv, char **envp)
 			}
 			free(tokens);
 			/*int j = 0;
-			while(j<g_va.process_count)
+			while(j<g_va->process_count)
 			{
 				i  = 0;
 				while (i<nodes[j].arg_count)

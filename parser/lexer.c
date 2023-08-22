@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 17:11:25 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/22 17:47:59 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_find_end(const char *input, int i)
 	while (input[i])
 	{
 		if(input[i] == 34 || input[i] == 39)
-			g_va.flag = ft_flag(input, i);
+			g_va->flag = ft_flag(input, i);
 		i += handle_quotes(i , input, 34);
 		i += handle_quotes(i , input, 39);
 		if (my_isspace(input[i]))
@@ -63,9 +63,9 @@ void ft_dup(s_token *tokens, char *input, int start, int end, int iter)
 	str = malloc(end - start + 1);
 	while (i < end && input[i])
 	{
-		while (input[i] == 34 && g_va.flag == 1)
+		while (input[i] == 34 && g_va->flag == 1)
 			i++;
-		while (input[i] == 39 && g_va.flag == 0)
+		while (input[i] == 39 && g_va->flag == 0)
 			i++;
 		if (i < end)
 		{
@@ -191,6 +191,6 @@ s_token *ft_tokens(char *input)
 	tokens = ft_dollar(tokens);
 	//tokens = ft_check_sng_que(tokens);
 	ft_token_type(tokens);	
-	g_va.process_count = ft_pipe_counter(tokens) + 1;
+	g_va->process_count = ft_pipe_counter(tokens) + 1;
 	return tokens;
 }

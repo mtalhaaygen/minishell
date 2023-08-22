@@ -94,7 +94,7 @@ typedef struct t_minishell
 	int			full_size;
 }	s_minishell;
 
-s_minishell g_va;
+s_minishell *g_va;
 
 s_env		*fill_env(char **envp);
 void		print_env_list(s_env *env_list);
