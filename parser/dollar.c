@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:57:32 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/21 12:01:55 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/22 13:47:52 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ s_token	*ft_dollar(s_token *tokens)
 		j = -1;
 		while (tokens[i].value[++j] != '\0')
 		{
-			if (tokens[i].value[j] == '$' && tokens[i].value[j - 1] != 39)
+			if (tokens[i].value[j] == '$' && tokens[i].fq == 0)
 			{
 				dolkey = ft_strdup_dolkey(ft_dolkey(tokens, i, j));
 				if (ft_dolval(dolkey))

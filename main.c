@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/18 19:54:37 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:53:14 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	main(int argc, char **argv, char **envp)
 
 	env_list = fill_env(envp);
 	gv.env = env_list;
-	signal(SIGQUIT, sigquit_handler);
 	signal(SIGINT, sigint_handler);
 	while (1)
 	{
@@ -41,6 +40,11 @@ int	main(int argc, char **argv, char **envp)
 		Node *nodes;
 		s_token *tokens;
 		line = ft_readline("$ ");
+		if(!line)
+		{
+			printf(" exit\n");
+			exit(1);			
+		}
 		if (line[0])
 			add_history(line);
 

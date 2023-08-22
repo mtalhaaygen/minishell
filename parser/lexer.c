@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/21 17:38:21 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/22 13:53:31 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,13 @@ s_token	*ft_start(char *input)
 	while (input[i])
 	{
 		tokens[k].quot_flag = 0;
-		while (my_isspace(input[i]))
+		tokens[k].fq = 0;
+ 		while (my_isspace(input[i]))
 				i++;
 		if(input[i] == 39 || input[i] == 34)
 			tokens[k].quot_flag = 1;
+		if(input[i] == 39)
+			tokens[k].fq = 1;
 		start = i;
 		i = ft_find_end(input, i);
 		ft_dup(tokens, input,start, i, k);
