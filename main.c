@@ -6,11 +6,13 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 19:33:27 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/23 10:40:40 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+s_minishell *g_va;
 
 void	sigint_handler(int sig)
 {

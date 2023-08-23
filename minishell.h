@@ -13,7 +13,7 @@
 # include <readline/history.h>
 
 //#include <termios.h> // ioctl için
-//#include <sys/ioctl.h>
+#include <sys/ioctl.h>
 
 //# define CHECK(X) ({char* __val = (X); (__val == NULL ? (perror("ERROR :")) : __val); }) // malloc erroru için
 //# define CHECK_INT(X) ({int __val = (X); (__val == -1 ? (perror("ERROR :")) : __val); }) // diğer errorlar için
@@ -58,11 +58,11 @@ typedef  struct t_env
 	char			*value;
 }	s_env;
 
-typedef  struct t_newenv
-{
-	char		**full;
-	int			full_size;
-}	s_newenv;
+// typedef  struct t_newenv
+// {
+// 	char		**full;
+// 	int			full_size;
+// }	s_newenv;
 
 typedef struct t_file //DENEYSEL
 {
@@ -96,10 +96,12 @@ typedef struct t_minishell
 	s_process	*process;		// tüm processler
 	int			flag;
 	int			pid;
+	char		**full;
+	int			full_size;
 	int			err_number;
 }	s_minishell;
 
-s_minishell *g_va;
+extern s_minishell *g_va;
 
 s_env		*fill_env(char **envp);
 void		print_env_list(s_env *env_list);
