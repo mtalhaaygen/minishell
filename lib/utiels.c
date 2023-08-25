@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiels.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:44:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/15 12:42:42 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/25 14:51:33 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ char	*ft_readline(char *str)
 
 	write(1, "\033[7m\033[1;36m", 12);
 	write(1, "talha@minishell", 16);
-	write(1, "\033[0m\033[33m", 10);
+	write(1, "\033[0m\033[1;33m", 12);
 	buf = readline(str);
+	write(1, "\033[0m", 5);
+
 	return (buf);
 }
 
