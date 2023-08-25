@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 19:48:46 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/16 20:02:41 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/25 18:35:15 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	i = 0;
 	if (n == 0)
 		return (1);
+	if (!s1 || !s2)
+		return (0);
 	while (s1[i] == s2[i] && (s1[i] && s2[i]) && n != 1)
 	{
 		i++;

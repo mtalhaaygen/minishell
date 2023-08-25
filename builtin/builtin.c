@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/25 10:00:15 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/25 16:35:22 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	run_other_builtin(int status, Node node)
 		exit(0);
 	}
 	else if (status == UNSET)
-		printf("unset çalıştır\n"); // envsize - 1 kadar yer aç tüm envleri env_liste atarken gerekli değeri atlayarak devam et, silmek için yalnızca char *full değeri içerisinde değer olması yeterli
+		run_unset(node); // envsize - 1 kadar yer aç tüm envleri env_liste atarken gerekli değeri atlayarak devam et, silmek için yalnızca char *full değeri içerisinde değer olması yeterli
 	else if (status == EXPORT)
 		ft_export2(node);
 }

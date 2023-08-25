@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/25 14:40:04 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/25 19:02:15 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	ft_print_full(char **args)
 	i = -1;
 	while (args[++i])
 		printf("declare -x %s\n", args[i]);
-	printf("ekrana basılan:%d // g_va->full_size:%d\n", i, g_va->full_size);
-	printf("ad:%p\n", &g_va->full_size);
 }
 
 void	ft_export1(Node node)
