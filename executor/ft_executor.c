@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 19:47:04 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/25 10:01:01 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ void	ft_executor(Node *nodes, char **envp)
 	i = -1;
 	while (++i < g_va->process_count)
 	{
-		if (nodes[i].args[0] && !(status = is_other_builtin(nodes[i].args[0])))
+		if (nodes[i].args[0] && !(status = is_other_builtin(nodes[i])))
 		{
 			g_va->pid = fork();
 			if (g_va->pid == 0)
 			{
 				ft_process_merge(i);
 				is_redirection(nodes, i);
-				if ((status = is_builtin(nodes[i].args[0])))
+				if ((status = is_builtin(nodes[i].args)))
 					run_builtin(status, nodes[i]);
 				bin_command = ft_access(nodes[i].args[0]);
 				if (execve(bin_command, nodes[i].args, envp))

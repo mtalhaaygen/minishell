@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 19:53:10 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/25 10:00:15 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ void	run_builtin(int status, Node node)
 		run_pwd();
 	else if (status == ECHO)
 		run_echo(node);
-	else if (status == EXPORT) // eğer eşittir yoksa sadece full e at, eğer eşittir değeri varsa hem full hemde key-value değerleri dolsun
-		ft_export(node);
+	else if (status == EXPORT)
+		ft_export1(node);
 	exit(0);
+	// eğer eşittir yoksa sadece full e at, eğer eşittir değeri varsa hem full hemde key-value değerleri dolsun
 }
 void	run_other_builtin(int status, Node node)
 {
@@ -38,27 +39,31 @@ void	run_other_builtin(int status, Node node)
 	}
 	else if (status == UNSET)
 		printf("unset çalıştır\n"); // envsize - 1 kadar yer aç tüm envleri env_liste atarken gerekli değeri atlayarak devam et, silmek için yalnızca char *full değeri içerisinde değer olması yeterli
+	else if (status == EXPORT)
+		ft_export2(node);
 }
 
-int	is_builtin(char *command)
+int	is_builtin(char **args)
 {
-	if (ft_strcmp(command, "env"))
+	if (ft_strcmp(args[0], "env"))
 		return (ENV);
-	if (ft_strcmp(command, "pwd"))
+	if (ft_strcmp(args[0], "pwd"))
 		return (PWD);
-	if (ft_strcmp(command, "echo"))
+	if (ft_strcmp(args[0], "echo"))
 		return (ECHO);
-	if (ft_strcmp(command, "export"))
+	if (ft_strcmp(args[0], "export") && args[1] == NULL) //çıktı verecek iken burda çalışmalı
 		return (EXPORT);
 	return (0);
 }
-int	is_other_builtin(char *command)
+int	is_other_builtin(Node node)
 {
-	if (ft_strcmp(command, "exit"))
+	if (ft_strcmp(node.args[0], "exit"))
 		return (EXIT);
-	if (ft_strcmp(command, "unset"))
+	if (ft_strcmp(node.args[0], "unset"))
 		return (UNSET);
-	if (ft_strcmp(command, "cd"))
+	if (ft_strcmp(node.args[0], "cd"))
 		return (CD);
+	if (ft_strcmp(node.args[0], "export") && node.args[1] != NULL) //çıktı vermeyecek iken burda çalışmalı
+		return (EXPORT);
 	return (0);
 }

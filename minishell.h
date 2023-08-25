@@ -159,14 +159,15 @@ void	pipe_close();
 void	rm_heredoc();
 
 /* BUILTIN COMMANDS */
-int		is_builtin(char *command);
-int		is_other_builtin(char *command);
+int		is_builtin(char **args);
+int		is_other_builtin(Node node);
 void	run_builtin(int status, Node node);
 void	run_other_builtin(int status, Node node);
 void	run_pwd(void);
 void	run_cd(Node node);
 void	run_echo(Node node);
-void	ft_export(Node node);
+void	ft_export1(Node node);
+void	ft_export2(Node node);
 void	ft_print_full(char **args);
 
 
