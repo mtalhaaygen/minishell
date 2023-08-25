@@ -88,10 +88,10 @@ typedef struct t_process
 
 typedef struct t_minishell
 {
-	int			process_count;	// process count
-	s_env		*env;			// tüm envler
-	Node		*nodes;			// tüm nodelar
-	s_process	*process;		// tüm processler
+	int			process_count;	// ! process count
+	s_env		*env;			// ? tüm envler
+	Node		*nodes;			// TODO: tüm nodelar
+	s_process	*process;		// ** tüm processler
 	int			flag;
 	int			pid;
 	char		**full;
@@ -169,6 +169,6 @@ void	run_echo(Node node);
 void	ft_export1(Node node);
 void	ft_export2(Node node);
 void	ft_print_full(char **args);
-
+void	run_unset(Node node);
 
 #endif

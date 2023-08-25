@@ -1,9 +1,7 @@
 # BROlarla MİNİSHELL
 ### YAPILACAKLAR
 maygen
-- export unset yapılacak
 - $?
-- cat | cat | ls sorulacak
 - builtin executor seg kontrolü
 - builtin executor leaks kontrolü
 
@@ -15,6 +13,8 @@ kim yaparsa
 - hata mesajları
 
 ### TAMAMLANANLAR
+- cat | cat | ls sorulacak
+- export unset yapılacak
 - set ctrl d 
 - envler düzgün gelmiyor
 - echo $ yada echo " " gibi girdilerde doğru sonuç gelmiyor
@@ -35,7 +35,7 @@ kim yaparsa
 Lİb klasörünün tümü ok
 parser/env_process.c ok
 
-# freelenecek değerler
+##### freelenecek değerler
 free(tokens)
 
 int i = 0;
@@ -782,6 +782,9 @@ fork() fonksiyonu için;
 
 <hr>
 
+##### fork() dan sonra fd lere ne olur?
+[edu](https://www.usna.edu/Users/cs/wcbrown/courses/IC221/classes/L09/Class.html#:~:text=Vnode%20Table,that%20operate%20on%20the%20file.)
+[youtube](https://www.youtube.com/watch?v=rW_NV6rf0rM)
 # Kaynaklar
 
 * https://heliotrope-garment-fdf.notion.site/Minishell-45aa5a4972724576ae21384eac3221cf güzel kaynak.
