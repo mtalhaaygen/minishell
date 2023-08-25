@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/23 10:40:40 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/25 14:42:47 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ int	main(int argc, char **argv, char **envp)
 		line = ft_readline("$ ");
 		if(!line)
 		{
-			write(1, "\033[D", 3);
-			write(1, "\033[D", 3);
+			write(1, "\033[D\033[D", 7);
 			printf("exit\n");
-			exit(1);	
+			exit(1);
 		}
 		if (line[0])
 			add_history(line);

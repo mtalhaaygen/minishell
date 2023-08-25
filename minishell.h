@@ -88,9 +88,7 @@ typedef struct t_process
 
 typedef struct t_minishell
 {
-	int			parent_pid;		// main process pid
 	int			process_count;	// process count
-	char		**paths;		// bunun yerine s_file struct yapısı olabilir
 	s_env		*env;			// tüm envler
 	Node		*nodes;			// tüm nodelar
 	s_process	*process;		// tüm processler
@@ -103,17 +101,18 @@ typedef struct t_minishell
 
 extern s_minishell *g_va;
 
-s_env		*fill_env(char **envp);
-void		print_env_list(s_env *env_list);
 char		*ft_readline(char *str);
-s_token		*ft_start(char *input);
-s_token		*ft_tokens(char *input);
 int			set_ctrl(void);
 void		sigint_handler(int signum);
 void		sigquit_handler(int signum);
 char*		appendString(const char *dest, const char *src);
+
+/*LEXER PARSER*/
+s_token		*ft_start(char *input);
+s_token		*ft_tokens(char *input);
 int			ft_pipe_counter(s_token *tokens);
-/*LEXER*/
+s_env		*fill_env(char **envp);
+void		print_env_list(s_env *env_list);
 Node	*ft_parser(s_token *tokens);
 int  	ft_char_count(const char *input, int c);
 int		quote_off(const char *input);
@@ -124,6 +123,7 @@ char 	**ft_tmp_tokens(s_token *tokens);
 s_token *ft_single_sep(s_token *tokens, int i, int j, char val);
 s_token *ft_double_sep(s_token *tokens, int i, int j, char val);
 void	fill_full(char **envp, int len);
+
 /* LIB*/
 int		my_isspace(char ch);
 char	*ft_strdup(char *src);
@@ -142,9 +142,9 @@ char	*ft_strdup_dolkey(char *src);
 void	insertionSort(char** arr, int size);
 void	free_pp(char **args);
 int		arg_count(char **str);
+int	ft_strfind(char	*str, int c);
 
 /* EXECUTOR */
-// void	ft_executor(Node *nodes);
 void	ft_executor(Node *nodes, char **envp);
 void	ft_executor_heredoc(Node *nodes, const int th, const int i, int flag);
 void	exec_start(Node *nodes, char **envp);

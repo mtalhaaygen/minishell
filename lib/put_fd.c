@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:47:28 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 15:32:42 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/25 14:15:06 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,15 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, &x, 1);
 		i++;
 	}
+}
+
+int	ft_strfind(char	*str, int c)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] == c)
+			return (1);
+	return (0);
 }
