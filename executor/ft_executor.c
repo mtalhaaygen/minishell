@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/25 10:01:01 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/26 13:03:41 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_access(char *args)
 	i = 0;
 	pathenv = getenv("PATH");
 	if (!pathenv)
-		perror("getenv");
+		perror("tsh: PATH environment variable does not exist");
 	command_paths = ft_split(pathenv, ':');
 	if (args[0] == '/' || (args[1] == '/' && args[0] == '.'))
 		return (args);
@@ -36,7 +36,7 @@ char	*ft_access(char *args)
 	}
 	if (!command_paths[i])
 	{
-		printf("%s: command not found\n", args + 1);
+		printf("tsh: %s: command not found\n", args + 1);
 		exit(1);
 	}
 	return (command);
@@ -62,11 +62,11 @@ void	ft_executor(Node *nodes, char **envp)
 					run_builtin(status, nodes[i]);
 				bin_command = ft_access(nodes[i].args[0]);
 				if (execve(bin_command, nodes[i].args, envp))
-					perror("execve perror ");
+					perror("tsh: execve error");
 				exit (1);
 			}
 			else if (g_va->pid < 0) 
-				return (perror("fork error "));
+				return (perror("tsh: executor fork error"));
 		}
 		run_other_builtin(status, nodes[i]);
 	}
@@ -79,7 +79,7 @@ void	ft_executor(Node *nodes, char **envp)
 	if (WIFEXITED(status1))
 	{
 		g_va->err_number = WEXITSTATUS(status1);
-		printf("*%d*\n", g_va->err_number);
+		// printf("*%d*\n", g_va->err_number);
 	}
 }
 
@@ -99,7 +99,7 @@ void	exec_start(Node *nodes, char **envp)
 		while (++i < g_va->process_count - 1)
 		{
 			if (pipe(process[i].fd) == -1)
-				perror("pipe not created");
+				perror("tsh: pipe not created");
 		}
 		g_va->process = process;
 	}

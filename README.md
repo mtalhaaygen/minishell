@@ -1,6 +1,7 @@
 # BROlarla MİNİSHELL
 ### YAPILACAKLAR
 maygen
+- fd_change.c deki perrorlar değişebilir
 - $?
 - builtin executor seg kontrolü
 - builtin executor leaks kontrolü
@@ -8,11 +9,8 @@ maygen
 tdemir
 - leaks kontrolü
 - lexer parser seg kontrolü
-
-kim yaparsa
-- hata mesajları
-
 ### TAMAMLANANLAR
+- hata mesajları
 - cat | cat | ls sorulacak
 - export unset yapılacak
 - set ctrl d 
