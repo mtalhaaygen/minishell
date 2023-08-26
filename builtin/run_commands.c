@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:53:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/25 19:12:22 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/26 12:55:10 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	run_pwd(void)
 
 	s = getcwd(NULL, 0);
 	if (!s)
-		perror("pwd getcwd error ");
+		perror("tsh: pwd getcwd error");
 	else
 		printf("%s\n",s);
 	free(s);
@@ -29,10 +29,10 @@ void	run_cd(Node node)
 {
 	char	*s;
 
-	if (node.arg_count != 1)
+	if (node.arg_count != 1 && node.args[1][0] != '~')
 	{
 		if (chdir(node.args[1]) != 0)
-			perror("cd error ");
+			printf("tsh: cd: %s: No such file or directory\n", node.args[1]);
 	}
 	else
 	{
@@ -40,7 +40,7 @@ void	run_cd(Node node)
 		if (s && *s)
 		{
 			if (chdir(s))
-				perror("chdir error ");
+				perror("tsh: cd chdir error");
 		}
 	}
 }

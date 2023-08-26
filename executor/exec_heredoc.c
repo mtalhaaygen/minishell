@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 17:49:24 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/26 12:57:07 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	rm_heredoc()
 	if (g_va->pid == 0)
 		execve(args[0], args, NULL);
 	else if (g_va->pid < 0) 
-		return (perror("fork error "));
+		return (perror("tsh: heredoc fork error"));
 	free_pp(args);
 }
 
