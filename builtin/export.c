@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/25 19:02:15 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/26 17:05:54 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ void	ft_print_full(char **args)
 
 void	ft_export1(Node node)
 {
-	if (node.args[1] == NULL) // command : export, command : export | grep a, parametresiz
-	{
-		ft_print_full(g_va->full);
-		exit(0);
-	}
+	// if (node.args[1] == NULL) 
+	// command : export, command : export | grep a, parametresiz
+	// printf("deneme\n");
+	(void)node;
+	ft_print_full(g_va->full);
+	exit(0);
 }
 
 void	ft_export2(Node node)

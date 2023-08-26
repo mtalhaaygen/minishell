@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/25 16:35:22 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/26 14:44:00 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	is_other_builtin(Node node)
 		return (UNSET);
 	if (ft_strcmp(node.args[0], "cd"))
 		return (CD);
-	if (ft_strcmp(node.args[0], "export") && node.args[1] != NULL) //çıktı vermeyecek iken burda çalışmalı
+	if (ft_strcmp(node.args[0], "export") && (node.args[1] != NULL && node.args[1][0] != '<' && node.args[1][0] != '>') && (node.args[1][0] != '<' && node.args[1][1] != '<')) //çıktı vermeyecek iken burda çalışmalı
 		return (EXPORT);
 	return (0);
 }

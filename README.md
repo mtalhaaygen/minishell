@@ -2,6 +2,7 @@
 ### YAPILACAKLAR
 maygen
 - fd_change.c deki perrorlar değişebilir
+- heredocda ndoe güncellemesi düzeltilecek
 - $?
 - builtin executor seg kontrolü
 - builtin executor leaks kontrolü
@@ -10,6 +11,7 @@ tdemir
 - leaks kontrolü
 - lexer parser seg kontrolü
 ### TAMAMLANANLAR
+- export <<eof
 - hata mesajları
 - cat | cat | ls sorulacak
 - export unset yapılacak
