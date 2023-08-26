@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/26 12:57:07 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/26 16:02:37 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,19 @@ void	node_change(Node node, int i, int flag)
 {
 	if (flag == 1)
 	{
-		free(node.args[i]);
-		node.args[i] = ft_strdup("heredoc.txt");
-		while (node.args[++i] && node.args[i + 1])
-			node.args[i] = node.args[i + 1];
-		node.args[i] = NULL;
+		if (!ft_strcmp(node.args[0], "export"))
+		{
+			free(node.args[i]);
+			node.args[i] = ft_strdup("heredoc.txt");
+			while (node.args[++i] && node.args[i + 1])
+				node.args[i] = node.args[i + 1];
+			node.args[i] = NULL;
+		}
+		else
+		{
+			node.args[1] = NULL;
+			node.args[2] = NULL;
+		}
 	}
 	else
 	{

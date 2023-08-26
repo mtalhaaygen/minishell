@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:53:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/26 12:55:10 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/26 14:04:46 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	run_unset(Node node)
 		while (node.args[++i])
 		{
 			len = ft_strlen(node.args[i]);
-			size = g_va->env->env_count;
+			size = g_va->env->env_count - 1;
 			while (size > 0)
 			{
 				if (ft_strcmp(node.args[i], g_va->env[size].key))
