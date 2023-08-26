@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:37:42 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 18:06:24 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/26 15:43:16 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,14 @@ int ft_mq_counter(const char *input)
 			count++;
 			j++;
 		}
-		if(sp[i][j] && sp[i][j] != 39)
-			j = ft_strlen(sp[i]) -1;
-		while(sp[i][j] && sp[i][j] == 39)
+		if(j>0)
 		{
-			count++;
-			j--;
+			while(sp[i][j])
+			{
+				if(sp[i][j] == 39)
+					count++;
+				j++;
+			}
 		}
 		i++;
 	}
