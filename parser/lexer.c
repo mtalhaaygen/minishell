@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/27 16:19:21 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/27 19:45:24 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ s_token	*ft_start(char *input)
 	i = 0;
 	k = 0;
 	token_count = ft_token_count(input);
-	tokens = ft_calloc(token_count + 1, sizeof(s_token));
+	tokens = ft_calloc(token_count + 3, sizeof(s_token));
 	while (input[i])
 	{
 		tokens[k].fq = 0;
