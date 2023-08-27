@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiels.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:44:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/26 13:08:24 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/27 18:48:33 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,12 @@ char	*ft_readline(char *str)
 	write(1, "\033[0m\033[1;33m", 12);
 	buf = readline(str);
 	write(1, "\033[0m", 5);
-	if(!buf)
+	if (!buf)
 	{
 		write(1, "\033[D\033[D", 7);
 		printf("exit\n");
 		exit(1);
 	}
-
 	return (buf);
 }
 

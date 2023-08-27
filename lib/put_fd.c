@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_fd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:47:28 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/25 14:15:06 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/27 18:47:59 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	free_pp(char **args)
 	int	i;
 
 	i = -1;
-	while(args[++i])
+	while (args[++i])
 		free(args[i]);
 	free(args);
 }
-
-void insertionSort(char** arr, int size)
+/*
+void	insertionSort(char** arr, int size)
 {
 	for (int i = 1; i < size; i++)
 	{
@@ -40,6 +40,7 @@ void insertionSort(char** arr, int size)
 		arr[j + 1] = key;
 	}
 }
+*/
 
 void	ft_putstr_fd(char *s, int fd)
 {
@@ -66,4 +67,13 @@ int	ft_strfind(char	*str, int c)
 		if (str[i] == c)
 			return (1);
 	return (0);
+}
+
+char	**protect(void)
+{
+	char	**rtn;
+
+	rtn = malloc(sizeof(char *));
+	rtn[0] = NULL;
+	return (rtn);
 }
