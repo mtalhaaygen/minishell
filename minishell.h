@@ -123,7 +123,11 @@ char 	**ft_tmp_tokens(s_token *tokens);
 s_token *ft_single_sep(s_token *tokens, int i, int j, char val);
 s_token *ft_double_sep(s_token *tokens, int i, int j, char val);
 void	fill_full(char **envp, int len);
-
+s_token	*dollar_plass(s_token *tokens, int i, int j);
+void	ft_wod(s_token *tokens, int i);
+void	ft_change_token( char *dolval, s_token *tokens, int i, int j);
+char	*ft_dolval(char *dolkey);
+char	*ft_dolkey(s_token *tokens, int i, int j);
 /* LIB*/
 int		my_isspace(char ch);
 char	*ft_strdup(char *src);

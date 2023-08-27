@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:57:32 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/22 18:05:15 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/27 11:27:46 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*ft_dolkey(s_token *tokens, int i, int j)
 		j++;
 	}
 	dolkey[k] = '\0';
-	// printf("kjsd %p\n", dolkey);
 	return (dolkey);
 }
 
@@ -54,7 +53,7 @@ char	*ft_dolval(char *dolkey)
 	return (0);
 }
 
-void ft_change_token( char *dolval, s_token *tokens, int i, int j)
+void	ft_change_token( char *dolval, s_token *tokens, int i, int j)
 {
 	int		len;
 	char	*str;
@@ -63,17 +62,14 @@ void ft_change_token( char *dolval, s_token *tokens, int i, int j)
 
 	len = 0;
 	s = 0;
-	k = 0;
+	k = -1;
 	while (tokens[i].value[len] != '$')
 		len++;
 	if (dolval != 0)
 		len += ft_strlen(dolval);
-	str = ft_calloc(len+3, sizeof(char));
-	while (k < j)
-	{
+	str = ft_calloc (len + 3, sizeof(char));
+	while (++k < j)
 		str[k] = tokens[i].value[k];
-		k++;
-	}
 	while (dolval[s])
 	{
 		str[k] = dolval[s];
@@ -81,12 +77,12 @@ void ft_change_token( char *dolval, s_token *tokens, int i, int j)
 		s++;
 	}
 	str[k] = '\0';
-	free(tokens[i].value );
+	free (tokens[i].value);
 	tokens[i].value = ft_strdup(str);
 	free(str);
-
 }
-void ft_wod(s_token *tokens, int i)
+
+void	ft_wod(s_token *tokens, int i)
 {
 	int		len;
 	char	*str;
@@ -110,35 +106,16 @@ s_token	*ft_dollar(s_token *tokens)
 {
 	int		i;
 	int		j;
-	char	*dolkey;
-	char	*dolval;
 
 	i = -1;
 	while (tokens[++i].value)
 	{
-
 		j = -1;
 		while (tokens[i].value[++j] != '\0')
 		{
 			if (tokens[i].value[j] == '$' && tokens[i].fq == 0)
-			{
-				dolkey = ft_strdup_dolkey(ft_dolkey(tokens, i, j));
-				if (ft_dolval(dolkey))
-				{
-					dolval = ft_strdup(ft_dolval(dolkey));
-					ft_change_token (dolval, tokens, i, j);
-					free(dolval);
-				}
-				else
-					ft_wod (tokens, i);	
-				free(dolkey);			
-			}
+				tokens = dollar_plass(tokens, i, j);
 		}
-
-	}					
-	
-
-
-
+	}
 	return (tokens);
 }
