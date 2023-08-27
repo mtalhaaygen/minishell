@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:37:42 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/27 18:37:49 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/27 19:49:09 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@ int	quote_off(const char *input)
 	return (0);
 }
 
+int	ft_red_pip_count(const char *input)
+{
+	int	i;
+	int	count;
+
+	count = 0;
+	i = 0;
+	while (input[i])
+	{
+		if (input[i] == '|' || input[i] == '>' || input[i] == '<')
+			count += 2;
+		i++;
+	}
+	return (count);
+}
 int	ft_token_count(const char *input)
 {
 	int	i;
@@ -98,5 +113,6 @@ int	ft_token_count(const char *input)
 			count++;
 		}
 	}
-	return (count + 999);
+	count += ft_red_pip_count(input);
+	return (count);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/26 13:08:35 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/27 19:36:31 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int argc, char **argv, char **envp)
 		if (line[0])
 			add_history(line);
 		tokens = ft_tokens(line);
+
 		free(line);
 		if(tokens[0].value)
 		{
@@ -63,17 +64,14 @@ int	main(int argc, char **argv, char **envp)
 			}
 			
 			free(nodes);*/
-			//system("leaks minishell");	
-			exec_start(nodes, envp);
-		}
-		int i = 0;
-		while(tokens[i].value)
-		{
-			free(tokens[i].value); 
-			i++;
-		}
-		free(tokens);
-		
+			//system("leaks minishell");
 
+			exec_start(nodes, envp);
+			
+		}
+		int i = -1;
+		while(tokens[++i].value)
+			free(tokens[i].value); 
+		free(tokens);
 	}
 }
