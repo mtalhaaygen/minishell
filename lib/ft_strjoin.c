@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 19:48:46 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/25 18:35:15 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/27 18:45:45 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 	i = 0;
 	if (!s2)
-		return (-1); // özel bir durum bu fonksiyonu kullanırken sorabilirsin
+		return (-1);
 	while (s1[i] == s2[i] && (s1[i] && s2[i]))
 		i++;
 	if (s1[i] != s2[i])

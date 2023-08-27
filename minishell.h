@@ -154,6 +154,7 @@ void	insertionSort(char** arr, int size);
 void	free_pp(char **args);
 int		arg_count(char **str);
 int	ft_strfind(char	*str, int c);
+char	**protect(void);
 
 /* EXECUTOR */
 void	ft_executor(Node *nodes, char **envp);
