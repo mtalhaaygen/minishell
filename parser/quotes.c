@@ -6,15 +6,15 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:37:42 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/27 11:02:29 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/27 18:37:49 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int  ft_char_count(const char *input, int c)
+int	ft_char_count(const char *input, int c)
 {
-	int count;
+	int	count;
 	int	i;
 
 	i = 0;
@@ -22,7 +22,7 @@ int  ft_char_count(const char *input, int c)
 	while (input[i])
 	{
 		if (input[i] == c)
-		count++;
+			count++;
 		i++;
 	}
 	return (count);
@@ -31,11 +31,11 @@ int  ft_char_count(const char *input, int c)
 int	quote_off(const char *input)
 {
 	int	dq_count;
-	int mq_count;
-	
+	int	mq_count;
+
 	mq_count = ft_char_count(input, MQ);
 	dq_count = ft_char_count(input, DQ);
-	if (dq_count % 2 == 1 || mq_count % 2 == 1 )
+	if (dq_count % 2 == 1 || mq_count % 2 == 1)
 	{
 		printf("quotes count error\n");
 		return (1);
@@ -67,14 +67,14 @@ int	ft_token_count(const char *input)
 				if (input[i] == '\0' && input[i])
 				{
 					count++;
-					break;
+					break ;
 				}
 				else
 				{
 					if (my_isspace(input[i]) || input[i] == '\0')
 					{
 						count++;
-						break;
+						break ;
 					}
 					else
 						tmp = input[i];
