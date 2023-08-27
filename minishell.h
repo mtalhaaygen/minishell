@@ -128,6 +128,13 @@ void	ft_wod(s_token *tokens, int i);
 void	ft_change_token( char *dolval, s_token *tokens, int i, int j);
 char	*ft_dolval(char *dolkey);
 char	*ft_dolkey(s_token *tokens, int i, int j);
+int	handle_quotes(int i, const char *str, char del);
+int	ft_flag(const char *input, int start);
+void	ft_token_type(s_token *tokens);
+int	ft_tokens_quot_flag(char *input, int i);
+void	ft_i(Node node, int i, s_token *tokens);
+void	ft_i_i(Node node, int i, s_token *tokens);
+void	ft_o(Node node, int i, s_token *tokens);
 /* LIB*/
 int		my_isspace(char ch);
 char	*ft_strdup(char *src);
