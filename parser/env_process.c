@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_process.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:02:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/22 17:10:56 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/27 13:53:22 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	fill_full(char **envp, int len)
 	int	i;
 
 	i = -1;
-	g_va->full = ft_calloc(sizeof(char *) , (len + 1));
+	g_va->full = ft_calloc (sizeof(char *), (len + 1));
 	if (!g_va->full)
 		return ;
 	while (++i < len)
@@ -25,6 +25,7 @@ void	fill_full(char **envp, int len)
 	g_va->full[i] = NULL;
 	g_va->full_size = i;
 }
+
 int	env_counter(char **envp)
 {
 	int	i;
@@ -44,7 +45,7 @@ s_env	*fill_env(char **envp)
 
 	i = 0;
 	len = env_counter(envp);
-	env_list = malloc(sizeof(s_env) * (len + 1));	
+	env_list = malloc(sizeof(s_env) * (len + 1));
 	env_list->env_count = len;
 	while (i < len)
 	{
