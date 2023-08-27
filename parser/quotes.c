@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:37:42 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/26 15:43:16 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/27 11:02:29 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,46 +27,13 @@ int  ft_char_count(const char *input, int c)
 	}
 	return (count);
 }
-int ft_mq_counter(const char *input)
-{
-	int count;
-	char **sp;
-	int i;
-	int j;
-
-	sp = ft_split(input, 32);
-	i =  0;
-	count =  0;
-	while(sp[i])
-	{
-	
-		j = 0;
-		while(sp[i][j] && sp[i][j] == 39)
-		{
-			count++;
-			j++;
-		}
-		if(j>0)
-		{
-			while(sp[i][j])
-			{
-				if(sp[i][j] == 39)
-					count++;
-				j++;
-			}
-		}
-		i++;
-	}
-	free_pp(sp);
-	return(count);
-}
 
 int	quote_off(const char *input)
 {
 	int	dq_count;
 	int mq_count;
 	
-	mq_count = ft_mq_counter(input);
+	mq_count = ft_char_count(input, MQ);
 	dq_count = ft_char_count(input, DQ);
 	if (dq_count % 2 == 1 || mq_count % 2 == 1 )
 	{
