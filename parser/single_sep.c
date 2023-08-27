@@ -1,147 +1,127 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   single_sep.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/27 17:40:16 by tdemir            #+#    #+#             */
+/*   Updated: 2023/08/27 18:29:53 by tdemir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
-char *ft_val_dup(char val)
+
+char	*ft_val_dup(char val)
 {
-	char *str;
+	char	*str;
 
 	str = ft_calloc(2, sizeof(char));
 	str[0] = val;
 	str[1] = '\0';
 	return (str);
 }
-s_token *ft_r_l_sep_sng(s_token *tokens, int i, char val,char	**tmp_tokens, int tmp)
-{
-		char	**sp;
-		sp = ft_split(tokens[i].value, val);
-		int f = i;
-		while(tokens[f].value)
-		{
-			free(tokens[f].value);
-			f++;
-		}
-		tokens[i].value= ft_strdup(sp[0]);
-		i++;
-		tokens[i].value =ft_strdup_dolkey(ft_val_dup(val));
-		i++;
 
-		tokens[i].value = ft_strdup(sp[1]);
-		i++;
-
-		while(tmp_tokens[tmp])
-		{
-			tokens[i].value = ft_strdup(tmp_tokens[tmp]);
-			i++; 
-			tmp++;
-		}
-		free(sp[0]);
-		free(sp[1]);
-		free(sp);
-		tokens[i].value = NULL;
-		i = 0;
-		while (tmp_tokens[i])
-		{
-			free(tmp_tokens[i]);
-			i++;
-		}
-		free(tmp_tokens);
-		return(tokens);
-}
-
-s_token	*ft_r_sep_sng(s_token *tokens, int i, char val,char	**tmp_tokens, int tmp)
+s_token	*ft_r_l_sep_sng(s_token *tokens, int i, char val, char	**tmp_tokens)
 {
-		char **sp;
-		sp = ft_split(tokens[i].value, val);
-		int f = i;
-		while(tokens[f].value)
-		{
-			free(tokens[f].value);
-			f++;
-		}
-		tokens[i].value = ft_val_dup(val);
-		i++;
-		tokens[i].value = ft_strdup(sp[0]);
-		i++;
-		while(tmp_tokens[tmp])
-		{
-			tokens[i].value = ft_strdup(tmp_tokens[tmp]);
-			i++; 
-			tmp++;
-		}
-		free(sp[0]);
-		free(sp);
-		tokens[i].value = NULL;
-		i = 0;
-		while (tmp_tokens[i])
-		{
-			free(tmp_tokens[i]);
-			i++;
-		}
-		free(tmp_tokens);
-		return(tokens);
-}
-
-s_token	*ft_l_sep_sng(s_token *tokens, int i, char val, char	**tmp_tokens, int tmp)
-{
-	char **sp;
-	sp = ft_split(tokens[i].value, val);
-	int f = i;
-	while(tokens[f].value)
-	{
-		free(tokens[f].value);
-		f++;
-	}
-	tokens[i].value = ft_strdup(sp[0]);
-	i++;
-	tokens[i].value =ft_val_dup(val);
-	i++;
-		
-	while(tmp_tokens[tmp])
-	{
-		tokens[i].value = ft_strdup(tmp_tokens[tmp]);
-		i++; 
-		tmp++;
-	}
-	tokens[i].value = NULL;
-	free(sp[0]);
-	free(sp);
-	tokens[i].value = NULL;
-	i = 0;
-	while (tmp_tokens[i])
-	{
-		free(tmp_tokens[i]);
-		i++;
-	}
-	free(tmp_tokens);;
-	return(tokens);
-}
-s_token *ft_single_sep(s_token *tokens, int i, int j, char val)
-{
-	char	**tmp_tokens;
+	char	**sp;
+	int		f;
 	int		tmp;
 
-	tmp_tokens = ft_tmp_tokens(tokens);
+	sp = ft_split(tokens[i].value, val);
+	i--;
+	f = i;
 	tmp = i + 1;
+	while (tokens[++f].value)
+		free (tokens[f].value);
+	tokens[++i].value = ft_strdup(sp[0]);
+	tokens[++i].value = ft_strdup_dolkey(ft_val_dup (val));
+	tokens[++i].value = ft_strdup(sp[1]);
+	while (tmp_tokens[++tmp])
+		tokens[++i].value = ft_strdup(tmp_tokens[tmp]);
+	free (sp[0]);
+	free (sp[1]);
+	free (sp);
+	tokens[++i].value = NULL;
+	i = -1;
+	while (tmp_tokens[++i])
+		free (tmp_tokens[i]);
+	free (tmp_tokens);
+	return (tokens);
+}
 
+s_token	*ft_r_sep_sng(s_token *tokens, int i, char val, char	**tmp_tokens)
+{
+	char	**sp;
+	int		f;
+	int		tmp;
+
+	sp = ft_split (tokens[i].value, val);
+	i--;
+	f = i;
+	tmp = i + 1;
+	while (tokens[++f].value)
+		free (tokens[f].value);
+	tokens[++i].value = ft_val_dup(val);
+	tokens[++i].value = ft_strdup(sp[0]);
+	while (tmp_tokens[++tmp])
+		tokens[++i].value = ft_strdup(tmp_tokens[tmp]);
+	free (sp[0]);
+	free (sp);
+	tokens[++i].value = NULL;
+	i = -1;
+	while (tmp_tokens[++i])
+		free (tmp_tokens[i]);
+	free (tmp_tokens);
+	return (tokens);
+}
+
+s_token	*ft_l_sep_sng(s_token *tokens, int i, char val, char	**tmp_tokens)
+{
+	char	**sp;
+	int		f;
+	int		tmp;
+
+	sp = ft_split(tokens[i].value, val);
+	i--;
+	f = i;
+	tmp = i + 1;
+	while (tokens[++f].value)
+		free (tokens[f].value);
+	tokens[++i].value = ft_strdup(sp[0]);
+	tokens[++i].value = ft_val_dup(val);
+	while (tmp_tokens[++tmp])
+		tokens[++i].value = ft_strdup(tmp_tokens[tmp]);
+	tokens[++i].value = NULL;
+	free (sp[0]);
+	free (sp);
+	i = -1;
+	while (tmp_tokens[++i])
+		free (tmp_tokens[i]);
+	free (tmp_tokens);
+	return (tokens);
+}
+
+s_token	*ft_single_sep(s_token *tokens, int i, int j, char val)
+{
+	char	**tmp_tokens;
+
+	tmp_tokens = ft_tmp_tokens(tokens);
 	if (j != 0 && tokens[i].value[j + 1])
 	{
-		tokens = ft_r_l_sep_sng(tokens,i,val,tmp_tokens, tmp);
+		tokens = ft_r_l_sep_sng(tokens, i, val, tmp_tokens);
 		return (tokens);
 	}
 	else if (tokens[i].value[j + 1])
 	{
-		tokens = ft_r_sep_sng(tokens,i,val,tmp_tokens, tmp);	
-		return(tokens);
+		tokens = ft_r_sep_sng(tokens, i, val, tmp_tokens);
+		return (tokens);
 	}
 	else if (j != 0)
 	{
-		tokens = ft_l_sep_sng(tokens,i,val,tmp_tokens, tmp);
-		return(tokens);
+		tokens = ft_l_sep_sng(tokens, i, val, tmp_tokens);
+		return (tokens);
 	}
-	i = 0;
-	while (tmp_tokens[i])
-	{
-		free(tmp_tokens[i]);
-		i++;
-	}
-	free(tmp_tokens);
-	return(tokens);
+	free_pp(tmp_tokens);
+	return (tokens);
 }
