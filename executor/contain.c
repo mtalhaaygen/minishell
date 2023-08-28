@@ -6,13 +6,13 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:21:27 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/18 16:47:09 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/28 14:49:27 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int		contain_i(char **commands)
+int	contain_i(char **commands)
 {
 	int	index;
 
@@ -27,7 +27,7 @@ int		contain_i(char **commands)
 	return (0);
 }
 
-int		contain_o(char **commands)
+int	contain_o(char **commands)
 {
 	int	index;
 
@@ -35,14 +35,14 @@ int		contain_o(char **commands)
 	while (commands[index])
 	{
 		if (commands[index][0] == '<')
-			if(commands[index][1] == '\0')
+			if (commands[index][1] == '\0')
 				return (index);
 		index++;
 	}
 	return (0);
 }
 
-int		contain_ii(char **commands)
+int	contain_ii(char **commands)
 {
 	int	index;
 

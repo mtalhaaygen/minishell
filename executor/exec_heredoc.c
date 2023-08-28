@@ -6,15 +6,15 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/26 16:02:37 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/28 14:39:22 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	rm_heredoc()
+void	rm_heredoc(void)
 {
-	char **args;
+	char	**args;
 
 	args = ft_calloc(4, sizeof(char *));
 	args[0] = ft_strdup("/bin/rm");
@@ -31,21 +31,13 @@ void	rm_heredoc()
 
 void	node_change(Node node, int i, int flag)
 {
-	if (flag == 1)
+	if (flag == 1 && !ft_strcmp(node.args[0], "export"))
 	{
-		if (!ft_strcmp(node.args[0], "export"))
-		{
-			free(node.args[i]);
-			node.args[i] = ft_strdup("heredoc.txt");
-			while (node.args[++i] && node.args[i + 1])
-				node.args[i] = node.args[i + 1];
-			node.args[i] = NULL;
-		}
-		else
-		{
-			node.args[1] = NULL;
-			node.args[2] = NULL;
-		}
+		free(node.args[i]);
+		node.args[i] = ft_strdup("heredoc.txt");
+		while (node.args[++i] && node.args[i + 1])
+			node.args[i] = node.args[i + 1];
+		node.args[i] = NULL;
 	}
 	else
 	{
