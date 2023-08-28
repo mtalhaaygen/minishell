@@ -1,5 +1,4 @@
 # BROlarla MİNİSHELL
-./caf -disu
 ### YAPILACAKLAR
 maygen
 - export unset yapılacak
