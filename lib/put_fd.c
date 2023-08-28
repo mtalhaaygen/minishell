@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_fd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:47:28 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/27 18:47:59 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/28 16:54:36 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void	free_pp(char **args)
 	while (args[++i])
 		free(args[i]);
 	free(args);
+}
+
+void	ft_perror(const char *str)
+{
+	write(1, "tsh: ", 6);
+	perror(str);
 }
 /*
 void	insertionSort(char** arr, int size)
@@ -65,7 +71,7 @@ int	ft_strfind(char	*str, int c)
 	i = -1;
 	while (str[++i])
 		if (str[i] == c)
-			return (1);
+			return (i + 1);
 	return (0);
 }
 

@@ -155,6 +155,9 @@ void	free_pp(char **args);
 int		arg_count(char **str);
 int	ft_strfind(char	*str, int c);
 char	**protect(void);
+void	ft_perror(const char *str);
+int		find_full(char *new);
+
 
 /* EXECUTOR */
 void	ft_executor(Node *nodes, char **envp);

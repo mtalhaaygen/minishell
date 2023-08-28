@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/26 15:27:10 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/28 20:07:15 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_executor(Node *nodes, char **envp)
 					run_builtin(status, nodes[i]);
 				bin_command = ft_access(nodes[i].args[0]);
 				if (execve(bin_command, nodes[i].args, envp))
-					perror("tsh: execve error");
+					ft_perror(bin_command);
 				exit (1);
 			}
 			else if (g_va->pid < 0) 
@@ -79,8 +79,9 @@ void	ft_executor(Node *nodes, char **envp)
 	if (WIFEXITED(status1))
 	{
 		g_va->err_number = WEXITSTATUS(status1);
-		// printf("*%d*\n", g_va->err_number);
+		printf("*%d*\n", g_va->err_number);
 	}
+	// add_dollar_question_mark(g_va->err_number);
 }
 
 void	exec_start(Node *nodes, char **envp)
