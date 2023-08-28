@@ -9,7 +9,6 @@ maygen
 
 tdemir
 - leaks kontrolü
-- lexer parser seg kontrolü
 ### TAMAMLANANLAR
 - export <<eof
 - hata mesajları
