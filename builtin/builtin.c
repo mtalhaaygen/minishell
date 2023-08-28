@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/26 14:44:00 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/28 19:14:32 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	run_builtin(int status, Node node)
 {
 	if (status == ENV)
-		print_env_list(g_va->env); //tüm env leri key value değerlerini kullanarak yazıyoruz
+		print_env_list(g_va->env);
 	else if (status == PWD)
 		run_pwd();
 	else if (status == ECHO)
@@ -23,22 +23,23 @@ void	run_builtin(int status, Node node)
 	else if (status == EXPORT)
 		ft_export1(node);
 	exit(0);
-	// eğer eşittir yoksa sadece full e at, eğer eşittir değeri varsa hem full hemde key-value değerleri dolsun
 }
+
 void	run_other_builtin(int status, Node node)
 {
-	if (g_va->process_count > 1) // bu komutların pipe olduğu durumlarda çalışmaması için bu kokşul eklendi
+	// bu komutların pipe olduğu durumlarda çalışmaması için bu kokşul eklendi
+	// exit de free
+	if (g_va->process_count > 1)
 		return ;
 	if (status == CD)
 		run_cd(node);
 	else if (status == EXIT)
 	{
-		// free
 		printf("exit\n");
 		exit(0);
 	}
 	else if (status == UNSET)
-		run_unset(node); // envsize - 1 kadar yer aç tüm envleri env_liste atarken gerekli değeri atlayarak devam et, silmek için yalnızca char *full değeri içerisinde değer olması yeterli
+		run_unset(node);
 	else if (status == EXPORT)
 		ft_export2(node);
 }
@@ -51,10 +52,11 @@ int	is_builtin(char **args)
 		return (PWD);
 	if (ft_strcmp(args[0], "echo"))
 		return (ECHO);
-	if (ft_strcmp(args[0], "export") && args[1] == NULL) //çıktı verecek iken burda çalışmalı
+	if (ft_strcmp(args[0], "export") && args[1] == NULL)
 		return (EXPORT);
 	return (0);
 }
+
 int	is_other_builtin(Node node)
 {
 	if (ft_strcmp(node.args[0], "exit"))
@@ -63,7 +65,18 @@ int	is_other_builtin(Node node)
 		return (UNSET);
 	if (ft_strcmp(node.args[0], "cd"))
 		return (CD);
-	if (ft_strcmp(node.args[0], "export") && (node.args[1] != NULL && node.args[1][0] != '<' && node.args[1][0] != '>') && (node.args[1][0] != '<' && node.args[1][1] != '<')) //çıktı vermeyecek iken burda çalışmalı
+	if (ft_strcmp(node.args[0], "export") && (node.args[1] != NULL \
+			&& node.args[1][0] != '<' && node.args[1][0] != '>') \
+					&& (node.args[1][0] != '<' && node.args[1][1] != '<'))
 		return (EXPORT);
 	return (0);
+}
+void	ft_export1(Node node)
+{
+	// if (node.args[1] == NULL) 
+	// command : export, command : export | grep a, parametresiz
+	// printf("deneme\n");
+	(void)node;
+	ft_print_full(g_va->full);
+	exit(0);
 }

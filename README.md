@@ -1,8 +1,6 @@
 # BROlarla MİNİSHELL
 ### YAPILACAKLAR
 maygen
-- fd_change.c deki perrorlar değişebilir
-- heredocda ndoe güncellemesi düzeltilecek
 - $?
 - builtin executor seg kontrolü
 - builtin executor leaks kontrolü
@@ -10,6 +8,8 @@ maygen
 tdemir
 - leaks kontrolü
 ### TAMAMLANANLAR
+- heredocda ndoe güncellemesi düzeltilecek
+- fd_change.c deki perrorlar değişebilir
 - export <<eof
 - hata mesajları
 - cat | cat | ls sorulacak

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:53:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/26 14:04:46 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/28 15:53:08 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	run_pwd(void)
 {
-	char *s;
+	char	*s;
 
 	s = getcwd(NULL, 0);
 	if (!s)
@@ -44,6 +44,7 @@ void	run_cd(Node node)
 		}
 	}
 }
+
 void	del_env(int index)
 {
 	int		i;
@@ -69,6 +70,7 @@ void	del_env(int index)
 	nenv[i - 1].value = NULL;
 	g_va->env = nenv;
 }
+
 void	del_full(int index)
 {
 	char	**new;
@@ -87,14 +89,15 @@ void	del_full(int index)
 	new[i - 1] = NULL;
 	g_va->full = new;
 }
+
 void	run_unset(Node node)
 {
+	int	i;
+	int	size;
+	int	len;
+
 	if (node.arg_count > 1)
 	{
-		int		i;
-		int		size;
-		int		len;
-
 		i = 0;
 		while (node.args[++i])
 		{
