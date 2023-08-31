@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/28 14:39:22 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/31 17:58:01 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,13 @@ void	node_change(Node node, int i, int flag)
 	}
 }
 
-void	ft_executor_heredoc(Node *nodes, const int th, const int i, int flag)
-{
 	// heredoc read
 	// readline ile promt yazdırılıp kullanıcıdan girdi beklenecek alınan girdi str_join ile bir önceki satır ile birleştirilecek tabii arada bir \n de olacak
+	// herseferinde bir dosya açıp dosyanın içini sıfırlayıp full ü dosyaya yazacağız
+	// Okuduğumuz tüm veriyi dosyaya yazıyoruz
+	// Burada direk ekrana basmak yerine heredocu execve ile çalıştıracağımız için node u güncelleyeceğiz
+void	ft_executor_heredoc(Node *nodes, const int th, const int i, int flag)
+{
 	char	*full;
 	char	*buff;
 	int		fd;
@@ -69,15 +72,13 @@ void	ft_executor_heredoc(Node *nodes, const int th, const int i, int flag)
 	{
 		buff = readline(" > ");
 		buff = free_strjoin(buff, "\n");
-		if (!(ft_strncmp(buff, nodes[th].args[i + 1], ft_strlen(nodes[th].args[i + 1])))) // 
+		if (!(ft_strncmp(buff, nodes[th].args[i + 1], \
+						ft_strlen(nodes[th].args[i + 1]))))
 			full = free_strjoin(full, buff);
 		else
-			break;
+			break ;
 	}
-	// herseferinde bir dosya açıp dosyanın içini sıfırlayıp full ü dosyaya yazacağız
 	fd = open("heredoc.txt", O_TRUNC | O_CREAT | O_RDWR, 0777);
-	// Okuduğumuz tüm veriyi dosyaya yazıyoruz
 	ft_putstr_fd(full, fd);
-	// Burada direk ekrana basmak yerine heredocu execve ile çalıştıracağımız için node u güncelleyeceğiz
 	node_change(nodes[th], i, flag);
 }

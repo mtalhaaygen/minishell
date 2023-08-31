@@ -1,48 +1,4 @@
 # BROlarla MİNİSHELL
-### YAPILACAKLAR
-maygen
-- $?
-- builtin executor seg kontrolü
-- builtin executor leaks kontrolü
-
-tdemir
-- leaks kontrolü
-### TAMAMLANANLAR
-- heredocda ndoe güncellemesi düzeltilecek
-- fd_change.c deki perrorlar değişebilir
-- export <<eof
-- hata mesajları
-- cat | cat | ls sorulacak
-- export unset yapılacak
-- set ctrl d 
-- envler düzgün gelmiyor
-- echo $ yada echo " " gibi girdilerde doğru sonuç gelmiyor
-- infile ve outfile dosyaları access ile kontrol et (> ve >> için dosya varsa o zaman access ile yazılabilir mi kontrolü at)
-- unset exit ve cd komutları çıktı vermeyen komutlar olarak pipe olduğu durumlarda çalışmayacak export ise tek başına kullanıldığında çıktı veriyor ama diğer durumlarda çıktı vermediği için tek başına olmadığında pipeda varsa çalışmayacak
-- exit bakılcak
-- tek node da tek bir redirection çalışıyo
-- redirectionlarda nodeları güncelle
-- cat < olmayan txt <!-- file acsess ile kontrol edilince düzelecek -->
-- ./ ile yada / ile baslayınca farklı bir if ile çalışacak
-- builtinler çıktıyı pipe a aktarmıyor
-- lexer parser leaks kontrolü
-- ""|""
-- heredoc
-- echo -n seg
-- heredoc
-## normu düzeltilen dosyalar
-Lİb klasörünün tümü ok
-parser/env_process.c ok
-
-##### freelenecek değerler
-free(tokens)
-
-int i = 0;
-while(tokens[i].value)
-{
-    free(tokens[i].value); 
-    i++;
-}
 
 # MINISHELL
 Bu projede amaç kendi shell kabuğumuzu oluşturmak.

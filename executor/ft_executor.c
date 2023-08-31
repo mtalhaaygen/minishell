@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/31 15:18:18 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/31 19:09:46 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_access(char *args)
 	char	*command;
 	int		i;
 
-	i = 0;
+	i = -1;
 	pathenv = getenv("PATH");
 	if (!pathenv)
 		perror("tsh: PATH environment variable does not exist");
@@ -27,12 +27,11 @@ char	*ft_access(char *args)
 	if (args[0] == '/' || (args[1] == '/' && args[0] == '.'))
 		return (args);
 	args = ft_strjoin("/", args);
-	while (command_paths[i])
+	while (command_paths[++i])
 	{
 		command = ft_strjoin(command_paths[i], args);
 		if (access(command, R_OK | X_OK) == 0)
-			break;
-		i++;
+			break ;
 	}
 	if (!command_paths[i])
 	{
@@ -44,9 +43,9 @@ char	*ft_access(char *args)
 
 void	ft_executor(Node *nodes, char **envp)
 {
-	int status;
-	char *bin_command;
-	int i;
+	int		status;
+	char	*bin_command;
+	int		i;
 
 	i = -1;
 	while (++i < g_va->process_count)
@@ -56,6 +55,7 @@ void	ft_executor(Node *nodes, char **envp)
 			g_va->pid = fork();
 			if (g_va->pid == 0)
 			{
+				ft_syntax_error(nodes);
 				ft_process_merge(i);
 				is_redirection(nodes, i);
 				if ((status = is_builtin(nodes[i].args)))
@@ -72,13 +72,13 @@ void	ft_executor(Node *nodes, char **envp)
 	}
 	pipe_close();
 	i = -1;
-	int status1 = -1;
+	status = -1;
 	while (++i < g_va->process_count)
-		waitpid(g_va->pid, &status1, 0);
+		waitpid(g_va->pid, &status, 0);
 	rm_heredoc();
-	if (WIFEXITED(status1))
+	if (WIFEXITED(status))
 	{
-		g_va->err_number = WEXITSTATUS(status1);
+		g_va->err_number = WEXITSTATUS(status);
 		printf("*%d*\n", g_va->err_number);
 	}
 	// add_dollar_question_mark(g_va->err_number);
@@ -119,7 +119,7 @@ void	exec_select(Node *nodes, char **envp)
 	{
 		i = -1;
 		flag = 0;
-		while (nodes[th].args[++i]) 
+		while (nodes[th].args[++i] != NULL && nodes[th].args[i]) 
 		{
 			if (flag > 1)
 				i = i - 1;

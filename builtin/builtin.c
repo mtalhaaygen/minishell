@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/28 19:14:32 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/31 20:12:04 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	run_builtin(int status, Node node)
 	exit(0);
 }
 
-void	run_other_builtin(int status, Node node)
-{
 	// bu komutların pipe olduğu durumlarda çalışmaması için bu kokşul eklendi
 	// exit de free
+void	run_other_builtin(int status, Node node)
+{
 	if (g_va->process_count > 1)
 		return ;
 	if (status == CD)
@@ -36,7 +36,9 @@ void	run_other_builtin(int status, Node node)
 	else if (status == EXIT)
 	{
 		printf("exit\n");
-		exit(0);
+		if (node.args[2] != NULL)
+			ft_perror("exit");
+		exit((ft_atoi(node.args[1]) % 256));
 	}
 	else if (status == UNSET)
 		run_unset(node);
