@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/26 12:57:28 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/31 15:15:32 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		file_access(char	*filename, int flag)
 			// printf("%s: No such file or directory\n", filename);
 		else
 			perror("access");
-		exit(0);
+		exit(1);
 	}
 	return (0);
 }
