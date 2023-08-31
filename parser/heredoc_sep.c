@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 13:54:46 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/27 16:11:48 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:33:59 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ s_token	*ft_sep(s_token *tokens)
 	i = 0;
 	while (tokens[i].value)
 	{
-		j = 0;
-		while (tokens[i].value[j])
+		j = ft_strlen(tokens[i].value);
+		while (j > 0)
 		{
 			if (ft_is_double(tokens, i, j) && (!tokens[i].quot_flag))
 			{
@@ -71,7 +71,7 @@ s_token	*ft_sep(s_token *tokens)
 				tokens = ft_single_sep(tokens, i, j, tokens[i].value[j]);
 				i++;
 			}
-			j++;
+			j--;
 		}
 		i++;
 	}
