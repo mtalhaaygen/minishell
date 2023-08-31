@@ -6,12 +6,12 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:21:27 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/28 14:49:27 by maygen           ###   ########.fr       */
+/*   Updated: 2023/08/31 17:56:52 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
+/*
 int	contain_i(char **commands)
 {
 	int	index;
@@ -56,3 +56,4 @@ int	contain_ii(char **commands)
 	}
 	return (0);
 }
+*/
