@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 12:17:24 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 14:10:32 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,33 +66,35 @@ void	full_update(char	*new)
 
 void	env_update(char	*new)
 {
-	int	size;
-	int	len;
+	char	**s;
+	int		size;
+	int		len;
 
 	size = g_va->env->env_count - 1;
 	while (size > 0 && g_va->env[size].key)
 	{
 		len = ft_strlen(g_va->env[size].key);
-		// printf("key:%s // new:%s // len:%d\n", g_va->env[size].key, new, len);
 		if (ft_strncmp(new, g_va->full[size], len) && \
 				(new[len] == '=' || new[len] == '\0'))
 		{
 			printf("update env %s\n", g_va->env[size].key);
-			char **s;
 			s = ft_split(new, '=');
 			g_va->env[size].value = ft_strdup(s[1]);
 		}
 		size--;
 	}
 }
+
+// parametresi varken ve process_count 1 iken gelecek buraya
+// bu if i daha önce atmışız ama kalsın önemi yok|| export a=1 gibi 
+// pipe yokken parametreli
 void	ft_export2(Node node)
 {
 	char	**new;
 	int		i;
 	int		args_index;
 
-	// parametresi varken ve process_count 1 iken gelecek buraya
-	if (g_va->process_count == 1)//bu if i daha önce atmışız ama kalsın önemi yok|| export a=1 gibi pipe yokken parametreli
+	if (g_va->process_count == 1)
 	{
 		i = -1;
 		args_index = 0;

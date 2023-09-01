@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 12:15:35 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 14:17:04 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,13 @@ void	ft_executor(Node *nodes, char **envp)
 
 void	exec_start(Node *nodes, char **envp)
 {
+	t_process	*process;
+	int			i;
+
 	if (!g_va->nodes[g_va->process_count - 1].args[0])
 		g_va->process_count -= 1;
 	if (g_va->process_count > 1)
 	{
-		t_process	*process;
-		int			i;
-
 		process = ft_calloc(g_va->process_count - 1, sizeof(t_process));
 		if (!process)
 			return ;
@@ -136,7 +136,7 @@ void	exec_select(Node *nodes, char **envp)
 	ft_executor(nodes, envp);
 }
 
-/* 
+/*
 aşağıdaki caselerin hepsi çalışıyor, yalnızca üç	 heredoc bir node içerisinde olursa patlıyor
 cat <<EOF1 <<EOF2
 > first here-doc

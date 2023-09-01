@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 11:06:06 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 14:18:57 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ int	ft_find_redirection(Node node)
 	}
 	return (0);
 }
+
 // bir node yalnızca redirection içeremez
 // bit node boş olamaz
-// yalnızca bir pipe varsa args[0] null olur, yalnızca > varsa args[0] == > olur.
+// yalnızca bir pipe varsa args[0] null olur, yalnızca > varsa 
+// args[0] == > olur.
 void	ft_syntax_error(Node *nodes)
 {
 	int	flag;
@@ -64,8 +66,8 @@ void	ft_syntax_error(Node *nodes)
 
 int	find_full(char *new)
 {
-	int size;
-	int len;
+	int	size;
+	int	len;
 
 	len = ft_strfind(new, '=');
 	if (len == 0)
@@ -104,14 +106,12 @@ int	file_access(char	*filename, int flag)
 // {
 // }
 
-
-
-
-
-	// bu fonksiyon dosya izinlerini kontrol edecek gerekirse gerekli hata kodlarını ekrana basacak
-	// cat <main.c   main.c infile oluyor 
-	//infile olan dosyalar okunabilir mi bakacağız R_OK
-	// ls >deneme.txt gibi bir durumda yada append de (>>) access kontrolüne gerek yok
-	// diğerlerini çalıştırılabilir mi diye bakacağız
-			// printf("%s: Permission denied\n", filename);
-			// printf("%s: No such file or directory\n", filename);
+// bu fonksiyon dosya izinlerini kontrol edecek gerekirse
+	// gerekli hata kodlarını ekrana basacak
+// cat <main.c   main.c infile oluyor 
+//infile olan dosyalar okunabilir mi bakacağız R_OK
+// ls >deneme.txt gibi bir durumda yada append de (>>)
+	// access kontrolüne gerek yok
+// diğerlerini çalıştırılabilir mi diye bakacağız
+		// printf("%s: Permission denied\n", filename);
+		// printf("%s: No such file or directory\n", filename);
