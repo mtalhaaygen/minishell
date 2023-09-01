@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 14:18:57 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 19:59:42 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,9 @@ int	ft_find_redirection(Node node)
 	i = -1;
 	while (node.args[++i])
 	{
-		printf("node.args[i]: *%s*\n", node.args[i]);
-		if (!ft_strcmp(">", node.args[i]))
-			if (!ft_strcmp(">>", node.args[i]))
-				if (!ft_strcmp("<<", node.args[i]))
-					if (!ft_strcmp("<", node.args[i]))
-						return (1);
+		if (!ft_strncmp(">", node.args[i], 1))
+			if (!ft_strncmp("<", node.args[i], 1))
+				return (1);
 	}
 	return (0);
 }
@@ -37,25 +34,19 @@ int	ft_find_redirection(Node node)
 void	ft_syntax_error(Node *nodes)
 {
 	int	flag;
-	int	i;
 
-	i = -1;
 	flag = 0;
 	if (nodes[0].args[0] == NULL)
 	{
 		ft_perror("syntax error near unexpected token `|'\n");
 		exit(258);
 	}
-	while (nodes[++i].args)
+	if (nodes[0].args)
 	{
-		if (ft_find_redirection(nodes[i]))
-		{
-			printf("syntax error değil\n");
-			flag = 1;
-			break ;
-		}
+		if (ft_find_redirection(nodes[0]))
+			flag = 2;
 	}
-	if (flag == 1)
+	if (flag == 2)
 		return ;
 	if (flag == 0)
 	{

@@ -43,7 +43,7 @@ Executor, her bir komut için bir process oluşturur. (builtin komutlar hariç) 
 
 void executeCommand() {
     int ret;
-    for (int i = 0; i < _numberOfSimpleCommands; i++) { // kaç tane kod varsa o kadar fork yapılıyor ve exec e gönderiliyor
+    for (int i = 0; i < _numberOfSimpleCommands; i++) { // kaç tane komut varsa o kadar fork yapılıyor ve exec e gönderiliyor
         ret = fork();
         if (ret == 0) {
             // Child process

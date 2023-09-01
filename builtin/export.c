@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 14:10:32 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 18:18:15 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	full_update(char	*new)
 	{
 		if (ft_strncmp(new, g_va->full[i], len) && \
 				(new[len] == '=' || new[len] == '\0'))
-				{
-					printf("update full %s\n", g_va->full[i]);
-					g_va->full[i] = ft_strdup(new);
-				}
+		{
+			printf("update full %s\n", g_va->full[i]);
+			g_va->full[i] = ft_strdup(new);
+		}
 	}
 }
 
