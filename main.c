@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 12:03:56 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 18:24:08 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	t_env *env_list;
-
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, SIG_IGN);
 	g_va = malloc(sizeof(t_minishell));
 	env_list = fill_env(envp);
 	g_va->env = env_list;
-	signal(SIGINT, sigint_handler);
 	while (1)
 	{
 		char *line;
@@ -39,6 +39,7 @@ int	main(int argc, char **argv, char **envp)
 		if (line[0])
 			add_history(line);
 		tokens = ft_tokens(line);
+			
 
 		free(line);
 		if(tokens[0].value)
@@ -65,7 +66,6 @@ int	main(int argc, char **argv, char **envp)
 			
 			free(nodes);*/
 			//system("leaks minishell");
-
 			exec_start(nodes, envp);
 		}
 		int i = -1;
