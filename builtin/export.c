@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/28 20:04:23 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:17:24 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	add_env(char *arg)
 {
 	int		i;
 	char	**s;
-	s_env	*nenv;
+	t_env	*nenv;
 
 	i = -1;
-	nenv = malloc(sizeof(s_env) * g_va->env->env_count + 1);
+	nenv = malloc(sizeof(t_env) * g_va->env->env_count + 1);
 	nenv->env_count = g_va->env->env_count + 1;
 	while (g_va->env[++i].key)
 	{
@@ -41,9 +41,9 @@ void	ft_print_full(char **args)
 		printf("declare -x %s\n", args[i]);
 }
 
+	// ilk başta "export a" gibi value atamadan eklendiğinde update edemiyor
 void	full_update(char	*new)
 {
-	// ilk başta "export a" gibi value atamadan eklendiğinde update edemiyor
 	int	len;
 	int	i;
 
@@ -63,6 +63,7 @@ void	full_update(char	*new)
 				}
 	}
 }
+
 void	env_update(char	*new)
 {
 	int	size;

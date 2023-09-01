@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:57:32 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/27 15:43:13 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:14:40 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*ft_dolkey(s_token *tokens, int i, int j)
+char	*ft_dolkey(t_token *tokens, int i, int j)
 {
 	char	*dolkey;
 	int		len;
@@ -53,7 +53,7 @@ char	*ft_dolval(char *dolkey)
 	return (0);
 }
 
-void	ft_change_token( char *dolval, s_token *tokens, int i, int j)
+void	ft_change_token( char *dolval, t_token *tokens, int i, int j)
 {
 	int		len;
 	char	*str;
@@ -82,7 +82,7 @@ void	ft_change_token( char *dolval, s_token *tokens, int i, int j)
 	free(str);
 }
 
-void	ft_wod(s_token *tokens, int i)
+void	ft_wod(t_token *tokens, int i)
 {
 	int		len;
 	char	*str;
@@ -102,7 +102,7 @@ void	ft_wod(s_token *tokens, int i)
 	tokens[i].value = ft_strdup_dolkey(str);
 }
 
-s_token	*ft_dollar(s_token *tokens)
+t_token	*ft_dollar(t_token *tokens)
 {
 	int		i;
 	int		j;

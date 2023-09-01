@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/27 19:45:24 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:12:13 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_find_end(const char *input, int i)
 	return (i);
 }
 
-void	ft_dup(s_token *token, char *input, int start, int end)
+void	ft_dup(t_token *token, char *input, int start, int end)
 {
 	int		i;
 	int		k;
@@ -55,9 +55,9 @@ void	ft_dup(s_token *token, char *input, int start, int end)
 	free(str);
 }
 
-s_token	*ft_start(char *input)
+t_token	*ft_start(char *input)
 {
-	s_token		*tokens;
+	t_token		*tokens;
 	int			i;
 	int			k;
 	int			start;
@@ -66,7 +66,7 @@ s_token	*ft_start(char *input)
 	i = 0;
 	k = 0;
 	token_count = ft_token_count(input);
-	tokens = ft_calloc(token_count + 3, sizeof(s_token));
+	tokens = ft_calloc(token_count + 3, sizeof(t_token));
 	while (input[i])
 	{
 		tokens[k].fq = 0;
@@ -103,14 +103,14 @@ char	*ft_rm_last_sp(char *input)
 	return (str);
 }
 
-s_token	*ft_tokens(char *input)
+t_token	*ft_tokens(char *input)
 {
-	s_token	*tokens;
+	t_token	*tokens;
 
 	input = ft_rm_last_sp(input);
 	if (quote_off(input))
 	{
-		tokens = malloc(sizeof(s_token) * 1);
+		tokens = malloc(sizeof(t_token) * 1);
 		tokens[0].value = NULL;
 		free (input);
 		return (tokens);

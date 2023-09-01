@@ -43,63 +43,62 @@ typedef enum
 	TOKEN_EOF
 }				TokenType;
 
-typedef struct t_token
+typedef struct s_token
 {
-	int quot_flag;
-	int fq;
-	TokenType		type;
-	char			*value;
-}	s_token;
+	int			quot_flag;
+	int			fq;
+	TokenType	type;
+	char		*value;
+}	t_token;
 
-typedef  struct t_env
+typedef struct s_env
 {
 	int				env_count;
 	char			*key;
 	char			*value;
-}	s_env;
+}	t_env;
 
-// typedef  struct t_newenv
+// typedef  struct s_newenv
 // {
 // 	char		**full;
 // 	int			full_size;
-// }	s_newenv;
+// }	t_newenv;
 
-typedef struct t_file //DENEYSEL
+typedef struct s_file //DENEYSEL
 {
 	TokenType		type;
 	char			*name;
-}	s_file;
+}	t_file;
 
 typedef struct Node
 {
 	char		**args;
 	int			arg_count;
 
-	s_file		*infile;
-	s_file		*outfile;
+	t_file		*infile;
+	t_file		*outfile;
 }				Node;
 
-
-typedef struct t_process
+typedef struct s_process
 {
 	pid_t				pid;
 	int					fd[2];
-}	s_process;
+}	t_process;
 
-typedef struct t_minishell
+typedef struct s_minishell
 {
-	int			process_count;	// ! process count
-	s_env		*env;			// ? tüm envler
-	Node		*nodes;			// TODO: tüm nodelar
-	s_process	*process;		// ** tüm processler
+	int			process_count;
+	t_env		*env;
+	Node		*nodes;
+	t_process	*process;
 	int			flag;
 	int			pid;
 	char		**full;
 	int			full_size;
 	int			err_number;
-}	s_minishell;
+}	t_minishell;
 
-extern s_minishell *g_va;
+extern t_minishell *g_va;
 
 char		*ft_readline(char *str);
 int			set_ctrl(void);
@@ -108,33 +107,33 @@ void		sigquit_handler(int signum);
 char		*appendString(const char *dest, const char *src);
 
 /*LEXER PARSER*/
-s_token		*ft_start(char *input);
-s_token		*ft_tokens(char *input);
-int			ft_pipe_counter(s_token *tokens);
-s_env		*fill_env(char **envp);
-void		print_env_list(s_env *env_list);
-Node		*ft_parser(s_token *tokens);
+t_token		*ft_start(char *input);
+t_token		*ft_tokens(char *input);
+int			ft_pipe_counter(t_token *tokens);
+t_env		*fill_env(char **envp);
+void		print_env_list(t_env *env_list);
+Node		*ft_parser(t_token *tokens);
 int			ft_char_count(const char *input, int c);
 int			quote_off(const char *input);
 int			ft_token_count(const char *input);
-s_token		*ft_dollar(s_token *tokens);
-s_token		*ft_sep(s_token *tokens);
-char		**ft_tmp_tokens(s_token *tokens);
-s_token		*ft_single_sep(s_token *tokens, int i, int j, char val);
-s_token		*ft_double_sep(s_token *tokens, int i, int j, char val);
+t_token		*ft_dollar(t_token *tokens);
+t_token		*ft_sep(t_token *tokens);
+char		**ft_tmp_tokens(t_token *tokens);
+t_token		*ft_single_sep(t_token *tokens, int i, int j, char val);
+t_token		*ft_double_sep(t_token *tokens, int i, int j, char val);
 void		fill_full(char **envp, int len);
-s_token		*dollar_plass(s_token *tokens, int i, int j);
-void		ft_wod(s_token *tokens, int i);
-void		ft_change_token( char *dolval, s_token *tokens, int i, int j);
+t_token		*dollar_plass(t_token *tokens, int i, int j);
+void		ft_wod(t_token *tokens, int i);
+void		ft_change_token( char *dolval, t_token *tokens, int i, int j);
 char		*ft_dolval(char *dolkey);
-char		*ft_dolkey(s_token *tokens, int i, int j);
+char		*ft_dolkey(t_token *tokens, int i, int j);
 int			handle_quotes(int i, const char *str, char del);
 int			ft_flag(const char *input, int start);
-void		ft_token_type(s_token *tokens);
+void		ft_token_type(t_token *tokens);
 int			ft_tokens_quot_flag(char *input, int i);
-void		ft_i(Node node, int i, s_token *tokens);
-void		ft_i_i(Node node, int i, s_token *tokens);
-void		ft_o(Node node, int i, s_token *tokens);
+void		ft_i(Node node, int i, t_token *tokens);
+void		ft_i_i(Node node, int i, t_token *tokens);
+void		ft_o(Node node, int i, t_token *tokens);
 /* LIB*/
 int			my_isspace(char ch);
 char		*ft_strdup(char *src);
@@ -150,18 +149,19 @@ void		*ft_calloc(size_t count, size_t size);
 void		ft_putstr_fd(char *s, int fd);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_strdup_dolkey(char *src);
-void		insertionSort(char** arr, int size);
+void		insertionSort(char	**arr, int size);
 void		free_pp(char **args);
 int			arg_count(char **str);
 int			ft_strfind(char	*str, int c);
-char		**protect(void);
 void		ft_perror(const char *str);
 int			find_full(char *new);
 void		ft_syntax_error(Node *nodes);
+int			ft_atoi(const char *str);
+int			ft_number(char	*str);
 
 /* EXECUTOR */
 void		ft_executor(Node *nodes, char **envp);
-void		ft_executor_heredoc(Node *nodes, const int th, const int i, int flag);
+void		ft_executor_heredoc(Node *nodes, int th, int i, int flag);
 void		exec_start(Node *nodes, char **envp);
 void		exec_select(Node *nodes, char **envp);
 int			is_heredoc(Node *nodes, int index);
@@ -186,5 +186,6 @@ void		ft_export1(Node node);
 void		ft_export2(Node node);
 void		ft_print_full(char **args);
 void		run_unset(Node node);
+void		run_exit(Node node);
 
 #endif

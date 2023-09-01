@@ -6,13 +6,13 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/31 19:02:48 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:03:56 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-s_minishell *g_va;
+t_minishell	*g_va;
 
 void	sigint_handler(int sig)
 {
@@ -23,10 +23,10 @@ void	sigint_handler(int sig)
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
-	(void)argv;   
-	s_env *env_list;
+	(void)argv;
+	t_env *env_list;
 
-	g_va = malloc(sizeof(s_minishell));
+	g_va = malloc(sizeof(t_minishell));
 	env_list = fill_env(envp);
 	g_va->env = env_list;
 	signal(SIGINT, sigint_handler);
@@ -34,7 +34,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		char *line;
 		Node *nodes;
-		s_token *tokens;
+		t_token *tokens;
 		line = ft_readline("$ ");
 		if (line[0])
 			add_history(line);

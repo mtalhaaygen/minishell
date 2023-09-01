@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   single_sep.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 17:40:16 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/27 18:29:53 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:15:19 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_val_dup(char val)
 	return (str);
 }
 
-s_token	*ft_r_l_sep_sng(s_token *tokens, int i, char val, char	**tmp_tokens)
+t_token	*ft_r_l_sep_sng(t_token *tokens, int i, char val, char	**tmp_tokens)
 {
 	char	**sp;
 	int		f;
@@ -50,7 +50,7 @@ s_token	*ft_r_l_sep_sng(s_token *tokens, int i, char val, char	**tmp_tokens)
 	return (tokens);
 }
 
-s_token	*ft_r_sep_sng(s_token *tokens, int i, char val, char	**tmp_tokens)
+t_token	*ft_r_sep_sng(t_token *tokens, int i, char val, char	**tmp_tokens)
 {
 	char	**sp;
 	int		f;
@@ -76,7 +76,7 @@ s_token	*ft_r_sep_sng(s_token *tokens, int i, char val, char	**tmp_tokens)
 	return (tokens);
 }
 
-s_token	*ft_l_sep_sng(s_token *tokens, int i, char val, char	**tmp_tokens)
+t_token	*ft_l_sep_sng(t_token *tokens, int i, char val, char	**tmp_tokens)
 {
 	char	**sp;
 	int		f;
@@ -102,7 +102,7 @@ s_token	*ft_l_sep_sng(s_token *tokens, int i, char val, char	**tmp_tokens)
 	return (tokens);
 }
 
-s_token	*ft_single_sep(s_token *tokens, int i, int j, char val)
+t_token	*ft_single_sep(t_token *tokens, int i, int j, char val)
 {
 	char	**tmp_tokens;
 

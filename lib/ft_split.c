@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:56:16 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/27 18:44:04 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:41:59 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,6 @@ char	*ft_strdup(char *src)
 		new[i] = src[i];
 		i--;
 	}
-	return (new);
-}
-
-char	*ft_strdup_dolkey(char *src)
-{
-	char	*new;
-	int		i;
-
-	i = 0;
-	if (!src)
-		return (0);
-	while (src[i])
-		i++;
-	new = ft_calloc(sizeof(char), (i + 1));
-	if (!new)
-		return (0);
-	while (i >= 0)
-	{
-		new[i] = src[i];
-		i--;
-	}
-	free(src);
 	return (new);
 }
 
@@ -99,6 +77,15 @@ static size_t	ft_word_count(char const *s, char c)
 	}
 	if (s[0] != c)
 		rtn++;
+	return (rtn);
+}
+
+char	**protect(void)
+{
+	char	**rtn;
+
+	rtn = malloc(sizeof(char *));
+	rtn[0] = NULL;
 	return (rtn);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_process.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:02:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/27 13:53:22 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:11:30 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ int	env_counter(char **envp)
 	return (i);
 }
 
-s_env	*fill_env(char **envp)
+t_env	*fill_env(char **envp)
 {
-	s_env	*env_list;
+	t_env	*env_list;
 	char	**s;
 	int		len;
 	int		i;
 
 	i = 0;
 	len = env_counter(envp);
-	env_list = malloc(sizeof(s_env) * (len + 1));
+	env_list = malloc(sizeof(t_env) * (len + 1));
 	env_list->env_count = len;
 	while (i < len)
 	{
@@ -61,7 +61,7 @@ s_env	*fill_env(char **envp)
 	return (env_list);
 }
 
-void	print_env_list(s_env *env_list)
+void	print_env_list(t_env *env_list)
 {
 	int	i;
 

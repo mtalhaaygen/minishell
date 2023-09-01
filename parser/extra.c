@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   extra.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 13:53:43 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/27 15:49:41 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:15:29 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_token_type(s_token *tokens)
+void	ft_token_type(t_token *tokens)
 {
 	int	i;
 
@@ -60,7 +60,7 @@ int	ft_flag(const char *input, int start)
 	return (0);
 }
 
-s_token	*dollar_plass(s_token *tokens, int i, int j)
+t_token	*dollar_plass(t_token *tokens, int i, int j)
 {
 	char	*dolkey;
 	char	*dolval;

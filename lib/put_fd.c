@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:47:28 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/31 15:17:43 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 11:04:40 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,4 @@ int	ft_strfind(char	*str, int c)
 		if (str[i] == c)
 			return (i + 1);
 	return (0);
-}
-
-char	**protect(void)
-{
-	char	**rtn;
-
-	rtn = malloc(sizeof(char *));
-	rtn[0] = NULL;
-	return (rtn);
 }
