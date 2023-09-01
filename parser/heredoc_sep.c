@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_sep.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 13:54:46 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/01 12:14:48 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 16:40:40 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,20 @@ t_token	*ft_sep(t_token *tokens)
 {
 	int	i;
 	int	j;
+	int	len;
 
 	i = 0;
 	while (tokens[i].value)
 	{
-		j = 0; //ft_strlen(tokens[i].value);
-		while (tokens[i].value[j]) //(j > 0)
+		j = 0; //;
+		len = ft_strlen(tokens[i].value);
+		while (j < len)
 		{
 			if (ft_is_double(tokens, i, j) && (!tokens[i].quot_flag))
 			{
+				
 				tokens = ft_double_sep(tokens, i, j, tokens[i].value[j]);
+
 				i++;
 			}
 			else if (ft_is_mono(tokens, i, j) && (!tokens[i].quot_flag))
@@ -71,7 +75,7 @@ t_token	*ft_sep(t_token *tokens)
 				tokens = ft_single_sep(tokens, i, j, tokens[i].value[j]);
 				i++;
 			}
-			j++; //j--;
+			j++;
 		}
 		i++;
 	}
