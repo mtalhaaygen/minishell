@@ -1,5 +1,13 @@
 # BROlarla MİNİSHELL
 
+- bash: exit: too many arguments exit_code:1
+- bash: exit: a: numeric argument required exit_code:255
+- tüm komutlar sonrasında $? ni düzenle
+- syntax error fonksiyonunun yeri önemli değişecek
+- add_dollar_question_mark(g_va->err_number)
+- 25 satırdan uzun fonk. sayısı => 6
+- "<<" heredoc açmamalı
+- SEG
 # MINISHELL
 Bu projede amaç kendi shell kabuğumuzu oluşturmak.
 Shell, kullanıcı ile işletim sistemi çekirdeği arasında arayüz sağlayan bir programdır. Komutları alır, bunları işler, sonuçları görüntüler ve kullanıcıdan yeni komutları bekler. 
