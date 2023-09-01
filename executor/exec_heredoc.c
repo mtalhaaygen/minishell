@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/31 17:58:01 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 11:54:49 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	node_change(Node node, int i, int flag)
 	// herseferinde bir dosya açıp dosyanın içini sıfırlayıp full ü dosyaya yazacağız
 	// Okuduğumuz tüm veriyi dosyaya yazıyoruz
 	// Burada direk ekrana basmak yerine heredocu execve ile çalıştıracağımız için node u güncelleyeceğiz
-void	ft_executor_heredoc(Node *nodes, const int th, const int i, int flag)
+void	ft_executor_heredoc(Node *nodes, int th, int i, int flag)
 {
 	char	*full;
 	char	*buff;

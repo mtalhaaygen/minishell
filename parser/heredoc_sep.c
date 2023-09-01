@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_sep.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 13:54:46 by tdemir            #+#    #+#             */
-/*   Updated: 2023/08/31 16:33:59 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:14:48 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	**ft_tmp_tokens(s_token *tokens)
+char	**ft_tmp_tokens(t_token *tokens)
 {
 	char	**tmp_tokens;
 	int		i;
@@ -30,7 +30,7 @@ char	**ft_tmp_tokens(s_token *tokens)
 	return (tmp_tokens);
 }
 
-int	ft_is_mono(s_token *tokens, int i, int j)
+int	ft_is_mono(t_token *tokens, int i, int j)
 {
 	if (tokens[i].value[j] == '|')
 		return (1);
@@ -41,7 +41,7 @@ int	ft_is_mono(s_token *tokens, int i, int j)
 	return (0);
 }
 
-int	ft_is_double(s_token *tokens, int i, int j)
+int	ft_is_double(t_token *tokens, int i, int j)
 {
 	if (tokens[i].value[j] == '>' && tokens[i].value[j + 1] == '>')
 		return (1);
@@ -50,7 +50,7 @@ int	ft_is_double(s_token *tokens, int i, int j)
 	return (0);
 }
 
-s_token	*ft_sep(s_token *tokens)
+t_token	*ft_sep(t_token *tokens)
 {
 	int	i;
 	int	j;
@@ -58,8 +58,8 @@ s_token	*ft_sep(s_token *tokens)
 	i = 0;
 	while (tokens[i].value)
 	{
-		j = ft_strlen(tokens[i].value);
-		while (j > 0)
+		j = 0; //ft_strlen(tokens[i].value);
+		while (tokens[i].value[j]) //(j > 0)
 		{
 			if (ft_is_double(tokens, i, j) && (!tokens[i].quot_flag))
 			{
@@ -71,7 +71,7 @@ s_token	*ft_sep(s_token *tokens)
 				tokens = ft_single_sep(tokens, i, j, tokens[i].value[j]);
 				i++;
 			}
-			j--;
+			j++; //j--;
 		}
 		i++;
 	}

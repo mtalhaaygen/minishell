@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:55:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/21 13:41:04 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:48:16 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int	ft_echo_param_checker(char *str)
 	return (1);
 }
 
-void	run_echo(Node node) //yalnızca stdinden girdi alıp stdouta yada yönlendirme ile dosyaya çıktı veren bir komut
+//yalnızca stdinden girdi alıp stdouta yada yönlendirme ile
+// dosyaya çıktı veren bir komut
+void	run_echo(Node node)
 {
 	int	i;
 
@@ -59,4 +61,30 @@ void	run_echo(Node node) //yalnızca stdinden girdi alıp stdouta yada yönlendi
 	if (ft_echo_param_checker(node.args[1]) == 0)
 		ft_putstr_fd("\n", 1);
 	exit(0);
+}
+
+void	run_exit(Node node)
+{
+	int	exit_code;
+
+	printf("exit\n");
+	if (node.args[1] && node.args[2])
+		printf("tsh: exit: too many arguments\n");
+	else
+	{
+		if (node.args[1])
+		{
+			if (!ft_number(node.args[1]))
+			{
+				printf("numbr değil\n");
+				exit_code = 255;
+			}
+			else
+				exit_code = ft_atoi(node.args[1]);
+		}
+		else
+			exit_code = 0;
+		printf("exitcode:*%d*\n", exit_code);
+		exit(exit_code % 256);
+	}
 }

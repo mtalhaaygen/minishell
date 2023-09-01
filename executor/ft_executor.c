@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/31 19:09:46 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:15:35 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ void	exec_start(Node *nodes, char **envp)
 		g_va->process_count -= 1;
 	if (g_va->process_count > 1)
 	{
-		s_process	*process;
+		t_process	*process;
 		int			i;
 
-		process = ft_calloc(g_va->process_count - 1, sizeof(s_process));
+		process = ft_calloc(g_va->process_count - 1, sizeof(t_process));
 		if (!process)
 			return ;
 		i = -1;

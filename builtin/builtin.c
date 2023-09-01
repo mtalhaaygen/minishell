@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/31 20:12:04 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:17:00 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,7 @@ void	run_other_builtin(int status, Node node)
 	if (status == CD)
 		run_cd(node);
 	else if (status == EXIT)
-	{
-		printf("exit\n");
-		if (node.args[2] != NULL)
-			ft_perror("exit");
-		exit((ft_atoi(node.args[1]) % 256));
-	}
+		run_exit(node);
 	else if (status == UNSET)
 		run_unset(node);
 	else if (status == EXPORT)
@@ -73,11 +68,12 @@ int	is_other_builtin(Node node)
 		return (EXPORT);
 	return (0);
 }
-void	ft_export1(Node node)
-{
 	// if (node.args[1] == NULL) 
 	// command : export, command : export | grep a, parametresiz
 	// printf("deneme\n");
+
+void	ft_export1(Node node)
+{
 	(void)node;
 	ft_print_full(g_va->full);
 	exit(0);

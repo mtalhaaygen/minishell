@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/27 17:27:31 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:07:27 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_pipe_counter(s_token *tokens)
+int	ft_pipe_counter(t_token *tokens)
 {
 	int		len;
 	int		i;
@@ -28,7 +28,7 @@ int	ft_pipe_counter(s_token *tokens)
 	return (len);
 }
 
-int	ft_count_arg(s_token *tokens, int i)
+int	ft_count_arg(t_token *tokens, int i)
 {
 	int	len;
 
@@ -41,13 +41,13 @@ int	ft_count_arg(s_token *tokens, int i)
 	return (len);
 }
 
-Node	ft_creat_node(s_token *tokens, int i)
+Node	ft_creat_node(t_token *tokens, int i)
 {
 	Node	node;
 	int		j;
 
-	node.infile = ft_calloc(1, sizeof(s_file));
-	node.outfile = ft_calloc(1, sizeof(s_file));
+	node.infile = ft_calloc(1, sizeof(t_file));
+	node.outfile = ft_calloc(1, sizeof(t_file));
 	node.args = ft_calloc(sizeof(char *), ft_count_arg(tokens, i) + 1); 
 	if (!node.args)
 		return (node); 
@@ -69,7 +69,7 @@ Node	ft_creat_node(s_token *tokens, int i)
 	return (node);
 }
 
-Node	*ft_parser(s_token *tokens)
+Node	*ft_parser(t_token *tokens)
 {
 	Node	*nodes;
 	int		i;

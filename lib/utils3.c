@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/31 19:14:19 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 11:06:06 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	ft_find_redirection(Node node)
 // bir node yalnızca redirection içeremez
 // bit node boş olamaz
 // yalnızca bir pipe varsa args[0] null olur, yalnızca > varsa args[0] == > olur.
-	// 
 void	ft_syntax_error(Node *nodes)
 {
 	int	flag;

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:53:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/28 15:53:08 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 12:11:00 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	run_cd(Node node)
 void	del_env(int index)
 {
 	int		i;
-	s_env	*nenv;
+	t_env	*nenv;
 
 	i = -1;
-	nenv = malloc(sizeof(s_env) * g_va->env->env_count);
+	nenv = malloc(sizeof(t_env) * g_va->env->env_count);
 	nenv->env_count = g_va->env->env_count - 1;
 	while (g_va->env[++i].key)
 	{
