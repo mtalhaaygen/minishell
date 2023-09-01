@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 17:47:37 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/01 19:58:52 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ char	*ft_rm_last_sp(char *input)
 
 int	ft_pure(t_token *tokens)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (tokens[i].value)
@@ -114,7 +114,8 @@ int	ft_pure(t_token *tokens)
 		j = 0;
 		while (tokens[i].value[j])
 		{
-			if(tokens[i].value[1] != '|' && tokens[i].value[1] != '<' && tokens[i].value[1] != '>')
+			if (tokens[i].value[1] != '|' && tokens[i].value[1]\
+				!= '<' && tokens[i].value[1] != '>')
 				return (1);
 			j++;
 		}
@@ -137,7 +138,7 @@ t_token	*ft_tokens(char *input)
 	}
 	tokens = ft_start(input);
 	free (input);
-	if(ft_pure(tokens))
+	if (ft_pure(tokens))
 		tokens = ft_sep(tokens);
 	tokens = ft_dollar(tokens);
 	ft_token_type (tokens);
