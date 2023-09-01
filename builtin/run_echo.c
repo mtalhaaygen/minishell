@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:55:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 12:48:16 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 14:21:44 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ void	run_exit(Node node)
 
 	printf("exit\n");
 	if (node.args[1] && node.args[2])
+	{
 		printf("tsh: exit: too many arguments\n");
+		
+	}
 	else
 	{
 		if (node.args[1])

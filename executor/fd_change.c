@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/31 16:31:25 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 14:15:57 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	change_fd_i(Node node, int index)
 	}
 }
 
+// -rw-r--r--  644
 void	change_fd_ii(Node node, int index)
 {
 	int	fdnewtxt;
@@ -52,7 +53,6 @@ void	change_fd_ii(Node node, int index)
 	{
 		if (access(node.args[index + 1], F_OK) != -1)
 			file_access(node.args[index + 1], W_OK);
-		 // -rw-r--r--
 		fdnewtxt = open(node.args[index + 1], \
 					O_RDWR | O_APPEND | O_CREAT, 0644);
 		if (ft_strcmp(node.outfile->name, node.args[index + 1]))
@@ -71,19 +71,24 @@ void	change_fd_o(Node node, int index)
 			exit(2);
 		fdnewtxt = open(node.args[index + 1], O_RDWR, 0777);
 		if (ft_strcmp(node.infile->name, node.args[index + 1]))
-			dup2(fdnewtxt, STDIN_FILENO);  
+			dup2(fdnewtxt, STDIN_FILENO);
 		fd_change(node, index);
 	}
 }
 
-	// while içerisinde tüm node dolaşılacak ilk redirection ile change fd ve change node yapılacak, sonra diğer redirection için aynısı yapılacak
+	// while içerisinde tüm node dolaşılacak ilk redirection ile change fd ve
+	// change node yapılacak, sonra diğer redirection için aynısı yapılacak
 	// ls > deneme.txt > txt > t.txt outfile=NULL stdout
 	// ls > txt > t.txt outfile=deneme.txt
 	// ls > t.txt outfile=txt
 	// ls outfile=t.txt 
-	// şeklinde her redirectionu gördüğünde infile outfile değişecek, her redirection gördüğünde gerekli fd dup2 ile yeni fd ye aktarılacak
-	// > ve >> ifadeleri dosyaları istenildiği şekilde açacak eğer dosya outfile ise o zaman dup2 ile STDOUT_FILENO yönlendirilecek
-	// > >> yada < argümanından sonra herzaman dosya adı geldiği varsayılacak tüm argüman dizisini iki birim öne kaydırılıp son ikiye null atılacak
+	// şeklinde her redirectionu gördüğünde infile outfile değişecek, 
+	// her redirection gördüğünde gerekli fd dup2 ile yeni fd ye aktarılacak
+	// > ve >> ifadeleri dosyaları istenildiği şekilde açacak eğer dosya
+	// outfile ise o zaman dup2 ile STDOUT_FILENO yönlendirilecek
+	// > >> yada < argümanından sonra herzaman dosya adı geldiği 
+	// varsayılacak tüm argüman dizisini iki birim öne kaydırılıp son ikiye null
+	// atılacak
 void	is_redirection(Node *nodes, int i)
 {
 	int	j;
