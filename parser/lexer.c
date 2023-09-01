@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 12:12:13 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/01 17:47:37 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,26 @@ char	*ft_rm_last_sp(char *input)
 	return (str);
 }
 
+int	ft_pure(t_token *tokens)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (tokens[i].value)
+	{
+		j = 0;
+		while (tokens[i].value[j])
+		{
+			if(tokens[i].value[1] != '|' && tokens[i].value[1] != '<' && tokens[i].value[1] != '>')
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 t_token	*ft_tokens(char *input)
 {
 	t_token	*tokens;
@@ -117,7 +137,8 @@ t_token	*ft_tokens(char *input)
 	}
 	tokens = ft_start(input);
 	free (input);
-	tokens = ft_sep(tokens);
+	if(ft_pure(tokens))
+		tokens = ft_sep(tokens);
 	tokens = ft_dollar(tokens);
 	ft_token_type (tokens);
 	g_va->process_count = ft_pipe_counter(tokens) + 1;
