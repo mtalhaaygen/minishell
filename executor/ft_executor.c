@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 14:17:04 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/02 17:15:41 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_access(char *args)
 	return (command);
 }
 
-void	ft_executor(Node *nodes, char **envp)
+void	ft_executor(Node *nodes)
 {
 	int		status;
 	char	*bin_command;
@@ -61,7 +61,7 @@ void	ft_executor(Node *nodes, char **envp)
 				if ((status = is_builtin(nodes[i].args)))
 					run_builtin(status, nodes[i]);
 				bin_command = ft_access(nodes[i].args[0]);
-				if (execve(bin_command, nodes[i].args, envp))
+				if (execve(bin_command, nodes[i].args, g_va->full))
 					ft_perror(bin_command);
 				exit (127);
 			}
@@ -75,16 +75,12 @@ void	ft_executor(Node *nodes, char **envp)
 	status = -1;
 	while (++i < g_va->process_count)
 		waitpid(g_va->pid, &status, 0);
-	rm_heredoc();
 	if (WIFEXITED(status))
-	{
 		g_va->err_number = WEXITSTATUS(status);
-		printf("*%d*\n", g_va->err_number);
-	}
-	// add_dollar_question_mark(g_va->err_number);
+	//add_dollar_question_mark();
 }
 
-void	exec_start(Node *nodes, char **envp)
+void	exec_start(Node *nodes)
 {
 	t_process	*process;
 	int			i;
@@ -104,10 +100,10 @@ void	exec_start(Node *nodes, char **envp)
 		}
 		g_va->process = process;
 	}
-	exec_select(nodes, envp);
+	exec_select(nodes);
 }
 
-void	exec_select(Node *nodes, char **envp)
+void	exec_select(Node *nodes)
 {
 	int		i;
 	int		th;
@@ -119,6 +115,8 @@ void	exec_select(Node *nodes, char **envp)
 	{
 		i = -1;
 		flag = 0;
+		if (ft_strcmp("<<", nodes[th].args[0]) && nodes[th].args[1] == NULL)
+			break ;
 		while (nodes[th].args[++i] != NULL && nodes[th].args[i]) 
 		{
 			if (flag > 1)
@@ -133,7 +131,7 @@ void	exec_select(Node *nodes, char **envp)
 				break ;
 		}
 	}
-	ft_executor(nodes, envp);
+	ft_executor(nodes);
 }
 
 /*

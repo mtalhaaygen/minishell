@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/02 12:00:22 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/02 16:28:55 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_syntax_error(Node *nodes)
 		return ;
 	if (flag == 0)
 	{
-		printf("tsh: syntax error near unexpected token `newline'\n");
+		printf("aaatsh: syntax error near unexpected token `newline'\n");
 		exit(258);
 	}
 }
@@ -97,12 +97,29 @@ int	file_access(char	*filename, int flag)
 	}
 	return (0);
 }
+
 // export ?=123 şeklinde ekleme yapacak, tabii execve ile çalışmayacak 
 // void	ft_export2(Node node) fonksiyonunu çağıracağız
 // node.args içeriği aşağıdaki şekilde olacak
 // export ?=err_number
-void	add_dollar_question_mark(int a)
+
+
+// ilk başta bir ker "export ?=errnu" çalıştır yani export2(node)
+// daha sonra direkt update_export fonk. çalıştır.
+
+void	add_dollar_question_mark(void)
 {
+	Node	node;
+
+	rm_heredoc();
+	node.arg_count = 2;
+	node.args = malloc(sizeof(char *) * 3);
+	node.args[0] = ft_strdup("export");
+	node.args[1] = ft_strdup(ft_strjoin("?=", ft_itoa(g_va->err_number)));
+	printf("*%s* added\n", node.args[1]);
+	node.infile = NULL;
+	node.outfile = NULL;
+	ft_export2(node);
 }
 
 // bu fonksiyon dosya izinlerini kontrol edecek gerekirse

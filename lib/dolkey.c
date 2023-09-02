@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 11:04:01 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 12:47:51 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/02 14:45:33 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strdup_dolkey(char *src)
 	return (new);
 }
 
-int	ft_isdigit(int a)
+static	int	ft_isdigit(int a)
 {
 	if ((a <= 57 && a >= 48))
 		return (1);
@@ -58,4 +58,48 @@ int	ft_number(char	*str)
 		i++;
 	}
 	return (1);
+}
+
+static	long	digit(long num)
+{
+	int	i;
+
+	i = 0;
+	if (num == 0)
+		return (1);
+	if (num < 0)
+		i++;
+	while (num)
+	{
+		num /= 10;
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*mystr;
+	int		a;
+	long	nb;
+
+	nb = n;
+	a = digit(nb);
+	mystr = (char *)malloc(a + 1);
+	if (!mystr)
+		return (NULL);
+	if (n < 0)
+	{
+		nb *= -1;
+		mystr[0] = '-';
+	}
+	mystr[a] = '\0';
+	a--;
+	while ((n < 0) <= a)
+	{
+		mystr[a] = (nb % 10) + 48;
+		nb /= 10;
+		a--;
+	}
+	return (mystr);
 }

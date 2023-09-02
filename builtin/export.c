@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 18:18:15 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/02 16:33:48 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,28 @@ void	full_update(char	*new)
 		if (ft_strncmp(new, g_va->full[i], len) && \
 				(new[len] == '=' || new[len] == '\0'))
 		{
-			printf("update full %s\n", g_va->full[i]);
+			// printf("update full %s\n", g_va->full[i]);
 			g_va->full[i] = ft_strdup(new);
 		}
 	}
+	printf("fulll update new:%s\n", new);
 }
 
 void	env_update(char	*new)
 {
-	char	**s;
-	int		size;
-	int		len;
+	int	size;
+	int	len;
 
 	size = g_va->env->env_count - 1;
 	while (size > 0 && g_va->env[size].key)
 	{
 		len = ft_strlen(g_va->env[size].key);
+		// printf("key:%s // new:%s // len:%d\n", g_va->env[size].key, new, len);
 		if (ft_strncmp(new, g_va->full[size], len) && \
 				(new[len] == '=' || new[len] == '\0'))
 		{
-			printf("update env %s\n", g_va->env[size].key);
+			// printf("update env %s\n", g_va->env[size].key);
+			char **s;
 			s = ft_split(new, '=');
 			g_va->env[size].value = ft_strdup(s[1]);
 		}
@@ -116,6 +118,7 @@ void	ft_export2(Node node)
 		args_index = 0;
 		g_va->full_size = arg_count(g_va->full) + node.arg_count - 1;
 		new = malloc(sizeof(char *) * g_va->full_size + 1);
+		printf("3333333333\n");
 		while (g_va->full[++i])
 			new[i] = ft_strdup(g_va->full[i]);
 		while (node.args[++args_index])
@@ -124,7 +127,9 @@ void	ft_export2(Node node)
 				new[i++] = ft_strdup(node.args[args_index]);
 		}
 		new[i] = NULL;
+		printf("444444444\n");
 		g_va->full = new;
 		// insertionSort(g_va->full, g_va->full_size);
+		printf("export2 completed\n");
 	}
 }
