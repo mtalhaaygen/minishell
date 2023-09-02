@@ -2,6 +2,7 @@
 
 seg veren girdiler
 \>> | \>>
+
 <<< | ls
 - bash: exit: too many arguments exit_code:1
 - bash: exit: a: numeric argument required exit_code:255
