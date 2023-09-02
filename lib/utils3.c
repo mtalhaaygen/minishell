@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 19:59:42 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/02 12:00:22 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,22 @@ int	ft_find_redirection(Node node)
 void	ft_syntax_error(Node *nodes)
 {
 	int	flag;
+	int	i;
 
+	i = -1;
 	flag = 0;
 	if (nodes[0].args[0] == NULL)
 	{
 		ft_perror("syntax error near unexpected token `|'\n");
 		exit(258);
 	}
-	if (nodes[0].args)
+	while (++i < g_va->process_count)
 	{
-		if (ft_find_redirection(nodes[0]))
+		if (ft_find_redirection(nodes[i]))
+		{
 			flag = 2;
+			break ;
+		}
 	}
 	if (flag == 2)
 		return ;
@@ -92,10 +97,13 @@ int	file_access(char	*filename, int flag)
 	}
 	return (0);
 }
-
-// void	add_dollar_question_mark(int a)
-// {
-// }
+// export ?=123 şeklinde ekleme yapacak, tabii execve ile çalışmayacak 
+// void	ft_export2(Node node) fonksiyonunu çağıracağız
+// node.args içeriği aşağıdaki şekilde olacak
+// export ?=err_number
+void	add_dollar_question_mark(int a)
+{
+}
 
 // bu fonksiyon dosya izinlerini kontrol edecek gerekirse
 	// gerekli hata kodlarını ekrana basacak

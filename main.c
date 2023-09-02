@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 20:03:07 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/02 11:40:36 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	main(int argc, char **argv, char **envp)
 			
 			free(nodes);
 */
+			printf("parser completed\n");
 			exec_start(nodes, envp);
 		}
 		int i = -1;
