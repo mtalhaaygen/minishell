@@ -158,12 +158,12 @@ int			find_full(char *new);
 void		ft_syntax_error(Node *nodes);
 int			ft_atoi(const char *str);
 int			ft_number(char	*str);
-
+char		*ft_itoa(int n);
 /* EXECUTOR */
-void		ft_executor(Node *nodes, char **envp);
+void		ft_executor(Node *nodes);
 void		ft_executor_heredoc(Node *nodes, int th, int i, int flag);
-void		exec_start(Node *nodes, char **envp);
-void		exec_select(Node *nodes, char **envp);
+void		exec_start(Node *nodes);
+void		exec_select(Node *nodes);
 int			is_heredoc(Node *nodes, int index);
 // int			contain_i(char **commands);
 // int			contain_ii(char **commands);
@@ -173,6 +173,7 @@ void		ft_process_merge(int i);
 void		pipe_close(void);
 void		rm_heredoc(void);
 int			file_access(char *filename, int flag);
+void		add_dollar_question_mark(void);
 
 /* BUILTIN COMMANDS */
 int			is_builtin(char **args);
