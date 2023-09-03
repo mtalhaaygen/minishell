@@ -174,6 +174,8 @@ void		pipe_close(void);
 void		rm_heredoc(void);
 int			file_access(char *filename, int flag);
 void		add_dollar_question_mark(void);
+char		*ft_getenv(char *str);
+
 
 /* BUILTIN COMMANDS */
 int			is_builtin(char **args);

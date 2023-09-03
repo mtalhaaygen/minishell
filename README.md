@@ -1,14 +1,16 @@
 # BROlarla MİNİSHELL
 
 seg veren girdiler
+*******
 \>> | \>>
 <<< | ls
+echo <<
 
-ft_getenv yaz
-Node t_node s_node çevir
-*****************
+hatalı sonuç veren girdiler
+*******
 echo "|"
-****************
+
+
 - bash: exit: too many arguments exit_code:1
 - bash: exit: a: numeric argument required exit_code:255
 - tüm komutlar sonrasında $? ni düzenle

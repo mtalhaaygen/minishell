@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 17:04:12 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 18:59:19 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_access(char *args)
 	int		i;
 
 	i = -1;
-	pathenv = getenv("PATH"); // fullden çek env yi
+	pathenv = ft_getenv("PATH"); // fullden çek env yi
 	if (!pathenv)
 		printf("tsh: %s: No such file or directory", args); // update $? =127
 	command_paths = ft_split(pathenv, ':');
