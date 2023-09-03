@@ -6,14 +6,14 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 11:12:50 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 17:04:49 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 // tamamı redirection mu diye kontrol edecek
-int	ft_find_redirection(Node node)
+int	ft_find_redirection(t_node node)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ int	ft_find_redirection(Node node)
 // bit node boş olamaz
 // yalnızca bir pipe varsa args[0] null olur, yalnızca > varsa 
 // args[0] == > olur.
-void	ft_syntax_error(Node *nodes)
+void	ft_syntax_error(t_node *nodes)
 {
 	int	flag;
 	int	i;
@@ -99,7 +99,7 @@ int	file_access(char	*filename, int flag)
 }
 
 // export ?=123 şeklinde ekleme yapacak, tabii execve ile çalışmayacak 
-// void	ft_export2(Node node) fonksiyonunu çağıracağız
+// void	ft_export2(t_node node) fonksiyonunu çağıracağız
 // node.args içeriği aşağıdaki şekilde olacak
 // export ?=err_number
 
@@ -109,7 +109,7 @@ int	file_access(char	*filename, int flag)
 
 void	add_dollar_question_mark(void)
 {
-	Node	node;
+	t_node	node;
 
 	rm_heredoc();
 	node.arg_count = 2;

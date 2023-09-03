@@ -5,6 +5,7 @@ seg veren girdiler
 <<< | ls
 
 ft_getenv yaz
+Node t_node s_node çevir
 *****************
 echo "|"
 ****************

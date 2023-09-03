@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 11:12:08 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 17:04:12 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_access(char *args)
 	return (command);
 }
 
-void	ft_executor(Node *nodes)
+void	ft_executor(t_node *nodes)
 {
 	int		status;
 	char	*bin_command;
@@ -80,7 +80,7 @@ void	ft_executor(Node *nodes)
 	add_dollar_question_mark();
 }
 
-void	exec_start(Node *nodes)
+void	exec_start(t_node *nodes)
 {
 	t_process	*process;
 	int			i;
@@ -103,7 +103,7 @@ void	exec_start(Node *nodes)
 	exec_select(nodes);
 }
 
-void	exec_select(Node *nodes)
+void	exec_select(t_node *nodes)
 {
 	int		i;
 	int		th;

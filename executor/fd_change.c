@@ -6,13 +6,13 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 11:19:02 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 17:03:55 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	fd_change(Node node, int index)
+void	fd_change(t_node node, int index)
 {
 	while (node.args[index] && node.args[index + 2])
 	{
@@ -29,7 +29,7 @@ void	fd_change(Node node, int index)
 // dosya var >> izni kontrol et >>> izni yok >>> permission denided EXİT
 // dosya var >> izni kontrol et >>> izni var >>> open ile aç dup2 fd_change
 // dosya yok >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> open ile aç dup2 fd_change
-void	change_fd_i(Node node, int index)
+void	change_fd_i(t_node node, int index)
 {
 	int	fdnewtxt;
 
@@ -45,7 +45,7 @@ void	change_fd_i(Node node, int index)
 }
 
 // -rw-r--r--  644
-void	change_fd_ii(Node node, int index)
+void	change_fd_ii(t_node node, int index)
 {
 	int	fdnewtxt;
 
@@ -61,7 +61,7 @@ void	change_fd_ii(Node node, int index)
 	}
 }
 
-void	change_fd_o(Node node, int index)
+void	change_fd_o(t_node node, int index)
 {
 	int	fdnewtxt;
 
@@ -89,7 +89,7 @@ void	change_fd_o(Node node, int index)
 	// > >> yada < argümanından sonra herzaman dosya adı geldiği 
 	// varsayılacak tüm argüman dizisini iki birim öne kaydırılıp son ikiye null
 	// atılacak
-void	is_redirection(Node *nodes, int i)
+void	is_redirection(t_node *nodes, int i)
 {
 	int	j;
 

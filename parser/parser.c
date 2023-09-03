@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 12:07:27 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 17:06:47 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	ft_count_arg(t_token *tokens, int i)
 	return (len);
 }
 
-Node	ft_creat_node(t_token *tokens, int i)
+t_node	ft_creat_node(t_token *tokens, int i)
 {
-	Node	node;
+	t_node	node;
 	int		j;
 
 	node.infile = ft_calloc(1, sizeof(t_file));
@@ -69,15 +69,15 @@ Node	ft_creat_node(t_token *tokens, int i)
 	return (node);
 }
 
-Node	*ft_parser(t_token *tokens)
+t_node	*ft_parser(t_token *tokens)
 {
-	Node	*nodes;
+	t_node	*nodes;
 	int		i;
 	int		j;
 	int		pipe_len;
 
 	pipe_len = g_va->process_count;
-	nodes = malloc (sizeof(Node) * (pipe_len + 1));
+	nodes = malloc (sizeof(t_node) * (pipe_len + 1));
 	i = 0;
 	j = 0;
 	nodes[j] = ft_creat_node (tokens, i);

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:53:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 11:30:33 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 17:03:00 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	run_pwd(void)
 	exit(0);
 }
 
-void	run_cd(Node node)
+void	run_cd(t_node node)
 {
 	char	*s;
 

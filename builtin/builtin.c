@@ -6,13 +6,13 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 12:17:00 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 17:02:29 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	run_builtin(int status, Node node)
+void	run_builtin(int status, t_node node)
 {
 	if (status == ENV)
 		print_env_list(g_va->env);
@@ -27,7 +27,7 @@ void	run_builtin(int status, Node node)
 
 	// bu komutların pipe olduğu durumlarda çalışmaması için bu kokşul eklendi
 	// exit de free
-void	run_other_builtin(int status, Node node)
+void	run_other_builtin(int status, t_node node)
 {
 	if (g_va->process_count > 1)
 		return ;
@@ -54,7 +54,7 @@ int	is_builtin(char **args)
 	return (0);
 }
 
-int	is_other_builtin(Node node)
+int	is_other_builtin(t_node node)
 {
 	if (ft_strcmp(node.args[0], "exit"))
 		return (EXIT);
@@ -72,7 +72,7 @@ int	is_other_builtin(Node node)
 	// command : export, command : export | grep a, parametresiz
 	// printf("deneme\n");
 
-void	ft_export1(Node node)
+void	ft_export1(t_node node)
 {
 	(void)node;
 	ft_print_full(g_va->full);

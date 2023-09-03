@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 11:35:26 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 17:02:37 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	env_update(char	*new)
 // parametresi varken ve process_count 1 iken gelecek buraya
 // bu if i daha önce atmışız ama kalsın önemi yok|| export a=1 gibi 
 // pipe yokken parametreli
-void	ft_export2(Node node)
+void	ft_export2(t_node node)
 {
 	char	**new;
 	int		i;

@@ -70,14 +70,14 @@ typedef struct s_file //DENEYSEL
 	char			*name;
 }	t_file;
 
-typedef struct Node
+typedef struct s_node
 {
 	char		**args;
 	int			arg_count;
 
 	t_file		*infile;
 	t_file		*outfile;
-}				Node;
+}				t_node;
 
 typedef struct s_process
 {
@@ -89,7 +89,7 @@ typedef struct s_minishell
 {
 	int			process_count;
 	t_env		*env;
-	Node		*nodes;
+	t_node		*nodes;
 	t_process	*process;
 	int			flag;
 	int			pid;
@@ -112,7 +112,7 @@ t_token		*ft_tokens(char *input);
 int			ft_pipe_counter(t_token *tokens);
 t_env		*fill_env(char **envp);
 void		print_env_list(t_env *env_list);
-Node		*ft_parser(t_token *tokens);
+t_node		*ft_parser(t_token *tokens);
 int			ft_char_count(const char *input, int c);
 int			quote_off(const char *input);
 int			ft_token_count(const char *input);
@@ -131,9 +131,9 @@ int			handle_quotes(int i, const char *str, char del);
 int			ft_flag(const char *input, int start);
 void		ft_token_type(t_token *tokens);
 int			ft_tokens_quot_flag(char *input, int i);
-void		ft_i(Node node, int i, t_token *tokens);
-void		ft_i_i(Node node, int i, t_token *tokens);
-void		ft_o(Node node, int i, t_token *tokens);
+void		ft_i(t_node node, int i, t_token *tokens);
+void		ft_i_i(t_node node, int i, t_token *tokens);
+void		ft_o(t_node node, int i, t_token *tokens);
 /* LIB*/
 int			my_isspace(char ch);
 char		*ft_strdup(char *src);
@@ -155,20 +155,20 @@ int			arg_count(char **str);
 int			ft_strfind(char	*str, int c);
 void		ft_perror(const char *str);
 int			find_full(char *new);
-void		ft_syntax_error(Node *nodes);
+void		ft_syntax_error(t_node *nodes);
 int			ft_atoi(const char *str);
 int			ft_number(char	*str);
 char		*ft_itoa(int n);
 /* EXECUTOR */
-void		ft_executor(Node *nodes);
-void		ft_executor_heredoc(Node *nodes, int th, int i, int flag);
-void		exec_start(Node *nodes);
-void		exec_select(Node *nodes);
-int			is_heredoc(Node *nodes, int index);
+void		ft_executor(t_node *nodes);
+void		ft_executor_heredoc(t_node *nodes, int th, int i, int flag);
+void		exec_start(t_node *nodes);
+void		exec_select(t_node *nodes);
+int			is_heredoc(t_node *nodes, int index);
 // int			contain_i(char **commands);
 // int			contain_ii(char **commands);
 // int			contain_o(char **commands);
-void		is_redirection(Node *nodes, int i);
+void		is_redirection(t_node *nodes, int i);
 void		ft_process_merge(int i);
 void		pipe_close(void);
 void		rm_heredoc(void);
@@ -177,16 +177,16 @@ void		add_dollar_question_mark(void);
 
 /* BUILTIN COMMANDS */
 int			is_builtin(char **args);
-int			is_other_builtin(Node node);
-void		run_builtin(int status, Node node);
-void		run_other_builtin(int status, Node node);
+int			is_other_builtin(t_node node);
+void		run_builtin(int status, t_node node);
+void		run_other_builtin(int status, t_node node);
 void		run_pwd(void);
-void		run_cd(Node node);
-void		run_echo(Node node);
-void		ft_export1(Node node);
-void		ft_export2(Node node);
+void		run_cd(t_node node);
+void		run_echo(t_node node);
+void		ft_export1(t_node node);
+void		ft_export2(t_node node);
 void		ft_print_full(char **args);
-void		run_unset(Node node);
-void		run_exit(Node node);
+void		run_unset(t_node node);
+void		run_exit(t_node node);
 
 #endif

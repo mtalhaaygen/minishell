@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:12:19 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 11:33:28 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 17:03:20 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	del_full(int index)
 	g_va->full = new;
 }
 
-void	run_unset(Node node)
+void	run_unset(t_node node)
 {
 	int	i;
 	int	size;

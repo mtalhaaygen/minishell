@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 14:14:46 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 17:03:38 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	rm_heredoc(void)
 	free_pp(args);
 }
 
-void	node_change(Node node, int i, int flag)
+void	node_change(t_node node, int i, int flag)
 {
 	if (flag == 1 && !ft_strcmp(node.args[0], "export"))
 	{
@@ -63,7 +63,7 @@ void	node_change(Node node, int i, int flag)
 // Okuduğumuz tüm veriyi dosyaya yazıyoruz
 // Burada direk ekrana basmak yerine heredocu execve ile
 // çalıştıracağımız için node u güncelleyeceğiz
-void	ft_executor_heredoc(Node *nodes, int th, int i, int flag)
+void	ft_executor_heredoc(t_node *nodes, int th, int i, int flag)
 {
 	char	*full;
 	char	*buff;

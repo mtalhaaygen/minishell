@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 11:12:56 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 17:05:03 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_env	*env_list;
 	char	*line;
-	Node	*nodes;
+	t_node	*nodes;
 	t_token	*tokens;
 
 	(void)argc;
