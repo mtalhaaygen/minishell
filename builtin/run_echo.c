@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:55:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 14:21:44 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 11:31:10 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	run_echo(Node node)
 	if (node.args[i] == NULL)
 	{
 		ft_putstr_fd("\n", 1);
-		return ;
+		exit(0);
 	}
 	while (ft_echo_param_checker(node.args[i]) == 1)
 		i++;
@@ -71,7 +71,7 @@ void	run_exit(Node node)
 	if (node.args[1] && node.args[2])
 	{
 		printf("tsh: exit: too many arguments\n");
-		
+		// update $? =XX 1 yada 257
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/02 16:28:55 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 11:12:50 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	add_dollar_question_mark(void)
 	node.args = malloc(sizeof(char *) * 3);
 	node.args[0] = ft_strdup("export");
 	node.args[1] = ft_strdup(ft_strjoin("?=", ft_itoa(g_va->err_number)));
-	printf("*%s* added\n", node.args[1]);
+	// printf("*%s* added\n", node.args[1]);
 	node.infile = NULL;
 	node.outfile = NULL;
 	ft_export2(node);

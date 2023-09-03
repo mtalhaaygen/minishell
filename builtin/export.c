@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/02 16:33:48 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 11:35:26 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	full_update(char	*new)
 			g_va->full[i] = ft_strdup(new);
 		}
 	}
-	printf("fulll update new:%s\n", new);
+	// printf("fulll update new:%s\n", new);
 }
 
 void	env_update(char	*new)
@@ -118,7 +118,6 @@ void	ft_export2(Node node)
 		args_index = 0;
 		g_va->full_size = arg_count(g_va->full) + node.arg_count - 1;
 		new = malloc(sizeof(char *) * g_va->full_size + 1);
-		printf("3333333333\n");
 		while (g_va->full[++i])
 			new[i] = ft_strdup(g_va->full[i]);
 		while (node.args[++args_index])
@@ -127,9 +126,9 @@ void	ft_export2(Node node)
 				new[i++] = ft_strdup(node.args[args_index]);
 		}
 		new[i] = NULL;
-		printf("444444444\n");
 		g_va->full = new;
 		// insertionSort(g_va->full, g_va->full_size);
-		printf("export2 completed\n");
+		// printf("export2 completed\n");
 	}
+	// update ? =0
 }

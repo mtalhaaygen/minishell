@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:02:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 12:11:30 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 11:30:07 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,5 @@ void	print_env_list(t_env *env_list)
 		printf("%s=%s\n", env_list[i].key, env_list[i].value);
 		i++;
 	}
-	exit(1);
+	exit(0);
 }

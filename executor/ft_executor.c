@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/02 17:15:41 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/03 11:12:08 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ char	*ft_access(char *args)
 	int		i;
 
 	i = -1;
-	pathenv = getenv("PATH");
+	pathenv = getenv("PATH"); // fullden çek env yi
 	if (!pathenv)
-		perror("tsh: PATH environment variable does not exist");
+		printf("tsh: %s: No such file or directory", args); // update $? =127
 	command_paths = ft_split(pathenv, ':');
 	if (args[0] == '/' || (args[1] == '/' && args[0] == '.'))
 		return (args);
@@ -63,10 +63,10 @@ void	ft_executor(Node *nodes)
 				bin_command = ft_access(nodes[i].args[0]);
 				if (execve(bin_command, nodes[i].args, g_va->full))
 					ft_perror(bin_command);
-				exit (127);
+				exit (127); // OK
 			}
 			else if (g_va->pid < 0) 
-				return (perror("tsh: executor fork error"));
+				return (perror("tsh: executor fork error")); // update $? =1
 		}
 		run_other_builtin(status, nodes[i]);
 	}
@@ -77,7 +77,7 @@ void	ft_executor(Node *nodes)
 		waitpid(g_va->pid, &status, 0);
 	if (WIFEXITED(status))
 		g_va->err_number = WEXITSTATUS(status);
-	//add_dollar_question_mark();
+	add_dollar_question_mark();
 }
 
 void	exec_start(Node *nodes)
@@ -96,7 +96,7 @@ void	exec_start(Node *nodes)
 		while (++i < g_va->process_count - 1)
 		{
 			if (pipe(process[i].fd) == -1)
-				perror("tsh: pipe not created");
+				perror("tsh: pipe not created"); // update $? = 1
 		}
 		g_va->process = process;
 	}
