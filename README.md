@@ -1,21 +1,4 @@
 # BROlarla MİNİSHELL
-
-seg veren girdiler
-*******
-\>> | \>>
-<<< | ls
-echo <<
-
-hatalı sonuç veren girdiler
-*******
-echo "|"
-
-
-- bash: exit: too many arguments exit_code:1
-- bash: exit: a: numeric argument required exit_code:255
-- tüm komutlar sonrasında $? ni düzenle
-- syntax error fonksiyonunun yeri önemli değişecek
-- 25 satırdan uzun fonk. sayısı => 6
 # MINISHELL
 Bu projede amaç kendi shell kabuğumuzu oluşturmak.
 Shell, kullanıcı ile işletim sistemi çekirdeği arasında arayüz sağlayan bir programdır. Komutları alır, bunları işler, sonuçları görüntüler ve kullanıcıdan yeni komutları bekler. 
@@ -766,3 +749,23 @@ fork() fonksiyonu için;
 * [proje pdfi](https://cdn.intra.42.fr/pdf/pdf/93003/en.subject.pdf)
 * [exec_tr](https://bilgisayarkavramlari.com/2012/03/13/exec-fonksiyonlari/)
 * [Write Your Own Shell (Youtube)](https://youtube.com/playlist?list=PLxIRFba3rzLzxxZMMbrm_-mkI7mV9G0pj)
+
+
+seg veren girdiler
+*******
+\>> | \>>
+<<< | ls
+echo <<
+
+hatalı sonuç veren girdiler
+*******
+echo "|"
+$asfadafds
+cat << a >os | asdsadsad << c
+
+
+- bash: exit: too many arguments exit_code:1
+- bash: exit: a: numeric argument required exit_code:255
+- tüm komutlar sonrasında $? ni düzenle
+- syntax error fonksiyonunun yeri önemli değişecek
+- 25 satırdan uzun fonk. sayısı => 6

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:55:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 17:03:12 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/06 17:14:41 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	run_exit(t_node node)
 	if (node.args[1] && node.args[2])
 	{
 		printf("tsh: exit: too many arguments\n");
-		// update $? =XX 1 yada 257
+		question_mark_update("?=-1", -1);
 	}
 	else
 	{
@@ -79,7 +79,8 @@ void	run_exit(t_node node)
 		{
 			if (!ft_number(node.args[1]))
 			{
-				printf("numbr değil\n");
+				printf("tsh: exit: %s: numeric argument required\n", \
+					node.args[1]);
 				exit_code = 255;
 			}
 			else
@@ -87,7 +88,6 @@ void	run_exit(t_node node)
 		}
 		else
 			exit_code = 0;
-		printf("exitcode:*%d*\n", exit_code);
 		exit(exit_code % 256);
 	}
 }

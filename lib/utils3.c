@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 17:04:49 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/06 17:12:20 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_syntax_error(t_node *nodes)
 	if (flag == 0)
 	{
 		printf("aaatsh: syntax error near unexpected token `newline'\n");
-		exit(258);
+		exit(258); // update
 	}
 }
 
@@ -102,8 +102,7 @@ int	file_access(char	*filename, int flag)
 // void	ft_export2(t_node node) fonksiyonunu çağıracağız
 // node.args içeriği aşağıdaki şekilde olacak
 // export ?=err_number
-
-
+// Aşağıdaki gibi kod kısaltılabilir
 // ilk başta bir ker "export ?=errnu" çalıştır yani export2(node)
 // daha sonra direkt update_export fonk. çalıştır.
 
@@ -115,8 +114,9 @@ void	add_dollar_question_mark(void)
 	node.arg_count = 2;
 	node.args = malloc(sizeof(char *) * 3);
 	node.args[0] = ft_strdup("export");
+	if (g_va->err_number < 0)
+		g_va->err_number *= -1;
 	node.args[1] = ft_strdup(ft_strjoin("?=", ft_itoa(g_va->err_number)));
-	// printf("*%s* added\n", node.args[1]);
 	node.infile = NULL;
 	node.outfile = NULL;
 	ft_export2(node);

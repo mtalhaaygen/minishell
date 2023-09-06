@@ -168,6 +168,7 @@ int			is_heredoc(t_node *nodes, int index);
 // int			contain_i(char **commands);
 // int			contain_ii(char **commands);
 // int			contain_o(char **commands);
+void		question_mark_update(char *new_value, int x);
 void		is_redirection(t_node *nodes, int i);
 void		ft_process_merge(int i);
 void		pipe_close(void);
@@ -175,7 +176,6 @@ void		rm_heredoc(void);
 int			file_access(char *filename, int flag);
 void		add_dollar_question_mark(void);
 char		*ft_getenv(char *str);
-
 
 /* BUILTIN COMMANDS */
 int			is_builtin(char **args);
@@ -190,5 +190,7 @@ void		ft_export2(t_node node);
 void		ft_print_full(char **args);
 void		run_unset(t_node node);
 void		run_exit(t_node node);
+void		env_update(char	*new);
+void		full_update(char *new);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 18:59:19 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/06 17:11:16 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_executor(t_node *nodes)
 	status = -1;
 	while (++i < g_va->process_count)
 		waitpid(g_va->pid, &status, 0);
-	if (WIFEXITED(status))
+	if (WIFEXITED(status) && g_va->err_number >= 0)
 		g_va->err_number = WEXITSTATUS(status);
 	add_dollar_question_mark();
 }
@@ -168,6 +168,7 @@ builtin         main.c          talha.txt
 bash-3.2$ cat << EOF | grep ali
 > deneme
 > aliço
+ls << s
 > aligo
 > alimo
 > EOF
