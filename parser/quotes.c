@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:37:42 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/27 19:49:09 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/07 09:44:21 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	ft_token_count(const char *input)
 			i++;
 		if ((input[i] == DQ || input[i] == MQ) && input[i])
 		{
+			// input, i, count
 			tmp = input[i];
 			while (1)
 			{
@@ -98,6 +99,7 @@ int	ft_token_count(const char *input)
 		}
 		else
 		{
+			// input, i, count
 			while ((!my_isspace(input[i])) && input[i])
 			{
 				if (input[i] == DQ || input[i] == MQ)

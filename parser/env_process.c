@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:02:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 11:30:07 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/07 09:41:59 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,9 @@ void	print_env_list(t_env *env_list)
 {
 	int	i;
 
-	i = 0;
-	while (env_list[i].key)
-	{
+	i = -1;
+	while (env_list[++i].key)
 		printf("%s=%s\n", env_list[i].key, env_list[i].value);
-		i++;
-	}
+	question_mark_update("?=0", 0);
 	exit(0);
 }
