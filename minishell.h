@@ -96,6 +96,7 @@ typedef struct s_minishell
 	char		**full;
 	int			full_size;
 	int			err_number;
+	int			counter_num;
 }	t_minishell;
 
 extern t_minishell *g_va;

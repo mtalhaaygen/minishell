@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:37:42 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 09:44:21 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/07 17:05:24 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,48 +58,76 @@ int	ft_red_pip_count(const char *input)
 	}
 	return (count);
 }
+int	tokencount_forq(const char *input, int i)
+{
+	int	tmp;
+
+	tmp = input[i];
+	while (1)
+	{
+		i++;
+		while (input[i] != tmp && input[i])
+			i++;
+		i++;
+		if (input[i] == '\0' && input[i])
+		{
+			g_va->counter_num++;
+			break ;
+		}
+		else
+		{
+			if (my_isspace(input[i]) || input[i] == '\0')
+			{
+				g_va->counter_num++;
+				break ;
+			}
+			else
+				tmp = input[i];
+		}
+	}
+	return (i);
+}
+
+int	tokencount_nq(const char *input, int i)
+{
+	int	tmp;
+
+	while ((!my_isspace(input[i])) && input[i])
+	{
+		if (input[i] == DQ || input[i] == MQ)
+		{
+			tmp = input[i];
+			i++;
+			while (input[i] != tmp && input[i])
+				i++;
+		}
+		else
+			i++;
+	}
+	g_va->counter_num++;
+	return (i);
+}
+
 int	ft_token_count(const char *input)
 {
 	int	i;
-	int	tmp;
-	int	count;
 
 	i = 0;
-	count = 0;
+	g_va->counter_num = 0;
 	while (input[i])
 	{
 		while (my_isspace(input[i]))
 			i++;
 		if ((input[i] == DQ || input[i] == MQ) && input[i])
-		{
-			// input, i, count
-			tmp = input[i];
-			while (1)
-			{
-				i++;
-				while (input[i] != tmp && input[i])
-					i++;
-				i++;
-				if (input[i] == '\0' && input[i])
-				{
-					count++;
-					break ;
-				}
-				else
-				{
-					if (my_isspace(input[i]) || input[i] == '\0')
-					{
-						count++;
-						break ;
-					}
-					else
-						tmp = input[i];
-				}
-			}
-		}
+			i = tokencount_forq(input, i);
 		else
-		{
-			// input, i, count
+			i = tokencount_nq(input, i);
+	}
+	g_va->counter_num += ft_red_pip_count(input);
+	return (g_va->counter_num);
+}
+
+/*
 			while ((!my_isspace(input[i])) && input[i])
 			{
 				if (input[i] == DQ || input[i] == MQ)
@@ -113,8 +141,4 @@ int	ft_token_count(const char *input)
 					i++;
 			}
 			count++;
-		}
-	}
-	count += ft_red_pip_count(input);
-	return (count);
-}
+*/
