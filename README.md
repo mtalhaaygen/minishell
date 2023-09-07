@@ -1,4 +1,5 @@
 # BROlarla MİNİSHELL
+
 # MINISHELL
 Bu projede amaç kendi shell kabuğumuzu oluşturmak.
 Shell, kullanıcı ile işletim sistemi çekirdeği arasında arayüz sağlayan bir programdır. Komutları alır, bunları işler, sonuçları görüntüler ve kullanıcıdan yeni komutları bekler. 
@@ -764,8 +765,6 @@ $asfadafds
 cat << a >os | asdsadsad << c
 
 
-- bash: exit: too many arguments exit_code:1
-- bash: exit: a: numeric argument required exit_code:255
-- tüm komutlar sonrasında $? ni düzenle
-- syntax error fonksiyonunun yeri önemli değişecek
+- tüm komutlar sonrasında $? ni düzenle (env'de neden değişmiyor)
+- syntax error fonksiyonunun yeri önemli değişebilir
 - 25 satırdan uzun fonk. sayısı => 6
