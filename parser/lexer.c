@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 19:58:52 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/07 15:05:06 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ t_token	*ft_tokens(char *input)
 	}
 	tokens = ft_start(input);
 	free (input);
-	if (ft_pure(tokens))
+	if (ft_pure(tokens) && ft_eor(tokens))
 		tokens = ft_sep(tokens);
 	tokens = ft_dollar(tokens);
 	ft_token_type (tokens);

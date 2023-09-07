@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 13:54:46 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/01 16:40:40 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/07 15:00:19 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ char	**ft_tmp_tokens(t_token *tokens)
 
 int	ft_is_mono(t_token *tokens, int i, int j)
 {
-	if (tokens[i].value[j] == '|')
+	if (tokens[i].value[j] == '|' && tokens[i].value[j + 1] != '|')
 		return (1);
-	else if (tokens[i].value[j] == '<')
+	else if (tokens[i].value[j] == '<' && tokens[i].value[j + 1] != '<')
 		return (1);
-	else if (tokens[i].value[j] == '>')
+	else if (tokens[i].value[j] == '>' && tokens[i].value[j + 1] != '>')
 		return (1);
 	return (0);
 }
@@ -59,15 +59,13 @@ t_token	*ft_sep(t_token *tokens)
 	i = 0;
 	while (tokens[i].value)
 	{
-		j = 0; //;
+		j = 0;
 		len = ft_strlen(tokens[i].value);
 		while (j < len)
 		{
 			if (ft_is_double(tokens, i, j) && (!tokens[i].quot_flag))
 			{
-				
 				tokens = ft_double_sep(tokens, i, j, tokens[i].value[j]);
-
 				i++;
 			}
 			else if (ft_is_mono(tokens, i, j) && (!tokens[i].quot_flag))
