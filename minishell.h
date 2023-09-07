@@ -134,6 +134,9 @@ int			ft_tokens_quot_flag(char *input, int i);
 void		ft_i(t_node node, int i, t_token *tokens);
 void		ft_i_i(t_node node, int i, t_token *tokens);
 void		ft_o(t_node node, int i, t_token *tokens);
+int			ft_is_mono(t_token *tokens, int i, int j);
+int			ft_is_double(t_token *tokens, int i, int j);
+int			ft_eor(t_token *tokens);
 /* LIB*/
 int			my_isspace(char ch);
 char		*ft_strdup(char *src);

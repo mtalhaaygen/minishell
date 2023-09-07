@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   double_sep.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 11:32:34 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/01 12:15:03 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/07 14:35:32 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ t_token	*ft_double_sep(t_token *tokens, int i, int j, char val)
 	}
 	else if (tokens[i].value[j + 2])
 	{
+
 		tokens = ft_r_sep (tokens, i, val, tmp_tokens);
 		return (tokens);
 	}
@@ -131,5 +132,6 @@ t_token	*ft_double_sep(t_token *tokens, int i, int j, char val)
 	while (tmp_tokens[++i])
 		free (tmp_tokens[i]);
 	free (tmp_tokens);
+	
 	return (tokens);
 }
