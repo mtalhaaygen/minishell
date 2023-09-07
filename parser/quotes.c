@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:37:42 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 17:05:24 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/07 17:07:28 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,9 @@ int	tokencount_forq(const char *input, int i)
 {
 	int	tmp;
 
-	tmp = input[i];
 	while (1)
 	{
-		i++;
+		tmp = input[i++];
 		while (input[i] != tmp && input[i])
 			i++;
 		i++;
@@ -126,19 +125,3 @@ int	ft_token_count(const char *input)
 	g_va->counter_num += ft_red_pip_count(input);
 	return (g_va->counter_num);
 }
-
-/*
-			while ((!my_isspace(input[i])) && input[i])
-			{
-				if (input[i] == DQ || input[i] == MQ)
-				{
-					tmp = input[i];
-					i++;
-					while (input[i] != tmp && input[i])
-						i++;
-				}
-				else
-					i++;
-			}
-			count++;
-*/

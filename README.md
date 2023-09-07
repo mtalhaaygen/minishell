@@ -756,15 +756,12 @@ seg veren girdiler
 *******
 \>> | \>>
 <<< | ls
-echo <<
 
 hatalı sonuç veren girdiler
 *******
-echo "|"
-$asfadafds
 cat << a >os | asdsadsad << c
 
 
 - tüm komutlar sonrasında $? teest
-- syntax error fonksiyonunun yeri önemli değişebilir
-- 25 satırdan uzun fonk. sayısı => 6
+- syntax error silinebilir
+- 25 satırdan uzun fonk. sayısı => 5
