@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 17:02:29 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/07 19:30:19 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ int	is_other_builtin(t_node node)
 		return (EXPORT);
 	return (0);
 }
+
 	// if (node.args[1] == NULL) 
 	// command : export, command : export | grep a, parametresiz
 	// printf("deneme\n");
-
 void	ft_export1(t_node node)
 {
 	(void)node;

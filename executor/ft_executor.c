@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 17:09:57 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/07 19:26:02 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,14 @@ char	*ft_access(char *args)
 	int		i;
 
 	i = -1;
-	pathenv = ft_getenv("PATH"); // fullden çek env yi
+	if (!args[0])
+		exit(0);
+	pathenv = ft_getenv("PATH");
 	if (!pathenv)
-		printf("tsh: %s: No such file or directory", args); // update $? =127
+	{
+		printf("tsh: %s: No such file or directory\n", args);
+		exit(127);
+	}
 	command_paths = ft_split(pathenv, ':');
 	if (args[0] == '/' || (args[1] == '/' && args[0] == '.'))
 		return (args);
@@ -66,7 +71,7 @@ void	ft_executor(t_node *nodes)
 				exit (127); // OK
 			}
 			else if (g_va->pid < 0) 
-				return (perror("tsh: executor fork error")); // update $? =1
+				return (perror("tsh: executor fork error"));
 		}
 		run_other_builtin(status, nodes[i]);
 	}
@@ -96,7 +101,7 @@ void	exec_start(t_node *nodes)
 		while (++i < g_va->process_count - 1)
 		{
 			if (pipe(process[i].fd) == -1)
-				perror("tsh: pipe not created"); // update $? = 1
+				perror("tsh: pipe not created");
 		}
 		g_va->process = process;
 	}

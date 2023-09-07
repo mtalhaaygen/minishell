@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/06 15:59:02 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/07 19:24:53 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_print_full(char **args)
 		printf("declare -x %s\n", args[i]);
 }
 
-	// ilk başta "export a" gibi value atamadan eklendiğinde update edemiyor
 void	full_update(char	*new)
 {
 	int	len;
@@ -58,11 +57,9 @@ void	full_update(char	*new)
 		if (ft_strncmp(new, g_va->full[i], len) && \
 				(new[len] == '=' || new[len] == '\0'))
 		{
-			// printf("update full %s\n", g_va->full[i]);
 			g_va->full[i] = ft_strdup(new);
 		}
 	}
-	// printf("fulll update new:%s\n", new);
 }
 
 void	env_update(char	*new)
@@ -74,11 +71,9 @@ void	env_update(char	*new)
 	while (size > 0 && g_va->env[size].key)
 	{
 		len = ft_strlen(g_va->env[size].key);
-		// printf("key:%s // new:%s // len:%d\n", g_va->env[size].key, new, len);
 		if (ft_strncmp(new, g_va->full[size], len) && \
 				(new[len] == '=' || new[len] == '\0'))
 		{
-			// printf("update env %s\n", g_va->env[size].key);
 			char **s;
 			s = ft_split(new, '=');
 			g_va->env[size].value = ft_strdup(s[1]);

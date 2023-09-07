@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 17:26:04 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/07 19:22:26 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_syntax_error(t_node *nodes)
 	flag = 0;
 	if (nodes[0].args[0] == NULL)
 	{
-		ft_perror("syntax error near unexpected token `|'\n");
+		ft_perror("syntax error near unexpected token `|'YYYYYYYYY\n");
 		exit(258);
 	}
 	while (++i < g_va->process_count)
