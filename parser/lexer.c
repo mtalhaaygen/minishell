@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 15:28:53 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/07 18:02:22 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ int	ft_pure(t_token *tokens)
 		}
 		i++;
 	}
-	printf("tsh: syntax error near unexpected token `newline'\n");
 	return (0);
 }
 
@@ -139,7 +138,7 @@ t_token	*ft_tokens(char *input)
 	}
 	tokens = ft_start(input);
 	free (input);
-	if (ft_pure(tokens) && ft_eor(tokens))
+	if (ft_eor(tokens) && ft_pure(tokens))
 		tokens = ft_sep(tokens);
 	tokens = ft_dollar(tokens);
 	ft_token_type (tokens);

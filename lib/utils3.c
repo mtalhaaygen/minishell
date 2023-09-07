@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 15:24:34 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/07 17:26:04 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_syntax_error(t_node *nodes)
 		return ;
 	if (flag == 0)
 	{
-		printf("tsh: syntax error near unexpected token `newline'\n");
+		printf("YYYYtsh: syntax error near unexpected token `newline'\n");
 		exit(258); // update
 	}
 }

@@ -765,6 +765,6 @@ $asfadafds
 cat << a >os | asdsadsad << c
 
 
-- tüm komutlar sonrasında $? ni düzenle (env'de neden değişmiyor)
+- tüm komutlar sonrasında $? teest
 - syntax error fonksiyonunun yeri önemli değişebilir
 - 25 satırdan uzun fonk. sayısı => 6

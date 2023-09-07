@@ -97,6 +97,7 @@ typedef struct s_minishell
 	int			full_size;
 	int			err_number;
 	int			counter_num;
+	int			syn_err;
 }	t_minishell;
 
 extern t_minishell *g_va;
@@ -138,6 +139,7 @@ void		ft_o(t_node node, int i, t_token *tokens);
 int			ft_is_mono(t_token *tokens, int i, int j);
 int			ft_is_double(t_token *tokens, int i, int j);
 int			ft_eor(t_token *tokens);
+int			ft_pure(t_token *tokens);
 /* LIB*/
 int			my_isspace(char ch);
 char		*ft_strdup(char *src);
