@@ -156,7 +156,6 @@ void		*ft_calloc(size_t count, size_t size);
 void		ft_putstr_fd(char *s, int fd);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_strdup_dolkey(char *src);
-void		insertionSort(char	**arr, int size);
 void		free_pp(char **args);
 int			arg_count(char **str);
 int			ft_strfind(char	*str, int c);

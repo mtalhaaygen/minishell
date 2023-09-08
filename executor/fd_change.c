@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 17:03:55 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/08 18:24:52 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,10 @@ void	is_redirection(t_node *nodes, int i)
 			change_fd_o(nodes[i], j);
 			j -= 1;
 		}
+		// else if (ft_strcmq("<<", nodes[i].args[j]) && nodes[i].args[j + 1])
+		// {
+		// 	change_fd_oo(nodes[i], j);
+		// 	j -= 1;
+		// }
 	}
 }

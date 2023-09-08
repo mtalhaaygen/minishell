@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/08 16:16:15 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/08 17:29:47 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ void	ft_syntax_error(t_node *nodes)
 
 	i = -1;
 	flag = 0;
-	if (nodes[0].args[0] == NULL)
-	{
-		ft_perror("syntax error near unexpected token `|'YYYYYYYYY\n");
-		exit(258);
-	}
 	while (++i < g_va->process_count)
 	{
 		if (ft_find_redirection(nodes[i]))
@@ -65,6 +60,8 @@ int	find_full(char *new)
 	int	size;
 	int	len;
 
+	if (!new)
+		return (0);
 	len = ft_strfind(new, '=');
 	if (len == 0)
 		len = ft_strlen(new);

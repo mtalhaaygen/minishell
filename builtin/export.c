@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 19:24:53 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/08 18:12:26 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ void	full_update(char	*new)
 
 void	env_update(char	*new)
 {
-	int	size;
-	int	len;
+	int		size;
+	int		len;
+	char	**s;
 
 	size = g_va->env->env_count - 1;
 	while (size > 0 && g_va->env[size].key)
@@ -74,12 +75,14 @@ void	env_update(char	*new)
 		if (ft_strncmp(new, g_va->full[size], len) && \
 				(new[len] == '=' || new[len] == '\0'))
 		{
-			char **s;
 			s = ft_split(new, '=');
 			g_va->env[size].value = ft_strdup(s[1]);
+			break ;
 		}
 		size--;
 	}
+	if (size == 0 && ft_strfind(new, '='))
+		add_env(new);
 }
 
 // parametresi varken ve process_count 1 iken gelecek buraya
@@ -97,7 +100,7 @@ void	ft_export2(t_node node)
 		args_index = 0;
 		while (node.args[++args_index])
 		{
-			if (find_full(node.args[args_index]))
+			if (ft_strfind(node.args[args_index], '=') && find_full(node.args[args_index]))
 			{
 				full_update(node.args[args_index]);
 				env_update(node.args[args_index]);
@@ -123,6 +126,5 @@ void	ft_export2(t_node node)
 		}
 		new[i] = NULL;
 		g_va->full = new;
-		// insertionSort(g_va->full, g_va->full_size);
 	}
 }
