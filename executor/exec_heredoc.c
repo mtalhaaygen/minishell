@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 09:50:06 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/08 16:22:54 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 void	rm_heredoc(void)
 {
 	char	**args;
+	int		i;
 
-	args = ft_calloc(4, sizeof(char *));
+	i = 0;
+	args = ft_calloc((3 + g_va->heredoc_count), sizeof(char *));
 	args[0] = ft_strdup("/bin/rm");
-	args[1] = ft_strdup("-rf");
-	args[2] = ft_strdup("heredoc.txt");
-	args[3] = NULL;
+	while (i < g_va->heredoc_count)
+	{
+		args[i + 1] = ft_strjoin("heredoc.txt", ft_itoa(i + 1));
+		i++;
+	}
+	args[i + 1] = NULL;
 	g_va->pid = fork();
 	if (g_va->pid == 0)
 		execve(args[0], args, NULL);
@@ -29,12 +34,12 @@ void	rm_heredoc(void)
 	free_pp(args);
 }
 
-void	node_change(t_node node, int i, int flag)
+void	node_change(t_node node, int i, int flag, char *txt)
 {
 	if (flag == 1 && !ft_strcmp(node.args[0], "export"))
 	{
 		free(node.args[i]);
-		node.args[i] = ft_strdup("heredoc.txt");
+		node.args[i] = ft_strdup(txt);
 		while (node.args[++i] && node.args[i + 1])
 			node.args[i] = node.args[i + 1];
 		node.args[i] = NULL;
@@ -66,9 +71,11 @@ void	node_change(t_node node, int i, int flag)
 void	ft_executor_heredoc(t_node *nodes, int th, int i, int flag)
 {
 	char	*full;
+	char	*txt;
 	char	*buff;
 	int		fd;
 
+	g_va->heredoc_count++;
 	buff = malloc (sizeof(char));
 	buff[0] = '<';
 	full = NULL;
@@ -82,7 +89,8 @@ void	ft_executor_heredoc(t_node *nodes, int th, int i, int flag)
 		else
 			break ;
 	}
-	fd = open("heredoc.txt", O_TRUNC | O_CREAT | O_RDWR, 0777);
+	txt = ft_strjoin("heredoc.txt", ft_itoa(g_va->heredoc_count));
+	fd = open(txt, O_TRUNC | O_CREAT | O_RDWR, 0777);
 	ft_putstr_fd(full, fd);
-	node_change(nodes[th], i, flag);
+	node_change(nodes[th], i, flag, txt);
 }

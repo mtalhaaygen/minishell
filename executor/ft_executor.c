@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 19:26:02 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/08 14:15:46 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	exec_select(t_node *nodes)
 	int		status;
 
 	th = -1;
+	g_va->heredoc_count = 0;
 	while (++th < g_va->process_count)
 	{
 		i = -1;

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 19:22:26 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/08 16:16:15 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,8 @@ void	add_dollar_question_mark(void)
 {
 	t_node	node;
 
-	rm_heredoc();
+	if (g_va->heredoc_count > 0)
+		rm_heredoc();
 	node.arg_count = 2;
 	node.args = malloc(sizeof(char *) * 3);
 	node.args[0] = ft_strdup("export");
