@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 18:02:22 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/08 16:40:17 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ int	ft_pure(t_token *tokens)
 		j = 0;
 		while (tokens[i].value[j])
 		{
-			if (tokens[i].value[1] != '|' && tokens[i].value[1]\
-				!= '<' && tokens[i].value[1] != '>')
+			if (tokens[i].value[j] != '|' && tokens[j].value[j]\
+				!= '<' && tokens[i].value[j] != '>')
 				return (1);
 			j++;
 		}
