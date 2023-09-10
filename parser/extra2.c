@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 17:27:09 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/08 16:30:54 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/10 16:33:18 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ft_single_error(t_token *tokens, int i)
 	if((tokens[i].value[0] == '<' || tokens[i].value[0] == '>') && !tokens[i].quot_flag)
 	{
 		printf("Xtsh: syntax error near unexpected token `newline'\n");
+
 		question_mark_update("?=258", 258);
 
 	}
@@ -94,14 +95,19 @@ void ft_first_pipe(t_token *tokens)
 	int flag;
 	flag = 1;
 	i = 0;
-	while(tokens[0].value[i])
+
+	if(tokens[0].value)
 	{
-		if(tokens[0].value[i] != '|')
-			flag = 0;
-		i++;
+		while(tokens[0].value[i])
+		{
+			
+			if(tokens[0].value[i] != '|')
+				flag = 0;
+			i++;
+		}
 	}
 	
-	if (flag && !tokens[2].value)
+	if (flag && !tokens[2].value && tokens[0].value)
 		ft_pipe_err();
 }
 void ft_print_pipe(t_token *tokens)
@@ -113,6 +119,7 @@ void ft_print_pipe(t_token *tokens)
 	flag2 = 0;
 	i = -1;
 	flag = 1;
+
 	if (tokens[1].value)
 	{
 		while (tokens[1].value[++i])
@@ -122,6 +129,7 @@ void ft_print_pipe(t_token *tokens)
 			if(tokens[1].value[i] == '|')
 				flag2 = 1;
 		}
+
 		if (flag == 1 && tokens[1].quot_flag && flag2 == 1)
 		{
 			i = -1;
@@ -136,8 +144,10 @@ void ft_print_pipe(t_token *tokens)
 		if (flag && !tokens[1].quot_flag && flag2 && !tokens[2].value)
 			ft_pipe_err();
 	}
+
 	else
 	{
+
 
 		ft_first_pipe(tokens);
 	}
@@ -187,12 +197,13 @@ int	ft_eor(t_token *tokens)
 	int	i;
 
 	i = 0;
+
 	ft_print_pipe(tokens);
-	
 	while (tokens[i].value)
 	{
 		if (ft_is_double(tokens, i, 0) || ft_is_mono(tokens, i, 0) || (ft_pure(tokens) == 0))
 		{
+
 			if(!ft_pure_the(tokens, i) && tokens[i].value[2] && !tokens[i].quot_flag)
 			{
 				g_va->syn_err = 1;
@@ -205,7 +216,9 @@ int	ft_eor(t_token *tokens)
 				return (1);
 			if (!tokens[i+1].value)
 			{
+				
 				ft_error_mesage(tokens,i);
+
 				return (0);
 			}
 			

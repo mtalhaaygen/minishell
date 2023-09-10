@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/08 18:12:26 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/10 16:19:35 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,21 @@ void	env_update(char	*new)
 	int		size;
 	int		len;
 	char	**s;
-
 	size = g_va->env->env_count - 1;
 	while (size > 0 && g_va->env[size].key)
 	{
+		
 		len = ft_strlen(g_va->env[size].key);
+		//printf("**********segmantaion one is here*************\n");
 		if (ft_strncmp(new, g_va->full[size], len) && \
 				(new[len] == '=' || new[len] == '\0'))
-		{
+		{	
 			s = ft_split(new, '=');
 			g_va->env[size].value = ft_strdup(s[1]);
 			break ;
 		}
+		//printf("**********segmantaion two is here*************\n");
+
 		size--;
 	}
 	if (size == 0 && ft_strfind(new, '='))
