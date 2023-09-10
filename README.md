@@ -755,7 +755,7 @@ fork() fonksiyonu için;
 seg veren girdiler
 - [ ] \>> | \>>
 - [ ] <<< | ls
-- [ ] ctrl-C ctrl- / SEG
+- [x] ctrl-C ctrl- / SEG
 
 - [x] cat << a >os | asdsadsad << c
 - [x] tüm komutlar sonrasında $? teest

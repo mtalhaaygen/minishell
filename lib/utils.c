@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:44:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 17:20:14 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/10 21:04:17 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	*ft_calloc(size_t count, size_t size)
 char	*ft_readline(char *str)
 {
 	char	*buf;
-	
+
 	g_va->syn_err = 0;
 	write(1, "\033[7m\033[1;36m", 12);
 	write(1, "talha@minishell", 16);

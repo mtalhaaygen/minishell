@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/10 16:33:26 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/10 20:11:39 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv, char **envp)
 	g_va = malloc(sizeof(t_minishell));
 	env_list = fill_env(envp);
 	g_va->env = env_list;
+	add_dollar_question_mark();
 	while (1)
 	{
 		line = ft_readline("$ ");

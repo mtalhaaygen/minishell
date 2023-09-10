@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/08 17:29:47 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/10 20:36:08 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,19 +105,22 @@ int	file_access(char	*filename, int flag)
 
 void	add_dollar_question_mark(void)
 {
-	t_node	node;
+	char	**new;
+	char	*s;
+	int		i;
+	int		index;
 
-	if (g_va->heredoc_count > 0)
-		rm_heredoc();
-	node.arg_count = 2;
-	node.args = malloc(sizeof(char *) * 3);
-	node.args[0] = ft_strdup("export");
-	if (g_va->err_number < 0)
-		g_va->err_number *= -1;
-	node.args[1] = ft_strdup(ft_strjoin("?=", ft_itoa(g_va->err_number)));
-	node.infile = NULL;
-	node.outfile = NULL;
-	ft_export2(node);
+	index = 0;
+	i = -1;
+	s = ft_strdup("?=0");
+	g_va->err_number = 0;
+	g_va->full_size = arg_count(g_va->full) + 1;
+	new = malloc(sizeof(char *) * g_va->full_size + 1);
+	while (g_va->full[++i])
+		new[i] = ft_strdup(g_va->full[i]);
+	new[i++] = ft_strdup(s);
+	new[i] = NULL;
+	g_va->full = new;
 }
 
 // bu fonksiyon dosya izinlerini kontrol edecek gerekirse

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/08 18:34:19 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/10 20:57:27 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,10 @@ void	ft_executor(t_node *nodes)
 	while (++i < g_va->process_count)
 		waitpid(g_va->pid, &status, 0);
 	if (WIFEXITED(status) && g_va->err_number >= 0)
+	{
 		g_va->err_number = WEXITSTATUS(status);
-	add_dollar_question_mark();
+		question_mark_update(ft_strjoin("?=", ft_itoa(g_va->err_number)), g_va->err_number);
+	}
 }
 
 void	exec_start(t_node *nodes)
