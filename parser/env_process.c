@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:02:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 09:41:59 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/10 20:37:46 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ t_env	*fill_env(char **envp)
 	int		i;
 
 	i = 0;
-	len = env_counter(envp);
+	len = env_counter(envp) + 1;
 	env_list = malloc(sizeof(t_env) * (len + 1));
 	env_list->env_count = len;
-	while (i < len)
+	while (i < len - 1)
 	{
 		s = ft_split(envp[i], '=');
 		env_list[i].key = ft_strdup(s[0]);
@@ -57,6 +57,8 @@ t_env	*fill_env(char **envp)
 		free(s);
 		i++;
 	}
+	env_list[i].key = "?";
+	env_list[i].value = "0";
 	fill_full(envp, len);
 	return (env_list);
 }
