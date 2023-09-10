@@ -141,6 +141,12 @@ int			ft_is_mono(t_token *tokens, int i, int j);
 int			ft_is_double(t_token *tokens, int i, int j);
 int			ft_eor(t_token *tokens);
 int			ft_pure(t_token *tokens);
+void		ft_print_pipe(t_token *tokens);
+void		ft_error_mesage(t_token *tokens, int i);
+void		ft_single_error(t_token *tokens, int i);
+void		ft_double_error(t_token *tokens, int i);
+void		ft_first_pipe(t_token *tokens);
+void		ft_pipe_err();
 /* LIB*/
 int			my_isspace(char ch);
 char		*ft_strdup(char *src);
@@ -165,6 +171,9 @@ void		ft_syntax_error(t_node *nodes);
 int			ft_atoi(const char *str);
 int			ft_number(char	*str);
 char		*ft_itoa(int n);
+void		ft_o(t_node node, int i, t_token *tokens);
+void		ft_i_i(t_node node, int i, t_token *tokens);
+void		ft_i(t_node node, int i, t_token *tokens);
 /* EXECUTOR */
 void		ft_executor(t_node *nodes);
 void		ft_executor_heredoc(t_node *nodes, int th, int i, int flag);

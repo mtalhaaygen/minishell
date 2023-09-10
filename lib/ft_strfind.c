@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_fd.c                                           :+:      :+:    :+:   */
+/*   ft_strfind.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:47:28 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/08 16:31:27 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/10 19:43:47 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,10 @@ int	ft_strfind(char	*str, int c)
 		if (str[i] == c)
 			return (i + 1);
 	return (0);
+}
+
+void	ft_o(t_node node, int i, t_token *tokens)
+{
+	node.infile->type = TOKEN_O;
+	node.infile->name = ft_strdup (tokens[i + 1].value);
 }

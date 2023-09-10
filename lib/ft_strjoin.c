@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 19:48:46 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/10 16:12:44 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/10 19:40:11 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 		n--;
 	}
-	
 	if (s1[i] != s2[i])
 		return (0);
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 11:05:27 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/01 11:59:48 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/10 19:44:38 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,16 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (res);
+}
+
+void	ft_i_i(t_node node, int i, t_token *tokens)
+{
+	node.outfile->type = TOKEN_I_I;
+	node.outfile->name = ft_strdup (tokens[i + 1].value);
+}
+
+void	ft_i(t_node node, int i, t_token *tokens)
+{
+	node.outfile->type = TOKEN_I;
+	node.outfile->name = ft_strdup (tokens[i + 1].value);
 }
