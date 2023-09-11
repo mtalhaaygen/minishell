@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:06:36 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/03 17:06:47 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/11 16:44:38 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ t_node	ft_creat_node(t_token *tokens, int i)
 {
 	t_node	node;
 	int		j;
+	int count;
 
+	count = 0;
 	node.infile = ft_calloc(1, sizeof(t_file));
 	node.outfile = ft_calloc(1, sizeof(t_file));
 	node.args = ft_calloc(sizeof(char *), ft_count_arg(tokens, i) + 1); 
@@ -63,9 +65,10 @@ t_node	ft_creat_node(t_token *tokens, int i)
 			ft_o(node, i, tokens);
 		i++;
 		j++;
+		count++;
 	}
 	node.args[j] = NULL;
-	node.arg_count = i;
+	node.arg_count = count;
 	return (node);
 }
 

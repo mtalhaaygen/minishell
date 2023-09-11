@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/08 16:22:54 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/11 17:59:08 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	rm_heredoc(void)
 	i = 0;
 	args = ft_calloc((3 + g_va->heredoc_count), sizeof(char *));
 	args[0] = ft_strdup("/bin/rm");
+	args[1] = ft_strdup("-rf");
 	while (i < g_va->heredoc_count)
 	{
-		args[i + 1] = ft_strjoin("heredoc.txt", ft_itoa(i + 1));
+		args[i + 2] = ft_strjoin("heredoc.txt", ft_itoa(i + 1));
 		i++;
 	}
-	args[i + 1] = NULL;
+	args[i + 2] = NULL;
 	g_va->pid = fork();
 	if (g_va->pid == 0)
 		execve(args[0], args, NULL);

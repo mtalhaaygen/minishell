@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 15:35:30 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 19:50:43 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	find_full(char *new)
 	return (0);
 }
 
-int	file_access(char	*filename, int flag)
+int	file_access(char	*filename, int flag, int f2, t_node node)
 {
 	if (access(filename, flag) == 0)
 		return (1);
@@ -90,6 +90,16 @@ int	file_access(char	*filename, int flag)
 			perror(filename);
 		else
 			perror("access");
+		if (f2 == 7)
+		{
+			free(node.outfile->name);
+			free(node.outfile);
+		}
+		else
+		{
+			free(node.infile->name);
+			free(node.infile);
+		}
 		exit(1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/10 20:57:27 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/11 18:19:07 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,11 @@ void	ft_executor(t_node *nodes)
 	if (WIFEXITED(status) && g_va->err_number >= 0)
 	{
 		g_va->err_number = WEXITSTATUS(status);
-		question_mark_update(ft_strjoin("?=", ft_itoa(g_va->err_number)), g_va->err_number);
+		char *qqq;
+		qqq = ft_itoa(g_va->err_number);
+		question_mark_update(ft_strjoin("?=", qqq), g_va->err_number);
+		free(qqq);
+		rm_heredoc();
 	}
 }
 
@@ -125,7 +129,7 @@ void	exec_select(t_node *nodes)
 		flag = 0;
 		if (ft_strcmp("<<", nodes[th].args[0]) && nodes[th].args[1] == NULL)
 			break ;
-		while (nodes[th].args[++i] != NULL && nodes[th].args[i]) 
+		while (nodes[th].args[++i] != NULL && nodes[th].args[i])
 		{
 			if (flag > 1)
 				i = i - 1;

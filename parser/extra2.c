@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extra2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 17:27:09 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/11 12:01:47 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 18:16:22 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_em(void)
 {
 	g_va->syn_err = 1;
 	printf("Xtsh: syntax error near unexpected token `newline'\n");
-	question_mark_update("?=258", 258);
+	question_mark_update(ft_strdup("?=258"), 258);
 }
 
 int	ft_eor(t_token *tokens, int i)

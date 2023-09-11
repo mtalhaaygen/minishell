@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strfind.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:47:28 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 11:15:08 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 19:42:25 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,5 @@ int	ft_strfind(char	*str, int c)
 void	ft_o(t_node node, int i, t_token *tokens)
 {
 	node.infile->type = TOKEN_O;
-	node.infile->name = ft_strdup (tokens[i + 1].value);
+	node.infile->name = tokens[i + 1].value;
 }

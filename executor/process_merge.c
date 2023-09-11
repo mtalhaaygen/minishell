@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 13:04:22 by maygen            #+#    #+#             */
-/*   Updated: 2023/08/31 18:24:17 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/11 18:24:18 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ void	pipe_close(void)
 			close(g_va->process[i].fd[1]);
 			i++;
 		}
+		free(g_va->process);
 	}
 }

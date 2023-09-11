@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_process.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:02:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 15:57:41 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 18:15:12 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ void	print_env_list(t_env *env_list)
 	i = -1;
 	while (env_list[++i].key)
 		printf("%s=%s\n", env_list[i].key, env_list[i].value);
-	question_mark_update("?=0", 0);
+	question_mark_update(ft_strdup("?=0"), 0);
 	exit(0);
 }

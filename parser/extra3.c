@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extra3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 11:36:57 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/11 11:56:59 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 18:16:02 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_double_error(t_token *tokens, int i)
 			|| tokens[i].value[0] == '>') && !tokens[i].quot_flag)
 	{
 		printf("Xtsh: syntax error near unexpected token `newline'\n");
-		question_mark_update("?=258", 258);
+		question_mark_update(ft_strdup("?=258"), 258);
 	}
 	else if (tokens[i].value[0] == '<' && tokens[i].quot_flag)
 	{
@@ -36,7 +36,7 @@ void	ft_single_error(t_token *tokens, int i)
 			|| tokens[i].value[0] == '>') && !tokens[i].quot_flag)
 	{
 		printf("Xtsh: syntax error near unexpected token `newline'\n");
-		question_mark_update("?=258", 258);
+		question_mark_update(ft_strdup("?=258"), 258);
 	}
 	else if (tokens[i].value[0] == '<' && tokens[i].quot_flag)
 	{
@@ -69,7 +69,7 @@ void	ft_pipe_err(void)
 {
 	g_va->syn_err = 1;
 	printf("Xtsh: syntax error near unexpected token `|'\n");
-	question_mark_update("?=258", 258);
+	question_mark_update(ft_strdup("?=258"), 258);
 }
 
 void	ft_print_pipe(t_token *tokens)

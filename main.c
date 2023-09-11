@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 16:00:44 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 18:25:01 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ int	main(int argc, char **argv, char **envp)
 			}
 			nodes = ft_parser(tokens);
 			g_va->nodes = nodes;
-
+			exec_start(nodes);
 			int j = 0;
-			while(j<g_va->process_count)
+			while(j < g_va->process_count)
 			{
 				int i  = 0;
-				while (i<nodes[j].arg_count)
+				while (i < nodes[j].arg_count)
 				{
 					free(nodes[j].args[i]);
 					i++;
@@ -83,15 +83,11 @@ int	main(int argc, char **argv, char **envp)
 				free(nodes[j].args);
 				free(nodes[j].infile);
 				free(nodes[j].outfile);
-				
 				j++;
 			}
-			
 			free(nodes);
-
-/*
-			exec_start(nodes);
-		*/
+			// infile name
+			// outfile name
 		}
 		int i = -1;
 		while(tokens[++i].value)

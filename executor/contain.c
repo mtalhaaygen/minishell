@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   contain.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:21:27 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 15:43:38 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 18:14:25 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	question_mark_update(char *new_value, int x)
 {
 	full_update(new_value);
 	env_update(new_value);
+	free(new_value);
 	g_va->err_number = x;
 }
 /*

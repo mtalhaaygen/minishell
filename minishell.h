@@ -192,7 +192,7 @@ void		is_redirection(t_node *nodes, int i);
 void		ft_process_merge(int i);
 void		pipe_close(void);
 void		rm_heredoc(void);
-int			file_access(char *filename, int flag);
+int			file_access(char *filename, int flag, int f2, t_node node);
 void		add_dollar_question_mark(void);
 char		*ft_getenv(char *str);
 
