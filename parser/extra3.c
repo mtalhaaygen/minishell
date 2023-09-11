@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 11:36:57 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/11 11:46:28 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 11:56:59 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,7 @@ void	ft_print_pipe(t_token *tokens)
 				flag2 = 1;
 		}
 		if (flag == 1 && tokens[1].quot_flag && flag2 == 1)
-		{
-			i = -1;
-			if (ft_strcmp("echo", tokens[0].value))
-			{
-				g_va->syn_err = 1;
-				while (tokens[1].value[++i])
-					printf("%c", tokens[1].value[i]);
-				printf("\n");
-			}
-		}
+			ft_ec(tokens);
 		if (flag && !tokens[1].quot_flag && flag2 && !tokens[2].value)
 			ft_pipe_err();
 	}

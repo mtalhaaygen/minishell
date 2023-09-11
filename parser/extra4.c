@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 11:43:06 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/11 11:49:09 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 11:58:54 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,18 @@ int	tokencount_nq(const char *input, int i)
 	}
 	g_va->counter_num++;
 	return (i);
+}
+
+void	ft_ec(t_token *tokens)
+{
+	int	i;
+
+	i = -1;
+	if (ft_strcmp("echo", tokens[0].value))
+	{
+		g_va->syn_err = 1;
+		while (tokens[1].value[++i])
+			printf("%c", tokens[1].value[i]);
+		printf("\n");
+	}
 }

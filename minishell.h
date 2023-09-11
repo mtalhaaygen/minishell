@@ -139,7 +139,7 @@ void		ft_i_i(t_node node, int i, t_token *tokens);
 void		ft_o(t_node node, int i, t_token *tokens);
 int			ft_is_mono(t_token *tokens, int i, int j);
 int			ft_is_double(t_token *tokens, int i, int j);
-int			ft_eor(t_token *tokens);
+int			ft_eor(t_token *tokens, int i);
 int			ft_pure(t_token *tokens);
 void		ft_print_pipe(t_token *tokens);
 void		ft_error_mesage(t_token *tokens, int i);
@@ -149,6 +149,7 @@ void		ft_first_pipe(t_token *tokens);
 void		ft_pipe_err(void);
 int			ft_pure(t_token *tokens);
 int			tokencount_nq(const char *input, int i);
+void		ft_ec(t_token *tokens);
 /* LIB*/
 int			my_isspace(char ch);
 char		*ft_strdup(char *src);

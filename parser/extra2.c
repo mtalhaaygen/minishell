@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 17:27:09 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/11 11:46:00 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 12:01:47 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,24 @@ int	ft_pure_the(t_token *tokens, int i)
 	return (0);
 }
 
-int	ft_eor(t_token *tokens)
+void	ft_em(void)
 {
-	int	i;
+	g_va->syn_err = 1;
+	printf("Xtsh: syntax error near unexpected token `newline'\n");
+	question_mark_update("?=258", 258);
+}
 
-	i = 0;
+int	ft_eor(t_token *tokens, int i)
+{
 	ft_print_pipe(tokens);
-	while (tokens[i].value)
+	while (tokens[++i].value)
 	{
 		if (ft_is_double(tokens, i, 0) 
 			|| ft_is_mono(tokens, i, 0) || (ft_pure(tokens) == 0))
 		{
 			if (!ft_pure_the(tokens, i)
 				&& tokens[i].value[2] && !tokens[i].quot_flag)
-			{
-				g_va->syn_err = 1;
-				printf("Xtsh: syntax error near unexpected token `newline'\n");
-				question_mark_update("?=258", 258);
-			}
+				ft_em();
 			if (tokens[i].value[2]
 				&& ft_is_double(tokens, i, 0) && ft_pure_too(tokens, i))
 				return (1);
@@ -99,7 +99,6 @@ int	ft_eor(t_token *tokens)
 				return (0);
 			}
 		}
-		i++;
 	}
 	return (1);
 }
