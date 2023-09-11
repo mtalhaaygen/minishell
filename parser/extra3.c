@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 11:36:57 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/11 11:40:55 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 11:46:28 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_error_mesage(t_token *tokens, int i)
 	}
 }
 
-void	ft_pipe_err()
+void	ft_pipe_err(void)
 {
 	g_va->syn_err = 1;
 	printf("Xtsh: syntax error near unexpected token `|'\n");

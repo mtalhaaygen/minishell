@@ -146,7 +146,9 @@ void		ft_error_mesage(t_token *tokens, int i);
 void		ft_single_error(t_token *tokens, int i);
 void		ft_double_error(t_token *tokens, int i);
 void		ft_first_pipe(t_token *tokens);
-void		ft_pipe_err();
+void		ft_pipe_err(void);
+int			ft_pure(t_token *tokens);
+int			tokencount_nq(const char *input, int i);
 /* LIB*/
 int			my_isspace(char ch);
 char		*ft_strdup(char *src);

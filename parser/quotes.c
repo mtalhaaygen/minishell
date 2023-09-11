@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:37:42 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/07 17:07:28 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/11 11:48:29 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	ft_red_pip_count(const char *input)
 	}
 	return (count);
 }
+
 int	tokencount_forq(const char *input, int i)
 {
 	int	tmp;
@@ -84,26 +85,6 @@ int	tokencount_forq(const char *input, int i)
 				tmp = input[i];
 		}
 	}
-	return (i);
-}
-
-int	tokencount_nq(const char *input, int i)
-{
-	int	tmp;
-
-	while ((!my_isspace(input[i])) && input[i])
-	{
-		if (input[i] == DQ || input[i] == MQ)
-		{
-			tmp = input[i];
-			i++;
-			while (input[i] != tmp && input[i])
-				i++;
-		}
-		else
-			i++;
-	}
-	g_va->counter_num++;
 	return (i);
 }
 

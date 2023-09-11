@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 17:27:09 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/11 11:36:43 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 11:46:00 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_first_pipe(t_token *tokens)
 		ft_pipe_err();
 }
 
-int	ft_pure_too(t_token *tokens, int i)	
+int	ft_pure_too(t_token *tokens, int i)
 {
 	int	j;
 	int	len;
@@ -88,10 +88,10 @@ int	ft_eor(t_token *tokens)
 				question_mark_update("?=258", 258);
 			}
 			if (tokens[i].value[2]
-				&& ft_is_double(tokens, i, 0) && ft_pure_too(tokens,i))
+				&& ft_is_double(tokens, i, 0) && ft_pure_too(tokens, i))
 				return (1);
 			if (tokens[i].value[1]
-				&& ft_is_mono(tokens, i, 0) && ft_pure_too(tokens,i))
+				&& ft_is_mono(tokens, i, 0) && ft_pure_too(tokens, i))
 				return (1);
 			if (!tokens[i + 1].value)
 			{
