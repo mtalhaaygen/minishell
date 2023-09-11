@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 11:15:23 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 15:35:30 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void	add_dollar_question_mark(void)
 		new[i] = ft_strdup(g_va->full[i]);
 	new[i++] = ft_strdup(s);
 	new[i] = NULL;
+	free(s);
+	free(g_va->full);
 	g_va->full = new;
 }
 

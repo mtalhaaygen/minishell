@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 13:35:28 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/11 16:00:44 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	g_va = malloc(sizeof(t_minishell));
-
 	g_va->s_back = 0;
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, sigquit_handler);
@@ -62,10 +61,16 @@ int	main(int argc, char **argv, char **envp)
 		if (tokens[0].value)
 		{
 			if (g_va->syn_err)
+			{
+				int x = -1;
+				while(tokens[++x].value)
+					free(tokens[x].value); 
+				free(tokens);
 				continue;
+			}
 			nodes = ft_parser(tokens);
 			g_va->nodes = nodes;
-/*
+
 			int j = 0;
 			while(j<g_va->process_count)
 			{
@@ -83,8 +88,10 @@ int	main(int argc, char **argv, char **envp)
 			}
 			
 			free(nodes);
-*/
+
+/*
 			exec_start(nodes);
+		*/
 		}
 		int i = -1;
 		while(tokens[++i].value)

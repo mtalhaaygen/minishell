@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/10 21:01:54 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/11 15:57:13 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	full_update(char	*new)
 		if (ft_strncmp(new, g_va->full[i], len) && \
 				(new[len] == '=' || new[len] == '\0'))
 		{
+			free(g_va->full[i]);
 			g_va->full[i] = ft_strdup(new);
 		}
 	}
@@ -78,7 +79,9 @@ void	env_update(char	*new)
 				(new[len] == '=' || new[len] == '\0'))
 		{
 			s = ft_split(new, '=');
+			free(g_va->env[size].value);
 			g_va->env[size].value = ft_strdup(s[1]);
+			free_pp(s);
 			break ;
 		}
 		size--;
