@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/10 20:36:08 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/11 11:15:23 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_syntax_error(t_node *nodes)
 	if (flag == 0)
 	{
 		printf("YYYYtsh: syntax error near unexpected token `newline'\n");
-		exit(258); // update
+		exit (258);
 	}
 }
 
