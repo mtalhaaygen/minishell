@@ -99,6 +99,7 @@ typedef struct s_minishell
 	int			counter_num;
 	int			syn_err;
 	int			heredoc_count;
+	int 		s_back;
 }	t_minishell;
 
 extern t_minishell *g_va;

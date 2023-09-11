@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/10 20:11:39 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/11 13:35:28 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,27 @@
 
 t_minishell	*g_va;
 
+void    sigquit_handler(int num)
+{
+    (void)num;
+    if (g_va->s_back == 1)
+    {
+        write(1, "\033[2D", 4);
+        write(1, "  ", 2);
+        write(1, "\033[2D", 4);
+        ioctl(0, TIOCSTI);
+        g_va->s_back = 0;
+    }
+    g_va->s_back = 1;
+}
+
 void	sigint_handler(int sig)
 {
 	(void)sig;
 	write(1, "\033[A", 3);
 	ioctl(0, TIOCSTI, "\n");
 }
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_env	*env_list;
@@ -29,9 +44,11 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, SIG_IGN);
 	g_va = malloc(sizeof(t_minishell));
+
+	g_va->s_back = 0;
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, sigquit_handler);
 	env_list = fill_env(envp);
 	g_va->env = env_list;
 	add_dollar_question_mark();
