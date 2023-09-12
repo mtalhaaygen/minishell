@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extra3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 11:36:57 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/11 18:16:02 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/12 14:13:06 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_double_error(t_token *tokens, int i)
 {
-	if ((tokens[i].value[0] == '<' 
+	if ((tokens[i].value[0] == '<'
 			|| tokens[i].value[0] == '>') && !tokens[i].quot_flag)
 	{
 		printf("Xtsh: syntax error near unexpected token `newline'\n");
@@ -32,7 +32,7 @@ void	ft_double_error(t_token *tokens, int i)
 
 void	ft_single_error(t_token *tokens, int i)
 {
-	if ((tokens[i].value[0] == '<' 
+	if ((tokens[i].value[0] == '<'
 			|| tokens[i].value[0] == '>') && !tokens[i].quot_flag)
 	{
 		printf("Xtsh: syntax error near unexpected token `newline'\n");

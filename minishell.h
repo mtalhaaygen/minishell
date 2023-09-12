@@ -1,25 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 14:16:26 by tdemir            #+#    #+#             */
+/*   Updated: 2023/09/12 14:20:54 by tdemir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-// #include <string.h>
-#include <errno.h>
+# include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/ioctl.h>
 
-//#include <termios.h> // ioctl için
-#include <sys/ioctl.h>
-
-//# define CHECK(X) ({char* __val = (X); (__val == NULL ? (perror("ERROR :")) : __val); }) // malloc erroru için
-//# define CHECK_INT(X) ({int __val = (X); (__val == -1 ? (perror("ERROR :")) : __val); }) // diğer errorlar için
-
-#define DQ '"'
-#define MQ '\''
+# define DQ '"'
+# define MQ '\''
 
 enum e_builtin_types
 {
@@ -32,7 +38,7 @@ enum e_builtin_types
 	EXPORT
 };
 
-typedef enum
+typedef		enum
 {
 	TOKEN_PIPE,
 	TOKEN_I,
@@ -57,12 +63,6 @@ typedef struct s_env
 	char			*key;
 	char			*value;
 }	t_env;
-
-// typedef  struct s_newenv
-// {
-// 	char		**full;
-// 	int			full_size;
-// }	t_newenv;
 
 typedef struct s_file //DENEYSEL
 {
@@ -99,10 +99,10 @@ typedef struct s_minishell
 	int			counter_num;
 	int			syn_err;
 	int			heredoc_count;
-	int 		s_back;
+	int			s_back;
 }	t_minishell;
 
-extern t_minishell *g_va;
+extern t_minishell	*g_va;
 
 char		*ft_readline(char *str);
 int			set_ctrl(void);

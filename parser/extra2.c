@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extra2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 17:27:09 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/11 18:16:22 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/12 14:12:27 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_pure_too(t_token *tokens, int i)
 	j = 0;
 	while (j < len)
 	{
-		if (tokens[i].value[j] != '|' 
+		if (tokens[i].value[j] != '|'
 			&& tokens[i].value[j] != '<' && tokens[i].value[j] != '>')
 		{
 			return (1);
@@ -81,7 +81,7 @@ int	ft_eor(t_token *tokens, int i)
 	ft_print_pipe(tokens);
 	while (tokens[++i].value)
 	{
-		if (ft_is_double(tokens, i, 0) 
+		if (ft_is_double(tokens, i, 0)
 			|| ft_is_mono(tokens, i, 0) || (ft_pure(tokens) == 0))
 		{
 			if (!ft_pure_the(tokens, i)
