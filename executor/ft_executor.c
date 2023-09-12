@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 18:19:07 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/12 14:50:54 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ void	exec_select(t_node *nodes)
 	{
 		i = -1;
 		flag = 0;
+		g_va->heredoc_count_node = 0;
 		if (ft_strcmp("<<", nodes[th].args[0]) && nodes[th].args[1] == NULL)
 			break ;
 		while (nodes[th].args[++i] != NULL && nodes[th].args[i])
@@ -154,6 +155,22 @@ cat <<EOF1 <<EOF2
 > second here-doc
 > EOF2
 */
+/*
+bash-3.2$ ls <<s
+> sss
+> sss
+> s
+Makefile        builtin         lcontrol.sh     main.c          minishell.h
+README.md       executor        lib             minishell       parser
+*/
+
+
+
+
+
+
+
+
 /*
 bash-3.2$ cat <<E1 | cat <<E2
 > DENEME

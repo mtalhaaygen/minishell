@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 18:11:37 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/12 15:26:18 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	add_env(char *arg)
 		nenv[i].value = g_va->env[i].value;
 	}
 	s = ft_split(arg, '=');
-	printf("s0*%s*\n", s[0]);
-	printf("s1*%s*\n", s[1]);
 	nenv[i].key = s[0];
 	nenv[i].value = s[1];
 	g_va->env = nenv;
@@ -119,11 +117,11 @@ void	ft_export2(t_node node)
 			if (!find_full(node.args[args_index]))
 				add_env(node.args[args_index]);
 		}
-		args_index = 0;
 		g_va->full_size = arg_count(g_va->full) + node.arg_count - 1;
 		new = malloc(sizeof(char *) * g_va->full_size + 1);
 		while (g_va->full[++i])
 			new[i] = ft_strdup(g_va->full[i]);
+		args_index = 0;
 		while (node.args[++args_index])
 		{
 			if (!find_full(node.args[args_index]))

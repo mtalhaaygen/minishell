@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:16:26 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/12 14:20:54 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/12 15:54:32 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_minishell
 	int			counter_num;
 	int			syn_err;
 	int			heredoc_count;
+	int			heredoc_count_node;
 	int			s_back;
 }	t_minishell;
 
@@ -159,7 +160,7 @@ char		*ft_strjoin(char *s1, char *s2);
 char		*free_strjoin(char *s1, char *s2);
 char		**ft_split(char const *s, char c);
 int			ft_strcmp(const char *str1, const char *str2);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int			ft_strncmp(const char *s1, const char *s2, int n);
 int			ft_strncmp_signed(const char *s1, const char *s2, size_t n);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 void		*ft_calloc(size_t count, size_t size);

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 17:59:08 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/12 15:51:31 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ void	rm_heredoc(void)
 
 void	node_change(t_node node, int i, int flag, char *txt)
 {
-	if (flag == 1 && !ft_strcmp(node.args[0], "export"))
+	if (g_va->heredoc_count_node > 1)
+		node.args[1] = ft_strdup(txt);
+	if (flag == 1 && !ft_strcmp(node.args[0], "export") && !ft_strcmp(node.args[0], "echo") && !ft_strcmp(node.args[0], "ls") && !ft_strcmp(node.args[0], "cd"))
 	{
 		free(node.args[i]);
 		node.args[i] = ft_strdup(txt);
@@ -77,6 +79,7 @@ void	ft_executor_heredoc(t_node *nodes, int th, int i, int flag)
 	int		fd;
 
 	g_va->heredoc_count++;
+	g_va->heredoc_count_node++;
 	buff = malloc (sizeof(char));
 	buff[0] = '<';
 	full = NULL;
