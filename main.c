@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 18:25:01 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/12 15:07:18 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	sigint_handler(int sig)
 	(void)sig;
 	write(1, "\033[A", 3);
 	ioctl(0, TIOCSTI, "\n");
+	g_va->syn_err = 1;
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -46,13 +47,15 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	g_va = malloc(sizeof(t_minishell));
 	g_va->s_back = 0;
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, sigquit_handler);
+	
 	env_list = fill_env(envp);
 	g_va->env = env_list;
 	add_dollar_question_mark();
 	while (1)
 	{
+		g_va->syn_err = 0;
+		signal(SIGINT, sigint_handler);
+		signal(SIGQUIT, sigquit_handler);
 		line = ft_readline("$ ");
 		if (line[0])
 			add_history(line);
