@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   contain.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:21:27 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/12 18:08:08 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/12 18:45:28 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	question_mark_update(char *new_value, int x)
 {
 	full_update(new_value);
 	env_update(new_value);
-	printf("SEG SİGE %s\n", new_value);
 	free(new_value);
 	g_va->err_number = x;
 }

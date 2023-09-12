@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/12 18:27:30 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/12 19:22:18 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	add_env(char *arg)
 	i = -1;
 	nenv = malloc(sizeof(t_env) * g_va->env->env_count + 1);
 	nenv->env_count = g_va->env->env_count + 1;
-	while (g_va->env[++i].value)
+	while (g_va->env[++i].key)
 	{
 		nenv[i].key = g_va->env[i].key;
 		nenv[i].value = g_va->env[i].value;
@@ -29,10 +29,16 @@ void	add_env(char *arg)
 	s = ft_split(arg, '=');
 	nenv[i].key = ft_strdup(s[0]);
 	nenv[i].value = ft_strdup(s[1]);
+	printf("**i: %d\n",i);
 	free(s[0]);
 	free(s[1]);
 	free(s);
 	g_va->env = nenv;
+	int x= -1;
+	while (g_va->env[++x].key)
+	{
+		printf("fffff: %s\n",g_va->env[++x].value);
+	}
 }
 
 void	ft_print_full(char **args)
@@ -71,14 +77,18 @@ void	env_update(char	*new)
 	int		size;
 	int		len;
 	char	**s;
-
+	
 	size = g_va->env->env_count - 1;
+	size--;
 	printf("BURADA\n");
+	printf("size: %d\n",size);
 	printf("size : %d ***%s***\n", size, g_va->env[size].key);
 	printf("BURADA\n");
+	printf("new: %s\n",new);
 	while (size > 0 && g_va->env[size].key)
 	{
 		len = ft_strlen(g_va->env[size].key);
+		
 		if (ft_strncmp(new, g_va->full[size], len) && \
 				(new[len] == '=' || new[len] == '\0'))
 		{
