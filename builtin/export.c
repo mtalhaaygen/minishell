@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/12 15:26:18 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/12 18:27:30 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ void	add_env(char *arg)
 		nenv[i].value = g_va->env[i].value;
 	}
 	s = ft_split(arg, '=');
-	nenv[i].key = s[0];
-	nenv[i].value = s[1];
+	nenv[i].key = ft_strdup(s[0]);
+	nenv[i].value = ft_strdup(s[1]);
+	free(s[0]);
+	free(s[1]);
+	free(s);
 	g_va->env = nenv;
 }
 
@@ -70,6 +73,9 @@ void	env_update(char	*new)
 	char	**s;
 
 	size = g_va->env->env_count - 1;
+	printf("BURADA\n");
+	printf("size : %d ***%s***\n", size, g_va->env[size].key);
+	printf("BURADA\n");
 	while (size > 0 && g_va->env[size].key)
 	{
 		len = ft_strlen(g_va->env[size].key);
@@ -97,6 +103,7 @@ void	ft_export2(t_node node)
 	int		i;
 	int		args_index;
 
+	printf("fullsize:*%d* \n", g_va->full_size);
 	if (g_va->process_count == 1)
 	{
 		i = -1;
@@ -108,16 +115,22 @@ void	ft_export2(t_node node)
 				full_update(node.args[args_index]);
 				env_update(node.args[args_index]);
 				node.arg_count--;
-				return ;
 			}
 		}
+		printf("*%d*\n", node.arg_count);
+		if (node.arg_count <= 1)
+			return ;
 		args_index = 0;
 		while (node.args[++args_index] && ft_strfind(node.args[args_index], '='))
 		{
 			if (!find_full(node.args[args_index]))
+			{
+				printf("ENV find_full\n");
 				add_env(node.args[args_index]);
+			}
 		}
 		g_va->full_size = arg_count(g_va->full) + node.arg_count - 1;
+		printf("fullsize:*%d* \n", g_va->full_size);
 		new = malloc(sizeof(char *) * g_va->full_size + 1);
 		while (g_va->full[++i])
 			new[i] = ft_strdup(g_va->full[i]);
@@ -125,9 +138,18 @@ void	ft_export2(t_node node)
 		while (node.args[++args_index])
 		{
 			if (!find_full(node.args[args_index]))
+			{
+				printf("find_full okay \n");
 				new[i++] = ft_strdup(node.args[args_index]);
+			}
 		}
+		printf("if if if \n");
 		new[i] = NULL;
+		i = -1;
+		while (g_va->full[++i])
+			free(g_va->full[i]);
+		free(g_va->full);
 		g_va->full = new;
+		printf("2 2 2 \n");
 	}
 }
