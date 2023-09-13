@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:16:26 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/12 15:54:32 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/13 13:15:49 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_env
 	char			*value;
 }	t_env;
 
-typedef struct s_file //DENEYSEL
+typedef struct s_file
 {
 	TokenType		type;
 	char			*name;
@@ -152,6 +152,7 @@ void		ft_pipe_err(void);
 int			ft_pure(t_token *tokens);
 int			tokencount_nq(const char *input, int i);
 void		ft_ec(t_token *tokens);
+void		ft_spectrum(t_token *tokens);
 /* LIB*/
 int			my_isspace(char ch);
 char		*ft_strdup(char *src);

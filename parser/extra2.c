@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 17:27:09 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/12 14:12:27 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/13 13:16:21 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	ft_em(void)
 int	ft_eor(t_token *tokens, int i)
 {
 	ft_print_pipe(tokens);
+	ft_spectrum(tokens);
 	while (tokens[++i].value)
 	{
 		if (ft_is_double(tokens, i, 0)

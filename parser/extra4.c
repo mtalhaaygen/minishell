@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 11:43:06 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/11 11:58:54 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/13 13:18:16 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,24 @@ void	ft_ec(t_token *tokens)
 		while (tokens[1].value[++i])
 			printf("%c", tokens[1].value[i]);
 		printf("\n");
+	}
+}
+
+void	ft_spectrum(t_token *tokens)
+{
+	int	i;
+
+	i = -1;
+	while (tokens[++i].value)
+	{
+		if ((tokens[i].value[0] == '<'
+				&& tokens[i].value[1] == '>')
+			|| (tokens[i].value[0] == '>'
+				|| tokens[i].value[1] == '<'))
+		{
+			g_va->syn_err = 1;
+			printf("Xtsh: syntax error near unexpected token `newline'\n");
+			question_mark_update(ft_strdup("?=258"), 258);
+		}
 	}
 }
