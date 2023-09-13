@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_process.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:02:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/12 19:24:50 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/13 16:34:08 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ t_env	*fill_env(char **envp)
 	}
 	env_list[i].key = ft_strdup("?");
 	env_list[i].value = ft_strdup("0");
+	env_list[i + 1].key = NULL;
+	env_list[i + 1].value = NULL;
 	fill_full(envp, len);
 	return (env_list);
 }
