@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_change.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 19:51:53 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/13 13:01:02 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ void	fd_change(t_node node, int index)
 	}
 }
 
-// dosya var >> izni kontrol et >>> izni yok >>> permission denided EXİT
-// dosya var >> izni kontrol et >>> izni var >>> open ile aç dup2 fd_change
-// dosya yok >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> open ile aç dup2 fd_change
 void	change_fd_i(t_node node, int index)
 {
 	int	fdnewtxt;
@@ -48,7 +45,6 @@ void	change_fd_i(t_node node, int index)
 	}
 }
 
-// -rw-r--r--  644
 void	change_fd_ii(t_node node, int index)
 {
 	int	fdnewtxt;
@@ -60,7 +56,7 @@ void	change_fd_ii(t_node node, int index)
 		fdnewtxt = open(node.args[index + 1], \
 					O_RDWR | O_APPEND | O_CREAT, 0644);
 		if (ft_strcmp(node.outfile->name, node.args[index + 1]))
-			dup2(fdnewtxt, STDOUT_FILENO); 
+			dup2(fdnewtxt, STDOUT_FILENO);
 		fd_change(node, index);
 		free(node.outfile->name);
 		free(node.outfile);
@@ -84,19 +80,6 @@ void	change_fd_o(t_node node, int index)
 	}
 }
 
-	// while içerisinde tüm node dolaşılacak ilk redirection ile change fd ve
-	// change node yapılacak, sonra diğer redirection için aynısı yapılacak
-	// ls > deneme.txt > txt > t.txt outfile=NULL stdout
-	// ls > txt > t.txt outfile=deneme.txt
-	// ls > t.txt outfile=txt
-	// ls outfile=t.txt 
-	// şeklinde her redirectionu gördüğünde infile outfile değişecek, 
-	// her redirection gördüğünde gerekli fd dup2 ile yeni fd ye aktarılacak
-	// > ve >> ifadeleri dosyaları istenildiği şekilde açacak eğer dosya
-	// outfile ise o zaman dup2 ile STDOUT_FILENO yönlendirilecek
-	// > >> yada < argümanından sonra herzaman dosya adı geldiği 
-	// varsayılacak tüm argüman dizisini iki birim öne kaydırılıp son ikiye null
-	// atılacak
 void	is_redirection(t_node *nodes, int i)
 {
 	int	j;
@@ -124,11 +107,5 @@ void	is_redirection(t_node *nodes, int i)
 			count++;
 			j -= 1;
 		}
-
-		// else if (ft_strcmq("<<", nodes[i].args[j]) && nodes[i].args[j + 1])
-		// {
-		// 	change_fd_oo(nodes[i], j);
-		// 	j -= 1;
-		// }
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/12 18:07:15 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/13 13:00:08 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	ft_executor(t_node *nodes)
 				bin_command = ft_access(nodes[i].args[0]);
 				if (execve(bin_command, nodes[i].args, g_va->full))
 					ft_perror(bin_command);
-				exit (127); // OK
+				exit (127);
 			}
-			else if (g_va->pid < 0) 
+			else if (g_va->pid < 0)
 				return (perror("tsh: executor fork error"));
 		}
 		run_other_builtin(status, nodes[i]);
@@ -84,6 +84,7 @@ void	ft_executor(t_node *nodes)
 	{
 		g_va->err_number = WEXITSTATUS(status);
 		char *qqq;
+
 		qqq = ft_itoa(g_va->err_number);
 		question_mark_update(ft_strjoin("?=", qqq), g_va->err_number);
 		free(qqq);
@@ -146,62 +147,3 @@ void	exec_select(t_node *nodes)
 	}
 	ft_executor(nodes);
 }
-
-/*
-aşağıdaki caselerin hepsi çalışıyor, yalnızca üç	 heredoc bir node içerisinde olursa patlıyor
-cat <<EOF1 <<EOF2
-> first here-doc
-> EOF1
-> second here-doc
-> EOF2
-*/
-/*
-bash-3.2$ ls <<s
-> sss
-> sss
-> s
-Makefile        builtin         lcontrol.sh     main.c          minishell.h
-README.md       executor        lib             minishell       parser
-*/
-
-
-
-
-
-
-
-
-/*
-bash-3.2$ cat <<E1 | cat <<E2
-> DENEME
-> E1
-> DENEME2
-> E2
-DENEME2
-*/
-/*
-bash-3.2$ ls -la | cat << EOF
-> DDFGH
-> EOF
-DDFGH
-*/
-/*
-bash-3.2$ cat << EOF | ls
-> deneme
-> EOF
-Makefile        executor        minishell.h
-README.md       lib             parser
-builtin         main.c          talha.txt
-*/
-/*
-bash-3.2$ cat << EOF | grep ali
-> deneme
-> aliço
-ls << s
-> aligo
-> alimo
-> EOF
-aliço
-aligo
-alimo
-*/

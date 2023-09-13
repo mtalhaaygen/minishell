@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/12 15:51:31 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/13 12:56:51 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	rm_heredoc(void)
 	g_va->pid = fork();
 	if (g_va->pid == 0)
 		execve(args[0], args, NULL);
-	else if (g_va->pid < 0) 
+	else if (g_va->pid < 0)
 		return (perror("tsh: heredoc fork error"));
 	free_pp(args);
 }
@@ -39,7 +39,9 @@ void	node_change(t_node node, int i, int flag, char *txt)
 {
 	if (g_va->heredoc_count_node > 1)
 		node.args[1] = ft_strdup(txt);
-	if (flag == 1 && !ft_strcmp(node.args[0], "export") && !ft_strcmp(node.args[0], "echo") && !ft_strcmp(node.args[0], "ls") && !ft_strcmp(node.args[0], "cd"))
+	if (flag == 1 && !ft_strcmp(node.args[0], "export")
+		&& !ft_strcmp(node.args[0], "echo") && !ft_strcmp(node.args[0], "ls")
+		&& !ft_strcmp(node.args[0], "cd"))
 	{
 		free(node.args[i]);
 		node.args[i] = ft_strdup(txt);
