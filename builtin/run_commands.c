@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:53:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 18:18:01 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/13 15:50:07 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	run_cd(t_node node)
 		if (chdir(node.args[1]) != 0)
 		{
 			printf("tsh: cd: %s: No such file or directory\n", node.args[1]);
-			question_mark_update(ft_strdup("?=1"), 1);
+			question_mark_update(ft_strdup("?=1"), -1);
 		}
 	}
 	else
@@ -48,7 +48,7 @@ void	run_cd(t_node node)
 			if (chdir(s))
 			{
 				perror("tsh: cd chdir error");
-				question_mark_update(ft_strdup("?=1"), 1);
+				question_mark_update(ft_strdup("?=1"), -1);
 			}
 		}
 	}

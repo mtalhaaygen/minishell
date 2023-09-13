@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/13 13:00:08 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/13 15:50:56 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	ft_executor(t_node *nodes)
 	{
 		g_va->err_number = WEXITSTATUS(status);
 		char *qqq;
-
 		qqq = ft_itoa(g_va->err_number);
 		question_mark_update(ft_strjoin("?=", qqq), g_va->err_number);
 		free(qqq);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_change.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/13 13:01:02 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/13 15:45:17 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,28 +83,23 @@ void	change_fd_o(t_node node, int index)
 void	is_redirection(t_node *nodes, int i)
 {
 	int	j;
-	int	count;
 
 	j = -1;
-	count = 0;
 	while (nodes[i].args[++j])
 	{
 		if (ft_strcmp(">", nodes[i].args[j]) && nodes[i].args[j + 1])
 		{
 			change_fd_i(nodes[i], j);
-			count++;
 			j -= 1;
 		}
 		else if (ft_strcmp(">>", nodes[i].args[j]) && nodes[i].args[j + 1])
 		{
 			change_fd_ii(nodes[i], j);
-			count++;
 			j -= 1;
 		}
 		else if (ft_strcmp("<", nodes[i].args[j]) && nodes[i].args[j + 1])
 		{
 			change_fd_o(nodes[i], j);
-			count++;
 			j -= 1;
 		}
 	}
