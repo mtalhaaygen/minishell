@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 11:43:06 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/13 13:18:16 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/13 15:04:11 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_spectrum(t_token *tokens)
 		if ((tokens[i].value[0] == '<'
 				&& tokens[i].value[1] == '>')
 			|| (tokens[i].value[0] == '>'
-				|| tokens[i].value[1] == '<'))
+				&& tokens[i].value[1] == '<'))
 		{
 			g_va->syn_err = 1;
 			printf("Xtsh: syntax error near unexpected token `newline'\n");
