@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 17:43:41 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/14 19:33:42 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	fd_change(t_node node, int index)
 		index++;
 	}
 }
+
 // dosya var >> izni kontrol et >>> izni yok >>> permission denided EXİT
 // dosya var >> izni kontrol et >>> izni var >>> open ile aç dup2 fd_change
 // dosya yok >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> open ile aç dup2 fd_change
@@ -85,6 +86,7 @@ void	change_fd_o(t_node node, int index)
 		fd_change(node, index);
 	}
 }
+
 	// while içerisinde tüm node dolaşılacak ilk redirection ile change fd ve
 	// change node yapılacak, sonra diğer redirection için aynısı yapılacak
 	// ls > deneme.txt > txt > t.txt outfile=NULL stdout

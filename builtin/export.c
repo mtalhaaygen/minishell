@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 17:55:27 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/14 19:32:19 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ void	add_env(char *arg)
 	s = ft_split(arg, '=');
 	nenv[i].key = ft_strdup(s[0]);
 	nenv[i].value = ft_strdup(s[1]);
-	free(s[0]);
-	free(s[1]);
-	free(s);
-	int x = -1;
-	while (g_va->env[++x].key)
+	free_pp(s);
+	i = -1;
+	while (g_va->env[++i].key)
 	{
-		free(g_va->env[x].key);
-		free(g_va->env[x].value);
+		free(g_va->env[i].key);
+		free(g_va->env[i].value);
 	}
 	free(g_va->env);
 	g_va->env = nenv;
@@ -79,12 +77,11 @@ void	env_update(char	*new)
 	int		size;
 	int		len;
 	char	**s;
-	
+
 	size = g_va->env->env_count - 1;
 	while (size > 0 && g_va->env[size].key)
 	{
 		len = ft_strlen(g_va->env[size].key);
-		
 		if (ft_strncmp(new, g_va->full[size], len) && \
 				(new[len] == '=' || new[len] == '\0'))
 		{
@@ -115,7 +112,8 @@ void	ft_export2(t_node node)
 		args_index = 0;
 		while (node.args[++args_index])
 		{
-			if (ft_strfind(node.args[args_index], '=') && find_full(node.args[args_index]))
+			if (ft_strfind(node.args[args_index], '=')
+				&& find_full(node.args[args_index]))
 			{
 				full_update(node.args[args_index]);
 				env_update(node.args[args_index]);
@@ -125,7 +123,8 @@ void	ft_export2(t_node node)
 		if (node.arg_count <= 1)
 			return ;
 		args_index = 0;
-		while (node.args[++args_index] && ft_strfind(node.args[args_index], '='))
+		while (node.args[++args_index]
+			&& ft_strfind(node.args[args_index], '='))
 		{
 			if (!find_full(node.args[args_index]))
 				add_env(node.args[args_index]);
@@ -142,10 +141,6 @@ void	ft_export2(t_node node)
 		}
 		new[i] = NULL;
 		free_pp(g_va->full);
-		// i = -1;
-		// while (g_va->full[++i])
-		// 	free(g_va->full[i]);
-		// free(g_va->full);
 		g_va->full = new;
 	}
 }

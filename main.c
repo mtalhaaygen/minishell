@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 19:27:37 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/14 19:30:27 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 t_minishell	*g_va;
 
-void    sigquit_handler(int num)
+void	sigquit_handler(int num)
 {
-    (void)num;
-    if (g_va->s_back == 1)
-    {
-        write(1, "\033[2D", 4);
-        write(1, "  ", 2);
-        write(1, "\033[2D", 4);
-        ioctl(0, TIOCSTI);
-        g_va->s_back = 0;
-    }
-    g_va->s_back = 1;
+	(void)num;
+	if (g_va->s_back == 1)
+	{
+		write(1, "\033[2D", 4);
+		write(1, "  ", 2);
+		write(1, "\033[2D", 4);
+		ioctl(0, TIOCSTI);
+		g_va->s_back = 0;
+	}
+	g_va->s_back = 1;
 }
 
 void	sigint_handler(int sig)
@@ -36,10 +36,10 @@ void	sigint_handler(int sig)
 	g_va->syn_err = 1;
 }
 
-void	minishell_init(int argc, char **argv,char **envp)
+void	minishell_init(int argc, char **argv, char **envp)
 {
 	t_env	*env_list;
-	
+
 	(void)argc;
 	(void)argv;
 	g_va = malloc(sizeof(t_minishell));
@@ -48,7 +48,8 @@ void	minishell_init(int argc, char **argv,char **envp)
 	g_va->env = env_list;
 	add_dollar_question_mark();
 }
-t_token	*ft_main_sep()
+
+t_token	*ft_main_sep(void)
 {
 	char	*line;
 	t_token	*tokens;
@@ -78,7 +79,7 @@ int	main(int argc, char **argv, char **envp)
 			if (g_va->syn_err)
 			{
 				ft_free_token(tokens);
-				continue;
+				continue ;
 			}
 			nodes = ft_parser(tokens);
 			g_va->nodes = nodes;

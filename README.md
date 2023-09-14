@@ -753,5 +753,5 @@ fork() fonksiyonu için;
 
 
 seg veren girdiler
-- [ ] 25 satırdan uzun fonk. sayısı => 7
+- [ ] 25 satırdan uzun fonk. sayısı => 6
 - [ ] cat | cat | ls

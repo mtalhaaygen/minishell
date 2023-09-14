@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 12:34:21 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/14 19:34:00 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,61 +146,3 @@ void	exec_select(t_node *nodes)
 	}
 	ft_executor(nodes);
 }
-/*
-aşağıdaki caselerin hepsi çalışıyor, yalnızca üç	 heredoc bir node içerisinde olursa patlıyor
-cat <<EOF1 <<EOF2
-> first here-doc
-> EOF1
-> second here-doc
-> EOF2
-*/
-/*
-bash-3.2$ ls <<s
-> sss
-> sss
-> s
-Makefile        builtin         lcontrol.sh     main.c          minishell.h
-README.md       executor        lib             minishell       parser
-*/
-
-
-
-
-
-
-
-
-/*
-bash-3.2$ cat <<E1 | cat <<E2
-> DENEME
-> E1
-> DENEME2
-> E2
-DENEME2
-*/
-/*
-bash-3.2$ ls -la | cat << EOF
-> DDFGH
-> EOF
-DDFGH
-*/
-/*
-bash-3.2$ cat << EOF | ls
-> deneme
-> EOF
-Makefile        executor        minishell.h
-README.md       lib             parser
-builtin         main.c          talha.txt
-*/
-/*
-bash-3.2$ cat << EOF | grep ali
-> deneme
-> aliço
-ls << s
-> aligo
-> alimo
-> EOF
-aliço
-aligo
-alimo
-*/

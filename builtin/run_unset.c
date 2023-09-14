@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:12:19 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 17:40:32 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/14 19:32:50 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	unset_search(t_node node, int i)
 {
 	int	size;
 	int	len;
-	
+
 	while (node.args[++i])
 	{
 		len = ft_strlen(node.args[i]);
@@ -83,7 +83,8 @@ void	unset_search(t_node node, int i)
 		size = g_va->full_size;
 		while (size >= 0)
 		{
-			if (ft_strncmp(node.args[i], g_va->full[size], len) && (node.args[i][len] == '=' || node.args[i][len] == '\0'))
+			if (ft_strncmp(node.args[i], g_va->full[size], len)
+				&& (node.args[i][len] == '=' || node.args[i][len] == '\0'))
 				del_full(size);
 			size--;
 		}
