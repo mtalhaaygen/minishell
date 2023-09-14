@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 14:26:17 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/14 16:57:05 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,4 @@ void	is_redirection(t_node *nodes, int i)
 		// 	j -= 1;
 		// }
 	}
-	int q = 0;
-	 while (nodes[0].args[q])
-	 {
-	 	printf("*%s*\n", nodes[0].args[q]);
-	 	q++;
-	 }
 }

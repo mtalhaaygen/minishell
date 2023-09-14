@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_unset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:12:19 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 13:20:32 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/14 17:10:19 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ void	del_full(int index)
 			new[i] = ft_strdup(g_va->full[i]);
 		if (i > index)
 			new[i - 1] = ft_strdup(g_va->full[i]);
+		free(g_va->full[i]);
 	}
 	new[i - 1] = NULL;
+	free(g_va->full);
 	g_va->full = new;
 }
 
@@ -70,7 +72,7 @@ void	run_unset(t_node node)
 		{
 			len = ft_strlen(node.args[i]);
 			size = g_va->env->env_count - 1;
-			while (size > 0)
+			while (size >= 0)
 			{
 				if (ft_strcmp(node.args[i], g_va->env[size].key))
 				{
@@ -80,7 +82,7 @@ void	run_unset(t_node node)
 				size--;
 			}
 			size = g_va->full_size;
-			while (size > 0)
+			while (size >= 0)
 			{
 				if (ft_strncmp(node.args[i], g_va->full[size], len) && \
 						(node.args[i][len] == '=' || node.args[i][len] == '\0'))
