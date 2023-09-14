@@ -6,7 +6,7 @@
 /*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 19:09:03 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 12:02:04 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/14 13:11:45 by tdemir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ char	*ft_rm_last_sp(char *input)
 t_token	*ft_tokens(char *input)
 {
 	t_token	*tokens;
-
 	input = ft_rm_last_sp(input);
 	if (quote_off(input))
 	{
@@ -117,10 +116,13 @@ t_token	*ft_tokens(char *input)
 	}
 	tokens = ft_start(input);
 	free (input);
-	if (ft_eor(tokens, -1) && ft_pure(tokens))
+	
+	ft_eor(tokens, -1);
+	if (!g_va->syn_err && ft_pure(tokens))
 		tokens = ft_sep(tokens);
 	tokens = ft_dollar(tokens);
 	ft_token_type (tokens);
 	g_va->process_count = ft_pipe_counter(tokens) + 1;
+
 	return (tokens);
 }
