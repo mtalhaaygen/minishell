@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:16:26 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/13 13:15:49 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/14 19:14:23 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,8 @@ void		ft_putstr_fd(char *s, int fd);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_strdup_dolkey(char *src);
 void		free_pp(char **args);
+void		ft_free_token(t_token	*tokens);
+void		ft_free_node(t_node	*nodes);
 int			arg_count(char **str);
 int			ft_strfind(char	*str, int c);
 void		ft_perror(const char *str);

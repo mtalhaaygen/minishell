@@ -6,21 +6,11 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:47:28 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/11 19:42:25 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/14 19:15:38 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	free_pp(char **args)
-{
-	int	i;
-
-	i = -1;
-	while (args[++i])
-		free(args[i]);
-	free(args);
-}
 
 void	ft_perror(const char *str)
 {
@@ -59,4 +49,26 @@ void	ft_o(t_node node, int i, t_token *tokens)
 {
 	node.infile->type = TOKEN_O;
 	node.infile->name = tokens[i + 1].value;
+}
+
+void	ft_free_node(t_node	*nodes)
+{
+	int	j;
+	int	i;
+	
+	j = 0;
+	while(j < g_va->process_count)
+	{
+		i = 0;
+		while (i < nodes[j].arg_count)
+		{
+			free(nodes[j].args[i]);
+			i++;
+		}
+		free(nodes[j].args);
+		free(nodes[j].infile);
+		free(nodes[j].outfile);
+		j++;
+	}
+	free(nodes);
 }

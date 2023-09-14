@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 11:05:27 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/12 14:15:57 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/14 19:12:45 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,24 @@ void	ft_i(t_node node, int i, t_token *tokens)
 {
 	node.outfile->type = TOKEN_I;
 	node.outfile->name = tokens[i + 1].value;
+}
+
+void	free_pp(char **args)
+{
+	int	i;
+
+	i = -1;
+	while (args[++i])
+		free(args[i]);
+	free(args);
+}
+
+void	ft_free_token(t_token	*tokens)
+{
+	int i;
+	
+	i = -1;
+	while(tokens[++i].value)
+		free(tokens[i].value); 
+	free(tokens);
 }

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 14:41:06 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/14 19:27:37 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,64 +36,55 @@ void	sigint_handler(int sig)
 	g_va->syn_err = 1;
 }
 
-int	main(int argc, char **argv, char **envp)
+void	minishell_init(int argc, char **argv,char **envp)
 {
 	t_env	*env_list;
-	char	*line;
-	t_node	*nodes;
-	t_token	*tokens;
-
+	
 	(void)argc;
 	(void)argv;
 	g_va = malloc(sizeof(t_minishell));
 	g_va->s_back = 0;
-	
 	env_list = fill_env(envp);
 	g_va->env = env_list;
 	add_dollar_question_mark();
+}
+t_token	*ft_main_sep()
+{
+	char	*line;
+	t_token	*tokens;
+
+	g_va->syn_err = 0;
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, sigquit_handler);
+	line = ft_readline("$ ");
+	if (line[0])
+		add_history(line);
+	tokens = ft_tokens(line);
+	free(line);
+	return (tokens);
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	t_node	*nodes;
+	t_token	*tokens;
+
+	minishell_init(argc, argv, envp);
 	while (1)
 	{
-		g_va->syn_err = 0;
-		signal(SIGINT, sigint_handler);
-		signal(SIGQUIT, sigquit_handler);
-		line = ft_readline("$ ");
-		if (line[0])
-			add_history(line);
-		tokens = ft_tokens(line);
-		free(line);
+		tokens = ft_main_sep();
 		if (tokens[0].value)
 		{
 			if (g_va->syn_err)
 			{
-				int x = -1;
-				while(tokens[++x].value)
-					free(tokens[x].value); 
-				free(tokens);
+				ft_free_token(tokens);
 				continue;
 			}
 			nodes = ft_parser(tokens);
 			g_va->nodes = nodes;
 			exec_start(nodes);
-
-			int j = 0;
-			while(j < g_va->process_count)
-			{
-				int i  = 0;
-				while (i < nodes[j].arg_count)
-				{
-					free(nodes[j].args[i]);
-					i++;
-				}
-				free(nodes[j].args);
-				free(nodes[j].infile);
-				free(nodes[j].outfile);
-				j++;
-			}
-			free(nodes);
+			ft_free_node(nodes);
 		}
-		int i = -1;
-		while(tokens[++i].value)
-			free(tokens[i].value); 
-		free(tokens);
+		ft_free_token(tokens);
 	}
 }
