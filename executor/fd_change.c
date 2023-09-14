@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_change.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:48 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 12:34:00 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/14 14:26:17 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ void	fd_change(t_node node, int index)
 {
 	while (node.args[index] && node.args[index + 2])
 	{
-		free(node.args[index]);
 		node.args[index] = node.args[index + 2];
 		index++;
 	}
 	while (node.args[index])
 	{
-		free(node.args[index]);
 		node.args[index] = NULL;
 		index++;
 	}
@@ -40,10 +38,12 @@ void	change_fd_i(t_node node, int index)
 			file_access(node.args[index + 1], W_OK, 7, node);
 		fdnewtxt = open(node.args[index + 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
 		if (ft_strcmp(node.outfile->name, node.args[index + 1]))
+		{
 			dup2(fdnewtxt, STDOUT_FILENO);
+			free(node.outfile->name);
+			free(node.outfile);
+		}
 		fd_change(node, index);
-		free(node.outfile->name);
-		free(node.outfile);
 	}
 }
 
@@ -58,10 +58,12 @@ void	change_fd_ii(t_node node, int index)
 		fdnewtxt = open(node.args[index + 1], \
 					O_RDWR | O_APPEND | O_CREAT, 0644);
 		if (ft_strcmp(node.outfile->name, node.args[index + 1]))
+		{
 			dup2(fdnewtxt, STDOUT_FILENO);
+			free(node.outfile->name);
+			free(node.outfile);
+		}
 		fd_change(node, index);
-		free(node.outfile->name);
-		free(node.outfile);
 	}
 }
 
@@ -75,10 +77,12 @@ void	change_fd_o(t_node node, int index)
 			return ;
 		fdnewtxt = open(node.args[index + 1], O_RDWR, 0777);
 		if (ft_strcmp(node.infile->name, node.args[index + 1]))
+		{
 			dup2(fdnewtxt, STDIN_FILENO);
+			free(node.infile->name);
+			free(node.infile);
+		}
 		fd_change(node, index);
-		free(node.infile->name);
-		free(node.infile);
 	}
 }
 	// while içerisinde tüm node dolaşılacak ilk redirection ile change fd ve
@@ -122,4 +126,10 @@ void	is_redirection(t_node *nodes, int i)
 		// 	j -= 1;
 		// }
 	}
+	int q = 0;
+	 while (nodes[0].args[q])
+	 {
+	 	printf("*%s*\n", nodes[0].args[q]);
+	 	q++;
+	 }
 }

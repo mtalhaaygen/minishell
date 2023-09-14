@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 20:07:53 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 13:02:40 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/14 14:41:06 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,7 @@ int	main(int argc, char **argv, char **envp)
 			nodes = ft_parser(tokens);
 			g_va->nodes = nodes;
 			exec_start(nodes);
-			int q = 0;
-			while (nodes[0].args[q])
-			{
-				printf("*%s*\n", nodes[0].args[q]);
-				q++;
-			}
-			
+
 			int j = 0;
 			while(j < g_va->process_count)
 			{
@@ -96,8 +90,6 @@ int	main(int argc, char **argv, char **envp)
 				j++;
 			}
 			free(nodes);
-			// infile name
-			// outfile name
 		}
 		int i = -1;
 		while(tokens[++i].value)
