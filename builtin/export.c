@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 17:46:34 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/14 17:55:27 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void	ft_export2(t_node node)
 				new[i++] = ft_strdup(node.args[args_index]);
 		}
 		new[i] = NULL;
-		free_pp(g_va->full)
+		free_pp(g_va->full);
 		// i = -1;
 		// while (g_va->full[++i])
 		// 	free(g_va->full[i]);

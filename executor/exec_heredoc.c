@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/13 20:45:37 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/14 18:26:23 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ void	rm_heredoc(void)
 void	node_change(t_node node, int i, int flag, char *txt)
 {
 	if (g_va->heredoc_count_node > 1)
+	{
+		free(node.args[1]);
 		node.args[1] = ft_strdup(txt);
+	}
 	if (flag == 1 && !ft_strcmp(node.args[0], "export")
 		&& !ft_strcmp(node.args[0], "echo") && !ft_strcmp(node.args[0], "ls")
 		&& !ft_strcmp(node.args[0], "cd"))
@@ -51,7 +54,7 @@ void	node_change(t_node node, int i, int flag, char *txt)
 		while (node.args[++i] && node.args[i + 1])
 		{
 			free(node.args[i]);
-			node.args[i] = node.args[i + 1];
+			node.args[i] = ft_strdup(node.args[i + 1]);
 		}
 		free(node.args[i]);
 		node.args[i] = NULL;
@@ -63,11 +66,14 @@ void	node_change(t_node node, int i, int flag, char *txt)
 			while (node.args[i] && node.args[i + 2])
 			{
 				free(node.args[i]);
-				node.args[i] = node.args[i + 2];
+				node.args[i] = ft_strdup(node.args[i + 2]);
 				i++;
 			}
 			while (node.args[i])
+			{
+				free(node.args[i]);
 				node.args[i] = NULL;
+			}
 		}
 	}
 }
