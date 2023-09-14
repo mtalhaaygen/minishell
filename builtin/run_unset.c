@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:12:19 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 17:10:19 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/14 17:40:32 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,17 @@ void	del_env(int index)
 			nenv[i].key = g_va->env[i].key;
 			nenv[i].value = g_va->env[i].value;
 		}
-		if (i > index)
+		else if (i > index)
 		{
 			nenv[i - 1].key = g_va->env[i].key;
 			nenv[i - 1].value = g_va->env[i].value;
 		}
 	}
+	free(g_va->env[index].key);
+	free(g_va->env[index].value);
 	nenv[i - 1].key = NULL;
 	nenv[i - 1].value = NULL;
+	free(g_va->env);
 	g_va->env = nenv;
 }
 
@@ -59,36 +62,41 @@ void	del_full(int index)
 	g_va->full = new;
 }
 
+void	unset_search(t_node node, int i)
+{
+	int	size;
+	int	len;
+	
+	while (node.args[++i])
+	{
+		len = ft_strlen(node.args[i]);
+		size = g_va->env->env_count - 1;
+		while (size >= 0)
+		{
+			if (ft_strcmp(node.args[i], g_va->env[size].key))
+			{
+				del_env(size);
+				break ;
+			}
+			size--;
+		}
+		size = g_va->full_size;
+		while (size >= 0)
+		{
+			if (ft_strncmp(node.args[i], g_va->full[size], len) && (node.args[i][len] == '=' || node.args[i][len] == '\0'))
+				del_full(size);
+			size--;
+		}
+	}
+}
+
 void	run_unset(t_node node)
 {
 	int	i;
-	int	size;
-	int	len;
 
 	if (node.arg_count > 1)
 	{
 		i = 0;
-		while (node.args[++i])
-		{
-			len = ft_strlen(node.args[i]);
-			size = g_va->env->env_count - 1;
-			while (size >= 0)
-			{
-				if (ft_strcmp(node.args[i], g_va->env[size].key))
-				{
-					del_env(size);
-					break ;
-				}
-				size--;
-			}
-			size = g_va->full_size;
-			while (size >= 0)
-			{
-				if (ft_strncmp(node.args[i], g_va->full[size], len) && \
-						(node.args[i][len] == '=' || node.args[i][len] == '\0'))
-					del_full(size);
-				size--;
-			}
-		}
+		unset_search(node, i);
 	}
 }

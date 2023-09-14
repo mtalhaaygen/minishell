@@ -753,17 +753,5 @@ fork() fonksiyonu için;
 
 
 seg veren girdiler
-- [ ] \>> | \>>
-- [ ] <<< | ls
-- [x] ctrl-C ctrl- / SEG
-
-- [x] cat << a >os | asdsadsad << c
-- [x] tüm komutlar sonrasında $? teest
-- [x] syntax error silinebilir
-- [ ] 25 satırdan uzun fonk. sayısı => 6
-- [ ] leaks
-- [x] ilk başta "export a" gibi value atamadan eklendiğinde envde update edemiyor
-- [x] ilk başta "export a=2" gibi value atayıp sonra "export a" gibi value olmadan komutu çalıştırdığımızda update ediyor update etmemesi gerekiyor
-- [x] insertionshort
-- [x] perror("tsh: pipe not created"); (perror("tsh: executor fork error")); DURUMLARINDA ve syntax_errorda ?ni güncellemiyorum zaten o errorlara girmiyor
+- [ ] 25 satırdan uzun fonk. sayısı => 5
 - [ ] cat | cat | ls
