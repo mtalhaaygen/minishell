@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/12 18:24:16 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/15 17:09:25 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,7 @@ void	add_dollar_question_mark(void)
 	char	**new;
 	char	*s;
 	int		i;
-	int		index;
 
-	index = 0;
 	i = -1;
 	s = ft_strdup("?=0");
 	g_va->err_number = 0;

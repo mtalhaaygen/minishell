@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:16:26 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/14 19:14:23 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/15 17:08:27 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ enum e_builtin_types
 	EXPORT
 };
 
-typedef		enum
+typedef enum s_type_token
 {
 	TOKEN_PIPE,
 	TOKEN_I,
@@ -47,14 +47,14 @@ typedef		enum
 	TOKEN_O_O,
 	TOKEN_WORD,
 	TOKEN_EOF
-}				TokenType;
+}				t_type_token;
 
 typedef struct s_token
 {
-	int			quot_flag;
-	int			fq;
-	TokenType	type;
-	char		*value;
+	int				quot_flag;
+	int				fq;
+	t_type_token	type;
+	char			*value;
 }	t_token;
 
 typedef struct s_env
@@ -66,7 +66,7 @@ typedef struct s_env
 
 typedef struct s_file
 {
-	TokenType		type;
+	t_type_token	type;
 	char			*name;
 }	t_file;
 
@@ -199,6 +199,8 @@ void		rm_heredoc(void);
 int			file_access(char *filename, int flag, int f2, t_node node);
 void		add_dollar_question_mark(void);
 char		*ft_getenv(char *str);
+char		*ft_heredoc_file(char *full);
+int			ft_find_heredoc(t_node *nodes, int flag, int th, int i);
 
 /* BUILTIN COMMANDS */
 int			is_builtin(char **args);

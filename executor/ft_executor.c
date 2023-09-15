@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 19:34:00 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/15 17:08:41 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ void	exec_select(t_node *nodes)
 	int		i;
 	int		th;
 	int		flag;
-	int		status;
 
 	th = -1;
 	g_va->heredoc_count = 0;
@@ -132,15 +131,7 @@ void	exec_select(t_node *nodes)
 			break ;
 		while (nodes[th].args[++i] != NULL && nodes[th].args[i])
 		{
-			if (flag > 1)
-				i = i - 1;
-			status = ft_strcmp("<<", nodes[th].args[i]);
-			if (status == 1 && nodes[th].args[i + 1])
-			{
-				flag++;
-				ft_executor_heredoc(nodes, th, i, flag);
-			}
-			else if (status == -1)
+			if (ft_find_heredoc(nodes, flag, th, i) == -1)
 				break ;
 		}
 	}

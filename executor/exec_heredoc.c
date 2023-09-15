@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:55:02 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 19:55:23 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/15 16:07:48 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,17 @@ int	first_change(int i, t_node node, char *txt)
 	return (i);
 }
 
+int	ft_status(int flag, t_node node)
+{
+	if (flag == 1 && !ft_strcmp(node.args[0], "export")
+		&& !ft_strcmp(node.args[0], "echo") && !ft_strcmp(node.args[0], "ls")
+		&& !ft_strcmp(node.args[0], "cd"))
+	{
+		return (1);
+	}
+	return (0);
+}
+
 void	node_change(t_node node, int i, int flag, char *txt)
 {
 	if (g_va->heredoc_count_node > 1)
@@ -59,9 +70,7 @@ void	node_change(t_node node, int i, int flag, char *txt)
 		free(node.args[1]);
 		node.args[1] = ft_strdup(txt);
 	}
-	if (flag == 1 && !ft_strcmp(node.args[0], "export")
-		&& !ft_strcmp(node.args[0], "echo") && !ft_strcmp(node.args[0], "ls")
-		&& !ft_strcmp(node.args[0], "cd"))
+	if (ft_status(flag, node))
 		i = first_change(i, node, txt);
 	else
 	{
@@ -82,22 +91,11 @@ void	node_change(t_node node, int i, int flag, char *txt)
 	}
 }
 
-// heredoc read
-// readline ile promt yazdırılıp kullanıcıdan girdi beklenecek alınan 
-// girdi str_join ile
-// bir önceki satır ile birleştirilecek tabii arada bir \n de olacak
-// herseferinde bir dosya açıp dosyanın içini sıfırlayıp full ü 
-// dosyaya yazacağız
-// Okuduğumuz tüm veriyi dosyaya yazıyoruz
-// Burada direk ekrana basmak yerine heredocu execve ile
-// çalıştıracağımız için node u güncelleyeceğiz
 void	ft_executor_heredoc(t_node *nodes, int th, int i, int flag)
 {
 	char	*full;
-	char	*txt;
 	char	*buff;
-	int		fd;
-	char	*co;
+	char	*txt;
 
 	g_va->heredoc_count++;
 	g_va->heredoc_count_node++;
@@ -116,12 +114,7 @@ void	ft_executor_heredoc(t_node *nodes, int th, int i, int flag)
 			break ;
 	}
 	free(buff);
-	co = ft_itoa(g_va->heredoc_count);
-	txt = ft_strjoin("heredoc.txt", co);
-	free(co);
-	fd = open(txt, O_TRUNC | O_CREAT | O_RDWR, 0777);
-	ft_putstr_fd(full, fd);
-	free(full);
+	txt = ft_heredoc_file(full);
 	node_change(nodes[th], i, flag, txt);
 	free(txt);
 }
