@@ -6,13 +6,12 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/15 17:09:25 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/15 18:15:47 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// tamamı redirection mu diye kontrol edecek
 int	ft_find_redirection(t_node node)
 {
 	int	i;
@@ -25,34 +24,6 @@ int	ft_find_redirection(t_node node)
 				return (1);
 	}
 	return (0);
-}
-
-// bir node yalnızca redirection içeremez
-// bit node boş olamaz
-// yalnızca bir pipe varsa args[0] null olur, yalnızca > varsa 
-// args[0] == > olur.
-void	ft_syntax_error(t_node *nodes)
-{
-	int	flag;
-	int	i;
-
-	i = -1;
-	flag = 0;
-	while (++i < g_va->process_count)
-	{
-		if (ft_find_redirection(nodes[i]))
-		{
-			flag = 2;
-			break ;
-		}
-	}
-	if (flag == 2)
-		return ;
-	if (flag == 0)
-	{
-		printf("YYYYtsh: syntax error near unexpected token `newline'\n");
-		exit (258);
-	}
 }
 
 int	find_full(char *new)
@@ -105,14 +76,6 @@ int	file_access(char	*filename, int flag, int f2, t_node node)
 	return (0);
 }
 
-// export ?=123 şeklinde ekleme yapacak, tabii execve ile çalışmayacak 
-// void	ft_export2(t_node node) fonksiyonunu çağıracağız
-// node.args içeriği aşağıdaki şekilde olacak
-// export ?=err_number
-// Aşağıdaki gibi kod kısaltılabilir
-// ilk başta bir ker "export ?=errnu" çalıştır yani export2(node)
-// daha sonra direkt update_export fonk. çalıştır.
-
 void	add_dollar_question_mark(void)
 {
 	char	**new;
@@ -133,12 +96,10 @@ void	add_dollar_question_mark(void)
 	g_va->full = new;
 }
 
-// bu fonksiyon dosya izinlerini kontrol edecek gerekirse
-	// gerekli hata kodlarını ekrana basacak
-// cat <main.c   main.c infile oluyor 
-//infile olan dosyalar okunabilir mi bakacağız R_OK
-// ls >deneme.txt gibi bir durumda yada append de (>>)
-	// access kontrolüne gerek yok
-// diğerlerini çalıştırılabilir mi diye bakacağız
-		// printf("%s: Permission denied\n", filename);
-		// printf("%s: No such file or directory\n", filename);
+int	ft_envadd_counter(void)
+{
+	int	count;
+
+	count = g_va->env->env_count * 2;
+	return (count);
+}

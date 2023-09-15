@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:53:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/13 15:50:07 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/15 18:08:45 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,13 @@ void	run_cd(t_node node)
 			}
 		}
 	}
+}
+
+void	ft_print_full(char **args)
+{
+	int	i;
+
+	i = -1;
+	while (args[++i])
+		printf("declare -x %s\n", args[i]);
 }

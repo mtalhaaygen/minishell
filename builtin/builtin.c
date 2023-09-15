@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemir <tdemir@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:52:56 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/12 19:23:28 by tdemir           ###   ########.fr       */
+/*   Updated: 2023/09/15 18:01:58 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	run_builtin(int status, t_node node)
 	exit(0);
 }
 
-	// bu komutların pipe olduğu durumlarda çalışmaması için bu kokşul eklendi
-	// exit de free
 void	run_other_builtin(int status, t_node node)
 {
 	if (g_va->process_count > 1)
@@ -69,13 +67,9 @@ int	is_other_builtin(t_node node)
 	return (0);
 }
 
-	// if (node.args[1] == NULL) 
-	// command : export, command : export | grep a, parametresiz
-	// printf("deneme\n");
 void	ft_export1(t_node node)
 {
 	(void)node;
 	ft_print_full(g_va->full);
-	printf("SAYI:%d\n", g_va->full_size);
 	exit(0);
 }

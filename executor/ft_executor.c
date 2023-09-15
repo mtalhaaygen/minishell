@@ -6,75 +6,48 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:57:34 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/15 17:08:41 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/15 18:13:37 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*ft_access(char *args)
+void	ft_child_process(t_node *nodes, int i)
 {
-	char	**command_paths;
-	char	*pathenv;
-	char	*command;
-	int		i;
+	int		status;
+	char	*bin_command;
 
-	i = -1;
-	if (!args[0])
-		exit(0);
-	pathenv = ft_getenv("PATH");
-	if (!pathenv)
+	status = is_other_builtin(nodes[i]);
+	if (nodes[i].args[0] && !status)
 	{
-		printf("tsh: %s: No such file or directory\n", args);
-		exit(127);
+		g_va->pid = fork();
+		if (g_va->pid == 0)
+		{
+			ft_process_merge(i);
+			is_redirection(nodes, i);
+			status = is_builtin(nodes[i].args);
+			if (status)
+				run_builtin(status, nodes[i]);
+			bin_command = ft_access(nodes[i].args[0]);
+			if (execve(bin_command, nodes[i].args, g_va->full))
+				ft_perror(bin_command);
+			exit (127);
+		}
+		else if (g_va->pid < 0)
+			return (perror("tsh: executor fork error"));
 	}
-	command_paths = ft_split(pathenv, ':');
-	if (args[0] == '/' || (args[1] == '/' && args[0] == '.'))
-		return (args);
-	args = ft_strjoin("/", args);
-	while (command_paths[++i])
-	{
-		command = ft_strjoin(command_paths[i], args);
-		if (access(command, R_OK | X_OK) == 0)
-			break ;
-	}
-	if (!command_paths[i])
-	{
-		printf("tsh: %s: command not found\n", args + 1);
-		exit(127);
-	}
-	return (command);
+	run_other_builtin(status, nodes[i]);
 }
 
 void	ft_executor(t_node *nodes)
 {
 	int		status;
-	char	*bin_command;
 	int		i;
+	char	*er;
 
 	i = -1;
 	while (++i < g_va->process_count)
-	{
-		if (nodes[i].args[0] && !(status = is_other_builtin(nodes[i])))
-		{
-			g_va->pid = fork();
-			if (g_va->pid == 0)
-			{
-				ft_syntax_error(nodes);
-				ft_process_merge(i);
-				is_redirection(nodes, i);
-				if ((status = is_builtin(nodes[i].args)))
-					run_builtin(status, nodes[i]);
-				bin_command = ft_access(nodes[i].args[0]);
-				if (execve(bin_command, nodes[i].args, g_va->full))
-					ft_perror(bin_command);
-				exit (127);
-			}
-			else if (g_va->pid < 0)
-				return (perror("tsh: executor fork error"));
-		}
-		run_other_builtin(status, nodes[i]);
-	}
+		ft_child_process(nodes, i);
 	pipe_close();
 	i = -1;
 	status = -1;
@@ -83,10 +56,9 @@ void	ft_executor(t_node *nodes)
 	if (WIFEXITED(status) && g_va->err_number >= 0)
 	{
 		g_va->err_number = WEXITSTATUS(status);
-		char *qqq;
-		qqq = ft_itoa(g_va->err_number);
-		question_mark_update(ft_strjoin("?=", qqq), g_va->err_number);
-		free(qqq);
+		er = ft_itoa(g_va->err_number);
+		question_mark_update(ft_strjoin("?=", er), g_va->err_number);
+		free(er);
 		rm_heredoc();
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:16:26 by tdemir            #+#    #+#             */
-/*   Updated: 2023/09/15 17:08:27 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/15 18:16:40 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef enum s_type_token
 	TOKEN_O_O,
 	TOKEN_WORD,
 	TOKEN_EOF
-}				t_type_token;
+}	t_type_token;
 
 typedef struct s_token
 {
@@ -77,12 +77,12 @@ typedef struct s_node
 
 	t_file		*infile;
 	t_file		*outfile;
-}				t_node;
+}	t_node;
 
 typedef struct s_process
 {
-	pid_t				pid;
-	int					fd[2];
+	pid_t	pid;
+	int		fd[2];
 }	t_process;
 
 typedef struct s_minishell
@@ -153,7 +153,8 @@ int			ft_pure(t_token *tokens);
 int			tokencount_nq(const char *input, int i);
 void		ft_ec(t_token *tokens);
 void		ft_spectrum(t_token *tokens);
-/* LIB*/
+
+/* LIB */
 int			my_isspace(char ch);
 char		*ft_strdup(char *src);
 size_t		ft_strlen(const char *str);
@@ -182,15 +183,14 @@ char		*ft_itoa(int n);
 void		ft_o(t_node node, int i, t_token *tokens);
 void		ft_i_i(t_node node, int i, t_token *tokens);
 void		ft_i(t_node node, int i, t_token *tokens);
+int			ft_envadd_counter(void);
+
 /* EXECUTOR */
 void		ft_executor(t_node *nodes);
 void		ft_executor_heredoc(t_node *nodes, int th, int i, int flag);
 void		exec_start(t_node *nodes);
 void		exec_select(t_node *nodes);
 int			is_heredoc(t_node *nodes, int index);
-// int			contain_i(char **commands);
-// int			contain_ii(char **commands);
-// int			contain_o(char **commands);
 void		question_mark_update(char *new_value, int x);
 void		is_redirection(t_node *nodes, int i);
 void		ft_process_merge(int i);
@@ -201,6 +201,7 @@ void		add_dollar_question_mark(void);
 char		*ft_getenv(char *str);
 char		*ft_heredoc_file(char *full);
 int			ft_find_heredoc(t_node *nodes, int flag, int th, int i);
+char		*ft_access(char *args);
 
 /* BUILTIN COMMANDS */
 int			is_builtin(char **args);

@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:55:10 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/13 15:50:12 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/15 18:02:24 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int	ft_echo_param_checker(char *str)
 	return (1);
 }
 
-//yalnızca stdinden girdi alıp stdouta yada yönlendirme ile
-// dosyaya çıktı veren bir komut
 void	run_echo(t_node node)
 {
 	int	i;

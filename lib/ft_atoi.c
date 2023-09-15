@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 11:05:27 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 19:12:45 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/15 17:42:32 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	free_pp(char **args)
 
 void	ft_free_token(t_token	*tokens)
 {
-	int i;
-	
+	int	i;
+
 	i = -1;
-	while(tokens[++i].value)
-		free(tokens[i].value); 
+	while (tokens[++i].value)
+		free(tokens[i].value);
 	free(tokens);
 }

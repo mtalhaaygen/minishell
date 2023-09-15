@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:47:28 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/14 19:15:38 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/15 17:42:15 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	ft_free_node(t_node	*nodes)
 {
 	int	j;
 	int	i;
-	
+
 	j = 0;
-	while(j < g_va->process_count)
+	while (j < g_va->process_count)
 	{
 		i = 0;
 		while (i < nodes[j].arg_count)
