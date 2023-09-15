@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:29:13 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/15 18:15:47 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/15 18:42:34 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	find_full(char *new)
 	else
 		len--;
 	size = g_va->full_size - 1;
-	while (size > 0)
+	while (size >= 0)
 	{
 		if (ft_strncmp(new, g_va->full[size], len) && \
 				(new[len] == '=' || new[len] == '\0'))

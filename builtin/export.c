@@ -6,7 +6,7 @@
 /*   By: maygen <maygen@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:41:44 by maygen            #+#    #+#             */
-/*   Updated: 2023/09/15 18:12:55 by maygen           ###   ########.fr       */
+/*   Updated: 2023/09/15 18:47:03 by maygen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,7 @@ void	ft_add_export(t_node node)
 		if (!find_full(node.args[args_index]))
 			add_env(node.args[args_index]);
 	}
-	g_va->full_size = arg_count(g_va->full) + node.arg_count - 1;
-	new = malloc(sizeof(char *) * g_va->full_size + 1);
+	new = malloc(sizeof(char *) * (arg_count(g_va->full) + node.arg_count));
 	while (g_va->full[++i])
 		new[i] = ft_strdup(g_va->full[i]);
 	args_index = 0;
@@ -111,6 +110,7 @@ void	ft_add_export(t_node node)
 		if (!find_full(node.args[args_index]))
 			new[i++] = ft_strdup(node.args[args_index]);
 	}
+	g_va->full_size = arg_count(g_va->full) + node.arg_count - 1;
 	new[i] = NULL;
 	free_pp(g_va->full);
 	g_va->full = new;
